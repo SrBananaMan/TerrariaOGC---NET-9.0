@@ -1,6 +1,6 @@
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Text;
 
 namespace Terraria
 {
@@ -18,21 +18,21 @@ namespace Terraria
 			{
 				switch (CursorY)
 				{
-				case 0:
-				{
-					UI.MainUI.IsOnline = !UI.MainUI.IsOnline;
-					UI.MainUI.SettingsDirty = true;
-					break;
-				}
-				case 1:
-				{
-					UI.MainUI.IsInviteOnly = !UI.MainUI.IsInviteOnly;
-					UI.MainUI.SettingsDirty = true;
-					break;
-				}
-				case 2:
-					StartGame();
-					break;
+					case 0:
+						{
+							UI.MainUI.IsOnline = !UI.MainUI.IsOnline;
+							UI.MainUI.SettingsDirty = true;
+							break;
+						}
+					case 1:
+						{
+							UI.MainUI.IsInviteOnly = !UI.MainUI.IsInviteOnly;
+							UI.MainUI.SettingsDirty = true;
+							break;
+						}
+					case 2:
+						StartGame();
+						break;
 				}
 			}
 		}
@@ -71,7 +71,7 @@ namespace Terraria
 
 		public static void Draw(WorldView view)
 		{
-			Rectangle rect = default(Rectangle);
+			Rectangle rect = default;
 
 #if USE_ORIGINAL_CODE
 			rect.X = (view.ViewWidth >> 1) - 190;
@@ -143,7 +143,7 @@ namespace Terraria
 				SpriteSheet<_sheetSprites>.DrawScaledTL((int)_sheetSprites.ID.CHECK, num + (int)(10 * Main.ScreenMultiplier), num2 + (int)(10 * Main.ScreenMultiplier), c, Main.ScreenMultiplier);
 			}
 			UI.DrawStringLC(UI.SmallFont, Lang.MenuText[6], num + (int)(60 * Main.ScreenMultiplier), num2 + (int)(26 * Main.ScreenMultiplier), c);
-			
+
 			num2 += (int)(64 * Main.ScreenMultiplier);
 
 			if (CursorY == 1)
@@ -182,11 +182,11 @@ namespace Terraria
 			float StringY = 454f;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					StringY = 620f;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					StringY = 940f;
 					break;
 			}

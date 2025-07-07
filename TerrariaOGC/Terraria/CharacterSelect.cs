@@ -1,7 +1,7 @@
 #if !VERSION_INITIAL
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Text;
 
 namespace Terraria
 {
@@ -103,13 +103,13 @@ namespace Terraria
 
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					EntryWidth = 576; // *= 1.3
 					SALeftAdd = 384; // *= 1.3
 					SATopAdd = 251; // Close to *= 1.3
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					EntryWidth *= 2;
 					SALeftAdd *= 2;
 					SATopAdd *= 2;

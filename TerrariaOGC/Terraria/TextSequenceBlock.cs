@@ -446,30 +446,30 @@ namespace Terraria
 			string[] array = TIPS_EN;
 			switch (Lang.LangOption)
 			{
-			case (int)Lang.ID.GERMAN:
-				array = TIPS_DE;
-				break;
-			case (int)Lang.ID.FRENCH:
-				array = TIPS_FR;
-				break;
-			case (int)Lang.ID.ITALIAN:
-				array = TIPS_IT;
-				break;
-			case (int)Lang.ID.SPANISH:
-				array = TIPS_ES;
-				break;
+				case (int)Lang.ID.GERMAN:
+					array = TIPS_DE;
+					break;
+				case (int)Lang.ID.FRENCH:
+					array = TIPS_FR;
+					break;
+				case (int)Lang.ID.ITALIAN:
+					array = TIPS_IT;
+					break;
+				case (int)Lang.ID.SPANISH:
+					array = TIPS_ES;
+					break;
 			}
 
 #if !USE_ORIGINAL_CODE
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					Width = 506;
 					TipCenter.Y = 540;
 					TipDimensions.X = (int)(TipDimensions.X * 1.15f);
 					TipDimensions.Y = (int)(TipDimensions.Y * 1.15f);
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					Width = 675;
 					TipCenter.Y = 810;
 					TipDimensions.X = (int)(TipDimensions.X * 1.534f);

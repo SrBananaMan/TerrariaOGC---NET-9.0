@@ -1,7 +1,7 @@
 #if !USE_ORIGINAL_CODE
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Text;
 
 namespace Terraria.Hardmode
 {
@@ -89,19 +89,19 @@ namespace Terraria.Hardmode
 			int PopupText;
 			switch (Lang.LangOption)
 			{
-			case (int)Lang.ID.GERMAN:
-				PopupText = (int)Lang.ID.GERMAN;
-				break;
-			case (int)Lang.ID.FRENCH:
-				PopupText = (int)Lang.ID.FRENCH;
-				break;
-			case (int)Lang.ID.ITALIAN:
-				PopupText = (int)Lang.ID.ITALIAN;
-				break;
-			case (int)Lang.ID.SPANISH:
-				PopupText = (int)Lang.ID.SPANISH;
-				break;
-			default: PopupText = (int)Lang.ID.ENGLISH; break;
+				case (int)Lang.ID.GERMAN:
+					PopupText = (int)Lang.ID.GERMAN;
+					break;
+				case (int)Lang.ID.FRENCH:
+					PopupText = (int)Lang.ID.FRENCH;
+					break;
+				case (int)Lang.ID.ITALIAN:
+					PopupText = (int)Lang.ID.ITALIAN;
+					break;
+				case (int)Lang.ID.SPANISH:
+					PopupText = (int)Lang.ID.SPANISH;
+					break;
+				default: PopupText = (int)Lang.ID.ENGLISH; break;
 			}
 			Popup = HardmodeLayout.SideBySideLayout(HardmodeText[--PopupText], (int)(500 * Main.ScreenMultiplier), Assets.HardmodeUpsell);
 			Popup.GenerateCache(GraphicsDevice);

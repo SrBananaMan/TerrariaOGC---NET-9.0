@@ -1,12 +1,9 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Storage;
 using Terraria.Achievements;
 using static Terraria.Tile;
 
@@ -58,15 +55,15 @@ namespace Terraria
 		}
 
 #if (!VERSION_INITIAL || IS_PATCHED)
-        private enum Dir
-        {
-            LEFT = 1,
-            RIGHT = 2,
-            LEFT_RIGHT = 3,
-            UP = 4,
-            DOWN = 8,
-            UP_DOWN = 12
-        }
+		private enum Dir
+		{
+			LEFT = 1,
+			RIGHT = 2,
+			LEFT_RIGHT = 3,
+			UP = 4,
+			DOWN = 8,
+			UP_DOWN = 12
+		}
 #endif
 
 		public const int MaxNumMech = 1000;
@@ -104,8 +101,8 @@ namespace Terraria
 		public static Mech[] mech = new Mech[MaxNumMech];
 
 #if (!VERSION_INITIAL || IS_PATCHED)
-        private static WireCheck[] wiresChecked = new WireCheck[MaxNumWire];
-        private static Location[] wire = new Location[MaxNumWire];
+		private static WireCheck[] wiresChecked = new WireCheck[MaxNumWire];
+		private static Location[] wire = new Location[MaxNumWire];
 #else
 		public static int numWire = 0;
 		public static Location[] wire = new Location[MaxNumWire];
@@ -219,7 +216,7 @@ namespace Terraria
 
 		public static int dungeonY;
 
-		public static Vector2i lastDungeonHall = default(Vector2i);
+		public static Vector2i lastDungeonHall = default;
 
 		public static int numDRooms = 0;
 
@@ -326,18 +323,18 @@ namespace Terraria
 						int type;
 						switch (ptr->Type)
 						{
-						case 112:
-							type = 56;
-							break;
-						case 116:
-							type = 67;
-							break;
-						case 123:
-							type = 71;
-							break;
-						default:
-							type = 31;
-							break;
+							case 112:
+								type = 56;
+								break;
+							case 116:
+								type = 67;
+								break;
+							case 123:
+								type = 71;
+								break;
+							default:
+								type = 31;
+								break;
 						}
 						int num2 = Projectile.NewProjectile(x * 16 + 8, y * 16 + 8, 0f, 2.5f, type, 10, 0f);
 						if (num2 < 0)
@@ -766,8 +763,8 @@ namespace Terraria
 #else
 			if (num5 > Main.MaxTilesX - 1)
 #endif
-            {
-                num5 = Main.MaxTilesX - 1;
+			{
+				num5 = Main.MaxTilesX - 1;
 			}
 			if (num6 < 0)
 			{
@@ -784,7 +781,7 @@ namespace Terraria
 				num7 = Main.MaxTilesY - 2;
 			}
 #endif
-            for (int l = num4 + 1; l < num5; l++)
+			for (int l = num4 + 1; l < num5; l++)
 			{
 				for (int m = num6 + 2; m < num7 + 2; m++)
 				{
@@ -1294,29 +1291,29 @@ namespace Terraria
 				5
 			});
 #endif
-            clearWorld();
+			clearWorld();
 			generateWorld();
 			everyTileFrame();
 			saveWorldWhilePlaying();
 			Main.StartGame();
 			Main.WorldGenThread = null;
-        }
+		}
 
-        public static void CreateNewWorld()
+		public static void CreateNewWorld()
 		{
 			Netplay.StopFindingSessions();
 			Thread thread = new Thread(worldGenCallBack);
 			thread.IsBackground = true;
 			thread.Start();
 			Main.WorldGenThread = thread;
-        }
+		}
 
-        public static void SaveAndQuit()
+		public static void SaveAndQuit()
 		{
 			Main.PlaySound(11);
 			Thread thread = new Thread(SaveAndQuitCallBack);
 			thread.Start();
-        }
+		}
 
 		public static void SaveAndQuitCallBack()
 		{
@@ -1326,7 +1323,7 @@ namespace Terraria
 				5
 			});
 #endif
-            Main.IsGameStarted = false;
+			Main.IsGameStarted = false;
 			for (int i = 0; i < 4; i++)
 			{
 				UI uI = Main.UIInstance[i];
@@ -1343,10 +1340,10 @@ namespace Terraria
             if (NetMode != (byte)NetModeSetting.CLIENT && UI.MainUI.HasPlayerStorage())
 #else
 			Netplay.PlayDisconnect = true;
-            if (WorldSelect.isLocalWorld && UI.MainUI.HasPlayerStorage())
+			if (WorldSelect.isLocalWorld && UI.MainUI.HasPlayerStorage())
 #endif
-            {
-                for (int j = 0; j < 4; j++)
+			{
+				for (int j = 0; j < 4; j++)
 				{
 					UI uI2 = Main.UIInstance[j];
 					if (uI2.isStopping)
@@ -1383,7 +1380,7 @@ namespace Terraria
 				5
 			});
 #endif
-            if (Main.IsTutorial())
+			if (Main.IsTutorial())
 			{
 				using (Stream file = TitleContainer.OpenStream("Content/Worlds/tutorial.wld"))
 				{
@@ -1431,15 +1428,15 @@ namespace Terraria
 			everyTileFrame();
 			Main.StartGame();
 			Main.WorldGenThread = null;
-        }
+		}
 
-        public static void PlayWorld()
+		public static void PlayWorld()
 		{
 			Netplay.StopFindingSessions();
 			Thread thread = new Thread(playWorldCallBack);
 			thread.Start();
 			Main.WorldGenThread = thread;
-        }
+		}
 
 		public static void saveWorldWhilePlayingCallBack()
 		{
@@ -1459,8 +1456,8 @@ namespace Terraria
 			{
 				Thread thread = new Thread(saveWorldWhilePlayingCallBack);
 				thread.Start();
-            }
-        }
+			}
+		}
 
 		public static void savePlayerWhilePlayingCallBack()
 		{
@@ -1470,7 +1467,7 @@ namespace Terraria
 				4
 			});
 #endif
-            for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				UI uI = Main.UIInstance[i];
 				if (uI.CurMenuType != 0)
@@ -1485,7 +1482,7 @@ namespace Terraria
 		{
 			Thread thread = new Thread(savePlayerWhilePlayingCallBack);
 			thread.Start();
-        }
+		}
 
 		public static void saveAllWhilePlayingCallBack()
 		{
@@ -1498,9 +1495,9 @@ namespace Terraria
 #if (!IS_PATCHED && VERSION_INITIAL)
             if (Main.NetMode != (byte)NetModeSetting.CLIENT && UI.MainUI.HasPlayerStorage())
 #else
-            if (WorldSelect.isLocalWorld && UI.MainUI.HasPlayerStorage())
+			if (WorldSelect.isLocalWorld && UI.MainUI.HasPlayerStorage())
 #endif
-            {
+			{
 				saveNewWorld();
 			}
 			for (int i = 0; i < 4; i++)
@@ -1518,9 +1515,9 @@ namespace Terraria
 		{
 			Thread thread = new Thread(saveAllWhilePlayingCallBack);
 			thread.Start();
-        }
+		}
 
-        public static void clearWorld()
+		public static void clearWorld()
 		{
 			UI.MainUI.statusText = Lang.WorldGenText[47];
 			tempTime.reset(1f);
@@ -2033,7 +2030,7 @@ namespace Terraria
 							}
 							else
 							{
-								ptr2->CurrentFlags |= (Tile.Flags)fileIO.ReadByte();
+								ptr2->CurrentFlags |= (Flags)fileIO.ReadByte();
 								if (Main.IsTutorial())
 								{
 									ptr2->CurrentFlags &= ~Flags.VISITED;
@@ -2225,7 +2222,7 @@ namespace Terraria
 							{
 								ptr2->Lava = 32;
 							}
-							ptr2->CurrentFlags |= (Tile.Flags)fileIO.ReadByte();
+							ptr2->CurrentFlags |= (Flags)fileIO.ReadByte();
 							if (Main.IsTutorial())
 							{
 								ptr2->CurrentFlags &= ~Flags.VISITED;
@@ -2318,7 +2315,7 @@ namespace Terraria
 			Main.MaxTilesX = fileIO.ReadInt16();
 
 #if (!VERSION_INITIAL || IS_PATCHED)
-            setWorldSize();
+			setWorldSize();
 #endif
 
 			clearWorld();
@@ -2399,7 +2396,7 @@ namespace Terraria
 						{
 							ptr2->Lava = 32;
 						}
-						ptr2->CurrentFlags |= (Tile.Flags)fileIO.ReadByte();
+						ptr2->CurrentFlags |= (Flags)fileIO.ReadByte();
 						if (Main.IsTutorial())
 						{
 							ptr2->CurrentFlags &= ~Flags.VISITED;
@@ -2497,7 +2494,7 @@ namespace Terraria
 			lock (padlock)
 			{
 				UI.MainUI.FirstProgressStep(1, Lang.WorldGenText[49]);
-                tempTime = Main.GameTime;
+				tempTime = Main.GameTime;
 
 				if (Gen)
 				{
@@ -2763,258 +2760,258 @@ namespace Terraria
 			}
 			switch (type)
 			{
-			case 0:
-			{
-				int num7 = x2;
-				int num8 = num;
-				num8 -= genRand.Next(3);
-				while (!SolidTileUnsafe(num7, num8))
-				{
-					if (--num7 < 0)
+				case 0:
 					{
-						return false;
-					}
-				}
-				int num9 = num7;
-				num7 = x2;
-				while (!SolidTileUnsafe(num7, num8))
-				{
-					if (++num7 >= Main.MaxTilesX)
-					{
-						return false;
-					}
-				}
-				int num10 = num7;
-				int num11 = x2 - num9;
-				int num12 = num10 - x2;
-				bool flag = num11 > 5 && num11 < 50;
-				bool flag2 = num12 > 5 && num12 < 50;
-				if (flag && !SolidTileUnsafe(num9, num8 + 1))
-				{
-					flag = false;
-				}
-				else if (flag && (Main.TileSet[num9, num8].Type == 10 || Main.TileSet[num9, num8].Type == 48 || Main.TileSet[num9, num8 + 1].Type == 10 || Main.TileSet[num9, num8 + 1].Type == 48))
-				{
-					flag = false;
-				}
-				if (flag2 && !SolidTileUnsafe(num10, num8 + 1))
-				{
-					flag2 = false;
-				}
-				else if (flag2 && (Main.TileSet[num10, num8].Type == 10 || Main.TileSet[num10, num8].Type == 48 || Main.TileSet[num10, num8 + 1].Type == 10 || Main.TileSet[num10, num8 + 1].Type == 48))
-				{
-					flag2 = false;
-				}
-				int num13 = 0;
-				if (flag && flag2)
-				{
-					num13 = 1;
-					num7 = num9;
-					if (genRand.Next(2) == 0)
-					{
-						num7 = num10;
-						num13 = -1;
-					}
-				}
-				else if (flag2)
-				{
-					num7 = num10;
-					num13 = -1;
-				}
-				else
-				{
-					if (!flag)
-					{
-						return false;
-					}
-					num7 = num9;
-					num13 = 1;
-				}
-				PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, (Main.TileSet[x2, num].WallType > 0) ? 2 : genRand.Next(2, 4));
-				KillTile(num7, num8);
-				PlaceTile(num7, num8, 137, ToMute: true, IsForced: true, -1, num13);
-				int num14 = x2;
-				int num15 = num;
-				while (num14 != num7 || num15 != num8)
-				{
-					Main.TileSet[num14, num15].wire = 16;
-					if (num14 > num7)
-					{
-						num14--;
-					}
-					if (num14 < num7)
-					{
-						num14++;
-					}
-					Main.TileSet[num14, num15].wire = 16;
-					if (num15 > num8)
-					{
-						num15--;
-					}
-					if (num15 < num8)
-					{
-						num15++;
-					}
-					Main.TileSet[num14, num15].wire = 16;
-				}
-				return true;
-			}
-			case 1:
-			{
-				int num16 = x2;
-				int num17 = num - 8;
-				num16 += genRand.Next(-1, 2);
-				bool flag3 = true;
-				while (flag3)
-				{
-					bool flag4 = true;
-					int num18 = 0;
-					for (int l = num16 - 2; l <= num16 + 3; l++)
-					{
-						for (int m = num17; m <= num17 + 3; m++)
+						int num7 = x2;
+						int num8 = num;
+						num8 -= genRand.Next(3);
+						while (!SolidTileUnsafe(num7, num8))
 						{
-							if (!SolidTileUnsafe(l, m))
+							if (--num7 < 0)
 							{
-								flag4 = false;
-							}
-							if (Main.TileSet[l, m].IsActive != 0 && (Main.TileSet[l, m].Type == 0 || Main.TileSet[l, m].Type == 1 || Main.TileSet[l, m].Type == 59))
-							{
-								num18++;
+								return false;
 							}
 						}
-					}
-					num17--;
-					if (num17 < Main.WorldSurface)
-					{
-						return false;
-					}
-					if (flag4 && num18 > 2)
-					{
-						flag3 = false;
-					}
-				}
-				if (num - num17 <= 5 || num - num17 >= 40)
-				{
-					return false;
-				}
-				for (int n = num16; n <= num16 + 1; n++)
-				{
-					for (int num19 = num17; num19 <= num; num19++)
-					{
-						if (SolidTileUnsafe(n, num19))
+						int num9 = num7;
+						num7 = x2;
+						while (!SolidTileUnsafe(num7, num8))
 						{
-							KillTile(n, num19);
+							if (++num7 >= Main.MaxTilesX)
+							{
+								return false;
+							}
 						}
-					}
-				}
-				for (int num20 = num16 - 2; num20 <= num16 + 3; num20++)
-				{
-					for (int num21 = num17 - 2; num21 <= num17 + 3; num21++)
-					{
-						if (SolidTileUnsafe(num20, num21))
+						int num10 = num7;
+						int num11 = x2 - num9;
+						int num12 = num10 - x2;
+						bool flag = num11 > 5 && num11 < 50;
+						bool flag2 = num12 > 5 && num12 < 50;
+						if (flag && !SolidTileUnsafe(num9, num8 + 1))
 						{
-							Main.TileSet[num20, num21].Type = 1;
+							flag = false;
 						}
+						else if (flag && (Main.TileSet[num9, num8].Type == 10 || Main.TileSet[num9, num8].Type == 48 || Main.TileSet[num9, num8 + 1].Type == 10 || Main.TileSet[num9, num8 + 1].Type == 48))
+						{
+							flag = false;
+						}
+						if (flag2 && !SolidTileUnsafe(num10, num8 + 1))
+						{
+							flag2 = false;
+						}
+						else if (flag2 && (Main.TileSet[num10, num8].Type == 10 || Main.TileSet[num10, num8].Type == 48 || Main.TileSet[num10, num8 + 1].Type == 10 || Main.TileSet[num10, num8 + 1].Type == 48))
+						{
+							flag2 = false;
+						}
+						int num13 = 0;
+						if (flag && flag2)
+						{
+							num13 = 1;
+							num7 = num9;
+							if (genRand.Next(2) == 0)
+							{
+								num7 = num10;
+								num13 = -1;
+							}
+						}
+						else if (flag2)
+						{
+							num7 = num10;
+							num13 = -1;
+						}
+						else
+						{
+							if (!flag)
+							{
+								return false;
+							}
+							num7 = num9;
+							num13 = 1;
+						}
+						PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, (Main.TileSet[x2, num].WallType > 0) ? 2 : genRand.Next(2, 4));
+						KillTile(num7, num8);
+						PlaceTile(num7, num8, 137, ToMute: true, IsForced: true, -1, num13);
+						int num14 = x2;
+						int num15 = num;
+						while (num14 != num7 || num15 != num8)
+						{
+							Main.TileSet[num14, num15].wire = 16;
+							if (num14 > num7)
+							{
+								num14--;
+							}
+							if (num14 < num7)
+							{
+								num14++;
+							}
+							Main.TileSet[num14, num15].wire = 16;
+							if (num15 > num8)
+							{
+								num15--;
+							}
+							if (num15 < num8)
+							{
+								num15++;
+							}
+							Main.TileSet[num14, num15].wire = 16;
+						}
+						return true;
 					}
-				}
-				PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, genRand.Next(2, 4));
-				PlaceTile(num16, num17 + 2, 130, ToMute: true);
-				PlaceTile(num16 + 1, num17 + 2, 130, ToMute: true);
-				PlaceTile(num16 + 1, num17 + 1, 138, ToMute: true);
-				num17 += 2;
-				Main.TileSet[num16, num17].wire = 16;
-				Main.TileSet[num16 + 1, num17].wire = 16;
-				num17++;
-				PlaceTile(num16, num17, 130, ToMute: true);
-				PlaceTile(num16 + 1, num17, 130, ToMute: true);
-				Main.TileSet[num16, num17].wire = 16;
-				Main.TileSet[num16 + 1, num17].wire = 16;
-				PlaceTile(num16, num17 + 1, 130, ToMute: true);
-				PlaceTile(num16 + 1, num17 + 1, 130, ToMute: true);
-				Main.TileSet[num16, num17 + 1].wire = 16;
-				Main.TileSet[num16 + 1, num17 + 1].wire = 16;
-				int num22 = x2;
-				int num23 = num;
-				while (num22 != num16 || num23 != num17)
-				{
-					Main.TileSet[num22, num23].wire = 16;
-					if (num22 > num16)
+				case 1:
 					{
-						num22--;
-					}
-					if (num22 < num16)
-					{
-						num22++;
-					}
-					Main.TileSet[num22, num23].wire = 16;
-					if (num23 > num17)
-					{
-						num23--;
-					}
-					if (num23 < num17)
-					{
-						num23++;
-					}
-					Main.TileSet[num22, num23].wire = 16;
-				}
-				return true;
-			}
-			case 2:
-			{
-				int num2 = Main.Rand.Next(4, 7);
-				int num3 = x2;
-				num3 += Main.Rand.Next(-1, 2);
-				int num4 = num;
-				for (int i = 0; i < num2; i++)
-				{
-					num4++;
-					if (!SolidTileUnsafe(num3, num4))
-					{
-						return false;
-					}
-				}
-				for (int j = num3 - 2; j <= num3 + 2; j++)
-				{
-					for (int k = num4 - 2; k <= num4 + 2; k++)
-					{
-						if (!SolidTileUnsafe(j, k))
+						int num16 = x2;
+						int num17 = num - 8;
+						num16 += genRand.Next(-1, 2);
+						bool flag3 = true;
+						while (flag3)
+						{
+							bool flag4 = true;
+							int num18 = 0;
+							for (int l = num16 - 2; l <= num16 + 3; l++)
+							{
+								for (int m = num17; m <= num17 + 3; m++)
+								{
+									if (!SolidTileUnsafe(l, m))
+									{
+										flag4 = false;
+									}
+									if (Main.TileSet[l, m].IsActive != 0 && (Main.TileSet[l, m].Type == 0 || Main.TileSet[l, m].Type == 1 || Main.TileSet[l, m].Type == 59))
+									{
+										num18++;
+									}
+								}
+							}
+							num17--;
+							if (num17 < Main.WorldSurface)
+							{
+								return false;
+							}
+							if (flag4 && num18 > 2)
+							{
+								flag3 = false;
+							}
+						}
+						if (num - num17 <= 5 || num - num17 >= 40)
 						{
 							return false;
 						}
+						for (int n = num16; n <= num16 + 1; n++)
+						{
+							for (int num19 = num17; num19 <= num; num19++)
+							{
+								if (SolidTileUnsafe(n, num19))
+								{
+									KillTile(n, num19);
+								}
+							}
+						}
+						for (int num20 = num16 - 2; num20 <= num16 + 3; num20++)
+						{
+							for (int num21 = num17 - 2; num21 <= num17 + 3; num21++)
+							{
+								if (SolidTileUnsafe(num20, num21))
+								{
+									Main.TileSet[num20, num21].Type = 1;
+								}
+							}
+						}
+						PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, genRand.Next(2, 4));
+						PlaceTile(num16, num17 + 2, 130, ToMute: true);
+						PlaceTile(num16 + 1, num17 + 2, 130, ToMute: true);
+						PlaceTile(num16 + 1, num17 + 1, 138, ToMute: true);
+						num17 += 2;
+						Main.TileSet[num16, num17].wire = 16;
+						Main.TileSet[num16 + 1, num17].wire = 16;
+						num17++;
+						PlaceTile(num16, num17, 130, ToMute: true);
+						PlaceTile(num16 + 1, num17, 130, ToMute: true);
+						Main.TileSet[num16, num17].wire = 16;
+						Main.TileSet[num16 + 1, num17].wire = 16;
+						PlaceTile(num16, num17 + 1, 130, ToMute: true);
+						PlaceTile(num16 + 1, num17 + 1, 130, ToMute: true);
+						Main.TileSet[num16, num17 + 1].wire = 16;
+						Main.TileSet[num16 + 1, num17 + 1].wire = 16;
+						int num22 = x2;
+						int num23 = num;
+						while (num22 != num16 || num23 != num17)
+						{
+							Main.TileSet[num22, num23].wire = 16;
+							if (num22 > num16)
+							{
+								num22--;
+							}
+							if (num22 < num16)
+							{
+								num22++;
+							}
+							Main.TileSet[num22, num23].wire = 16;
+							if (num23 > num17)
+							{
+								num23--;
+							}
+							if (num23 < num17)
+							{
+								num23++;
+							}
+							Main.TileSet[num22, num23].wire = 16;
+						}
+						return true;
 					}
-				}
-				KillTile(num3, num4);
-				Main.TileSet[num3, num4].IsActive = 1;
-				Main.TileSet[num3, num4].Type = 141;
-				Main.TileSet[num3, num4].FrameX = 0;
-				Main.TileSet[num3, num4].FrameY = (short)(18 * Main.Rand.Next(2));
-				PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, genRand.Next(2, 4));
-				int num5 = x2;
-				int num6 = num;
-				while (num5 != num3 || num6 != num4)
-				{
-					Main.TileSet[num5, num6].wire = 16;
-					if (num5 > num3)
+				case 2:
 					{
-						num5--;
+						int num2 = Main.Rand.Next(4, 7);
+						int num3 = x2;
+						num3 += Main.Rand.Next(-1, 2);
+						int num4 = num;
+						for (int i = 0; i < num2; i++)
+						{
+							num4++;
+							if (!SolidTileUnsafe(num3, num4))
+							{
+								return false;
+							}
+						}
+						for (int j = num3 - 2; j <= num3 + 2; j++)
+						{
+							for (int k = num4 - 2; k <= num4 + 2; k++)
+							{
+								if (!SolidTileUnsafe(j, k))
+								{
+									return false;
+								}
+							}
+						}
+						KillTile(num3, num4);
+						Main.TileSet[num3, num4].IsActive = 1;
+						Main.TileSet[num3, num4].Type = 141;
+						Main.TileSet[num3, num4].FrameX = 0;
+						Main.TileSet[num3, num4].FrameY = (short)(18 * Main.Rand.Next(2));
+						PlaceTile(x2, num, 135, ToMute: true, IsForced: true, -1, genRand.Next(2, 4));
+						int num5 = x2;
+						int num6 = num;
+						while (num5 != num3 || num6 != num4)
+						{
+							Main.TileSet[num5, num6].wire = 16;
+							if (num5 > num3)
+							{
+								num5--;
+							}
+							if (num5 < num3)
+							{
+								num5++;
+							}
+							Main.TileSet[num5, num6].wire = 16;
+							if (num6 > num4)
+							{
+								num6--;
+							}
+							if (num6 < num4)
+							{
+								num6++;
+							}
+							Main.TileSet[num5, num6].wire = 16;
+						}
+						break;
 					}
-					if (num5 < num3)
-					{
-						num5++;
-					}
-					Main.TileSet[num5, num6].wire = 16;
-					if (num6 > num4)
-					{
-						num6--;
-					}
-					if (num6 < num4)
-					{
-						num6++;
-					}
-					Main.TileSet[num5, num6].wire = 16;
-				}
-				break;
-			}
 			}
 			return false;
 		}
@@ -3079,52 +3076,52 @@ namespace Terraria
 						}
 						switch (num)
 						{
-						case 0:
-							while (genRand.Next(7) == 0)
-							{
-								num3 += genRand.Next(-1, 2);
-							}
-							break;
-						case 1:
-							while (genRand.Next(4) == 0)
-							{
-								num3 -= 1f;
-							}
-							while (genRand.Next(10) == 0)
-							{
-								num3 += 1f;
-							}
-							break;
-						case 2:
-							while (genRand.Next(4) == 0)
-							{
-								num3 += 1f;
-							}
-							while (genRand.Next(10) == 0)
-							{
-								num3 -= 1f;
-							}
-							break;
-						case 3:
-							while (genRand.Next(2) == 0)
-							{
-								num3 -= 1f;
-							}
-							while (genRand.Next(6) == 0)
-							{
-								num3 += 1f;
-							}
-							break;
-						default:
-							while (genRand.Next(2) == 0)
-							{
-								num3 += 1f;
-							}
-							while (genRand.Next(5) == 0)
-							{
-								num3 -= 1f;
-							}
-							break;
+							case 0:
+								while (genRand.Next(7) == 0)
+								{
+									num3 += genRand.Next(-1, 2);
+								}
+								break;
+							case 1:
+								while (genRand.Next(4) == 0)
+								{
+									num3 -= 1f;
+								}
+								while (genRand.Next(10) == 0)
+								{
+									num3 += 1f;
+								}
+								break;
+							case 2:
+								while (genRand.Next(4) == 0)
+								{
+									num3 += 1f;
+								}
+								while (genRand.Next(10) == 0)
+								{
+									num3 -= 1f;
+								}
+								break;
+							case 3:
+								while (genRand.Next(2) == 0)
+								{
+									num3 -= 1f;
+								}
+								while (genRand.Next(6) == 0)
+								{
+									num3 += 1f;
+								}
+								break;
+							default:
+								while (genRand.Next(2) == 0)
+								{
+									num3 += 1f;
+								}
+								while (genRand.Next(5) == 0)
+								{
+									num3 -= 1f;
+								}
+								break;
 						}
 						if (num3 < Main.MaxTilesY * 0.17f)
 						{
@@ -3247,22 +3244,22 @@ namespace Terraria
 						}
 						switch (n)
 						{
-						case 0:
-							num19 = 0;
-							num20 = genRand.Next(260, 300);
-							if (num9 == 1)
-							{
-								num20 += 40;
-							}
-							break;
-						case 2:
-							num19 = Main.MaxTilesX - genRand.Next(260, 300);
-							num20 = Main.MaxTilesX;
-							if (num9 == -1)
-							{
-								num19 -= 40;
-							}
-							break;
+							case 0:
+								num19 = 0;
+								num20 = genRand.Next(260, 300);
+								if (num9 == 1)
+								{
+									num20 += 40;
+								}
+								break;
+							case 2:
+								num19 = Main.MaxTilesX - genRand.Next(260, 300);
+								num20 = Main.MaxTilesX;
+								if (num9 == -1)
+								{
+									num19 -= 40;
+								}
+								break;
 						}
 						int num21 = genRand.Next(50, 100);
 						for (int num22 = num19; num22 < num20; num22++)
@@ -4625,24 +4622,24 @@ namespace Terraria
 						float num205 = 0f;
 						switch (num204)
 						{
-						case 67:
-							num205 = Main.MaxTilesX * 0.5f;
-							break;
-						case 66:
-							num205 = Main.MaxTilesX * 0.45f;
-							break;
-						case 63:
-							num205 = Main.MaxTilesX * 0.3f;
-							break;
-						case 65:
-							num205 = Main.MaxTilesX * 0.25f;
-							break;
-						case 64:
-							num205 = Main.MaxTilesX * 0.1f;
-							break;
-						case 68:
-							num205 = Main.MaxTilesX * 0.05f;
-							break;
+							case 67:
+								num205 = Main.MaxTilesX * 0.5f;
+								break;
+							case 66:
+								num205 = Main.MaxTilesX * 0.45f;
+								break;
+							case 63:
+								num205 = Main.MaxTilesX * 0.3f;
+								break;
+							case 65:
+								num205 = Main.MaxTilesX * 0.25f;
+								break;
+							case 64:
+								num205 = Main.MaxTilesX * 0.1f;
+								break;
+							case 68:
+								num205 = Main.MaxTilesX * 0.05f;
+								break;
 						}
 						num205 *= 0.2f;
 						for (int num206 = 0; num206 < num205; num206++)
@@ -4970,28 +4967,28 @@ namespace Terraria
 						int contain = (int)Item.ID.FERAL_CLAWS;
 						switch (++num251)
 						{
-						case 2:
-							contain = (int)Item.ID.ANKLET_OF_THE_WIND;
-							break;
-						case 3:
-							contain = (int)Item.ID.STAFF_OF_REGROWTH;
-							break;
-						default:
-							if (Main.Rand.Next(2) == 0)
-							{
-								// BUG: Ever wondered why you could never seem to find Honeycomb or the Wolf Fang? It's because they can't spawn naturally. This line below is why, since it is not a line that alters the chest contents directly.
-								// The variable below is responsible for determining what each chest in a jungle shrine should contain. There can only be 3 primary items in versions below Console 1.2.
-								// Due to there not being a reset, each world only has 1 anklet of the wind and 1 staff of regrowth. The rest will always be feral claws.
-								// It looks like they may have aimed to make each world only have one anklet, feral claws, and staff, and then have the remaining shrine chests be a 50/50 between pet item or feral claws.
+							case 2:
+								contain = (int)Item.ID.ANKLET_OF_THE_WIND;
+								break;
+							case 3:
+								contain = (int)Item.ID.STAFF_OF_REGROWTH;
+								break;
+							default:
+								if (Main.Rand.Next(2) == 0)
+								{
+									// BUG: Ever wondered why you could never seem to find Honeycomb or the Wolf Fang? It's because they can't spawn naturally. This line below is why, since it is not a line that alters the chest contents directly.
+									// The variable below is responsible for determining what each chest in a jungle shrine should contain. There can only be 3 primary items in versions below Console 1.2.
+									// Due to there not being a reset, each world only has 1 anklet of the wind and 1 staff of regrowth. The rest will always be feral claws.
+									// It looks like they may have aimed to make each world only have one anklet, feral claws, and staff, and then have the remaining shrine chests be a 50/50 between pet item or feral claws.
 
-								// To make the Honeycomb, Wolf Fang, and by extension, the Pet Hoarder achievement naturally obtainable: Change the 'num251' in the below variable to 'contain'.
-								num251 = ((Main.Rand.Next(6) != 0) ? (int)Item.ID.PET_SPAWN_3 : (int)Item.ID.PET_SPAWN_5);
+									// To make the Honeycomb, Wolf Fang, and by extension, the Pet Hoarder achievement naturally obtainable: Change the 'num251' in the below variable to 'contain'.
+									num251 = ((Main.Rand.Next(6) != 0) ? (int)Item.ID.PET_SPAWN_3 : (int)Item.ID.PET_SPAWN_5);
 
-								// If they wanted the pet items to be a potential secondary item, they need to be added in AddBuriedChest, which occurred in 1.02, alongside making there be a chance for more than 1 staff or anklet.
-							}
-							break;
-						case 1:
-							break;
+									// If they wanted the pet items to be a potential secondary item, they need to be added in AddBuriedChest, which occurred in 1.02, alongside making there be a chance for more than 1 staff or anklet.
+								}
+								break;
+							case 1:
+								break;
 						}
 						if (!AddBuriedChest(JChest[num252].X + genRand.Next(2), JChest[num252].Y, contain))
 						{
@@ -5113,7 +5110,7 @@ namespace Terraria
 #else
 							int num271 = genRand.Next(Main.MaxTilesY - 250, Main.MaxTilesY - 5);
 #endif
-                            try
+							try
 							{
 								if (Main.TileSet[num270, num271].WallType != 13 && Main.TileSet[num270, num271].WallType != 14)
 								{
@@ -5449,38 +5446,38 @@ namespace Terraria
 				}
 				switch (num2)
 				{
-				case 1:
-					Main.TileSet[i, k].FrameX = 0;
-					Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
-					break;
-				case 2:
-					Main.TileSet[i, k].FrameX = 22;
-					Main.TileSet[i, k].FrameY = (short)(num4 * 22);
-					break;
-				case 3:
-					Main.TileSet[i, k].FrameX = 44;
-					Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
-					break;
-				case 4:
-					Main.TileSet[i, k].FrameX = 22;
-					Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
-					break;
-				case 5:
-					Main.TileSet[i, k].FrameX = 88;
-					Main.TileSet[i, k].FrameY = (short)(num4 * 22);
-					break;
-				case 6:
-					Main.TileSet[i, k].FrameX = 66;
-					Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
-					break;
-				case 7:
-					Main.TileSet[i, k].FrameX = 110;
-					Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
-					break;
-				default:
-					Main.TileSet[i, k].FrameX = 0;
-					Main.TileSet[i, k].FrameY = (short)(num4 * 22);
-					break;
+					case 1:
+						Main.TileSet[i, k].FrameX = 0;
+						Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
+						break;
+					case 2:
+						Main.TileSet[i, k].FrameX = 22;
+						Main.TileSet[i, k].FrameY = (short)(num4 * 22);
+						break;
+					case 3:
+						Main.TileSet[i, k].FrameX = 44;
+						Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
+						break;
+					case 4:
+						Main.TileSet[i, k].FrameX = 22;
+						Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
+						break;
+					case 5:
+						Main.TileSet[i, k].FrameX = 88;
+						Main.TileSet[i, k].FrameY = (short)(num4 * 22);
+						break;
+					case 6:
+						Main.TileSet[i, k].FrameX = 66;
+						Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
+						break;
+					case 7:
+						Main.TileSet[i, k].FrameX = 110;
+						Main.TileSet[i, k].FrameY = (short)(66 + num4 * 22);
+						break;
+					default:
+						Main.TileSet[i, k].FrameX = 0;
+						Main.TileSet[i, k].FrameY = (short)(num4 * 22);
+						break;
 				}
 				bool flag = num2 == 5 || num2 == 7;
 				bool flag2 = num2 == 6 || num2 == 7;
@@ -5608,57 +5605,57 @@ namespace Terraria
 			num4 = genRand.Next(3);
 			switch (num5)
 			{
-			case 0:
-				if (num4 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num4 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num4 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
-			case 1:
-				if (num4 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num4 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num4 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
-			case 2:
-				if (num4 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num4 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num4 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
+				case 0:
+					if (num4 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num4 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num4 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
+				case 1:
+					if (num4 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num4 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num4 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
+				case 2:
+					if (num4 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num4 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num4 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
 			}
 			if (genRand.Next(3) < 2)
 			{
@@ -5740,38 +5737,38 @@ namespace Terraria
 				}
 				switch (num3)
 				{
-				case 1:
-					Main.TileSet[i, k].FrameX = 0;
-					Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
-					break;
-				case 2:
-					Main.TileSet[i, k].FrameX = 22;
-					Main.TileSet[i, k].FrameY = (short)(num5 * 22);
-					break;
-				case 3:
-					Main.TileSet[i, k].FrameX = 44;
-					Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
-					break;
-				case 4:
-					Main.TileSet[i, k].FrameX = 22;
-					Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
-					break;
-				case 5:
-					Main.TileSet[i, k].FrameX = 88;
-					Main.TileSet[i, k].FrameY = (short)(num5 * 22);
-					break;
-				case 6:
-					Main.TileSet[i, k].FrameX = 66;
-					Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
-					break;
-				case 7:
-					Main.TileSet[i, k].FrameX = 110;
-					Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
-					break;
-				default:
-					Main.TileSet[i, k].FrameX = 0;
-					Main.TileSet[i, k].FrameY = (short)(num5 * 22);
-					break;
+					case 1:
+						Main.TileSet[i, k].FrameX = 0;
+						Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
+						break;
+					case 2:
+						Main.TileSet[i, k].FrameX = 22;
+						Main.TileSet[i, k].FrameY = (short)(num5 * 22);
+						break;
+					case 3:
+						Main.TileSet[i, k].FrameX = 44;
+						Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
+						break;
+					case 4:
+						Main.TileSet[i, k].FrameX = 22;
+						Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
+						break;
+					case 5:
+						Main.TileSet[i, k].FrameX = 88;
+						Main.TileSet[i, k].FrameY = (short)(num5 * 22);
+						break;
+					case 6:
+						Main.TileSet[i, k].FrameX = 66;
+						Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
+						break;
+					case 7:
+						Main.TileSet[i, k].FrameX = 110;
+						Main.TileSet[i, k].FrameY = (short)(66 + num5 * 22);
+						break;
+					default:
+						Main.TileSet[i, k].FrameX = 0;
+						Main.TileSet[i, k].FrameY = (short)(num5 * 22);
+						break;
 				}
 				bool flag = num3 == 5 || num3 == 7;
 				bool flag2 = num3 == 6 || num3 == 7;
@@ -5822,13 +5819,13 @@ namespace Terraria
 				{
 					switch (ptr->Type)
 					{
-					case 2:
-					case 23:
-					case 60:
-					case 109:
-					case 147:
-						flag3 = true;
-						break;
+						case 2:
+						case 23:
+						case 60:
+						case 109:
+						case 147:
+							flag3 = true;
+							break;
 					}
 				}
 			}
@@ -5838,13 +5835,13 @@ namespace Terraria
 				{
 					switch (ptr2->Type)
 					{
-					case 2:
-					case 23:
-					case 60:
-					case 109:
-					case 147:
-						flag4 = true;
-						break;
+						case 2:
+						case 23:
+						case 60:
+						case 109:
+						case 147:
+							flag4 = true;
+							break;
 					}
 				}
 			}
@@ -5923,57 +5920,57 @@ namespace Terraria
 			num5 = genRand.Next(3);
 			switch (num6)
 			{
-			case 0:
-				if (num5 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num5 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num5 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 88;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
-			case 1:
-				if (num5 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num5 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num5 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 0;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
-			case 2:
-				if (num5 == 0)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 132;
-				}
-				if (num5 == 1)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 154;
-				}
-				if (num5 == 2)
-				{
-					Main.TileSet[i, j - 1].FrameX = 66;
-					Main.TileSet[i, j - 1].FrameY = 176;
-				}
-				break;
+				case 0:
+					if (num5 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num5 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num5 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 88;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
+				case 1:
+					if (num5 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num5 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num5 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 0;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
+				case 2:
+					if (num5 == 0)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 132;
+					}
+					if (num5 == 1)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 154;
+					}
+					if (num5 == 2)
+					{
+						Main.TileSet[i, j - 1].FrameX = 66;
+						Main.TileSet[i, j - 1].FrameY = 176;
+					}
+					break;
 			}
 			if (genRand.Next(4) < 3)
 			{
@@ -6222,7 +6219,7 @@ namespace Terraria
 				4
 			});
 #endif
-            hardLock = true;
+			hardLock = true;
 			float num = genRand.Next(300, 400) * 0.001f;
 			int num2 = (int)(Main.MaxTilesX * num);
 			int num3 = (int)(Main.MaxTilesX * (1f - num));
@@ -6252,7 +6249,7 @@ namespace Terraria
 				Thread thread = new Thread(StartHardmodeCallBack);
 				thread.IsBackground = true;
 				thread.Start();
-                NetMessage.SendText(15, 50, 255, 130, -1);
+				NetMessage.SendText(15, 50, 255, 130, -1);
 				UI.SetTriggerStateForAll(Trigger.UnlockedHardMode);
 #if !USE_ORIGINAL_CODE
 				if (Main.HardmodeAlert)
@@ -6298,12 +6295,12 @@ namespace Terraria
 			int num2 = j;
 			switch (Main.TileSet[i, j].FrameX)
 			{
-			case 18:
-				num--;
-				break;
-			case 36:
-				num++;
-				break;
+				case 18:
+					num--;
+					break;
+				case 36:
+					num++;
+					break;
 			}
 			int frameY = Main.TileSet[i, j].FrameY;
 			num2 -= frameY / 18;
@@ -6317,20 +6314,20 @@ namespace Terraria
 			int num3 = j;
 			switch (Main.TileSet[i, j].FrameX)
 			{
-			case 0:
-				num = 1;
-				break;
-			case 18:
-				num2--;
-				num = 1;
-				break;
-			case 36:
-				num2++;
-				num = -1;
-				break;
-			case 54:
-				num = -1;
-				break;
+				case 0:
+					num = 1;
+					break;
+				case 18:
+					num2--;
+					num = 1;
+					break;
+				case 36:
+					num2++;
+					num = -1;
+					break;
+				case 54:
+					num = -1;
+					break;
 			}
 			int frameY = Main.TileSet[i, j].FrameY;
 			num3 -= frameY / 18;
@@ -6713,21 +6710,21 @@ namespace Terraria
 			int num2 = genRand.Next(3);
 			switch (num)
 			{
-			case 1:
-				tileType = 43;
-				break;
-			case 2:
-				tileType = 44;
-				break;
+				case 1:
+					tileType = 43;
+					break;
+				case 2:
+					tileType = 44;
+					break;
 			}
 			switch (num2)
 			{
-			case 1:
-				wallType = 8;
-				break;
-			case 2:
-				wallType = 9;
-				break;
+				case 1:
+					wallType = 8;
+					break;
+				case 2:
+					wallType = 9;
+					break;
 			}
 			numDDoors = 0;
 			numDPlats = 0;
@@ -7289,12 +7286,12 @@ namespace Terraria
 									}
 									switch (num75)
 									{
-									case 0:
-										num75 = 13;
-										break;
-									case 1:
-										num75 = 49;
-										break;
+										case 0:
+											num75 = 13;
+											break;
+										case 1:
+											num75 = 49;
+											break;
 									}
 									PlaceTile(num67, num68, num75, ToMute: true);
 									if (Main.TileSet[num67, num68].Type == 13)
@@ -7334,32 +7331,32 @@ namespace Terraria
 					int style = 2;
 					switch (num76)
 					{
-					case 1:
-						num81 = (int)Item.ID.SHADOW_KEY;
-						break;
-					case 2:
-						num81 = (int)Item.ID.MURAMASA;
-						break;
-					case 3:
-						num81 = (int)Item.ID.COBALT_SHIELD;
-						break;
-					case 4:
-						num81 = (int)Item.ID.AQUA_SCEPTER;
-						break;
-					case 5:
-						num81 = (int)Item.ID.BLUE_MOON;
-						break;
-					case 6:
-						num81 = (int)Item.ID.MAGIC_MISSILE;
-						break;
-					case 7:
-						num81 = (int)Item.ID.GOLDEN_KEY;
-						style = 0;
-						break;
-					default:
-						num81 = (int)Item.ID.HANDGUN;
-						num76 = 0;
-						break;
+						case 1:
+							num81 = (int)Item.ID.SHADOW_KEY;
+							break;
+						case 2:
+							num81 = (int)Item.ID.MURAMASA;
+							break;
+						case 3:
+							num81 = (int)Item.ID.COBALT_SHIELD;
+							break;
+						case 4:
+							num81 = (int)Item.ID.AQUA_SCEPTER;
+							break;
+						case 5:
+							num81 = (int)Item.ID.BLUE_MOON;
+							break;
+						case 6:
+							num81 = (int)Item.ID.MAGIC_MISSILE;
+							break;
+						case 7:
+							num81 = (int)Item.ID.GOLDEN_KEY;
+							style = 0;
+							break;
+						default:
+							num81 = (int)Item.ID.HANDGUN;
+							num76 = 0;
+							break;
 					}
 					if (num80 < Main.WorldSurface + 50)
 					{
@@ -7434,8 +7431,8 @@ namespace Terraria
 							}
 							num14 = 0;
 							num16++;
-							Rectangle aabb = default(Rectangle);
-							Rectangle aabb2 = default(Rectangle);
+							Rectangle aabb = default;
+							Rectangle aabb2 = default;
 							aabb2.X = num82 << 4;
 							aabb2.Y = (num84 << 4) + 1;
 							aabb.Width = (aabb2.Width = 16);
@@ -7520,8 +7517,8 @@ namespace Terraria
 
 		public static void DungeonStairs(int i, int j, int tileType, int wallType)
 		{
-			Vector2 vector = default(Vector2);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector = default;
+			Vector2 vector2 = default;
 			double num = genRand.Next(5, 9);
 			int num2 = 1;
 			vector.X = i;
@@ -7654,11 +7651,11 @@ namespace Terraria
 
 		public static void DungeonHalls(int i, int j, int tileType, int wallType, bool forceX = false)
 		{
-			Vector2 vector = default(Vector2);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector = default;
+			Vector2 vector2 = default;
 			double num = genRand.Next(4, 6);
-			Vector2i vector2i = default(Vector2i);
-			Vector2i vector2i2 = default(Vector2i);
+			Vector2i vector2i = default;
+			Vector2i vector2i2 = default;
 			int num2 = 1;
 			vector.X = i;
 			vector.Y = j;
@@ -7666,7 +7663,7 @@ namespace Terraria
 			if (forceX)
 			{
 				num3 += 20;
-				lastDungeonHall = default(Vector2i);
+				lastDungeonHall = default;
 			}
 			else if (genRand.Next(5) == 0)
 			{
@@ -7978,8 +7975,8 @@ namespace Terraria
 
 		public static void DungeonRoom(int i, int j, int tileType, int wallType)
 		{
-			Vector2 vector = default(Vector2);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector = default;
+			Vector2 vector2 = default;
 			float num = genRand.Next(15, 30);
 			vector2.X = genRand.Next(-10, 11) * 0.1f;
 			vector2.Y = genRand.Next(-10, 11) * 0.1f;
@@ -8123,7 +8120,7 @@ namespace Terraria
 			}
 			double num2 = dxStrength1;
 			double num3 = dyStrength1;
-			Vector2 vector = default(Vector2);
+			Vector2 vector = default;
 			vector.X = i;
 			vector.Y = (float)(j - num3 * 0.5);
 			dMinY = (int)vector.Y;
@@ -8666,33 +8663,33 @@ namespace Terraria
 							{
 								switch (genRand.Next(7))
 								{
-								case 0:
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.SPEAR);
-									Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
-									break;
-								case 1:
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.BLOWPIPE);
-									Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
-									break;
-								case 2:
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.WOODEN_BOOMERANG);
-									Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
-									break;
-								case 3:
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.GLOWSTICK, genRand.Next(50, 75));
-									break;
-								case 4:
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.THROWING_KNIFE, genRand.Next(25, 50));
-									break;
-								default:
-									if (genRand.Next(32) == 0)
-									{
-										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.PET_SPAWN_1);
+									case 0:
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.SPEAR);
+										Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
 										break;
-									}
-									Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.AGLET);
-									Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
-									break;
+									case 1:
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.BLOWPIPE);
+										Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
+										break;
+									case 2:
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.WOODEN_BOOMERANG);
+										Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
+										break;
+									case 3:
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.GLOWSTICK, genRand.Next(50, 75));
+										break;
+									case 4:
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.THROWING_KNIFE, genRand.Next(25, 50));
+										break;
+									default:
+										if (genRand.Next(32) == 0)
+										{
+											Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.PET_SPAWN_1);
+											break;
+										}
+										Main.ChestSet[num2].ItemSet[num3].SetDefaults((int)Item.ID.AGLET);
+										Main.ChestSet[num2].ItemSet[num3].SetPrefix(-1);
+										break;
 								}
 							}
 							num3++;
@@ -8722,18 +8719,18 @@ namespace Terraria
 								genRand.Next(1, 3);
 								switch (num4)
 								{
-								case 0:
-									num4 = (int)Item.ID.IRONSKIN_POTION;
-									break;
-								case 1:
-									num4 = (int)Item.ID.SHINE_POTION;
-									break;
-								case 2:
-									num4 = (int)Item.ID.NIGHT_OWL_POTION;
-									break;
-								default:
-									num4 = (int)Item.ID.SWIFTNESS_POTION;
-									break;
+									case 0:
+										num4 = (int)Item.ID.IRONSKIN_POTION;
+										break;
+									case 1:
+										num4 = (int)Item.ID.SHINE_POTION;
+										break;
+									case 2:
+										num4 = (int)Item.ID.NIGHT_OWL_POTION;
+										break;
+									default:
+										num4 = (int)Item.ID.SWIFTNESS_POTION;
+										break;
 								}
 								Main.ChestSet[num2].ItemSet[num3].SetDefaults(num4, genRand.Next(1, 3));
 								num3++;
@@ -9430,12 +9427,12 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 92:
-					Item.NewItem(x * 16, j * 16, 32, 32, (int)Item.ID.LAMP_POST);
-					break;
-				case 93:
-					Item.NewItem(x * 16, j * 16, 32, 32, (int)Item.ID.TIKI_TORCH);
-					break;
+					case 92:
+						Item.NewItem(x * 16, j * 16, 32, 32, (int)Item.ID.LAMP_POST);
+						break;
+					case 93:
+						Item.NewItem(x * 16, j * 16, 32, 32, (int)Item.ID.TIKI_TORCH);
+						break;
 				}
 			}
 			ToDestroyObject = false;
@@ -9494,27 +9491,27 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 104:
-					Item.NewItem(num * 16, j * 16, 32, 32, (int)Item.ID.GRANDFATHER_CLOCK);
-					break;
-				case 105:
-				{
-					int num6 = frameX / 36;
-					switch (num6)
-					{
-					case 0:
-						num6 = (int)Item.ID.STATUE;
+					case 104:
+						Item.NewItem(num * 16, j * 16, 32, 32, (int)Item.ID.GRANDFATHER_CLOCK);
 						break;
-					case 1:
-						num6 = (int)Item.ID.ANGEL_STATUE;
-						break;
-					default:
-						num6 = (int)Item.ID.STAR_STATUE + num6 - 2;
-						break;
-					}
-					Item.NewItem(num * 16, j * 16, 32, 32, num6);
-					break;
-				}
+					case 105:
+						{
+							int num6 = frameX / 36;
+							switch (num6)
+							{
+								case 0:
+									num6 = (int)Item.ID.STATUE;
+									break;
+								case 1:
+									num6 = (int)Item.ID.ANGEL_STATUE;
+									break;
+								default:
+									num6 = (int)Item.ID.STAR_STATUE + num6 - 2;
+									break;
+							}
+							Item.NewItem(num * 16, j * 16, 32, 32, num6);
+							break;
+						}
 				}
 			}
 			ToDestroyObject = false;
@@ -9626,19 +9623,19 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 15:
-					if (num2 == 1)
-					{
-						Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.TOILET);
-					}
-					else
-					{
-						Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.WOODEN_CHAIR);
-					}
-					break;
-				case 134:
-					Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.MYTHRIL_ANVIL);
-					break;
+					case 15:
+						if (num2 == 1)
+						{
+							Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.TOILET);
+						}
+						else
+						{
+							Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.WOODEN_CHAIR);
+						}
+						break;
+					case 134:
+						Item.NewItem(x * 16, num * 16, 32, 32, (int)Item.ID.MYTHRIL_ANVIL);
+						break;
 				}
 			}
 			ToDestroyObject = false;
@@ -9806,38 +9803,38 @@ namespace Terraria
 			int num7 = 0;
 			switch (type)
 			{
-			case 55:
-				if (Main.TileSet[x, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x, y + 1].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x + 1, y + 1].Type])
-				{
-					num6--;
-					num7 = 0;
-					break;
-				}
-				if (Main.TileSet[x, y - 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x, y - 1].Type] && Main.TileSet[x + 1, y - 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y - 1].Type])
-				{
-					num7 = 1;
-					break;
-				}
-				if (Main.TileSet[x - 1, y].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x - 1, y].Type] && !Main.TileNoAttach[Main.TileSet[x - 1, y].Type] && Main.TileSet[x - 1, y + 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x - 1, y + 1].Type] && !Main.TileNoAttach[Main.TileSet[x - 1, y + 1].Type])
-				{
-					num7 = 2;
-					break;
-				}
-				if (Main.TileSet[x + 1, y].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y].Type] && !Main.TileNoAttach[Main.TileSet[x + 1, y].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y + 1].Type] && !Main.TileNoAttach[Main.TileSet[x + 1, y + 1].Type])
-				{
-					num5--;
-					num7 = 3;
-					break;
-				}
-				return false;
-			case 85:
-				if (Main.TileSet[x, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x, y + 1].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x + 1, y + 1].Type])
-				{
-					num6--;
-					num7 = 0;
-					break;
-				}
-				return false;
+				case 55:
+					if (Main.TileSet[x, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x, y + 1].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x + 1, y + 1].Type])
+					{
+						num6--;
+						num7 = 0;
+						break;
+					}
+					if (Main.TileSet[x, y - 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x, y - 1].Type] && Main.TileSet[x + 1, y - 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y - 1].Type])
+					{
+						num7 = 1;
+						break;
+					}
+					if (Main.TileSet[x - 1, y].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x - 1, y].Type] && !Main.TileNoAttach[Main.TileSet[x - 1, y].Type] && Main.TileSet[x - 1, y + 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x - 1, y + 1].Type] && !Main.TileNoAttach[Main.TileSet[x - 1, y + 1].Type])
+					{
+						num7 = 2;
+						break;
+					}
+					if (Main.TileSet[x + 1, y].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y].Type] && !Main.TileNoAttach[Main.TileSet[x + 1, y].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolidNotSolidTop[Main.TileSet[x + 1, y + 1].Type] && !Main.TileNoAttach[Main.TileSet[x + 1, y + 1].Type])
+					{
+						num5--;
+						num7 = 3;
+						break;
+					}
+					return false;
+				case 85:
+					if (Main.TileSet[x, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x, y + 1].Type] && Main.TileSet[x + 1, y + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[x + 1, y + 1].Type])
+					{
+						num6--;
+						num7 = 0;
+						break;
+					}
+					return false;
 			}
 			if (Main.TileSet[num5, num6].IsActive != 0 || Main.TileSet[num5 + 1, num6].IsActive != 0 || Main.TileSet[num5, num6 + 1].IsActive != 0 || Main.TileSet[num5 + 1, num6 + 1].IsActive != 0)
 			{
@@ -9906,25 +9903,25 @@ namespace Terraria
 			}
 			return true;
 #else
-            if (Main.TileSet[x, y].IsActive == 0 && Main.TileSet[x, y + 1].IsActive != 0)
-            {
-                int type2 = Main.TileSet[x, y + 1].Type;
-                if (Main.TileTable[type2] || (type == 78 && Main.TileSolid[type2]))
-                {
-                    Main.TileSet[x, y].IsActive = 1;
-                    Main.TileSet[x, y].FrameX = (short)(style * 18);
-                    Main.TileSet[x, y].FrameY = 0;
-                    Main.TileSet[x, y].Type = (byte)type;
-                    if (type == 50)
-                    {
-                        Main.TileSet[x, y].FrameX = (short)(18 * genRand.Next(5));
-                    }
-                    return true;
-                }
-            }
-            return false;
+			if (Main.TileSet[x, y].IsActive == 0 && Main.TileSet[x, y + 1].IsActive != 0)
+			{
+				int type2 = Main.TileSet[x, y + 1].Type;
+				if (Main.TileTable[type2] || (type == 78 && Main.TileSolid[type2]))
+				{
+					Main.TileSet[x, y].IsActive = 1;
+					Main.TileSet[x, y].FrameX = (short)(style * 18);
+					Main.TileSet[x, y].FrameY = 0;
+					Main.TileSet[x, y].Type = (byte)type;
+					if (type == 50)
+					{
+						Main.TileSet[x, y].FrameX = (short)(18 * genRand.Next(5));
+					}
+					return true;
+				}
+			}
+			return false;
 #endif
-        }
+		}
 
 		public static bool PlaceAlch(int x, int y, int style)
 		{
@@ -9933,66 +9930,66 @@ namespace Terraria
 				bool flag = false;
 				switch (style)
 				{
-				case 0:
-					if (Main.TileSet[x, y + 1].Type != 2 && Main.TileSet[x, y + 1].Type != 78 && Main.TileSet[x, y + 1].Type != 109)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0)
-					{
-						flag = true;
-					}
-					break;
-				case 1:
-					if (Main.TileSet[x, y + 1].Type != 60 && Main.TileSet[x, y + 1].Type != 78)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0)
-					{
-						flag = true;
-					}
-					break;
-				case 2:
-					if (Main.TileSet[x, y + 1].Type != 0 && Main.TileSet[x, y + 1].Type != 59 && Main.TileSet[x, y + 1].Type != 78)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0)
-					{
-						flag = true;
-					}
-					break;
-				case 3:
-					if (Main.TileSet[x, y + 1].Type != 23 && Main.TileSet[x, y + 1].Type != 25 && Main.TileSet[x, y + 1].Type != 78)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0)
-					{
-						flag = true;
-					}
-					break;
-				case 4:
-					if (Main.TileSet[x, y + 1].Type != 53 && Main.TileSet[x, y + 1].Type != 78 && Main.TileSet[x, y + 1].Type != 116)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
-					{
-						flag = true;
-					}
-					break;
-				case 5:
-					if (Main.TileSet[x, y + 1].Type != 57 && Main.TileSet[x, y + 1].Type != 78)
-					{
-						flag = true;
-					}
-					if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava == 0)
-					{
-						flag = true;
-					}
-					break;
+					case 0:
+						if (Main.TileSet[x, y + 1].Type != 2 && Main.TileSet[x, y + 1].Type != 78 && Main.TileSet[x, y + 1].Type != 109)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0)
+						{
+							flag = true;
+						}
+						break;
+					case 1:
+						if (Main.TileSet[x, y + 1].Type != 60 && Main.TileSet[x, y + 1].Type != 78)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0)
+						{
+							flag = true;
+						}
+						break;
+					case 2:
+						if (Main.TileSet[x, y + 1].Type != 0 && Main.TileSet[x, y + 1].Type != 59 && Main.TileSet[x, y + 1].Type != 78)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0)
+						{
+							flag = true;
+						}
+						break;
+					case 3:
+						if (Main.TileSet[x, y + 1].Type != 23 && Main.TileSet[x, y + 1].Type != 25 && Main.TileSet[x, y + 1].Type != 78)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0)
+						{
+							flag = true;
+						}
+						break;
+					case 4:
+						if (Main.TileSet[x, y + 1].Type != 53 && Main.TileSet[x, y + 1].Type != 78 && Main.TileSet[x, y + 1].Type != 116)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
+						{
+							flag = true;
+						}
+						break;
+					case 5:
+						if (Main.TileSet[x, y + 1].Type != 57 && Main.TileSet[x, y + 1].Type != 78)
+						{
+							flag = true;
+						}
+						if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava == 0)
+						{
+							flag = true;
+						}
+						break;
 				}
 				if (!flag)
 				{
@@ -10044,18 +10041,18 @@ namespace Terraria
 			int i;
 			switch (genRand.Next(40))
 			{
-			case 0:
-				i = genRand.Next(Main.RockLayer + Main.MaxTilesY >> 1, Main.MaxTilesY - 20);
-				break;
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-				i = genRand.Next(Main.MaxTilesY - 20);
-				break;
-			default:
-				i = genRand.Next(Main.WorldSurface, Main.MaxTilesY - 20);
-				break;
+				case 0:
+					i = genRand.Next(Main.RockLayer + Main.MaxTilesY >> 1, Main.MaxTilesY - 20);
+					break;
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					i = genRand.Next(Main.MaxTilesY - 20);
+					break;
+				default:
+					i = genRand.Next(Main.WorldSurface, Main.MaxTilesY - 20);
+					break;
 			}
 			for (; i < Main.MaxTilesY - 20 && Main.TileSet[num, i].IsActive == 0; i++)
 			{
@@ -10065,28 +10062,28 @@ namespace Terraria
 				int num2 = -1;
 				switch (Main.TileSet[num, i].Type)
 				{
-				case 2:
-				case 109:
-					num2 = 0;
-					break;
-				case 60:
-					num2 = 1;
-					break;
-				case 0:
-				case 59:
-					num2 = 2;
-					break;
-				case 23:
-				case 25:
-					num2 = 3;
-					break;
-				case 53:
-				case 116:
-					num2 = 4;
-					break;
-				case 57:
-					num2 = 5;
-					break;
+					case 2:
+					case 109:
+						num2 = 0;
+						break;
+					case 60:
+						num2 = 1;
+						break;
+					case 0:
+					case 59:
+						num2 = 2;
+						break;
+					case 23:
+					case 25:
+						num2 = 3;
+						break;
+					case 53:
+					case 116:
+						num2 = 4;
+						break;
+					case 57:
+						num2 = 5;
+						break;
 				}
 				if (num2 >= 0 && PlaceAlch(num, i - 1, num2) && Main.NetMode == (byte)NetModeSetting.SERVER)
 				{
@@ -10105,53 +10102,8 @@ namespace Terraria
 				int type = Main.TileSet[x, y + 1].Type;
 				switch (num)
 				{
-				case 0:
-					if (type != 109 && type != 2 && type != 78)
-					{
-						flag = true;
-					}
-					else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
-					{
-						flag = true;
-					}
-					break;
-				case 1:
-					if (type != 60 && type != 78)
-					{
-						flag = true;
-					}
-					else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
-					{
-						flag = true;
-					}
-					break;
-				case 2:
-					if (type != 0 && type != 59 && type != 78)
-					{
-						flag = true;
-					}
-					else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
-					{
-						flag = true;
-					}
-					break;
-				case 3:
-					if (type != 23 && type != 25 && type != 78)
-					{
-						flag = true;
-					}
-					else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
-					{
-						flag = true;
-					}
-					break;
-				default:
-				{
-					int type2 = Main.TileSet[x, y].Type;
-					switch (num)
-					{
-					case 4:
-						if (type != 53 && type != 78 && type != 116)
+					case 0:
+						if (type != 109 && type != 2 && type != 78)
 						{
 							flag = true;
 						}
@@ -10159,66 +10111,111 @@ namespace Terraria
 						{
 							flag = true;
 						}
-						if (type2 == 82 || Main.TileSet[x, y].Lava != 0 || Main.NetMode == (byte)NetModeSetting.CLIENT)
-						{
-							break;
-						}
-						if (Main.TileSet[x, y].Liquid > 16)
-						{
-							if (type2 == 83)
-							{
-								Main.TileSet[x, y].Type = 84;
-								if (Main.NetMode == (byte)NetModeSetting.SERVER)
-								{
-									NetMessage.SendTile(x, y);
-								}
-							}
-						}
-						else if (type2 == 84)
-						{
-							Main.TileSet[x, y].Type = 83;
-							if (Main.NetMode == (byte)NetModeSetting.SERVER)
-							{
-								NetMessage.SendTile(x, y);
-							}
-						}
 						break;
-					case 5:
-						if (type != 57 && type != 78)
+					case 1:
+						if (type != 60 && type != 78)
 						{
 							flag = true;
 						}
-						else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava == 0)
+						else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
 						{
 							flag = true;
 						}
-						if (Main.NetMode == (byte)NetModeSetting.CLIENT || type2 == 82 || Main.TileSet[x, y].Lava == 0)
+						break;
+					case 2:
+						if (type != 0 && type != 59 && type != 78)
 						{
-							break;
+							flag = true;
 						}
-						if (Main.TileSet[x, y].Liquid > 16)
+						else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
 						{
-							if (type2 == 83)
-							{
-								Main.TileSet[x, y].Type = 84;
-								if (Main.NetMode == (byte)NetModeSetting.SERVER)
-								{
-									NetMessage.SendTile(x, y);
-								}
-							}
-						}
-						else if (type2 == 84)
-						{
-							Main.TileSet[x, y].Type = 83;
-							if (Main.NetMode == (byte)NetModeSetting.SERVER)
-							{
-								NetMessage.SendTile(x, y);
-							}
+							flag = true;
 						}
 						break;
-					}
-					break;
-				}
+					case 3:
+						if (type != 23 && type != 25 && type != 78)
+						{
+							flag = true;
+						}
+						else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
+						{
+							flag = true;
+						}
+						break;
+					default:
+						{
+							int type2 = Main.TileSet[x, y].Type;
+							switch (num)
+							{
+								case 4:
+									if (type != 53 && type != 78 && type != 116)
+									{
+										flag = true;
+									}
+									else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava != 0)
+									{
+										flag = true;
+									}
+									if (type2 == 82 || Main.TileSet[x, y].Lava != 0 || Main.NetMode == (byte)NetModeSetting.CLIENT)
+									{
+										break;
+									}
+									if (Main.TileSet[x, y].Liquid > 16)
+									{
+										if (type2 == 83)
+										{
+											Main.TileSet[x, y].Type = 84;
+											if (Main.NetMode == (byte)NetModeSetting.SERVER)
+											{
+												NetMessage.SendTile(x, y);
+											}
+										}
+									}
+									else if (type2 == 84)
+									{
+										Main.TileSet[x, y].Type = 83;
+										if (Main.NetMode == (byte)NetModeSetting.SERVER)
+										{
+											NetMessage.SendTile(x, y);
+										}
+									}
+									break;
+								case 5:
+									if (type != 57 && type != 78)
+									{
+										flag = true;
+									}
+									else if (Main.TileSet[x, y].Liquid > 0 && Main.TileSet[x, y].Lava == 0)
+									{
+										flag = true;
+									}
+									if (Main.NetMode == (byte)NetModeSetting.CLIENT || type2 == 82 || Main.TileSet[x, y].Lava == 0)
+									{
+										break;
+									}
+									if (Main.TileSet[x, y].Liquid > 16)
+									{
+										if (type2 == 83)
+										{
+											Main.TileSet[x, y].Type = 84;
+											if (Main.NetMode == (byte)NetModeSetting.SERVER)
+											{
+												NetMessage.SendTile(x, y);
+											}
+										}
+									}
+									else if (type2 == 84)
+									{
+										Main.TileSet[x, y].Type = 83;
+										if (Main.NetMode == (byte)NetModeSetting.SERVER)
+										{
+											NetMessage.SendTile(x, y);
+										}
+									}
+									break;
+							}
+							break;
+						}
 				}
 			}
 			if (flag)
@@ -10505,23 +10502,23 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 16:
-					Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.IRON_ANVIL);
-					break;
-				case 18:
-					Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.WORK_BENCH);
-					break;
-				case 29:
-					Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.PIGGY_BANK);
-					Main.PlaySound(13, i * 16, y * 16);
-					break;
-				case 103:
-					Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.BOWL);
-					Main.PlaySound(13, i * 16, y * 16);
-					break;
-				case 134:
-					Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.MYTHRIL_ANVIL);
-					break;
+					case 16:
+						Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.IRON_ANVIL);
+						break;
+					case 18:
+						Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.WORK_BENCH);
+						break;
+					case 29:
+						Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.PIGGY_BANK);
+						Main.PlaySound(13, i * 16, y * 16);
+						break;
+					case 103:
+						Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.BOWL);
+						Main.PlaySound(13, i * 16, y * 16);
+						break;
+					case 134:
+						Item.NewItem(num * 16, y * 16, 32, 32, (int)Item.ID.MYTHRIL_ANVIL);
+						break;
 				}
 			}
 			ToDestroyObject = false;
@@ -10563,12 +10560,12 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 79:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BED);
-					break;
-				case 90:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BATHTUB);
-					break;
+					case 79:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BED);
+						break;
+					case 90:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BATHTUB);
+						break;
 				}
 			}
 			ToDestroyObject = false;
@@ -10638,51 +10635,51 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 85:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TOMBSTONE);
-					break;
-				case 94:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.KEG);
-					break;
-				case 95:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CHINESE_LANTERN);
-					break;
-				case 96:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.COOKING_POT);
-					break;
-				case 97:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SAFE);
-					break;
-				case 98:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SKULL_LANTERN);
-					break;
-				case 99:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TRASH_CAN);
-					break;
-				case 100:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CANDELABRA);
-					break;
-				case 125:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CRYSTAL_BALL);
-					break;
-				case 126:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.DISCO_BALL);
-					break;
-				case 132:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.LEVER);
-					break;
-				case 142:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.INLET_PUMP);
-					break;
-				case 143:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.OUTLET_PUMP);
-					break;
-				case 138:
-					if (Main.NetMode != (byte)NetModeSetting.CLIENT)
-					{
-						Projectile.NewProjectile(x2 * 16 + 15.5f, y2 * 16 + 16, 0f, 0f, 99, 70, 10f);
-					}
-					break;
+					case 85:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TOMBSTONE);
+						break;
+					case 94:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.KEG);
+						break;
+					case 95:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CHINESE_LANTERN);
+						break;
+					case 96:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.COOKING_POT);
+						break;
+					case 97:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SAFE);
+						break;
+					case 98:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SKULL_LANTERN);
+						break;
+					case 99:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TRASH_CAN);
+						break;
+					case 100:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CANDELABRA);
+						break;
+					case 125:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CRYSTAL_BALL);
+						break;
+					case 126:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.DISCO_BALL);
+						break;
+					case 132:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.LEVER);
+						break;
+					case 142:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.INLET_PUMP);
+						break;
+					case 143:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.OUTLET_PUMP);
+						break;
+					case 138:
+						if (Main.NetMode != (byte)NetModeSetting.CLIENT)
+						{
+							Projectile.NewProjectile(x2 * 16 + 15.5f, y2 * 16 + 16, 0f, 0f, 99, 70, 10f);
+						}
+						break;
 				}
 			}
 			ToDestroyObject = false;
@@ -10728,23 +10725,23 @@ namespace Terraria
 				}
 				switch (type)
 				{
-				case 95:
-				case 126:
-					if (Main.TileSet[k, num2 - 1].IsActive == 0 || !Main.TileSolidNotSolidTop[Main.TileSet[k, num2 - 1].Type])
-					{
-						Destroy2x2(i, j, num, num2, type);
-						return;
-					}
-					break;
-				default:
-					if (Main.TileSet[k, num2 + 2].IsActive == 0 || (!Main.TileSolid[Main.TileSet[k, num2 + 2].Type] && !Main.TileTable[Main.TileSet[k, num2 + 2].Type]))
-					{
-						Destroy2x2(i, j, num, num2, type);
-						return;
-					}
-					break;
-				case 138:
-					break;
+					case 95:
+					case 126:
+						if (Main.TileSet[k, num2 - 1].IsActive == 0 || !Main.TileSolidNotSolidTop[Main.TileSet[k, num2 - 1].Type])
+						{
+							Destroy2x2(i, j, num, num2, type);
+							return;
+						}
+						break;
+					default:
+						if (Main.TileSet[k, num2 + 2].IsActive == 0 || (!Main.TileSolid[Main.TileSet[k, num2 + 2].Type] && !Main.TileTable[Main.TileSet[k, num2 + 2].Type]))
+						{
+							Destroy2x2(i, j, num, num2, type);
+							return;
+						}
+						break;
+					case 138:
+						break;
 				}
 			}
 			if (type == 138 && !SolidTileUnsafe(num, num2 + 2) && !SolidTileUnsafe(num + 1, num2 + 2))
@@ -10755,8 +10752,8 @@ namespace Terraria
 
 		public static void OreRunner(int i, int j, double strength, int steps, int type)
 		{
-			Vector2 vector = default(Vector2);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector = default;
+			Vector2 vector2 = default;
 			double num = strength;
 			float num2 = steps;
 			vector.X = i;
@@ -10836,16 +10833,16 @@ namespace Terraria
 			num3 /= num2;
 			switch (num)
 			{
-			case 0:
-				num = 107;
-				num3 *= 1.05f;
-				break;
-			case 1:
-				num = 108;
-				break;
-			default:
-				num = 111;
-				break;
+				case 0:
+					num = 107;
+					num3 *= 1.05f;
+					break;
+				case 1:
+					num = 108;
+					break;
+				default:
+					num = 111;
+					break;
 			}
 			for (int k = 0; k < num3; k++)
 			{
@@ -10853,12 +10850,12 @@ namespace Terraria
 				int lowerBound = Main.WorldSurface;
 				switch (num)
 				{
-				case 108:
-					lowerBound = Main.RockLayer;
-					break;
-				case 111:
-					lowerBound = (Main.RockLayer + Main.RockLayer + Main.MaxTilesY) / 3;
-					break;
+					case 108:
+						lowerBound = Main.RockLayer;
+						break;
+					case 111:
+						lowerBound = (Main.RockLayer + Main.RockLayer + Main.MaxTilesY) / 3;
+						break;
 				}
 				int j2 = genRand.Next(lowerBound, Main.MaxTilesY - 150);
 				OreRunner(i2, j2, genRand.Next(5, 9 + num4), genRand.Next(5, 9 + num4), num);
@@ -10888,7 +10885,7 @@ namespace Terraria
 			if (Main.NetMode != (byte)NetModeSetting.CLIENT)
 			{
 				int num8 = Main.Rand.Next(2) + 1;
-				Rectangle rect = default(Rectangle);
+				Rectangle rect = default;
 				rect.X = i << 4;
 				rect.Y = j << 4;
 				rect.Width = (rect.Height = 16);
@@ -10930,7 +10927,7 @@ namespace Terraria
 				}
 				num3++;
 				continue;
-				end_IL_00df:
+			end_IL_00df:
 				break;
 			}
 			ToDestroyObject = true;
@@ -10948,40 +10945,40 @@ namespace Terraria
 			{
 				switch (type)
 				{
-				case 14:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.WOODEN_TABLE);
-					break;
-				case 114:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TINKERERS_WORKSHOP);
-					break;
-				case 26:
-					SmashAltar(i, j);
-					break;
-				case 17:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.FURNACE);
-					break;
-				case 77:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.HELLFORGE);
-					break;
-				case 86:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.LOOM);
-					break;
-				case 87:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.PIANO);
-					break;
-				case 88:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.DRESSER);
-					break;
-				case 89:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BENCH);
-					break;
-				case 133:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.ADAMANTITE_FORGE);
-					break;
+					case 14:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.WOODEN_TABLE);
+						break;
+					case 114:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.TINKERERS_WORKSHOP);
+						break;
+					case 26:
+						SmashAltar(i, j);
+						break;
+					case 17:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.FURNACE);
+						break;
+					case 77:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.HELLFORGE);
+						break;
+					case 86:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.LOOM);
+						break;
+					case 87:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.PIANO);
+						break;
+					case 88:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.DRESSER);
+						break;
+					case 89:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BENCH);
+						break;
+					case 133:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.ADAMANTITE_FORGE);
+						break;
 #if VERSION_101
-				case 150:
-					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CAMPFIRE);
-					break;
+					case 150:
+						Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.CAMPFIRE);
+						break;
 #endif
 				}
 			}
@@ -11053,12 +11050,12 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 101:
-							Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BOOKCASE);
-							break;
-						case 102:
-							Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.THRONE);
-							break;
+							case 101:
+								Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.BOOKCASE);
+								break;
+							case 102:
+								Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.THRONE);
+								break;
 						}
 					}
 					ToDestroyObject = false;
@@ -11501,18 +11498,18 @@ namespace Terraria
 			}
 			switch (type)
 			{
-			case 34:
-				Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.COPPER_CHANDELIER);
-				break;
-			case 35:
-				Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SILVER_CHANDELIER);
-				break;
-			case 36:
-				Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.GOLD_CHANDELIER);
-				break;
-			case 106:
-				Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SAWMILL);
-				break;
+				case 34:
+					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.COPPER_CHANDELIER);
+					break;
+				case 35:
+					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SILVER_CHANDELIER);
+					break;
+				case 36:
+					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.GOLD_CHANDELIER);
+					break;
+				case 106:
+					Item.NewItem(i * 16, j * 16, 32, 32, (int)Item.ID.SAWMILL);
+					break;
 			}
 			ToDestroyObject = false;
 			bool flag2 = tileFrameRecursion;
@@ -11809,63 +11806,63 @@ namespace Terraria
 				{
 					switch (type)
 					{
-					case 12:
-						Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.LIFE_CRYSTAL);
-						break;
-					case 31:
-					{
-						if (genRand.Next(2) == 0)
-						{
-							ToSpawnMeteor = true;
-						}
-						int num3 = Main.Rand.Next(5);
-						if (!HasShadowOrbSmashed)
-						{
-							num3 = 0;
-						}
-						switch (num3)
-						{
-						case 0:
-						{
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.MUSKET, 1, DoNotBroadcast: false, -1);
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.MUSKET_BALL, genRand.Next(25, 51));
+						case 12:
+							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.LIFE_CRYSTAL);
 							break;
-						}
-						case 1:
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.VILETHORN, 1, DoNotBroadcast: false, -1);
-							break;
-						case 2:
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.BALL_O_HURT, 1, DoNotBroadcast: false, -1);
-							break;
-						case 3:
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.ORB_OF_LIGHT, 1, DoNotBroadcast: false, -1);
-							break;
-						case 4:
-							Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.BAND_OF_STARPOWER, 1, DoNotBroadcast: false, -1);
-							break;
-						}
-						HasShadowOrbSmashed = true;
-						shadowOrbCount++;
-						if (shadowOrbCount >= 3)
-						{
-							shadowOrbCount = 0;
-							Rectangle rect = default(Rectangle);
-							rect.X = num << 4;
-							rect.Y = num2 << 4;
-							rect.Width = (rect.Height = 0);
-							NPC.SpawnOnPlayer(Player.FindClosest(ref rect), (int)NPC.ID.EATER_OF_WORLDS_HEAD);
-						}
-						else
-						{
-							int textId = 10;
-							if (shadowOrbCount == 2)
+						case 31:
 							{
-								textId = 11;
+								if (genRand.Next(2) == 0)
+								{
+									ToSpawnMeteor = true;
+								}
+								int num3 = Main.Rand.Next(5);
+								if (!HasShadowOrbSmashed)
+								{
+									num3 = 0;
+								}
+								switch (num3)
+								{
+									case 0:
+										{
+											Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.MUSKET, 1, DoNotBroadcast: false, -1);
+											Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.MUSKET_BALL, genRand.Next(25, 51));
+											break;
+										}
+									case 1:
+										Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.VILETHORN, 1, DoNotBroadcast: false, -1);
+										break;
+									case 2:
+										Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.BALL_O_HURT, 1, DoNotBroadcast: false, -1);
+										break;
+									case 3:
+										Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.ORB_OF_LIGHT, 1, DoNotBroadcast: false, -1);
+										break;
+									case 4:
+										Item.NewItem(num * 16, num2 * 16, 32, 32, (int)Item.ID.BAND_OF_STARPOWER, 1, DoNotBroadcast: false, -1);
+										break;
+								}
+								HasShadowOrbSmashed = true;
+								shadowOrbCount++;
+								if (shadowOrbCount >= 3)
+								{
+									shadowOrbCount = 0;
+									Rectangle rect = default;
+									rect.X = num << 4;
+									rect.Y = num2 << 4;
+									rect.Width = (rect.Height = 0);
+									NPC.SpawnOnPlayer(Player.FindClosest(ref rect), (int)NPC.ID.EATER_OF_WORLDS_HEAD);
+								}
+								else
+								{
+									int textId = 10;
+									if (shadowOrbCount == 2)
+									{
+										textId = 11;
+									}
+									NetMessage.SendText(textId, 50, 255, 130, -1);
+								}
+								break;
 							}
-							NetMessage.SendText(textId, 50, 255, 130, -1);
-						}
-						break;
-					}
 					}
 				}
 			}
@@ -11912,18 +11909,18 @@ namespace Terraria
 			}
 			switch (num4)
 			{
-			case 23:
-				num4 = 2;
-				break;
-			case 60:
-				num4 = 2;
-				break;
-			case 109:
-				num4 = 2;
-				break;
-			case 147:
-				num4 = 2;
-				break;
+				case 23:
+					num4 = 2;
+					break;
+				case 60:
+					num4 = 2;
+					break;
+				case 109:
+					num4 = 2;
+					break;
+				case 147:
+					num4 = 2;
+					break;
 			}
 			int frameNumber = Main.TileSet[i, j].frameNumber;
 			int type = Main.TileSet[i, j].Type;
@@ -12132,68 +12129,79 @@ namespace Terraria
 				short num11 = Main.TileSet[i, j].FrameY;
 				switch (num3)
 				{
-				case 0:
-					if (num6 != 80)
-					{
-						if (num4 == 80 && num5 == 80 && num8 != 80 && num9 != 80 && type != 80)
+					case 0:
+						if (num6 != 80)
+						{
+							if (num4 == 80 && num5 == 80 && num8 != 80 && num9 != 80 && type != 80)
+							{
+								num10 = 90;
+								num11 = 0;
+							}
+							else if (num4 == 80 && num8 != 80 && type != 80)
+							{
+								num10 = 72;
+								num11 = 0;
+							}
+							else if (num5 == 80 && num9 != 80)
+							{
+								num10 = 18;
+								num11 = 0;
+							}
+							else
+							{
+								num10 = 0;
+								num11 = 0;
+							}
+						}
+						else if (num4 == 80 && num5 == 80 && num8 != 80 && num9 != 80 && type != 80)
 						{
 							num10 = 90;
-							num11 = 0;
+							num11 = 36;
 						}
 						else if (num4 == 80 && num8 != 80 && type != 80)
 						{
 							num10 = 72;
-							num11 = 0;
+							num11 = 36;
 						}
 						else if (num5 == 80 && num9 != 80)
 						{
 							num10 = 18;
-							num11 = 0;
+							num11 = 36;
+						}
+						else if (num7 >= 0 && Main.TileSolid[num7])
+						{
+							num10 = 0;
+							num11 = 36;
 						}
 						else
 						{
 							num10 = 0;
-							num11 = 0;
+							num11 = 18;
 						}
-					}
-					else if (num4 == 80 && num5 == 80 && num8 != 80 && num9 != 80 && type != 80)
-					{
-						num10 = 90;
-						num11 = 36;
-					}
-					else if (num4 == 80 && num8 != 80 && type != 80)
-					{
-						num10 = 72;
-						num11 = 36;
-					}
-					else if (num5 == 80 && num9 != 80)
-					{
-						num10 = 18;
-						num11 = 36;
-					}
-					else if (num7 >= 0 && Main.TileSolid[num7])
-					{
-						num10 = 0;
-						num11 = 36;
-					}
-					else
-					{
-						num10 = 0;
-						num11 = 18;
-					}
-					break;
-				case -1:
-					if (num5 == 80)
-					{
-						if (num6 != 80 && num7 != 80)
+						break;
+					case -1:
+						if (num5 == 80)
 						{
-							num10 = 108;
-							num11 = 36;
-						}
-						else if (num7 != 80)
-						{
-							num10 = 54;
-							num11 = 36;
+							if (num6 != 80 && num7 != 80)
+							{
+								num10 = 108;
+								num11 = 36;
+							}
+							else if (num7 != 80)
+							{
+								num10 = 54;
+								num11 = 36;
+							}
+							else if (num6 != 80)
+							{
+								num10 = 54;
+								num11 = 0;
+							}
+							else
+							{
+								num10 = 54;
+								num11 = 18;
+							}
 						}
 						else if (num6 != 80)
 						{
@@ -12205,30 +12213,30 @@ namespace Terraria
 							num10 = 54;
 							num11 = 18;
 						}
-					}
-					else if (num6 != 80)
-					{
-						num10 = 54;
-						num11 = 0;
-					}
-					else
-					{
-						num10 = 54;
-						num11 = 18;
-					}
-					break;
-				case 1:
-					if (num4 == 80)
-					{
-						if (num6 != 80 && num7 != 80)
+						break;
+					case 1:
+						if (num4 == 80)
 						{
-							num10 = 108;
-							num11 = 16;
-						}
-						else if (num7 != 80)
-						{
-							num10 = 36;
-							num11 = 36;
+							if (num6 != 80 && num7 != 80)
+							{
+								num10 = 108;
+								num11 = 16;
+							}
+							else if (num7 != 80)
+							{
+								num10 = 36;
+								num11 = 36;
+							}
+							else if (num6 != 80)
+							{
+								num10 = 36;
+								num11 = 0;
+							}
+							else
+							{
+								num10 = 36;
+								num11 = 18;
+							}
 						}
 						else if (num6 != 80)
 						{
@@ -12240,18 +12248,7 @@ namespace Terraria
 							num10 = 36;
 							num11 = 18;
 						}
-					}
-					else if (num6 != 80)
-					{
-						num10 = 36;
-						num11 = 0;
-					}
-					else
-					{
-						num10 = 36;
-						num11 = 18;
-					}
-					break;
+						break;
 				}
 				if (num10 != Main.TileSet[i, j].FrameX || num11 != Main.TileSet[i, j].FrameY)
 				{
@@ -12491,14 +12488,14 @@ namespace Terraria
 					}
 					if (!Gen)
 					{
-						Rectangle rect = default(Rectangle);
+						Rectangle rect = default;
 						rect.X = i << 4;
 						rect.Y = j << 4;
 						rect.Width = (rect.Height = 16);
 						Main.PlaySound(13, rect.X, rect.Y);
-						Gore.NewGore(new Vector2(rect.X, rect.Y), default(Vector2), 51);
-						Gore.NewGore(new Vector2(rect.X, rect.Y), default(Vector2), 52);
-						Gore.NewGore(new Vector2(rect.X, rect.Y), default(Vector2), 53);
+						Gore.NewGore(new Vector2(rect.X, rect.Y), default, 51);
+						Gore.NewGore(new Vector2(rect.X, rect.Y), default, 52);
+						Gore.NewGore(new Vector2(rect.X, rect.Y), default, 53);
 						if (genRand.Next(40) == 0 && (Main.TileSet[num, num2].WallType == 7 || Main.TileSet[num, num2].WallType == 8 || Main.TileSet[num, num2].WallType == 9))
 						{
 							Item.NewItem(rect.X, rect.Y, 16, 16, (int)Item.ID.GOLDEN_KEY);
@@ -13009,91 +13006,91 @@ namespace Terraria
 				}
 				switch (type)
 				{
-				case 3:
-				case 24:
-				case 27:
-				case 32:
-				case 51:
-				case 69:
-				case 72:
-					return Main.TileSet[i, j].Liquid == 0;
-				case 4:
-					if ((Main.TileSet[i - 1, j].IsActive != 0 && (Main.TileSolid[Main.TileSet[i - 1, j].Type] || Main.TileSet[i - 1, j].Type == 124 || (Main.TileSet[i - 1, j].Type == 5 && Main.TileSet[i - 1, j - 1].Type == 5 && Main.TileSet[i - 1, j + 1].Type == 5))) || (Main.TileSet[i + 1, j].IsActive != 0 && (Main.TileSolid[Main.TileSet[i + 1, j].Type] || Main.TileSet[i + 1, j].Type == 124 || (Main.TileSet[i + 1, j].Type == 5 && Main.TileSet[i + 1, j - 1].Type == 5 && Main.TileSet[i + 1, j + 1].Type == 5))) || (Main.TileSet[i, j + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j + 1].Type]))
-					{
-						if (style != 8)
+					case 3:
+					case 24:
+					case 27:
+					case 32:
+					case 51:
+					case 69:
+					case 72:
+						return Main.TileSet[i, j].Liquid == 0;
+					case 4:
+						if ((Main.TileSet[i - 1, j].IsActive != 0 && (Main.TileSolid[Main.TileSet[i - 1, j].Type] || Main.TileSet[i - 1, j].Type == 124 || (Main.TileSet[i - 1, j].Type == 5 && Main.TileSet[i - 1, j - 1].Type == 5 && Main.TileSet[i - 1, j + 1].Type == 5))) || (Main.TileSet[i + 1, j].IsActive != 0 && (Main.TileSolid[Main.TileSet[i + 1, j].Type] || Main.TileSet[i + 1, j].Type == 124 || (Main.TileSet[i + 1, j].Type == 5 && Main.TileSet[i + 1, j - 1].Type == 5 && Main.TileSet[i + 1, j + 1].Type == 5))) || (Main.TileSet[i, j + 1].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j + 1].Type]))
+						{
+							if (style != 8)
+							{
+								return Main.TileSet[i, j].Liquid == 0;
+							}
+							return true;
+						}
+						return false;
+					case 10:
+						if (Main.TileSet[i, j - 1].IsActive == 0 && Main.TileSet[i, j - 2].IsActive == 0 && Main.TileSet[i, j - 3].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j - 3].Type])
+						{
+							j--;
+							return true;
+						}
+						if (Main.TileSet[i, j + 1].IsActive == 0 && Main.TileSet[i, j + 2].IsActive == 0 && Main.TileSet[i, j + 3].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j + 3].Type])
+						{
+							j++;
+							return true;
+						}
+						return false;
+					case 20:
+						if (Main.TileSet[i, j + 1].IsActive != 0 && (Main.TileSet[i, j + 1].Type == 2 || Main.TileSet[i, j + 1].Type == 109 || Main.TileSet[i, j + 1].Type == 147))
 						{
 							return Main.TileSet[i, j].Liquid == 0;
 						}
-						return true;
-					}
-					return false;
-				case 10:
-					if (Main.TileSet[i, j - 1].IsActive == 0 && Main.TileSet[i, j - 2].IsActive == 0 && Main.TileSet[i, j - 3].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j - 3].Type])
-					{
-						j--;
-						return true;
-					}
-					if (Main.TileSet[i, j + 1].IsActive == 0 && Main.TileSet[i, j + 2].IsActive == 0 && Main.TileSet[i, j + 3].IsActive != 0 && Main.TileSolid[Main.TileSet[i, j + 3].Type])
-					{
-						j++;
-						return true;
-					}
-					return false;
-				case 20:
-					if (Main.TileSet[i, j + 1].IsActive != 0 && (Main.TileSet[i, j + 1].Type == 2 || Main.TileSet[i, j + 1].Type == 109 || Main.TileSet[i, j + 1].Type == 147))
-					{
-						return Main.TileSet[i, j].Liquid == 0;
-					}
-					return false;
-				case 2:
-				case 23:
-				case 109:
-					if (Main.TileSet[i, j].Type == 0)
-					{
-						return Main.TileSet[i, j].IsActive != 0;
-					}
-					return false;
-				case 60:
-				case 70:
-					if (Main.TileSet[i, j].Type == 59)
-					{
-						return Main.TileSet[i, j].IsActive != 0;
-					}
-					return false;
-				case 61:
-				case 71:
-					if (j + 1 < Main.MaxTilesY && Main.TileSet[i, j + 1].IsActive != 0)
-					{
-						return Main.TileSet[i, j + 1].Type == type - 1;
-					}
-					return false;
-				case 81:
-					if (Main.TileSet[i - 1, j].IsActive != 0 || Main.TileSet[i + 1, j].IsActive != 0 || Main.TileSet[i, j - 1].IsActive != 0)
-					{
 						return false;
-					}
-					if (Main.TileSet[i, j + 1].IsActive == 0 || !Main.TileSolid[Main.TileSet[i, j + 1].Type])
-					{
-						return false;
-					}
-					break;
-				case 136:
-					if ((Main.TileSet[i - 1, j].IsActive == 0 || (!Main.TileSolid[Main.TileSet[i - 1, j].Type] && Main.TileSet[i - 1, j].Type != 124 && (Main.TileSet[i - 1, j].Type != 5 || Main.TileSet[i - 1, j - 1].Type != 5 || Main.TileSet[i - 1, j + 1].Type != 5))) && (Main.TileSet[i + 1, j].IsActive == 0 || (!Main.TileSolid[Main.TileSet[i + 1, j].Type] && Main.TileSet[i + 1, j].Type != 124 && (Main.TileSet[i + 1, j].Type != 5 || Main.TileSet[i + 1, j - 1].Type != 5 || Main.TileSet[i + 1, j + 1].Type != 5))))
-					{
-						if (Main.TileSet[i, j + 1].IsActive != 0)
+					case 2:
+					case 23:
+					case 109:
+						if (Main.TileSet[i, j].Type == 0)
 						{
-							return Main.TileSolid[Main.TileSet[i, j + 1].Type];
+							return Main.TileSet[i, j].IsActive != 0;
 						}
 						return false;
-					}
-					return true;
-				case 129:
-				case 149:
-					if (!SolidTileUnsafe(i - 1, j) && !SolidTileUnsafe(i + 1, j) && !SolidTileUnsafe(i, j - 1))
-					{
-						return SolidTileUnsafe(i, j + 1);
-					}
-					return true;
+					case 60:
+					case 70:
+						if (Main.TileSet[i, j].Type == 59)
+						{
+							return Main.TileSet[i, j].IsActive != 0;
+						}
+						return false;
+					case 61:
+					case 71:
+						if (j + 1 < Main.MaxTilesY && Main.TileSet[i, j + 1].IsActive != 0)
+						{
+							return Main.TileSet[i, j + 1].Type == type - 1;
+						}
+						return false;
+					case 81:
+						if (Main.TileSet[i - 1, j].IsActive != 0 || Main.TileSet[i + 1, j].IsActive != 0 || Main.TileSet[i, j - 1].IsActive != 0)
+						{
+							return false;
+						}
+						if (Main.TileSet[i, j + 1].IsActive == 0 || !Main.TileSolid[Main.TileSet[i, j + 1].Type])
+						{
+							return false;
+						}
+						break;
+					case 136:
+						if ((Main.TileSet[i - 1, j].IsActive == 0 || (!Main.TileSolid[Main.TileSet[i - 1, j].Type] && Main.TileSet[i - 1, j].Type != 124 && (Main.TileSet[i - 1, j].Type != 5 || Main.TileSet[i - 1, j - 1].Type != 5 || Main.TileSet[i - 1, j + 1].Type != 5))) && (Main.TileSet[i + 1, j].IsActive == 0 || (!Main.TileSolid[Main.TileSet[i + 1, j].Type] && Main.TileSet[i + 1, j].Type != 124 && (Main.TileSet[i + 1, j].Type != 5 || Main.TileSet[i + 1, j - 1].Type != 5 || Main.TileSet[i + 1, j + 1].Type != 5))))
+						{
+							if (Main.TileSet[i, j + 1].IsActive != 0)
+							{
+								return Main.TileSolid[Main.TileSet[i, j + 1].Type];
+							}
+							return false;
+						}
+						return true;
+					case 129:
+					case 149:
+						if (!SolidTileUnsafe(i - 1, j) && !SolidTileUnsafe(i + 1, j) && !SolidTileUnsafe(i, j - 1))
+						{
+							return SolidTileUnsafe(i, j + 1);
+						}
+						return true;
 				}
 				return true;
 			}
@@ -13111,234 +13108,234 @@ namespace Terraria
 					ptr->FrameY = 0;
 					switch (type)
 					{
-					case 3:
-					case 24:
-					case 110:
-						if (j + 1 >= Main.MaxTilesY || ptr[1].IsActive == 0 || ((type != 3 || ptr[1].Type != 2) && (type != 24 || ptr[1].Type != 23) && (type != 3 || ptr[1].Type != 78) && (type != 110 || ptr[1].Type != 109)))
-						{
-							break;
-						}
-						if (type == 24 && genRand.Next(13) == 0)
-						{
-							type = 32;
-							flag = true;
-						}
-						else if (ptr[1].Type == 78)
-						{
-							ptr->FrameX = (short)(genRand.Next(2) * 18 + 108);
-							flag = true;
-						}
-						else if (ptr->WallType == 0 && ptr[1].WallType == 0)
-						{
-							if (genRand.Next(50) == 0 || (type == 24 && genRand.Next(40) == 0))
+						case 3:
+						case 24:
+						case 110:
+							if (j + 1 >= Main.MaxTilesY || ptr[1].IsActive == 0 || ((type != 3 || ptr[1].Type != 2) && (type != 24 || ptr[1].Type != 23) && (type != 3 || ptr[1].Type != 78) && (type != 110 || ptr[1].Type != 109)))
 							{
-								ptr->FrameX = 144;
+								break;
 							}
-							else if (genRand.Next(35) == 0)
+							if (type == 24 && genRand.Next(13) == 0)
+							{
+								type = 32;
+								flag = true;
+							}
+							else if (ptr[1].Type == 78)
 							{
 								ptr->FrameX = (short)(genRand.Next(2) * 18 + 108);
+								flag = true;
+							}
+							else if (ptr->WallType == 0 && ptr[1].WallType == 0)
+							{
+								if (genRand.Next(50) == 0 || (type == 24 && genRand.Next(40) == 0))
+								{
+									ptr->FrameX = 144;
+								}
+								else if (genRand.Next(35) == 0)
+								{
+									ptr->FrameX = (short)(genRand.Next(2) * 18 + 108);
+								}
+								else
+								{
+									ptr->FrameX = (short)(genRand.Next(6) * 18);
+								}
+								flag = true;
+							}
+							if (flag)
+							{
+								ptr->IsActive = 1;
+								ptr->Type = (byte)type;
+							}
+							break;
+						case 61:
+							ptr->IsActive = 1;
+							if (genRand.Next(16) == 0 && j > Main.WorldSurface)
+							{
+								ptr->Type = 69;
 							}
 							else
 							{
-								ptr->FrameX = (short)(genRand.Next(6) * 18);
+								ptr->Type = (byte)type;
+								if (j > Main.RockLayer && genRand.Next(60) == 0)
+								{
+									ptr->FrameX = 144;
+								}
+								else if (j > Main.RockLayer && genRand.Next(1000) == 0)
+								{
+									ptr->FrameX = 162;
+								}
+								else if (genRand.Next(15) == 0)
+								{
+									ptr->FrameX = (short)(genRand.Next(2) * 18 + 108);
+								}
+								else
+								{
+									ptr->FrameX = (short)(genRand.Next(6) * 18);
+								}
 							}
 							flag = true;
-						}
-						if (flag)
-						{
+							break;
+						case 71:
 							ptr->IsActive = 1;
 							ptr->Type = (byte)type;
-						}
-						break;
-					case 61:
-						ptr->IsActive = 1;
-						if (genRand.Next(16) == 0 && j > Main.WorldSurface)
-						{
-							ptr->Type = 69;
-						}
-						else
-						{
-							ptr->Type = (byte)type;
-							if (j > Main.RockLayer && genRand.Next(60) == 0)
-							{
-								ptr->FrameX = 144;
-							}
-							else if (j > Main.RockLayer && genRand.Next(1000) == 0)
-							{
-								ptr->FrameX = 162;
-							}
-							else if (genRand.Next(15) == 0)
-							{
-								ptr->FrameX = (short)(genRand.Next(2) * 18 + 108);
-							}
-							else
-							{
-								ptr->FrameX = (short)(genRand.Next(6) * 18);
-							}
-						}
-						flag = true;
-						break;
-					case 71:
-						ptr->IsActive = 1;
-						ptr->Type = (byte)type;
-						ptr->FrameX = (short)(genRand.Next(5) * 18);
-						flag = true;
-						break;
-					case 129:
-						ptr->IsActive = 1;
-						ptr->Type = (byte)type;
-						ptr->FrameX = (short)(genRand.Next(8) * 18);
-						flag = true;
-						break;
-					case 136:
-						ptr->IsActive = 1;
-						ptr->Type = (byte)type;
-						flag = true;
-						break;
-					case 4:
-						ptr->IsActive = 1;
-						ptr->Type = (byte)type;
-						ptr->FrameY = (short)(22 * style);
-						flag = true;
-						break;
-					case 10:
-						flag = PlaceDoor(i, j, type);
-						break;
-					case 128:
-						flag = PlaceMan(i, j, style);
-						break;
-					case 149:
-						ptr->IsActive = 1;
-						ptr->Type = (byte)type;
-						ptr->FrameX = (short)(18 * style);
-						flag = true;
-						break;
-					case 139:
-						flag = PlaceMB(i, j, type, style);
-						break;
-					case 34:
-					case 35:
-					case 36:
-					case 106:
-						flag = Place3x3(i, j, type);
-						break;
-					case 13:
-					case 33:
-					case 49:
-					case 50:
-					case 78:
-						flag = PlaceOnTable1x1(i, j, type, style);
-						break;
-					case 14:
-					case 26:
-					case 86:
-					case 87:
-					case 88:
-					case 89:
-					case 114:
-#if VERSION_101
-					case 150:
-#endif
-						flag = Place3x2(i, j, type);
-						break;
-					case 15:
-					case 20:
-						flag = Place1x2(i, j, type, style);
-						break;
-					case 16:
-					case 18:
-					case 29:
-					case 103:
-					case 134:
-						flag = Place2x1(i, j, type);
-						break;
-					case 92:
-					case 93:
-						flag = Place1xX(i, j, type);
-						break;
-					case 104:
-					case 105:
-						flag = Place2xX(i, j, type, style);
-						break;
-					case 17:
-					case 77:
-					case 133:
-						flag = Place3x2(i, j, type);
-						break;
-					case 21:
-						flag = PlaceChest(i, j, notNearOtherChests: false, style) >= 0;
-						break;
-					case 91:
-						flag = PlaceBanner(i, j, type, style);
-						break;
-					case 135:
-					case 141:
-					case 144:
-						flag = Place1x1(i, j, type, style);
-						break;
-					case 101:
-					case 102:
-						flag = Place3x4(i, j, type);
-						break;
-					case 27:
-						flag = PlaceSunflower(i, j);
-						break;
-					case 28:
-						flag = PlacePot(i, j);
-						break;
-					case 42:
-						flag = Place1x2Top(i, j, type);
-						break;
-					case 55:
-					case 85:
-						flag = PlaceSign(i, j, type);
-						break;
-					case 82:
-					case 83:
-					case 84:
-						flag = PlaceAlch(i, j, style);
-						break;
-					default:
-						switch (type)
-						{
-						case 94:
-						case 95:
-						case 96:
-						case 97:
-						case 98:
-						case 99:
-						case 100:
-						case 125:
-						case 126:
-						case 132:
-						case 138:
-						case 142:
-						case 143:
-							flag = Place2x2(i, j, type);
+							ptr->FrameX = (short)(genRand.Next(5) * 18);
+							flag = true;
 							break;
-						case 79:
-						case 90:
-							flag = Place4x2(i, j, type, (plr < 0) ? 1 : Main.PlayerSet[plr].direction);
+						case 129:
+							ptr->IsActive = 1;
+							ptr->Type = (byte)type;
+							ptr->FrameX = (short)(genRand.Next(8) * 18);
+							flag = true;
+							break;
+						case 136:
+							ptr->IsActive = 1;
+							ptr->Type = (byte)type;
+							flag = true;
+							break;
+						case 4:
+							ptr->IsActive = 1;
+							ptr->Type = (byte)type;
+							ptr->FrameY = (short)(22 * style);
+							flag = true;
+							break;
+						case 10:
+							flag = PlaceDoor(i, j, type);
+							break;
+						case 128:
+							flag = PlaceMan(i, j, style);
+							break;
+						case 149:
+							ptr->IsActive = 1;
+							ptr->Type = (byte)type;
+							ptr->FrameX = (short)(18 * style);
+							flag = true;
+							break;
+						case 139:
+							flag = PlaceMB(i, j, type, style);
+							break;
+						case 34:
+						case 35:
+						case 36:
+						case 106:
+							flag = Place3x3(i, j, type);
+							break;
+						case 13:
+						case 33:
+						case 49:
+						case 50:
+						case 78:
+							flag = PlaceOnTable1x1(i, j, type, style);
+							break;
+						case 14:
+						case 26:
+						case 86:
+						case 87:
+						case 88:
+						case 89:
+						case 114:
+#if VERSION_101
+						case 150:
+#endif
+							flag = Place3x2(i, j, type);
+							break;
+						case 15:
+						case 20:
+							flag = Place1x2(i, j, type, style);
+							break;
+						case 16:
+						case 18:
+						case 29:
+						case 103:
+						case 134:
+							flag = Place2x1(i, j, type);
+							break;
+						case 92:
+						case 93:
+							flag = Place1xX(i, j, type);
+							break;
+						case 104:
+						case 105:
+							flag = Place2xX(i, j, type, style);
+							break;
+						case 17:
+						case 77:
+						case 133:
+							flag = Place3x2(i, j, type);
+							break;
+						case 21:
+							flag = PlaceChest(i, j, notNearOtherChests: false, style) >= 0;
+							break;
+						case 91:
+							flag = PlaceBanner(i, j, type, style);
+							break;
+						case 135:
+						case 141:
+						case 144:
+							flag = Place1x1(i, j, type, style);
+							break;
+						case 101:
+						case 102:
+							flag = Place3x4(i, j, type);
+							break;
+						case 27:
+							flag = PlaceSunflower(i, j);
+							break;
+						case 28:
+							flag = PlacePot(i, j);
+							break;
+						case 42:
+							flag = Place1x2Top(i, j, type);
+							break;
+						case 55:
+						case 85:
+							flag = PlaceSign(i, j, type);
+							break;
+						case 82:
+						case 83:
+						case 84:
+							flag = PlaceAlch(i, j, style);
 							break;
 						default:
-							ptr->IsActive = 1;
-							ptr->Type = (byte)type;
 							switch (type)
 							{
-							case 81:
-								ptr->FrameX = (short)(26 * genRand.Next(6));
-								break;
-							case 137:
-								if (style == 1)
-								{
-									ptr->FrameX = 18;
-								}
-								break;
+								case 94:
+								case 95:
+								case 96:
+								case 97:
+								case 98:
+								case 99:
+								case 100:
+								case 125:
+								case 126:
+								case 132:
+								case 138:
+								case 142:
+								case 143:
+									flag = Place2x2(i, j, type);
+									break;
+								case 79:
+								case 90:
+									flag = Place4x2(i, j, type, (plr < 0) ? 1 : Main.PlayerSet[plr].direction);
+									break;
+								default:
+									ptr->IsActive = 1;
+									ptr->Type = (byte)type;
+									switch (type)
+									{
+										case 81:
+											ptr->FrameX = (short)(26 * genRand.Next(6));
+											break;
+										case 137:
+											if (style == 1)
+											{
+												ptr->FrameX = 18;
+											}
+											break;
+									}
+									flag = true;
+									break;
 							}
-							flag = true;
 							break;
-						}
-						break;
 					}
 					if (flag && !ToMute && !Gen)
 					{
@@ -13377,7 +13374,7 @@ namespace Terraria
 					{
 						int num2 = Main.TileSet[mech[num].X, mech[num].Y].FrameX / 18;
 #if (!VERSION_INITIAL || IS_PATCHED)
-                        if (mech[num].Time % (num2 * 120 + 60) == 0)
+						if (mech[num].Time % (num2 * 120 + 60) == 0)
 #else
 						switch (num2)
 						{
@@ -13393,7 +13390,7 @@ namespace Terraria
 						}
 						if (Math.IEEERemainder(mech[num].Time, num2) == 0.0)
 #endif
-                        {
+						{
 							mech[num].Time = 18000;
 							TripWire(mech[num].X, mech[num].Y);
 						}
@@ -13438,80 +13435,80 @@ namespace Terraria
 
 		public static void HitSwitch(int i, int j)
 		{
-            switch (Main.TileSet[i, j].Type)
-            {
-            case 135:
-                Main.PlaySound(28, i * 16, j * 16, 0);
+			switch (Main.TileSet[i, j].Type)
+			{
+				case 135:
+					Main.PlaySound(28, i * 16, j * 16, 0);
 					TripWire(i, j);
-                break;
-            case 136:
-                if (Main.TileSet[i, j].FrameY == 0)
-                {
-                    Main.TileSet[i, j].FrameY = 18;
-                }
-                else
-                {
-                    Main.TileSet[i, j].FrameY = 0;
-                }
-                Main.PlaySound(28, i * 16, j * 16, 0);
+					break;
+				case 136:
+					if (Main.TileSet[i, j].FrameY == 0)
+					{
+						Main.TileSet[i, j].FrameY = 18;
+					}
+					else
+					{
+						Main.TileSet[i, j].FrameY = 0;
+					}
+					Main.PlaySound(28, i * 16, j * 16, 0);
 					TripWire(i, j);
-                break;
-            case 144:
-                if (Main.TileSet[i, j].FrameY == 0)
-                {
-                    Main.TileSet[i, j].FrameY = 18;
-                    if (Main.NetMode != (byte)NetModeSetting.CLIENT)
-                    {
+					break;
+				case 144:
+					if (Main.TileSet[i, j].FrameY == 0)
+					{
+						Main.TileSet[i, j].FrameY = 18;
+						if (Main.NetMode != (byte)NetModeSetting.CLIENT)
+						{
 							checkMech(i, j, 18000);
-                    }
-                }
-                else
-                {
-                    Main.TileSet[i, j].FrameY = 0;
-                }
-                Main.PlaySound(28, i * 16, j * 16, 0);
-                break;
-            case 132:
-            {
-                int num = i;
-                int num2 = j;
-                short num3 = 36;
-                num = Main.TileSet[i, j].FrameX / 18 * -1;
-                num2 = Main.TileSet[i, j].FrameY / 18 * -1;
-                if (num < -1)
-                {
-                    num += 2;
-                    num3 = -36;
-                }
-                num += i;
-                num2 += j;
-                for (int k = num; k < num + 2; k++)
-                {
-                    for (int l = num2; l < num2 + 2; l++)
-                    {
-                        if (Main.TileSet[k, l].Type == 132)
-                        {
-                            Main.TileSet[k, l].FrameX += num3;
-                        }
-                    }
-                }
+						}
+					}
+					else
+					{
+						Main.TileSet[i, j].FrameY = 0;
+					}
+					Main.PlaySound(28, i * 16, j * 16, 0);
+					break;
+				case 132:
+					{
+						int num = i;
+						int num2 = j;
+						short num3 = 36;
+						num = Main.TileSet[i, j].FrameX / 18 * -1;
+						num2 = Main.TileSet[i, j].FrameY / 18 * -1;
+						if (num < -1)
+						{
+							num += 2;
+							num3 = -36;
+						}
+						num += i;
+						num2 += j;
+						for (int k = num; k < num + 2; k++)
+						{
+							for (int l = num2; l < num2 + 2; l++)
+							{
+								if (Main.TileSet[k, l].Type == 132)
+								{
+									Main.TileSet[k, l].FrameX += num3;
+								}
+							}
+						}
 						TileFrame(num, num2);
-                Main.PlaySound(28, i * 16, j * 16, 0);
-                for (int m = num; m < num + 2; m++)
-                {
-                    for (int n = num2; n < num2 + 2; n++)
-                    {
-                        if (Main.TileSet[m, n].Type == 132 && Main.TileSet[m, n].IsActive != 0 && Main.TileSet[m, n].wire != 0)
-                        {
+						Main.PlaySound(28, i * 16, j * 16, 0);
+						for (int m = num; m < num + 2; m++)
+						{
+							for (int n = num2; n < num2 + 2; n++)
+							{
+								if (Main.TileSet[m, n].Type == 132 && Main.TileSet[m, n].IsActive != 0 && Main.TileSet[m, n].wire != 0)
+								{
 									TripWire(m, n);
-                            return;
-                        }
-                    }
-                }
-                break;
-            }
-            }
-        }
+									return;
+								}
+							}
+						}
+						break;
+					}
+			}
+		}
 
 		public static void TripWire(int i, int j)
 		{
@@ -13529,7 +13526,7 @@ namespace Terraria
 #else
 				hitWire(i, j);
 #endif
-                if (numInPump > 0 && numOutPump > 0)
+				if (numInPump > 0 && numOutPump > 0)
 				{
 					xferWater();
 				}
@@ -14096,18 +14093,18 @@ namespace Terraria
 			{
 				switch (dir)
 				{
-				case Dir.LEFT:
-					i--;
-					break;
-				case Dir.RIGHT:
-					i++;
-					break;
-				case Dir.UP:
-					j--;
-					break;
-				case Dir.DOWN:
-					j++;
-					break;
+					case Dir.LEFT:
+						i--;
+						break;
+					case Dir.RIGHT:
+						i++;
+						break;
+					case Dir.UP:
+						j--;
+						break;
+					case Dir.DOWN:
+						j++;
+						break;
 				}
 				wiresChecked[num].DirsChecked |= (byte)dir;
 				fixed (Tile* ptr = &Main.TileSet[i, j])
@@ -14132,15 +14129,15 @@ namespace Terraria
 								wiresChecked[num].Y = (short)j;
 								switch (dir)
 								{
-								case Dir.LEFT:
-								case Dir.RIGHT:
+									case Dir.LEFT:
+									case Dir.RIGHT:
 										wiresChecked[num].DirsChecked = (byte)(dir ^ Dir.LEFT_RIGHT);
-									break;
-								case Dir.UP:
-								case Dir.DOWN:
+										break;
+									case Dir.UP:
+									case Dir.DOWN:
 										wiresChecked[num].DirsChecked = (byte)(dir ^ Dir.UP_DOWN);
-									dir = Dir.LEFT;
-									break;
+										dir = Dir.LEFT;
+										break;
 								}
 								if (ptr->IsActive == 0)
 								{
@@ -14156,454 +14153,454 @@ namespace Terraria
 								int type = ptr->Type;
 								switch (type)
 								{
-								case 144:
+									case 144:
 										HitSwitch(i, j);
 										SquareTileFrame(i, j);
-									NetMessage.SendTile(i, j);
-									break;
-								case 130:
-									ptr->Type = 131;
+										NetMessage.SendTile(i, j);
+										break;
+									case 130:
+										ptr->Type = 131;
 										SquareTileFrame(i, j);
-									NetMessage.SendTile(i, j);
-									break;
-								case 131:
-									ptr->Type = 130;
+										NetMessage.SendTile(i, j);
+										break;
+									case 131:
+										ptr->Type = 130;
 										SquareTileFrame(i, j);
-									NetMessage.SendTile(i, j);
-									break;
-								case 11:
+										NetMessage.SendTile(i, j);
+										break;
+									case 11:
 										CloseDoor(i, j, forced: true);
-									NetMessage.CreateMessage2(24, i, j);
-									NetMessage.SendMessage();
-									break;
-								case 10:
-								{
-									int direction = (Main.Rand.Next(2) << 1) - 1;
-									direction = OpenDoor(i, j, direction);
-									if (direction != 0)
-									{
-										NetMessage.CreateMessage3(19, i, j, direction);
+										NetMessage.CreateMessage2(24, i, j);
 										NetMessage.SendMessage();
-									}
-									break;
-								}
-								case 4:
-									if (ptr->FrameX < 66)
-									{
-										ptr->FrameX += 66;
-									}
-									else
-									{
-										ptr->FrameX -= 66;
-									}
-									NetMessage.SendTile(i, j);
-									break;
-								case 149:
-									if (ptr->FrameX < 54)
-									{
-										ptr->FrameX += 54;
-									}
-									else
-									{
-										ptr->FrameX -= 54;
-									}
-									NetMessage.SendTile(i, j);
-									break;
-								case 42:
-								{
-									int num35 = j - ptr->FrameY / 18;
-									short num36 = 18;
-									if (ptr->FrameX > 0)
-									{
-										num36 = -18;
-									}
-									Main.TileSet[i, num35].FrameX += num36;
-									Main.TileSet[i, num35 + 1].FrameX += num36;
+										break;
+									case 10:
+										{
+											int direction = (Main.Rand.Next(2) << 1) - 1;
+											direction = OpenDoor(i, j, direction);
+											if (direction != 0)
+											{
+												NetMessage.CreateMessage3(19, i, j, direction);
+												NetMessage.SendMessage();
+											}
+											break;
+										}
+									case 4:
+										if (ptr->FrameX < 66)
+										{
+											ptr->FrameX += 66;
+										}
+										else
+										{
+											ptr->FrameX -= 66;
+										}
+										NetMessage.SendTile(i, j);
+										break;
+									case 149:
+										if (ptr->FrameX < 54)
+										{
+											ptr->FrameX += 54;
+										}
+										else
+										{
+											ptr->FrameX -= 54;
+										}
+										NetMessage.SendTile(i, j);
+										break;
+									case 42:
+										{
+											int num35 = j - ptr->FrameY / 18;
+											short num36 = 18;
+											if (ptr->FrameX > 0)
+											{
+												num36 = -18;
+											}
+											Main.TileSet[i, num35].FrameX += num36;
+											Main.TileSet[i, num35 + 1].FrameX += num36;
 											NoWire(i, num35);
 											NoWire(i, num35 + 1);
-									NetMessage.SendTileSquare(i, j, 2);
-									break;
-								}
-								case 93:
-								{
-									int num25 = j - ptr->FrameY / 18;
-									short num26 = 18;
-									if (ptr->FrameX > 0)
-									{
-										num26 = -18;
-									}
-									Main.TileSet[i, num25].FrameX += num26;
-									Main.TileSet[i, num25 + 1].FrameX += num26;
-									Main.TileSet[i, num25 + 2].FrameX += num26;
+											NetMessage.SendTileSquare(i, j, 2);
+											break;
+										}
+									case 93:
+										{
+											int num25 = j - ptr->FrameY / 18;
+											short num26 = 18;
+											if (ptr->FrameX > 0)
+											{
+												num26 = -18;
+											}
+											Main.TileSet[i, num25].FrameX += num26;
+											Main.TileSet[i, num25 + 1].FrameX += num26;
+											Main.TileSet[i, num25 + 2].FrameX += num26;
 											NoWire(i, num25);
 											NoWire(i, num25 + 1);
 											NoWire(i, num25 + 2);
-									NetMessage.SendTileSquare(i, num25 + 1, 3);
-									break;
-								}
-								case 95:
-								case 100:
-								case 126:
-								{
-									int num15 = j - ptr->FrameY / 18;
-									int num16 = ptr->FrameX / 18;
-									if (num16 > 1)
-									{
-										num16 -= 2;
-									}
-									num16 = i - num16;
-									short num17 = 36;
-									if (Main.TileSet[num16, num15].FrameX > 0)
-									{
-										num17 = -36;
-									}
-									Main.TileSet[num16, num15].FrameX += num17;
-									Main.TileSet[num16, num15 + 1].FrameX += num17;
-									Main.TileSet[num16 + 1, num15].FrameX += num17;
-									Main.TileSet[num16 + 1, num15 + 1].FrameX += num17;
+											NetMessage.SendTileSquare(i, num25 + 1, 3);
+											break;
+										}
+									case 95:
+									case 100:
+									case 126:
+										{
+											int num15 = j - ptr->FrameY / 18;
+											int num16 = ptr->FrameX / 18;
+											if (num16 > 1)
+											{
+												num16 -= 2;
+											}
+											num16 = i - num16;
+											short num17 = 36;
+											if (Main.TileSet[num16, num15].FrameX > 0)
+											{
+												num17 = -36;
+											}
+											Main.TileSet[num16, num15].FrameX += num17;
+											Main.TileSet[num16, num15 + 1].FrameX += num17;
+											Main.TileSet[num16 + 1, num15].FrameX += num17;
+											Main.TileSet[num16 + 1, num15 + 1].FrameX += num17;
 											NoWire(num16, num15);
 											NoWire(num16, num15 + 1);
 											NoWire(num16 + 1, num15);
 											NoWire(num16 + 1, num15 + 1);
-									NetMessage.SendTileSquare(num16, num15, 3);
-									break;
-								}
-								case 34:
-								case 35:
-								case 36:
-								{
-									int num27 = j - ptr->FrameY / 18;
-									int num28 = ptr->FrameX / 18;
-									if (num28 > 2)
-									{
-										num28 -= 3;
-									}
-									num28 = i - num28;
-									short num29 = 54;
-									if (Main.TileSet[num28, num27].FrameX > 0)
-									{
-										num29 = -54;
-									}
-									for (int num30 = num28; num30 < num28 + 3; num30++)
-									{
-										for (int num31 = num27; num31 < num27 + 3; num31++)
-										{
-											Main.TileSet[num30, num31].FrameX += num29;
-													NoWire(num30, num31);
+											NetMessage.SendTileSquare(num16, num15, 3);
+											break;
 										}
-									}
-									NetMessage.SendTileSquare(num28 + 1, num27 + 1, 3);
-									break;
-								}
-								case 33:
-								{
-									short num24 = 18;
-									if (ptr->FrameX > 0)
-									{
-										num24 = -18;
-									}
-									ptr->FrameX += num24;
-									NetMessage.SendTileSquare(i, j, 3);
-									break;
-								}
-								case 92:
-								{
-									int num37 = j - ptr->FrameY / 18;
-									short num38 = 18;
-									if (ptr->FrameX > 0)
-									{
-										num38 = -18;
-									}
-									Main.TileSet[i, num37].FrameX += num38;
-									Main.TileSet[i, num37 + 1].FrameX += num38;
-									Main.TileSet[i, num37 + 2].FrameX += num38;
-									Main.TileSet[i, num37 + 3].FrameX += num38;
-									Main.TileSet[i, num37 + 4].FrameX += num38;
-									Main.TileSet[i, num37 + 5].FrameX += num38;
+									case 34:
+									case 35:
+									case 36:
+										{
+											int num27 = j - ptr->FrameY / 18;
+											int num28 = ptr->FrameX / 18;
+											if (num28 > 2)
+											{
+												num28 -= 3;
+											}
+											num28 = i - num28;
+											short num29 = 54;
+											if (Main.TileSet[num28, num27].FrameX > 0)
+											{
+												num29 = -54;
+											}
+											for (int num30 = num28; num30 < num28 + 3; num30++)
+											{
+												for (int num31 = num27; num31 < num27 + 3; num31++)
+												{
+													Main.TileSet[num30, num31].FrameX += num29;
+													NoWire(num30, num31);
+												}
+											}
+											NetMessage.SendTileSquare(num28 + 1, num27 + 1, 3);
+											break;
+										}
+									case 33:
+										{
+											short num24 = 18;
+											if (ptr->FrameX > 0)
+											{
+												num24 = -18;
+											}
+											ptr->FrameX += num24;
+											NetMessage.SendTileSquare(i, j, 3);
+											break;
+										}
+									case 92:
+										{
+											int num37 = j - ptr->FrameY / 18;
+											short num38 = 18;
+											if (ptr->FrameX > 0)
+											{
+												num38 = -18;
+											}
+											Main.TileSet[i, num37].FrameX += num38;
+											Main.TileSet[i, num37 + 1].FrameX += num38;
+											Main.TileSet[i, num37 + 2].FrameX += num38;
+											Main.TileSet[i, num37 + 3].FrameX += num38;
+											Main.TileSet[i, num37 + 4].FrameX += num38;
+											Main.TileSet[i, num37 + 5].FrameX += num38;
 											NoWire(i, num37);
 											NoWire(i, num37 + 1);
 											NoWire(i, num37 + 2);
 											NoWire(i, num37 + 3);
 											NoWire(i, num37 + 4);
 											NoWire(i, num37 + 5);
-									NetMessage.SendTileSquare(i, num37 + 3, 7);
-									break;
-								}
-								case 137:
-									if (checkMech(i, j, 180))
-									{
-										int num32 = ((ptr->FrameX != 0) ? 1 : (-1));
-										float speedX = 12 * num32;
-										int num33 = i * 16 + 8 + 10 * num32;
-										int num34 = j * 16 + 9;
-										Projectile.NewProjectile(num33, num34, speedX, 0f, 98, 20, 2f);
-									}
-									break;
-								case 139:
+											NetMessage.SendTileSquare(i, num37 + 3, 7);
+											break;
+										}
+									case 137:
+										if (checkMech(i, j, 180))
+										{
+											int num32 = ((ptr->FrameX != 0) ? 1 : (-1));
+											float speedX = 12 * num32;
+											int num33 = i * 16 + 8 + 10 * num32;
+											int num34 = j * 16 + 9;
+											Projectile.NewProjectile(num33, num34, speedX, 0f, 98, 20, 2f);
+										}
+										break;
+									case 139:
 										SwitchMB(i, j);
-									break;
-								case 141:
+										break;
+									case 141:
 										KillTile(i, j, KillToFail: false, EffectOnly: false, noItem: true);
-									NetMessage.SendTile(i, j);
-									Projectile.NewProjectile(i * 16 + 8, j * 16 + 8, 0f, 0f, 108, 250, 10f);
-									break;
-								case 142:
-								case 143:
-								{
-									int num18 = j - ptr->FrameY / 18;
-									int num19 = ptr->FrameX / 18;
-									if (num19 > 1)
-									{
-										num19 -= 2;
-									}
-									num19 = i - num19;
+										NetMessage.SendTile(i, j);
+										Projectile.NewProjectile(i * 16 + 8, j * 16 + 8, 0f, 0f, 108, 250, 10f);
+										break;
+									case 142:
+									case 143:
+										{
+											int num18 = j - ptr->FrameY / 18;
+											int num19 = ptr->FrameX / 18;
+											if (num19 > 1)
+											{
+												num19 -= 2;
+											}
+											num19 = i - num19;
 											NoWire(num19, num18);
 											NoWire(num19, num18 + 1);
 											NoWire(num19 + 1, num18);
 											NoWire(num19 + 1, num18 + 1);
-									if (type == 142)
-									{
-										int num20 = num19;
-										int num21 = num18;
-										for (int m = 0; m < 4; m++)
-										{
-											if (numInPump >= 19)
+											if (type == 142)
 											{
-												break;
-											}
-											switch (m)
-											{
-											case 0:
-												num20 = num19;
-												num21 = num18 + 1;
-												break;
-											case 1:
-												num20 = num19 + 1;
-												num21 = num18 + 1;
-												break;
-											case 2:
-												num20 = num19;
-												num21 = num18;
-												break;
-											default:
-												num20 = num19 + 1;
-												num21 = num18;
-												break;
-											}
+												int num20 = num19;
+												int num21 = num18;
+												for (int m = 0; m < 4; m++)
+												{
+													if (numInPump >= 19)
+													{
+														break;
+													}
+													switch (m)
+													{
+														case 0:
+															num20 = num19;
+															num21 = num18 + 1;
+															break;
+														case 1:
+															num20 = num19 + 1;
+															num21 = num18 + 1;
+															break;
+														case 2:
+															num20 = num19;
+															num21 = num18;
+															break;
+														default:
+															num20 = num19 + 1;
+															num21 = num18;
+															break;
+													}
 													inPump[numInPump].X = (short)num20;
 													inPump[numInPump].Y = (short)num21;
 													numInPump++;
-										}
-										break;
-									}
-									int num22 = num19;
-									int num23 = num18;
-									for (int n = 0; n < 4; n++)
-									{
-										if (numOutPump >= 19)
-										{
-											break;
-										}
-										switch (n)
-										{
-										case 0:
-											num22 = num19;
-											num23 = num18 + 1;
-											break;
-										case 1:
-											num22 = num19 + 1;
-											num23 = num18 + 1;
-											break;
-										case 2:
-											num22 = num19;
-											num23 = num18;
-											break;
-										default:
-											num22 = num19 + 1;
-											num23 = num18;
-											break;
-										}
+												}
+												break;
+											}
+											int num22 = num19;
+											int num23 = num18;
+											for (int n = 0; n < 4; n++)
+											{
+												if (numOutPump >= 19)
+												{
+													break;
+												}
+												switch (n)
+												{
+													case 0:
+														num22 = num19;
+														num23 = num18 + 1;
+														break;
+													case 1:
+														num22 = num19 + 1;
+														num23 = num18 + 1;
+														break;
+													case 2:
+														num22 = num19;
+														num23 = num18;
+														break;
+													default:
+														num22 = num19 + 1;
+														num23 = num18;
+														break;
+												}
 												outPump[numOutPump].X = (short)num22;
 												outPump[numOutPump].Y = (short)num23;
 												numOutPump++;
-									}
-									break;
-								}
-								case 105:
-								{
-									int num5 = j - ptr->FrameY / 18;
-									int num6 = ptr->FrameX / 18;
-									int num7 = num6 >> 1;
-									num6 = i - (num6 & 1);
+											}
+											break;
+										}
+									case 105:
+										{
+											int num5 = j - ptr->FrameY / 18;
+											int num6 = ptr->FrameX / 18;
+											int num7 = num6 >> 1;
+											num6 = i - (num6 & 1);
 											NoWire(num6, num5);
 											NoWire(num6, num5 + 1);
 											NoWire(num6, num5 + 2);
 											NoWire(num6 + 1, num5);
 											NoWire(num6 + 1, num5 + 1);
 											NoWire(num6 + 1, num5 + 2);
-									int num8 = num6 * 16 + 16;
-									int num9 = (num5 + 3) * 16;
-									int num10 = -1;
-									switch (num7)
-									{
-									case 4:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.SLIME))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.SLIME);
-										}
-										break;
-									case 7:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.CAVE_BAT))
-										{
-											num10 = NPC.NewNPC(num8 - 4, num9 - 6, (int)NPC.ID.CAVE_BAT);
-										}
-										break;
-									case 8:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.GOLDFISH))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.GOLDFISH);
-										}
-										break;
-									case 9:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BUNNY))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BUNNY);
-										}
-										break;
-									case 10:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.SKELETON))
-										{
-											num10 = NPC.NewNPC(num8, num9, (int)NPC.ID.SKELETON);
-										}
-										break;
-									case 18:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.CRAB))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.CRAB);
-										}
-										break;
-									case 23:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BLUE_JELLYFISH))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BLUE_JELLYFISH);
-										}
-										break;
-									case 27:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.MIMIC))
-										{
-											num10 = NPC.NewNPC(num8 - 9, num9, (int)NPC.ID.MIMIC);
-										}
-										break;
-									case 28:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BIRD))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BIRD);
-										}
-										break;
-									case 42:
-										if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.PIRANHA))
-										{
-											num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.PIRANHA);
-										}
-										break;
-									case 37:
-										if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.HEART))
-										{
-											Item.NewItem(num8, num9 - 16, 0, 0, (int)Item.ID.HEART);
-										}
-										break;
-									case 2:
-										if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.STAR))
-										{
-											Item.NewItem(num8, num9 - 16, 0, 0, (int)Item.ID.STAR);
-										}
-										break;
-									case 17:
-										if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.BOMB))
-										{
-											Item.NewItem(num8, num9 - 20, 0, 0, (int)Item.ID.BOMB);
-										}
-										break;
-									case 40:
-									{
-										if (!checkMech(i, j, 300))
-										{
+											int num8 = num6 * 16 + 16;
+											int num9 = (num5 + 3) * 16;
+											int num10 = -1;
+											switch (num7)
+											{
+												case 4:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.SLIME))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.SLIME);
+													}
+													break;
+												case 7:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.CAVE_BAT))
+													{
+														num10 = NPC.NewNPC(num8 - 4, num9 - 6, (int)NPC.ID.CAVE_BAT);
+													}
+													break;
+												case 8:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.GOLDFISH))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.GOLDFISH);
+													}
+													break;
+												case 9:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BUNNY))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BUNNY);
+													}
+													break;
+												case 10:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.SKELETON))
+													{
+														num10 = NPC.NewNPC(num8, num9, (int)NPC.ID.SKELETON);
+													}
+													break;
+												case 18:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.CRAB))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.CRAB);
+													}
+													break;
+												case 23:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BLUE_JELLYFISH))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BLUE_JELLYFISH);
+													}
+													break;
+												case 27:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.MIMIC))
+													{
+														num10 = NPC.NewNPC(num8 - 9, num9, (int)NPC.ID.MIMIC);
+													}
+													break;
+												case 28:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.BIRD))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.BIRD);
+													}
+													break;
+												case 42:
+													if (checkMech(i, j, 30) && NPC.MechSpawn(num8, num9, (int)NPC.ID.PIRANHA))
+													{
+														num10 = NPC.NewNPC(num8, num9 - 12, (int)NPC.ID.PIRANHA);
+													}
+													break;
+												case 37:
+													if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.HEART))
+													{
+														Item.NewItem(num8, num9 - 16, 0, 0, (int)Item.ID.HEART);
+													}
+													break;
+												case 2:
+													if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.STAR))
+													{
+														Item.NewItem(num8, num9 - 16, 0, 0, (int)Item.ID.STAR);
+													}
+													break;
+												case 17:
+													if (checkMech(i, j, 600) && Item.MechSpawn(num8, num9, (int)Item.ID.BOMB))
+													{
+														Item.NewItem(num8, num9 - 20, 0, 0, (int)Item.ID.BOMB);
+													}
+													break;
+												case 40:
+													{
+														if (!checkMech(i, j, 300))
+														{
+															break;
+														}
+														int[] array2 = new int[8];
+														int num13 = 0;
+														for (int l = 0; l < NPC.MaxNumNPCs; l++)
+														{
+															if (Main.NPCSet[l].Active == 0)
+															{
+																continue;
+															}
+															int type3 = Main.NPCSet[l].Type;
+															if (type3 == (int)NPC.ID.MERCHANT || type3 == (int)NPC.ID.ARMS_DEALER || type3 == (int)NPC.ID.GUIDE || type3 == (int)NPC.ID.DEMOLITIONIST || type3 == (int)NPC.ID.CLOTHIER || type3 == (int)NPC.ID.GOBLIN_TINKERER || type3 == (int)NPC.ID.WIZARD || type3 == (int)NPC.ID.SANTA_CLAUS)
+															{
+																array2[num13] = l;
+																if (++num13 == 8)
+																{
+																	break;
+																}
+															}
+														}
+														if (num13 > 0)
+														{
+															int num14 = array2[Main.Rand.Next(num13)];
+															Main.NPCSet[num14].XYWH.X = num8 - (Main.NPCSet[num14].Width >> 1);
+															Main.NPCSet[num14].XYWH.Y = num9 - Main.NPCSet[num14].Height - 1;
+															Main.NPCSet[num14].Position.X = Main.NPCSet[num14].XYWH.X;
+															Main.NPCSet[num14].Position.Y = Main.NPCSet[num14].XYWH.Y;
+															NetMessage.CreateMessage1(23, num14);
+															NetMessage.SendMessage();
+														}
+														break;
+													}
+												case 41:
+													{
+														if (!checkMech(i, j, 300))
+														{
+															break;
+														}
+														int[] array = new int[4];
+														int num11 = 0;
+														for (int k = 0; k < NPC.MaxNumNPCs; k++)
+														{
+															if (Main.NPCSet[k].Active == 0)
+															{
+																continue;
+															}
+															int type2 = Main.NPCSet[k].Type;
+															if (type2 == (int)NPC.ID.NURSE || type2 == (int)NPC.ID.DRYAD || type2 == (int)NPC.ID.MECHANIC)
+															{
+																array[num11] = k;
+																if (++num11 == 4)
+																{
+																	break;
+																}
+															}
+														}
+														if (num11 > 0)
+														{
+															int num12 = array[Main.Rand.Next(num11)];
+															Main.NPCSet[num12].XYWH.X = num8 - (Main.NPCSet[num12].Width >> 1);
+															Main.NPCSet[num12].XYWH.Y = num9 - Main.NPCSet[num12].Height - 1;
+															Main.NPCSet[num12].Position.X = Main.NPCSet[num12].XYWH.X;
+															Main.NPCSet[num12].Position.Y = Main.NPCSet[num12].XYWH.Y;
+															NetMessage.CreateMessage1(23, num12);
+															NetMessage.SendMessage();
+														}
+														break;
+													}
+											}
+											if (num10 >= 0)
+											{
+												Main.NPCSet[num10].Value = 0f;
+												Main.NPCSet[num10].NpcSlots = 0f;
+											}
 											break;
 										}
-										int[] array2 = new int[8];
-										int num13 = 0;
-										for (int l = 0; l < NPC.MaxNumNPCs; l++)
-										{
-											if (Main.NPCSet[l].Active == 0)
-											{
-												continue;
-											}
-											int type3 = Main.NPCSet[l].Type;
-											if (type3 == (int)NPC.ID.MERCHANT || type3 == (int)NPC.ID.ARMS_DEALER || type3 == (int)NPC.ID.GUIDE || type3 == (int)NPC.ID.DEMOLITIONIST || type3 == (int)NPC.ID.CLOTHIER || type3 == (int)NPC.ID.GOBLIN_TINKERER || type3 == (int)NPC.ID.WIZARD || type3 == (int)NPC.ID.SANTA_CLAUS)
-											{
-												array2[num13] = l;
-												if (++num13 == 8)
-												{
-													break;
-												}
-											}
-										}
-										if (num13 > 0)
-										{
-											int num14 = array2[Main.Rand.Next(num13)];
-											Main.NPCSet[num14].XYWH.X = num8 - (Main.NPCSet[num14].Width >> 1);
-											Main.NPCSet[num14].XYWH.Y = num9 - Main.NPCSet[num14].Height - 1;
-											Main.NPCSet[num14].Position.X = Main.NPCSet[num14].XYWH.X;
-											Main.NPCSet[num14].Position.Y = Main.NPCSet[num14].XYWH.Y;
-											NetMessage.CreateMessage1(23, num14);
-											NetMessage.SendMessage();
-										}
-										break;
-									}
-									case 41:
-									{
-										if (!checkMech(i, j, 300))
-										{
-											break;
-										}
-										int[] array = new int[4];
-										int num11 = 0;
-										for (int k = 0; k < NPC.MaxNumNPCs; k++)
-										{
-											if (Main.NPCSet[k].Active == 0)
-											{
-												continue;
-											}
-											int type2 = Main.NPCSet[k].Type;
-											if (type2 == (int)NPC.ID.NURSE || type2 == (int)NPC.ID.DRYAD || type2 == (int)NPC.ID.MECHANIC)
-											{
-												array[num11] = k;
-												if (++num11 == 4)
-												{
-													break;
-												}
-											}
-										}
-										if (num11 > 0)
-										{
-											int num12 = array[Main.Rand.Next(num11)];
-											Main.NPCSet[num12].XYWH.X = num8 - (Main.NPCSet[num12].Width >> 1);
-											Main.NPCSet[num12].XYWH.Y = num9 - Main.NPCSet[num12].Height - 1;
-											Main.NPCSet[num12].Position.X = Main.NPCSet[num12].XYWH.X;
-											Main.NPCSet[num12].Position.Y = Main.NPCSet[num12].XYWH.Y;
-											NetMessage.CreateMessage1(23, num12);
-											NetMessage.SendMessage();
-										}
-										break;
-									}
-									}
-									if (num10 >= 0)
-									{
-										Main.NPCSet[num10].Value = 0f;
-										Main.NPCSet[num10].NpcSlots = 0f;
-									}
-									break;
-								}
 								}
 								break;
 							}
@@ -14670,17 +14667,17 @@ namespace Terraria
 						int type2 = ptr2->Type;
 						switch (type2)
 						{
-						case 5:
-							if (type != type2)
-							{
-								return (ptr[-1].FrameX == 66 && ptr[-1].FrameY >= 0 && ptr[-1].FrameY <= 44) || (ptr[-1].FrameX == 88 && ptr[-1].FrameY >= 66 && ptr[-1].FrameY <= 110) || ptr[-1].FrameY >= 198;
-							}
-							return true;
-						case 12:
-						case 21:
-						case 26:
-						case 72:
-							return type == type2;
+							case 5:
+								if (type != type2)
+								{
+									return (ptr[-1].FrameX == 66 && ptr[-1].FrameY >= 0 && ptr[-1].FrameY <= 44) || (ptr[-1].FrameX == 88 && ptr[-1].FrameY >= 66 && ptr[-1].FrameY <= 110) || ptr[-1].FrameY >= 198;
+								}
+								return true;
+							case 12:
+							case 21:
+							case 26:
+							case 72:
+								return type == type2;
 						}
 					}
 				}
@@ -14723,162 +14720,50 @@ namespace Terraria
 			int type2 = 0;
 			switch (wall)
 			{
-			case 1:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-				type = 1;
-				break;
-			case 4:
-				type = 7;
-				break;
-			case 12:
-				type = 9;
-				break;
-			case 10:
-			case 11:
-				type = wall;
-				break;
-			case 21:
-				type2 = 13;
-				type = 13;
-				break;
-			case 22:
-			case 28:
-				type = 51;
-				break;
-			case 23:
-				type = 38;
-				break;
-			case 24:
-				type = 36;
-				break;
-			case 25:
-				type = 48;
-				break;
-			case 26:
-			case 30:
-				type = 49;
-				break;
-			case 29:
-				type = 50;
-				break;
-			case 31:
-				type = 51;
-				break;
-#if VERSION_101
-			case 32:
-			case 33:
-			case 34:
-			case 35:
-			case 36:
-			case 37:
-				type = 86 + wall - 32;
-				if (wall == 37)
-				{
-					type = genRand.Next(88, 94);
-				}
-				break;
-#endif
-			}
-			Main.PlaySound(type2, i * 16, j * 16);
-			for (int num = (fail ? 1 : 5); num >= 0; num--)
-			{
-				switch (wall)
-				{
-				case 3:
-					type = 1 + 13 * genRand.Next(2);
-					break;
-				case 27:
-					type = 1 + 6 * genRand.Next(2);
-					break;
-				}
-				Main.DustSet.NewDust(i * 16, j * 16, 16, 16, type);
-			}
-			if (!fail)
-			{
-				Item.ID num2 = 0;
-				switch (wall)
-				{
 				case 1:
-					num2 = Item.ID.STONE_WALL;
+				case 5:
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+					type = 1;
 					break;
 				case 4:
-					num2 = Item.ID.WOOD_WALL;
-					break;
-				case 5:
-					num2 = Item.ID.GRAY_BRICK_WALL;
-					break;
-				case 6:
-					num2 = Item.ID.RED_BRICK_WALL;
-					break;
-				case 7:
-					num2 = Item.ID.BLUE_BRICK_WALL;
-					break;
-				case 8:
-					num2 = Item.ID.GREEN_BRICK_WALL;
-					break;
-				case 9:
-					num2 = Item.ID.PINK_BRICK_WALL;
-					break;
-				case 10:
-					num2 = Item.ID.GOLD_BRICK_WALL;
-					break;
-				case 11:
-					num2 = Item.ID.SILVER_BRICK_WALL;
+					type = 7;
 					break;
 				case 12:
-					num2 = Item.ID.COPPER_BRICK_WALL;
+					type = 9;
 					break;
-				case 14:
-					num2 = Item.ID.OBSIDIAN_BRICK_WALL;
-					break;
-				case 16:
-					num2 = Item.ID.DIRT_WALL;
-					break;
-				case 17:
-					num2 = Item.ID.BLUE_BRICK_WALL;
-					break;
-				case 18:
-					num2 = Item.ID.GREEN_BRICK_WALL;
-					break;
-				case 19:
-					num2 = Item.ID.PINK_BRICK_WALL;
-					break;
-				case 20:
-					num2 = Item.ID.OBSIDIAN_BRICK_WALL;
+				case 10:
+				case 11:
+					type = wall;
 					break;
 				case 21:
-					num2 = Item.ID.GLASS_WALL;
+					type2 = 13;
+					type = 13;
 					break;
 				case 22:
-					num2 = Item.ID.PEARLSTONE_BRICK_WALL;
+				case 28:
+					type = 51;
 					break;
 				case 23:
-					num2 = Item.ID.IRIDESCENT_BRICK_WALL;
+					type = 38;
 					break;
 				case 24:
-					num2 = Item.ID.MUDSTONE_BRICK_WALL;
+					type = 36;
 					break;
 				case 25:
-					num2 = Item.ID.COBALT_BRICK_WALL;
+					type = 48;
 					break;
 				case 26:
-					num2 = Item.ID.MYTHRIL_BRICK_WALL;
-					break;
-				case 27:
-					num2 = Item.ID.PLANKED_WALL;
+				case 30:
+					type = 49;
 					break;
 				case 29:
-					num2 = Item.ID.CANDY_CANE_WALL;
-					break;
-				case 30:
-					num2 = Item.ID.GREEN_CANDY_CANE_WALL;
+					type = 50;
 					break;
 				case 31:
-					num2 = Item.ID.SNOW_BRICK_WALL;
+					type = 51;
 					break;
 #if VERSION_101
 				case 32:
@@ -14887,8 +14772,120 @@ namespace Terraria
 				case 35:
 				case 36:
 				case 37:
-					num2 = (Item.ID)((int)Item.ID.PURPLE_STAINED_GLASS + wall - 32);
+					type = 86 + wall - 32;
+					if (wall == 37)
+					{
+						type = genRand.Next(88, 94);
+					}
 					break;
+#endif
+			}
+			Main.PlaySound(type2, i * 16, j * 16);
+			for (int num = (fail ? 1 : 5); num >= 0; num--)
+			{
+				switch (wall)
+				{
+					case 3:
+						type = 1 + 13 * genRand.Next(2);
+						break;
+					case 27:
+						type = 1 + 6 * genRand.Next(2);
+						break;
+				}
+				Main.DustSet.NewDust(i * 16, j * 16, 16, 16, type);
+			}
+			if (!fail)
+			{
+				Item.ID num2 = 0;
+				switch (wall)
+				{
+					case 1:
+						num2 = Item.ID.STONE_WALL;
+						break;
+					case 4:
+						num2 = Item.ID.WOOD_WALL;
+						break;
+					case 5:
+						num2 = Item.ID.GRAY_BRICK_WALL;
+						break;
+					case 6:
+						num2 = Item.ID.RED_BRICK_WALL;
+						break;
+					case 7:
+						num2 = Item.ID.BLUE_BRICK_WALL;
+						break;
+					case 8:
+						num2 = Item.ID.GREEN_BRICK_WALL;
+						break;
+					case 9:
+						num2 = Item.ID.PINK_BRICK_WALL;
+						break;
+					case 10:
+						num2 = Item.ID.GOLD_BRICK_WALL;
+						break;
+					case 11:
+						num2 = Item.ID.SILVER_BRICK_WALL;
+						break;
+					case 12:
+						num2 = Item.ID.COPPER_BRICK_WALL;
+						break;
+					case 14:
+						num2 = Item.ID.OBSIDIAN_BRICK_WALL;
+						break;
+					case 16:
+						num2 = Item.ID.DIRT_WALL;
+						break;
+					case 17:
+						num2 = Item.ID.BLUE_BRICK_WALL;
+						break;
+					case 18:
+						num2 = Item.ID.GREEN_BRICK_WALL;
+						break;
+					case 19:
+						num2 = Item.ID.PINK_BRICK_WALL;
+						break;
+					case 20:
+						num2 = Item.ID.OBSIDIAN_BRICK_WALL;
+						break;
+					case 21:
+						num2 = Item.ID.GLASS_WALL;
+						break;
+					case 22:
+						num2 = Item.ID.PEARLSTONE_BRICK_WALL;
+						break;
+					case 23:
+						num2 = Item.ID.IRIDESCENT_BRICK_WALL;
+						break;
+					case 24:
+						num2 = Item.ID.MUDSTONE_BRICK_WALL;
+						break;
+					case 25:
+						num2 = Item.ID.COBALT_BRICK_WALL;
+						break;
+					case 26:
+						num2 = Item.ID.MYTHRIL_BRICK_WALL;
+						break;
+					case 27:
+						num2 = Item.ID.PLANKED_WALL;
+						break;
+					case 29:
+						num2 = Item.ID.CANDY_CANE_WALL;
+						break;
+					case 30:
+						num2 = Item.ID.GREEN_CANDY_CANE_WALL;
+						break;
+					case 31:
+						num2 = Item.ID.SNOW_BRICK_WALL;
+						break;
+#if VERSION_101
+					case 32:
+					case 33:
+					case 34:
+					case 35:
+					case 36:
+					case 37:
+						num2 = (Item.ID)((int)Item.ID.PURPLE_STAINED_GLASS + wall - 32);
+						break;
 #endif
 				}
 				if ((int)num2 > 0)
@@ -14917,69 +14914,69 @@ namespace Terraria
 						int type2 = ptr2->Type;
 						switch (type2)
 						{
-						case 5:
-							if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
-							{
-								return;
-							}
-							break;
-						case 12:
-						case 21:
-						case 26:
-						case 72:
-							if (type != type2)
-							{
-								return;
-							}
-							break;
+							case 5:
+								if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
+								{
+									return;
+								}
+								break;
+							case 12:
+							case 21:
+							case 26:
+							case 72:
+								if (type != type2)
+								{
+									return;
+								}
+								break;
 						}
 					}
 				}
 				switch (type)
 				{
-				case 128:
-				{
-					int num2 = i;
-					int frameX = ptr->FrameX;
-					int num3 = ptr->FrameX % 100 % 36;
-					if (num3 == 18)
-					{
-						frameX = ptr[-(Main.LargeWorldH)].FrameX;
-						num2--;
-					}
-					if (frameX >= 100)
-					{
-						int num4 = frameX / 100;
-						frameX %= 100;
-						switch (Main.TileSet[num2, j].FrameY / 18)
+					case 128:
 						{
-						case 0:
-							Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num4]);
-							break;
-						case 1:
-							Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num4]);
-							break;
-						case 2:
-							Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num4]);
+							int num2 = i;
+							int frameX = ptr->FrameX;
+							int num3 = ptr->FrameX % 100 % 36;
+							if (num3 == 18)
+							{
+								frameX = ptr[-(Main.LargeWorldH)].FrameX;
+								num2--;
+							}
+							if (frameX >= 100)
+							{
+								int num4 = frameX / 100;
+								frameX %= 100;
+								switch (Main.TileSet[num2, j].FrameY / 18)
+								{
+									case 0:
+										Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num4]);
+										break;
+									case 1:
+										Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num4]);
+										break;
+									case 2:
+										Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num4]);
+										break;
+								}
+								frameX = Main.TileSet[num2, j].FrameX % 100;
+								Main.TileSet[num2, j].FrameX = (short)frameX;
+							}
 							break;
 						}
-						frameX = Main.TileSet[num2, j].FrameX % 100;
-						Main.TileSet[num2, j].FrameX = (short)frameX;
-					}
-					break;
-				}
-				case 21:
-					if (Main.NetMode != (byte)NetModeSetting.CLIENT)
-					{
-						int num = ptr->FrameX / 18;
-						int y = j - ptr->FrameY / 18;
-						num = i - (num & 1);
-						if (!Chest.DestroyChest(num, y))
+					case 21:
+						if (Main.NetMode != (byte)NetModeSetting.CLIENT)
 						{
-							return;
+							int num = ptr->FrameX / 18;
+							int y = j - ptr->FrameY / 18;
+							num = i - (num & 1);
+							if (!Chest.DestroyChest(num, y))
+							{
+								return;
+							}
 						}
-					}
-					break;
+						break;
 				}
 				ptr->IsActive = 0;
 				ptr->Type = 0;
@@ -15012,21 +15009,21 @@ namespace Terraria
 								int type2 = ptr2->Type;
 								switch (type2)
 								{
-								case 5:
-									if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
-									{
-										return false;
-									}
-									break;
-								case 12:
-								case 21:
-								case 26:
-								case 72:
-									if (type != type2)
-									{
-										return false;
-									}
-									break;
+									case 5:
+										if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
+										{
+											return false;
+										}
+										break;
+									case 12:
+									case 21:
+									case 26:
+									case 72:
+										if (type != type2)
+										{
+											return false;
+										}
+										break;
 								}
 							}
 						}
@@ -15060,54 +15057,54 @@ namespace Terraria
 							{
 								switch (type)
 								{
-								case 1:
-								case 6:
-								case 7:
-								case 8:
-								case 9:
-								case 22:
-								case 25:
-								case 37:
-								case 38:
-								case 39:
-								case 41:
-								case 43:
-								case 44:
-								case 45:
-								case 46:
-								case 47:
-								case 48:
-								case 56:
-								case 58:
-								case 63:
-								case 64:
-								case 65:
-								case 66:
-								case 67:
-								case 68:
-								case 75:
-								case 76:
-								case 107:
-								case 108:
-								case 111:
-								case 117:
-								case 118:
-								case 119:
-								case 120:
-								case 121:
-								case 122:
-								case 140:
-									Main.PlaySound(21, i * 16, j * 16);
-									break;
-								default:
-									Main.PlaySound(0, i * 16, j * 16);
-									if (type == 129)
-									{
-										Main.PlaySound(2, i * 16, j * 16, 27);
-									}
-									break;
-								case 138:
-									break;
+									case 1:
+									case 6:
+									case 7:
+									case 8:
+									case 9:
+									case 22:
+									case 25:
+									case 37:
+									case 38:
+									case 39:
+									case 41:
+									case 43:
+									case 44:
+									case 45:
+									case 46:
+									case 47:
+									case 48:
+									case 56:
+									case 58:
+									case 63:
+									case 64:
+									case 65:
+									case 66:
+									case 67:
+									case 68:
+									case 75:
+									case 76:
+									case 107:
+									case 108:
+									case 111:
+									case 117:
+									case 118:
+									case 119:
+									case 120:
+									case 121:
+									case 122:
+									case 140:
+										Main.PlaySound(21, i * 16, j * 16);
+										break;
+									default:
+										Main.PlaySound(0, i * 16, j * 16);
+										if (type == 129)
+										{
+											Main.PlaySound(2, i * 16, j * 16, 27);
+										}
+										break;
+									case 138:
+										break;
 								}
 							}
 						}
@@ -15129,15 +15126,15 @@ namespace Terraria
 									frameX %= 100;
 									switch (Main.TileSet[num, j].FrameY / 18)
 									{
-									case 0:
-										Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num3]);
-										break;
-									case 1:
-										Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num3]);
-										break;
-									case 2:
-										Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num3]);
-										break;
+										case 0:
+											Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num3]);
+											break;
+										case 1:
+											Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num3]);
+											break;
+										case 2:
+											Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num3]);
+											break;
 									}
 									frameX = Main.TileSet[num, j].FrameX % 100;
 									Main.TileSet[num, j].FrameX = (short)frameX;
@@ -15156,224 +15153,224 @@ namespace Terraria
 									{
 										switch (type)
 										{
-										case 33:
-										case 95:
-										case 98:
-										case 100:
+											case 33:
+											case 95:
+											case 98:
+											case 100:
 #if VERSION_101
-										case 150:
+											case 150:
 #endif
-											num4 = 6;
-											break;
-										case 5:
-										case 10:
-										case 11:
-										case 14:
-										case 15:
-										case 19:
-										case 30:
-										case 86:
-										case 87:
-										case 88:
-										case 89:
-										case 93:
-										case 94:
-										case 104:
-										case 106:
-										case 114:
-										case 124:
-										case 128:
-										case 139:
-											num4 = 7;
-											break;
-										case 21:
-											num4 = ((ptr->FrameX < 108) ? ((ptr->FrameX < 36) ? 7 : 10) : 37);
-											break;
-										case 127:
-											num4 = 67;
-											break;
-										case 91:
-											num4 = -1;
-											break;
-										case 6:
-										case 26:
-											num4 = 8;
-											break;
-										case 7:
-										case 34:
-										case 47:
-											num4 = 9;
-											break;
-										case 8:
-										case 36:
-										case 45:
-										case 102:
-											num4 = 10;
-											break;
-										case 9:
-										case 35:
-										case 42:
-										case 46:
-										case 126:
-										case 136:
-											num4 = 11;
-											break;
-										case 12:
-											num4 = 12;
-											break;
-										case 3:
-										case 73:
-											num4 = 3;
-											break;
-										case 13:
-										case 54:
-											num4 = 13;
-											break;
-										case 22:
-										case 140:
-											num4 = 14;
-											break;
-										case 28:
-										case 78:
-											num4 = 22;
-											break;
-										case 29:
-											num4 = 23;
-											break;
-										case 40:
-										case 103:
-											num4 = 28;
-											break;
-										case 49:
-											num4 = 29;
-											break;
-										case 50:
-											num4 = 22;
-											break;
-										case 51:
-											num4 = 30;
-											break;
-										case 52:
-											num4 = 3;
-											break;
-										case 53:
-										case 81:
-											num4 = 32;
-											break;
-										case 56:
-										case 75:
-											num4 = 37;
-											break;
-										case 57:
-										case 119:
-										case 141:
-											num4 = 36;
-											break;
-										case 59:
-										case 120:
-											num4 = 38;
-											break;
-										case 61:
-										case 62:
-										case 74:
-										case 80:
-											num4 = 40;
-											break;
-										case 69:
-											num4 = 7;
-											break;
-										case 71:
-										case 72:
-											num4 = 26;
-											break;
-										case 70:
-											num4 = 17;
-											break;
-										case 112:
-											num4 = 14;
-											break;
-										case 123:
-											num4 = 53;
-											break;
-										case 116:
-										case 118:
-										case 147:
-										case 148:
-											num4 = 51;
-											break;
-										case 110:
-										case 113:
-										case 115:
-											num4 = 47;
-											break;
-										case 107:
-										case 121:
-											num4 = 48;
-											break;
-										case 108:
-										case 122:
-										case 134:
-										case 146:
-											num4 = 49;
-											break;
-										case 111:
-										case 133:
-										case 145:
-											num4 = 50;
-											break;
-										case 149:
-											num4 = 49;
-											break;
-										case 82:
-										case 83:
-										case 84:
-											switch (ptr->FrameX / 18)
-											{
-											case 0:
-												num4 = 3;
-												break;
-											case 1:
-												num4 = 3;
-												break;
-											case 2:
-												num4 = 7;
-												break;
-											case 3:
-												num4 = 17;
-												break;
-											case 4:
-												num4 = 3;
-												break;
-											case 5:
 												num4 = 6;
 												break;
-											}
-											break;
-										default:
-											switch (type)
-											{
-											case 129:
-												num4 = ((ptr->FrameX != 0 && ptr->FrameX != 54 && ptr->FrameX != 108) ? ((ptr->FrameX != 18 && ptr->FrameX != 72 && ptr->FrameX != 126) ? 70 : 69) : 68);
+											case 5:
+											case 10:
+											case 11:
+											case 14:
+											case 15:
+											case 19:
+											case 30:
+											case 86:
+											case 87:
+											case 88:
+											case 89:
+											case 93:
+											case 94:
+											case 104:
+											case 106:
+											case 114:
+											case 124:
+											case 128:
+											case 139:
+												num4 = 7;
 												break;
-											case 4:
-											{
-												int num5 = ptr->FrameY / 22;
-												switch (num5)
+											case 21:
+												num4 = ((ptr->FrameX < 108) ? ((ptr->FrameX < 36) ? 7 : 10) : 37);
+												break;
+											case 127:
+												num4 = 67;
+												break;
+											case 91:
+												num4 = -1;
+												break;
+											case 6:
+											case 26:
+												num4 = 8;
+												break;
+											case 7:
+											case 34:
+											case 47:
+												num4 = 9;
+												break;
+											case 8:
+											case 36:
+											case 45:
+											case 102:
+												num4 = 10;
+												break;
+											case 9:
+											case 35:
+											case 42:
+											case 46:
+											case 126:
+											case 136:
+												num4 = 11;
+												break;
+											case 12:
+												num4 = 12;
+												break;
+											case 3:
+											case 73:
+												num4 = 3;
+												break;
+											case 13:
+											case 54:
+												num4 = 13;
+												break;
+											case 22:
+											case 140:
+												num4 = 14;
+												break;
+											case 28:
+											case 78:
+												num4 = 22;
+												break;
+											case 29:
+												num4 = 23;
+												break;
+											case 40:
+											case 103:
+												num4 = 28;
+												break;
+											case 49:
+												num4 = 29;
+												break;
+											case 50:
+												num4 = 22;
+												break;
+											case 51:
+												num4 = 30;
+												break;
+											case 52:
+												num4 = 3;
+												break;
+											case 53:
+											case 81:
+												num4 = 32;
+												break;
+											case 56:
+											case 75:
+												num4 = 37;
+												break;
+											case 57:
+											case 119:
+											case 141:
+												num4 = 36;
+												break;
+											case 59:
+											case 120:
+												num4 = 38;
+												break;
+											case 61:
+											case 62:
+											case 74:
+											case 80:
+												num4 = 40;
+												break;
+											case 69:
+												num4 = 7;
+												break;
+											case 71:
+											case 72:
+												num4 = 26;
+												break;
+											case 70:
+												num4 = 17;
+												break;
+											case 112:
+												num4 = 14;
+												break;
+											case 123:
+												num4 = 53;
+												break;
+											case 116:
+											case 118:
+											case 147:
+											case 148:
+												num4 = 51;
+												break;
+											case 110:
+											case 113:
+											case 115:
+												num4 = 47;
+												break;
+											case 107:
+											case 121:
+												num4 = 48;
+												break;
+											case 108:
+											case 122:
+											case 134:
+											case 146:
+												num4 = 49;
+												break;
+											case 111:
+											case 133:
+											case 145:
+												num4 = 50;
+												break;
+											case 149:
+												num4 = 49;
+												break;
+											case 82:
+											case 83:
+											case 84:
+												switch (ptr->FrameX / 18)
 												{
-												case 0:
-													num4 = 6;
-													break;
-												case 8:
-													num4 = 75;
-													break;
-												default:
-													num4 = 58 + num5;
-													break;
+													case 0:
+														num4 = 3;
+														break;
+													case 1:
+														num4 = 3;
+														break;
+													case 2:
+														num4 = 7;
+														break;
+													case 3:
+														num4 = 17;
+														break;
+													case 4:
+														num4 = 3;
+														break;
+													case 5:
+														num4 = 6;
+														break;
 												}
 												break;
-											}
-											}
-											break;
+											default:
+												switch (type)
+												{
+													case 129:
+														num4 = ((ptr->FrameX != 0 && ptr->FrameX != 54 && ptr->FrameX != 108) ? ((ptr->FrameX != 18 && ptr->FrameX != 72 && ptr->FrameX != 126) ? 70 : 69) : 68);
+														break;
+													case 4:
+														{
+															int num5 = ptr->FrameY / 22;
+															switch (num5)
+															{
+																case 0:
+																	num4 = 6;
+																	break;
+																case 8:
+																	num4 = 75;
+																	break;
+																default:
+																	num4 = 58 + num5;
+																	break;
+															}
+															break;
+														}
+												}
+												break;
 										}
 									}
 								}
@@ -15383,46 +15380,46 @@ namespace Terraria
 									{
 										switch (type)
 										{
-										case 2:
-											num4 = genRand.Next(2) << 1;
-											break;
-										case 20:
-											num4 = ((genRand.Next(2) == 0) ? 7 : 2);
-											break;
-										case 23:
-										case 24:
-											num4 = ((genRand.Next(2) == 0) ? 14 : 17);
-											break;
-										case 27:
-											num4 = ((genRand.Next(2) == 0) ? 3 : 19);
-											break;
-										case 25:
-										case 31:
-											num4 = ((genRand.Next(2) != 0) ? 1 : 14);
-											break;
-										case 32:
-											num4 = ((genRand.Next(2) == 0) ? 14 : 24);
-											break;
-										case 34:
-										case 35:
-										case 36:
-										case 42:
-											num4 = genRand.Next(2) * 6;
-											break;
-										case 37:
-											num4 = ((genRand.Next(2) == 0) ? 6 : 23);
-											break;
-										case 61:
-											num4 = 38 + genRand.Next(2);
-											break;
-										case 58:
-										case 76:
-										case 77:
-											num4 = ((genRand.Next(2) == 0) ? 6 : 25);
-											break;
-										case 109:
-											num4 = genRand.Next(2) * 47;
-											break;
+											case 2:
+												num4 = genRand.Next(2) << 1;
+												break;
+											case 20:
+												num4 = ((genRand.Next(2) == 0) ? 7 : 2);
+												break;
+											case 23:
+											case 24:
+												num4 = ((genRand.Next(2) == 0) ? 14 : 17);
+												break;
+											case 27:
+												num4 = ((genRand.Next(2) == 0) ? 3 : 19);
+												break;
+											case 25:
+											case 31:
+												num4 = ((genRand.Next(2) != 0) ? 1 : 14);
+												break;
+											case 32:
+												num4 = ((genRand.Next(2) == 0) ? 14 : 24);
+												break;
+											case 34:
+											case 35:
+											case 36:
+											case 42:
+												num4 = genRand.Next(2) * 6;
+												break;
+											case 37:
+												num4 = ((genRand.Next(2) == 0) ? 6 : 23);
+												break;
+											case 61:
+												num4 = 38 + genRand.Next(2);
+												break;
+											case 58:
+											case 76:
+											case 77:
+												num4 = ((genRand.Next(2) == 0) ? 6 : 25);
+												break;
+											case 109:
+												num4 = genRand.Next(2) * 47;
+												break;
 										}
 										Main.DustSet.NewDust(i * 16, j * 16, 16, 16, num4);
 									}
@@ -15454,7 +15451,7 @@ namespace Terraria
 							{
 								if (Main.Rand.Next(2) == 0)
 								{
-									Rectangle rect = default(Rectangle);
+									Rectangle rect = default;
 									rect.X = i << 4;
 									rect.Y = j << 4;
 									rect.Width = (rect.Height = 16);
@@ -15894,21 +15891,21 @@ namespace Terraria
 						int type2 = ptr2->Type;
 						switch (type2)
 						{
-						case 5:
-							if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
-							{
-								return;
-							}
-							break;
-						case 12:
-						case 21:
-						case 26:
-						case 72:
-							if (type != type2)
-							{
-								return;
-							}
-							break;
+							case 5:
+								if (type != type2 && (ptr[-1].FrameX != 66 || ptr[-1].FrameY < 0 || ptr[-1].FrameY > 44) && (ptr[-1].FrameX != 88 || ptr[-1].FrameY < 66 || ptr[-1].FrameY > 110) && ptr[-1].FrameY < 198)
+								{
+									return;
+								}
+								break;
+							case 12:
+							case 21:
+							case 26:
+							case 72:
+								if (type != type2)
+								{
+									return;
+								}
+								break;
 						}
 					}
 				}
@@ -15942,54 +15939,54 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 1:
-						case 6:
-						case 7:
-						case 8:
-						case 9:
-						case 22:
-						case 25:
-						case 37:
-						case 38:
-						case 39:
-						case 41:
-						case 43:
-						case 44:
-						case 45:
-						case 46:
-						case 47:
-						case 48:
-						case 56:
-						case 58:
-						case 63:
-						case 64:
-						case 65:
-						case 66:
-						case 67:
-						case 68:
-						case 75:
-						case 76:
-						case 107:
-						case 108:
-						case 111:
-						case 117:
-						case 118:
-						case 119:
-						case 120:
-						case 121:
-						case 122:
-						case 140:
-							Main.PlaySound(21, i * 16, j * 16);
-							break;
-						default:
-							Main.PlaySound(0, i * 16, j * 16);
-							if (type == 129 && !KillToFail)
-							{
-								Main.PlaySound(2, i * 16, j * 16, 27);
-							}
-							break;
-						case 138:
-							break;
+							case 1:
+							case 6:
+							case 7:
+							case 8:
+							case 9:
+							case 22:
+							case 25:
+							case 37:
+							case 38:
+							case 39:
+							case 41:
+							case 43:
+							case 44:
+							case 45:
+							case 46:
+							case 47:
+							case 48:
+							case 56:
+							case 58:
+							case 63:
+							case 64:
+							case 65:
+							case 66:
+							case 67:
+							case 68:
+							case 75:
+							case 76:
+							case 107:
+							case 108:
+							case 111:
+							case 117:
+							case 118:
+							case 119:
+							case 120:
+							case 121:
+							case 122:
+							case 140:
+								Main.PlaySound(21, i * 16, j * 16);
+								break;
+							default:
+								Main.PlaySound(0, i * 16, j * 16);
+								if (type == 129 && !KillToFail)
+								{
+									Main.PlaySound(2, i * 16, j * 16, 27);
+								}
+								break;
+							case 138:
+								break;
 						}
 					}
 				}
@@ -16011,15 +16008,15 @@ namespace Terraria
 							frameX %= 100;
 							switch (Main.TileSet[num, j].FrameY / 18)
 							{
-							case 0:
-								Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num3]);
-								break;
-							case 1:
-								Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num3]);
-								break;
-							case 2:
-								Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num3]);
-								break;
+								case 0:
+									Item.NewItem(i * 16, j * 16, 16, 16, Item.HeadType[num3]);
+									break;
+								case 1:
+									Item.NewItem(i * 16, j * 16, 16, 16, Item.BodyType[num3]);
+									break;
+								case 2:
+									Item.NewItem(i * 16, j * 16, 16, 16, Item.LegType[num3]);
+									break;
 							}
 							frameX = Main.TileSet[num, j].FrameX % 100;
 							Main.TileSet[num, j].FrameX = (short)frameX;
@@ -16038,221 +16035,221 @@ namespace Terraria
 							{
 								switch (type)
 								{
-								case 33:
-								case 95:
-								case 98:
-								case 100:
-									num4 = 6;
-									break;
-								case 5:
-								case 10:
-								case 11:
-								case 14:
-								case 15:
-								case 19:
-								case 30:
-								case 86:
-								case 87:
-								case 88:
-								case 89:
-								case 93:
-								case 94:
-								case 104:
-								case 106:
-								case 114:
-								case 124:
-								case 128:
-								case 139:
-									num4 = 7;
-									break;
-								case 21:
-									num4 = ((ptr->FrameX < 108) ? ((ptr->FrameX < 36) ? 7 : 10) : 37);
-									break;
-								case 127:
-									num4 = 67;
-									break;
-								case 91:
-									num4 = -1;
-									break;
-								case 6:
-								case 26:
-									num4 = 8;
-									break;
-								case 7:
-								case 34:
-								case 47:
-									num4 = 9;
-									break;
-								case 8:
-								case 36:
-								case 45:
-								case 102:
-									num4 = 10;
-									break;
-								case 9:
-								case 35:
-								case 42:
-								case 46:
-								case 126:
-								case 136:
-									num4 = 11;
-									break;
-								case 12:
-									num4 = 12;
-									break;
-								case 3:
-								case 73:
-									num4 = 3;
-									break;
-								case 13:
-								case 54:
-									num4 = 13;
-									break;
-								case 22:
-								case 140:
-									num4 = 14;
-									break;
-								case 28:
-								case 78:
-									num4 = 22;
-									break;
-								case 29:
-									num4 = 23;
-									break;
-								case 40:
-								case 103:
-									num4 = 28;
-									break;
-								case 49:
-									num4 = 29;
-									break;
-								case 50:
-									num4 = 22;
-									break;
-								case 51:
-									num4 = 30;
-									break;
-								case 52:
-									num4 = 3;
-									break;
-								case 53:
-								case 81:
-									num4 = 32;
-									break;
-								case 56:
-								case 75:
-									num4 = 37;
-									break;
-								case 57:
-								case 119:
-								case 141:
-									num4 = 36;
-									break;
-								case 59:
-								case 120:
-									num4 = 38;
-									break;
-								case 61:
-								case 62:
-								case 74:
-								case 80:
-									num4 = 40;
-									break;
-								case 69:
-									num4 = 7;
-									break;
-								case 71:
-								case 72:
-									num4 = 26;
-									break;
-								case 70:
-									num4 = 17;
-									break;
-								case 112:
-									num4 = 14;
-									break;
-								case 123:
-									num4 = 53;
-									break;
-								case 116:
-								case 118:
-								case 147:
-								case 148:
-									num4 = 51;
-									break;
-								case 110:
-								case 113:
-								case 115:
-									num4 = 47;
-									break;
-								case 107:
-								case 121:
-									num4 = 48;
-									break;
-								case 108:
-								case 122:
-								case 134:
-								case 146:
-									num4 = 49;
-									break;
-								case 111:
-								case 133:
-								case 145:
-									num4 = 50;
-									break;
-								case 149:
-									num4 = 49;
-									break;
-								case 82:
-								case 83:
-								case 84:
-									switch (ptr->FrameX / 18)
-									{
-									case 0:
-										num4 = 3;
-										break;
-									case 1:
-										num4 = 3;
-										break;
-									case 2:
-										num4 = 7;
-										break;
-									case 3:
-										num4 = 17;
-										break;
-									case 4:
-										num4 = 3;
-										break;
-									case 5:
+									case 33:
+									case 95:
+									case 98:
+									case 100:
 										num4 = 6;
 										break;
-									}
-									break;
-								default:
-									switch (type)
-									{
-									case 129:
-										num4 = ((ptr->FrameX != 0 && ptr->FrameX != 54 && ptr->FrameX != 108) ? ((ptr->FrameX != 18 && ptr->FrameX != 72 && ptr->FrameX != 126) ? 70 : 69) : 68);
+									case 5:
+									case 10:
+									case 11:
+									case 14:
+									case 15:
+									case 19:
+									case 30:
+									case 86:
+									case 87:
+									case 88:
+									case 89:
+									case 93:
+									case 94:
+									case 104:
+									case 106:
+									case 114:
+									case 124:
+									case 128:
+									case 139:
+										num4 = 7;
 										break;
-									case 4:
-									{
-										int num5 = ptr->FrameY / 22;
-										switch (num5)
+									case 21:
+										num4 = ((ptr->FrameX < 108) ? ((ptr->FrameX < 36) ? 7 : 10) : 37);
+										break;
+									case 127:
+										num4 = 67;
+										break;
+									case 91:
+										num4 = -1;
+										break;
+									case 6:
+									case 26:
+										num4 = 8;
+										break;
+									case 7:
+									case 34:
+									case 47:
+										num4 = 9;
+										break;
+									case 8:
+									case 36:
+									case 45:
+									case 102:
+										num4 = 10;
+										break;
+									case 9:
+									case 35:
+									case 42:
+									case 46:
+									case 126:
+									case 136:
+										num4 = 11;
+										break;
+									case 12:
+										num4 = 12;
+										break;
+									case 3:
+									case 73:
+										num4 = 3;
+										break;
+									case 13:
+									case 54:
+										num4 = 13;
+										break;
+									case 22:
+									case 140:
+										num4 = 14;
+										break;
+									case 28:
+									case 78:
+										num4 = 22;
+										break;
+									case 29:
+										num4 = 23;
+										break;
+									case 40:
+									case 103:
+										num4 = 28;
+										break;
+									case 49:
+										num4 = 29;
+										break;
+									case 50:
+										num4 = 22;
+										break;
+									case 51:
+										num4 = 30;
+										break;
+									case 52:
+										num4 = 3;
+										break;
+									case 53:
+									case 81:
+										num4 = 32;
+										break;
+									case 56:
+									case 75:
+										num4 = 37;
+										break;
+									case 57:
+									case 119:
+									case 141:
+										num4 = 36;
+										break;
+									case 59:
+									case 120:
+										num4 = 38;
+										break;
+									case 61:
+									case 62:
+									case 74:
+									case 80:
+										num4 = 40;
+										break;
+									case 69:
+										num4 = 7;
+										break;
+									case 71:
+									case 72:
+										num4 = 26;
+										break;
+									case 70:
+										num4 = 17;
+										break;
+									case 112:
+										num4 = 14;
+										break;
+									case 123:
+										num4 = 53;
+										break;
+									case 116:
+									case 118:
+									case 147:
+									case 148:
+										num4 = 51;
+										break;
+									case 110:
+									case 113:
+									case 115:
+										num4 = 47;
+										break;
+									case 107:
+									case 121:
+										num4 = 48;
+										break;
+									case 108:
+									case 122:
+									case 134:
+									case 146:
+										num4 = 49;
+										break;
+									case 111:
+									case 133:
+									case 145:
+										num4 = 50;
+										break;
+									case 149:
+										num4 = 49;
+										break;
+									case 82:
+									case 83:
+									case 84:
+										switch (ptr->FrameX / 18)
 										{
-										case 0:
-											num4 = 6;
-											break;
-										case 8:
-											num4 = 75;
-											break;
-										default:
-											num4 = 58 + num5;
-											break;
+											case 0:
+												num4 = 3;
+												break;
+											case 1:
+												num4 = 3;
+												break;
+											case 2:
+												num4 = 7;
+												break;
+											case 3:
+												num4 = 17;
+												break;
+											case 4:
+												num4 = 3;
+												break;
+											case 5:
+												num4 = 6;
+												break;
 										}
 										break;
-									}
-									}
-									break;
+									default:
+										switch (type)
+										{
+											case 129:
+												num4 = ((ptr->FrameX != 0 && ptr->FrameX != 54 && ptr->FrameX != 108) ? ((ptr->FrameX != 18 && ptr->FrameX != 72 && ptr->FrameX != 126) ? 70 : 69) : 68);
+												break;
+											case 4:
+												{
+													int num5 = ptr->FrameY / 22;
+													switch (num5)
+													{
+														case 0:
+															num4 = 6;
+															break;
+														case 8:
+															num4 = 75;
+															break;
+														default:
+															num4 = 58 + num5;
+															break;
+													}
+													break;
+												}
+										}
+										break;
 								}
 							}
 						}
@@ -16262,46 +16259,46 @@ namespace Terraria
 							{
 								switch (type)
 								{
-								case 2:
-									num4 = genRand.Next(2) << 1;
-									break;
-								case 20:
-									num4 = ((genRand.Next(2) == 0) ? 7 : 2);
-									break;
-								case 23:
-								case 24:
-									num4 = ((genRand.Next(2) == 0) ? 14 : 17);
-									break;
-								case 27:
-									num4 = ((genRand.Next(2) == 0) ? 3 : 19);
-									break;
-								case 25:
-								case 31:
-									num4 = ((genRand.Next(2) != 0) ? 1 : 14);
-									break;
-								case 32:
-									num4 = ((genRand.Next(2) == 0) ? 14 : 24);
-									break;
-								case 34:
-								case 35:
-								case 36:
-								case 42:
-									num4 = genRand.Next(2) * 6;
-									break;
-								case 37:
-									num4 = ((genRand.Next(2) == 0) ? 6 : 23);
-									break;
-								case 61:
-									num4 = 38 + genRand.Next(2);
-									break;
-								case 58:
-								case 76:
-								case 77:
-									num4 = ((genRand.Next(2) == 0) ? 6 : 25);
-									break;
-								case 109:
-									num4 = genRand.Next(2) * 47;
-									break;
+									case 2:
+										num4 = genRand.Next(2) << 1;
+										break;
+									case 20:
+										num4 = ((genRand.Next(2) == 0) ? 7 : 2);
+										break;
+									case 23:
+									case 24:
+										num4 = ((genRand.Next(2) == 0) ? 14 : 17);
+										break;
+									case 27:
+										num4 = ((genRand.Next(2) == 0) ? 3 : 19);
+										break;
+									case 25:
+									case 31:
+										num4 = ((genRand.Next(2) != 0) ? 1 : 14);
+										break;
+									case 32:
+										num4 = ((genRand.Next(2) == 0) ? 14 : 24);
+										break;
+									case 34:
+									case 35:
+									case 36:
+									case 42:
+										num4 = genRand.Next(2) * 6;
+										break;
+									case 37:
+										num4 = ((genRand.Next(2) == 0) ? 6 : 23);
+										break;
+									case 61:
+										num4 = 38 + genRand.Next(2);
+										break;
+									case 58:
+									case 76:
+									case 77:
+										num4 = ((genRand.Next(2) == 0) ? 6 : 25);
+										break;
+									case 109:
+										num4 = genRand.Next(2) * 47;
+										break;
 								}
 								Main.DustSet.NewDust(i * 16, j * 16, 16, 16, num4);
 							}
@@ -16316,15 +16313,15 @@ namespace Terraria
 				{
 					switch (type)
 					{
-					case 2:
-					case 23:
-					case 109:
-						ptr->Type = 0;
-						break;
-					case 60:
-					case 70:
-						ptr->Type = 59;
-						break;
+						case 2:
+						case 23:
+						case 109:
+							ptr->Type = 0;
+							break;
+						case 60:
+						case 70:
+							ptr->Type = 59;
+							break;
 					}
 					SquareTileFrame(i, j);
 					return;
@@ -16358,7 +16355,7 @@ namespace Terraria
 					{
 						if (Main.Rand.Next(2) == 0)
 						{
-							Rectangle rect = default(Rectangle);
+							Rectangle rect = default;
 							rect.X = i << 4;
 							rect.Y = j << 4;
 							rect.Width = (rect.Height = 16);
@@ -16776,7 +16773,7 @@ namespace Terraria
 		public static bool PlayerLOS(int x, int y)
 		{
 			Rectangle rectangle = new Rectangle(x * 16, y * 16, 16, 16);
-			Rectangle value = default(Rectangle);
+			Rectangle value = default;
 			bool result = false;
 			for (int i = 0; i < Player.MaxNumPlayers; i++)
 			{
@@ -16806,15 +16803,15 @@ namespace Terraria
 				int num3 = 0;
 				switch (num)
 				{
-				case 0:
-					num2 = -1;
-					break;
-				case 1:
-					num2 = 1;
-					break;
-				default:
-					num3 = ((num != 0) ? 1 : (-1));
-					break;
+					case 0:
+						num2 = -1;
+						break;
+					case 1:
+						num2 = 1;
+						break;
+					default:
+						num3 = ((num != 0) ? 1 : (-1));
+						break;
 				}
 				if (Main.TileSet[i + num2, j + num3].IsActive == 0)
 				{
@@ -16923,35 +16920,35 @@ namespace Terraria
 				int num9 = j + genRand.Next(-3, 4);
 				switch (Main.TileSet[num8, num9].Type)
 				{
-				case 2:
-					Main.TileSet[num8, num9].Type = 109;
-					SquareTileFrame(num8, num9);
-					NetMessage.SendTile(num8, num9);
-					if (genRand.Next(2) == 0)
-					{
-						break;
-					}
-					return;
-				case 1:
-					Main.TileSet[num8, num9].Type = 117;
-					SquareTileFrame(num8, num9);
-					NetMessage.SendTile(num8, num9);
-					if (genRand.Next(2) == 0)
-					{
-						break;
-					}
-					return;
-				case 53:
-					Main.TileSet[num8, num9].Type = 116;
-					SquareTileFrame(num8, num9);
-					NetMessage.SendTile(num8, num9);
-					if (genRand.Next(2) != 0)
-					{
+					case 2:
+						Main.TileSet[num8, num9].Type = 109;
+						SquareTileFrame(num8, num9);
+						NetMessage.SendTile(num8, num9);
+						if (genRand.Next(2) == 0)
+						{
+							break;
+						}
 						return;
-					}
-					break;
-				default:
-					return;
+					case 1:
+						Main.TileSet[num8, num9].Type = 117;
+						SquareTileFrame(num8, num9);
+						NetMessage.SendTile(num8, num9);
+						if (genRand.Next(2) == 0)
+						{
+							break;
+						}
+						return;
+					case 53:
+						Main.TileSet[num8, num9].Type = 116;
+						SquareTileFrame(num8, num9);
+						NetMessage.SendTile(num8, num9);
+						if (genRand.Next(2) != 0)
+						{
+							return;
+						}
+						break;
+					default:
+						return;
 				}
 			}
 		}
@@ -17335,33 +17332,33 @@ namespace Terraria
 					int type;
 					switch (genRand.Next(9))
 					{
-					case 0:
-						type = 14;
-						break;
-					case 1:
-						type = 16;
-						break;
-					case 2:
-						type = 18;
-						break;
-					case 3:
-						type = 86;
-						break;
-					case 4:
-						type = 87;
-						break;
-					case 5:
-						type = 94;
-						break;
-					case 6:
-						type = 101;
-						break;
-					case 7:
-						type = 104;
-						break;
-					default:
-						type = 106;
-						break;
+						case 0:
+							type = 14;
+							break;
+						case 1:
+							type = 16;
+							break;
+						case 2:
+							type = 18;
+							break;
+						case 3:
+							type = 86;
+							break;
+						case 4:
+							type = 87;
+							break;
+						case 5:
+							type = 94;
+							break;
+						case 6:
+							type = 101;
+							break;
+						case 7:
+							type = 104;
+							break;
+						default:
+							type = 106;
+							break;
 					}
 					PlaceTile(num42, num43, type, ToMute: true);
 				}
@@ -17415,16 +17412,16 @@ namespace Terraria
 				{
 					switch (Main.TileSet[X, num].Type)
 					{
-					case 109:
-					case 116:
-					case 117:
-						totalGood2++;
-						break;
-					case 23:
-					case 25:
-					case 112:
-						totalEvil2++;
-						break;
+						case 109:
+						case 116:
+						case 117:
+							totalGood2++;
+							break;
+						case 23:
+						case 25:
+						case 112:
+							totalEvil2++;
+							break;
 					}
 					totalSolid2++;
 				}
@@ -17436,16 +17433,16 @@ namespace Terraria
 				{
 					switch (Main.TileSet[X, num].Type)
 					{
-					case 109:
-					case 116:
-					case 117:
-						totalGood2 += 5;
-						break;
-					case 23:
-					case 25:
-					case 112:
-						totalEvil2 += 5;
-						break;
+						case 109:
+						case 116:
+						case 117:
+							totalGood2 += 5;
+							break;
+						case 23:
+						case 25:
+						case 112:
+							totalEvil2 += 5;
+							break;
 					}
 					totalSolid2 += 5;
 				}
@@ -17574,7 +17571,7 @@ namespace Terraria
 					{
 						if (Main.TileSet[num3, num7].IsActive == 0 && PlaceTile(num3, num7, 3, true))
 						{
-							NetMessage.SendTile(num3, num7);						
+							NetMessage.SendTile(num3, num7);
 						}
 					}
 					else if (Main.TileSet[num3, num4].Type == 2 || Main.TileSet[num3, num4].Type == 23 || Main.TileSet[num3, num4].Type == 32 || Main.TileSet[num3, num4].Type == 109)
@@ -18334,8 +18331,8 @@ namespace Terraria
 
 		public static void ChasmRunnerSideways(int i, int j, int direction, int steps)
 		{
-			Vector2 vector = default(Vector2);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector = default;
+			Vector2 vector2 = default;
 			float num = steps;
 			vector.X = i;
 			vector.Y = j;
@@ -18422,26 +18419,26 @@ namespace Terraria
 				vector2.X += genRand.Next(-10, 11) * 0.01f;
 				switch (direction)
 				{
-				case -1:
-					if (vector2.X > -0.5)
-					{
-						vector2.X = -0.5f;
-					}
-					else if (vector2.X < -2f)
-					{
-						vector2.X = -2f;
-					}
-					break;
-				case 1:
-					if (vector2.X < 0.5)
-					{
-						vector2.X = 0.5f;
-					}
-					else if (vector2.X > 2f)
-					{
-						vector2.X = 2f;
-					}
-					break;
+					case -1:
+						if (vector2.X > -0.5)
+						{
+							vector2.X = -0.5f;
+						}
+						else if (vector2.X < -2f)
+						{
+							vector2.X = -2f;
+						}
+						break;
+					case 1:
+						if (vector2.X < 0.5)
+						{
+							vector2.X = 0.5f;
+						}
+						else if (vector2.X > 2f)
+						{
+							vector2.X = 2f;
+						}
+						break;
 				}
 				num3 = (int)(vector.X - num2 * 1.1f);
 				num4 = (int)(vector.X + num2 * 1.1f);
@@ -18520,7 +18517,7 @@ namespace Terraria
 			bool flag = false;
 			bool flag2 = !makeOrb;
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			float num = steps;
 			vector2.X = genRand.Next(-10, 11) * 0.1f;
 			vector2.Y = genRand.Next(11) * 0.2f + 0.5f;
@@ -18720,7 +18717,7 @@ namespace Terraria
 		public static void JungleRunner(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			double num = genRand.Next(5, 11);
 			vector2.X = genRand.Next(-10, 11) * 0.1f;
 			vector2.Y = genRand.Next(10, 20) * 0.1f;
@@ -18863,38 +18860,38 @@ namespace Terraria
 							}
 							switch (Main.TileSet[j, k].Type)
 							{
-							case 1:
-							case 25:
-								num8 = 117;
-								break;
-							case 2:
-							case 23:
-								num8 = 109;
-								break;
-							case 53:
-							case 112:
-							case 123:
-								num8 = 116;
-								break;
+								case 1:
+								case 25:
+									num8 = 117;
+									break;
+								case 2:
+								case 23:
+									num8 = 109;
+									break;
+								case 53:
+								case 112:
+								case 123:
+									num8 = 116;
+									break;
 							}
 						}
 						else
 						{
 							switch (Main.TileSet[j, k].Type)
 							{
-							case 1:
-							case 117:
-								num8 = 25;
-								break;
-							case 2:
-							case 109:
-								num8 = 23;
-								break;
-							case 53:
-							case 116:
-							case 123:
-								num8 = 112;
-								break;
+								case 1:
+								case 117:
+									num8 = 25;
+									break;
+								case 2:
+								case 109:
+									num8 = 23;
+									break;
+								case 53:
+								case 116:
+								case 123:
+									num8 = 112;
+									break;
 							}
 						}
 						if (num8 > 0)
@@ -18938,7 +18935,7 @@ namespace Terraria
 			}
 		}
 
-		public unsafe static void TileRunner(int i, int j, int strength, int steps, int type, bool addTile = false, Vector2 velocity = default(Vector2), bool noYChange = false, bool overRide = true)
+		public unsafe static void TileRunner(int i, int j, int strength, int steps, int type, bool addTile = false, Vector2 velocity = default, bool noYChange = false, bool overRide = true)
 		{
 			Vector2 vector = new Vector2(i, j);
 			float num = strength;
@@ -19204,7 +19201,7 @@ namespace Terraria
 		public static void MudWallRunner(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			float num = genRand.Next(5, 15);
 			float num2 = genRand.Next(5, 20);
 			float num3 = num2;
@@ -19271,7 +19268,7 @@ namespace Terraria
 		public static void FloatingIsland(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			float num = genRand.Next(80, 120);
 			float num2 = num;
 			float num3 = genRand.Next(20, 25);
@@ -19633,15 +19630,15 @@ namespace Terraria
 			}
 			switch (num12)
 			{
-			case 0:
-				contain = (int)Item.ID.SHINY_RED_BALLOON;
-				break;
-			case 1:
-				contain = (int)Item.ID.STARFURY;
-				break;
-			case 2:
-				contain = (int)Item.ID.LUCKY_HORSESHOE;
-				break;
+				case 0:
+					contain = (int)Item.ID.SHINY_RED_BALLOON;
+					break;
+				case 1:
+					contain = (int)Item.ID.STARFURY;
+					break;
+				case 2:
+					contain = (int)Item.ID.LUCKY_HORSESHOE;
+					break;
 			}
 			AddBuriedChest(i, num10 - 3, contain, notNearOtherChests: false, 2);
 			houseCount++;
@@ -19650,7 +19647,7 @@ namespace Terraria
 		public static void Mountinater(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			double num = genRand.Next(80, 120);
 			double num2 = num;
 			float num3 = genRand.Next(40, 55);
@@ -19725,7 +19722,7 @@ namespace Terraria
 		public static void Lakinater(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			double num = genRand.Next(25, 50);
 			double num2 = num;
 			double num3 = genRand.Next(30, 80);
@@ -19810,7 +19807,7 @@ namespace Terraria
 		public static void ShroomPatch(int i, int j)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			double num = genRand.Next(40, 70);
 			double num2 = num;
 			double num3 = genRand.Next(20, 30);
@@ -19935,7 +19932,7 @@ namespace Terraria
 		public static void Cavinator(int i, int j, int steps)
 		{
 			Vector2 vector = new Vector2(i, j);
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			double num = genRand.Next(7, 15);
 			double num2 = num;
 			int num3 = 1;
@@ -20158,32 +20155,32 @@ namespace Terraria
 			{
 				for (int j = num3 - 1; j < num4 + 1; j++)
 #else
-            int num = startX - 1;
-            int num2 = startX + 40;
-            int num3 = startY - 1;
-            int num4 = startY + 30;
-            if (num < 5)
-            {
-                num = 5;
-            }
-            if (num3 < 5)
-            {
-                num3 = 5;
-            }
-            if (num2 > Main.MaxTilesX - 5)
-            {
-                num2 = Main.MaxTilesX - 5;
-            }
-            if (num4 > Main.MaxTilesY - 5)
-            {
-                num4 = Main.MaxTilesY - 5;
-            }
+			int num = startX - 1;
+			int num2 = startX + 40;
+			int num3 = startY - 1;
+			int num4 = startY + 30;
+			if (num < 5)
+			{
+				num = 5;
+			}
+			if (num3 < 5)
+			{
+				num3 = 5;
+			}
+			if (num2 > Main.MaxTilesX - 5)
+			{
+				num2 = Main.MaxTilesX - 5;
+			}
+			if (num4 > Main.MaxTilesY - 5)
+			{
+				num4 = Main.MaxTilesY - 5;
+			}
 			tileFrameRecursion = false;
-            for (int i = num; i <= num2; i++)
-            {
-                for (int j = num3; j <= num4; j++)
+			for (int i = num; i <= num2; i++)
+			{
+				for (int j = num3; j <= num4; j++)
 #endif
-                {
+				{
 					int type = Main.TileSet[i, j].Type;
 					if (type == 4 || !Main.TileFrameImportant[type])
 					{
@@ -20360,19 +20357,19 @@ namespace Terraria
 			}
 			switch (num)
 			{
-			case 23:
-				num2 = 24;
-				if (Main.TileSet[i, j].FrameX >= 162)
-				{
-					Main.TileSet[i, j].FrameX = 126;
-				}
-				break;
-			case 2:
-				num2 = ((num2 != 113) ? 3 : 73);
-				break;
-			case 109:
-				num2 = ((num2 != 73) ? 110 : 113);
-				break;
+				case 23:
+					num2 = 24;
+					if (Main.TileSet[i, j].FrameX >= 162)
+					{
+						Main.TileSet[i, j].FrameX = 126;
+					}
+					break;
+				case 2:
+					num2 = ((num2 != 113) ? 3 : 73);
+					break;
+				case 109:
+					num2 = ((num2 != 73) ? 110 : 113);
+					break;
 			}
 			if (num2 != Main.TileSet[i, j].Type)
 			{

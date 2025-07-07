@@ -9,11 +9,11 @@ namespace Terraria.Achievements
 		private const int RowSpacing = 9;
 
 		private static readonly int RowHeight = (int)(86 * Main.ScreenMultiplier),
-			RowWidth = (int)(900 * Main.ScreenMultiplier), 
+			RowWidth = (int)(900 * Main.ScreenMultiplier),
 			BackgroundX = (int)(20 * Main.ScreenMultiplier),
-			ImageX = (int)(84 * Main.ScreenMultiplier), 
-			NameLabelX = (int)(126 * Main.ScreenMultiplier), 
-			DescLabelX = (int)(446 * Main.ScreenMultiplier), 
+			ImageX = (int)(84 * Main.ScreenMultiplier),
+			NameLabelX = (int)(126 * Main.ScreenMultiplier),
+			DescLabelX = (int)(446 * Main.ScreenMultiplier),
 			MaxRowsPerScreen = 4;
 
 		private readonly AchievementData Data;
@@ -48,7 +48,7 @@ namespace Terraria.Achievements
 			{
 				UIDelay--;
 			}
-            else if (Data.Ready)
+			else if (Data.Ready)
 			{
 				bool MoveReq = false;
 				if (ParentUI.IsDownButtonDown())

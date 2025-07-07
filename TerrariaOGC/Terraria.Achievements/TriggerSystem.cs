@@ -1,5 +1,5 @@
-using System.Collections;
 using Microsoft.Xna.Framework.GamerServices;
+using System.Collections;
 
 namespace Terraria.Achievements
 {

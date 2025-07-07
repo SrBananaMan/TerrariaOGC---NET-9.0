@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Terraria.HowToPlay
 {
@@ -16,7 +16,7 @@ namespace Terraria.HowToPlay
 
 		private Texture2D TextTexture;
 
-		private Color TextColor, AccentColor ,BackColor;
+		private Color TextColor, AccentColor, BackColor;
 
 		private Rectangle TextArea, BGDet;
 
@@ -96,45 +96,45 @@ namespace Terraria.HowToPlay
 			else
 			{
 #endif
-				BackLocation.Height += 8; // With the same change to FrontLocation.Height, changes the scrollbar height.
+			BackLocation.Height += 8; // With the same change to FrontLocation.Height, changes the scrollbar height.
 
-				Vector2 Position = new Vector2(DialogPosition.X, DialogPosition.Y);
-				Position.X += FrontX;
-				Position.Y += FrontY;
+			Vector2 Position = new Vector2(DialogPosition.X, DialogPosition.Y);
+			Position.X += FrontX;
+			Position.Y += FrontY;
 
-				BackColor.A = 196;
-				BackColor.R = (byte)(BackColor.A >> 0);
-				BackColor.G = (byte)(BackColor.A >> 0);
-				BackColor.B = (byte)(BackColor.A >> 0);
+			BackColor.A = 196;
+			BackColor.R = (byte)(BackColor.A >> 0);
+			BackColor.G = (byte)(BackColor.A >> 0);
+			BackColor.B = (byte)(BackColor.A >> 0);
 
-				Rectangle NewShape = BGDet;
-				if (!IsScrollable)
-				{
-					Position.Y += 4 * Main.ScreenMultiplier;
-					NewShape.Height -= 8;
-				}
+			Rectangle NewShape = BGDet;
+			if (!IsScrollable)
+			{
+				Position.Y += 4 * Main.ScreenMultiplier;
+				NewShape.Height -= 8;
+			}
 
-                if (Terraria.UI.MainUI.CurMenuMode == MenuMode.HARDMODE_UPSELL)
-                {
-					Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK3, Position, NewShape, BackColor);
-				}
-				else
-				{
-					Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK, Position, NewShape, BackColor);
-				}
+			if (Terraria.UI.MainUI.CurMenuMode == MenuMode.HARDMODE_UPSELL)
+			{
+				Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK3, Position, NewShape, BackColor);
+			}
+			else
+			{
+				Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK, Position, NewShape, BackColor);
+			}
 
-				FrontLocation = TextArea;
-				FrontLocation.X += FrontX - 6; // Changes the X/Y top-left position of the text itself.
-				FrontLocation.Y += FrontY - 6;
-				FrontLocation.Height += 8;
+			FrontLocation = TextArea;
+			FrontLocation.X += FrontX - 6; // Changes the X/Y top-left position of the text itself.
+			FrontLocation.Y += FrontY - 6;
+			FrontLocation.Height += 8;
 
-				if (!IsScrollable)
-				{
-					FrontLocation.Y += 6;
-					FrontLocation.Width += 8;
-				}
-				FinalPosition.X = Position.X;
-				FinalPosition.Y = Position.Y;
+			if (!IsScrollable)
+			{
+				FrontLocation.Y += 6;
+				FrontLocation.Width += 8;
+			}
+			FinalPosition.X = Position.X;
+			FinalPosition.Y = Position.Y;
 #if VERSION_INITIAL
 			}
 #endif

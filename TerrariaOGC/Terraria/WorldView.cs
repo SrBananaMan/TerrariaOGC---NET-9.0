@@ -1,8 +1,8 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using static Terraria.Tile;
 
 namespace Terraria
@@ -169,17 +169,17 @@ namespace Terraria
 
 		public bool[] drawNpcName = new bool[NPC.MaxNumNPCs];
 
-		public Vector2i sceneWaterPos = default(Vector2i);
+		public Vector2i sceneWaterPos = default;
 
-		public Vector2i sceneTilePos = default(Vector2i);
+		public Vector2i sceneTilePos = default;
 
-		public Vector2i sceneTile2Pos = default(Vector2i);
+		public Vector2i sceneTile2Pos = default;
 
-		public Vector2i sceneWallPos = default(Vector2i);
+		public Vector2i sceneWallPos = default;
 
-		public Vector2i sceneBackgroundPos = default(Vector2i);
+		public Vector2i sceneBackgroundPos = default;
 
-		public Vector2i sceneBlackPos = default(Vector2i);
+		public Vector2i sceneBlackPos = default;
 
 		private RenderTarget2D backWaterTarget;
 
@@ -297,22 +297,22 @@ namespace Terraria
 			}
 			switch (num2)
 			{
-			case 2:
-				return (Type)(5 + num);
-			case 3:
-				switch (num)
-				{
-				case 0:
-					return Type.TOP;
-				case 1:
-					return Type.BOTTOM_LEFT;
+				case 2:
+					return (Type)(5 + num);
+				case 3:
+					switch (num)
+					{
+						case 0:
+							return Type.TOP;
+						case 1:
+							return Type.BOTTOM_LEFT;
+						default:
+							return Type.BOTTOM_RIGHT;
+					}
+				case 4:
+					return (Type)(1 + num);
 				default:
-					return Type.BOTTOM_RIGHT;
-				}
-			case 4:
-				return (Type)(1 + num);
-			default:
-				return Type.FULLSCREEN;
+					return Type.FULLSCREEN;
 			}
 		}
 
@@ -387,13 +387,13 @@ namespace Terraria
 
 		public void OnStartGame()
 		{
-            Lighting.StartWorkerThread();
-        }
+			Lighting.StartWorkerThread();
+		}
 
-        public void onStopGame()
+		public void onStopGame()
 		{
-            Lighting.StopWorkerThread();
-            itemTextLocal.Clear();
+			Lighting.StopWorkerThread();
+			itemTextLocal.Clear();
 		}
 
 		public bool setViewType(Type type = Type.FULLSCREEN)
@@ -448,7 +448,7 @@ namespace Terraria
 				ActiveViewport = targetViewport;
 				viewportAnimTheta = 0.0;
 				UpdateProjection();
-				
+
 				int num3 = ViewWidth + (OFFSCREEN_RANGE_X * 2); // verify this
 				int num4 = ViewportHeight + OFFSCREEN_RANGE_VERTICAL;
 				if (backWaterTarget == null || backWaterTarget.Width != num3 || backWaterTarget.Height != num4)
@@ -470,8 +470,8 @@ namespace Terraria
 
 		public void Dispose()
 		{
-            Lighting.StopWorkerThread();
-            Dispose(disposing: true);
+			Lighting.StopWorkerThread();
+			Dispose(disposing: true);
 			GC.SuppressFinalize(this);
 		}
 
@@ -601,28 +601,28 @@ namespace Terraria
 				ScreenPosition.Y &= -2;
 				switch (pass)
 				{
-				case 1:
-					RenderBackground();
-					break;
-				case 2:
-					if (FirstTileY <= Main.WorldSurface)
-					{
-						RenderBlack();
-					}
-					RenderSolidTiles();
-					break;
-				case 3:
-					RenderWalls();
-					break;
+					case 1:
+						RenderBackground();
+						break;
+					case 2:
+						if (FirstTileY <= Main.WorldSurface)
+						{
+							RenderBlack();
+						}
+						RenderSolidTiles();
+						break;
+					case 3:
+						RenderWalls();
+						break;
 #if (!IS_PATCHED && VERSION_INITIAL)
 				default:
 #else
-				case 4:
+					case 4:
 #endif
-					RenderNonSolidTiles();
-					RenderBackWater();
-					RenderWater();
-					break;
+						RenderNonSolidTiles();
+						RenderBackWater();
+						RenderWater();
+						break;
 				}
 				ScreenPosition = vector2i;
 			}
@@ -650,6 +650,17 @@ namespace Terraria
 				worldScaleTarget = z;
 				worldScalePrevious = worldScale;
 				worldScaleAnimTheta = Math.PI / 2.0;
+			}
+		}
+
+		public void DirectZoom(float z)
+		{
+			if (z != worldScaleTarget)
+			{
+				worldScaleTarget = z;
+				worldScalePrevious = worldScale;
+				worldScale = worldScaleTarget;
+				UpdateView();
 			}
 		}
 
@@ -898,8 +909,8 @@ namespace Terraria
 
 		private unsafe void DrawItems()
 		{
-			Rectangle rectangle = default(Rectangle);
-			Vector2 pos = default(Vector2);
+			Rectangle rectangle = default;
+			Vector2 pos = default;
 			fixed (Item* ptr = Main.ItemSet)
 			{
 				Item* ptr2 = ptr;
@@ -968,7 +979,7 @@ namespace Terraria
 		private unsafe void DrawBlack()
 		{
 			float num = (WorldTime.TileColorFore.X + WorldTime.TileColorFore.Y + WorldTime.TileColorFore.Z) * (142f / (339f * (float)Math.PI));
-			Rectangle dest = default(Rectangle);
+			Rectangle dest = default;
 			dest.X = 32 + (FirstTileX << 4) - ScreenPosition.X;
 			dest.Width = 16 * (16 / _sheetTiles.Source[(int)_sheetTiles.ID.BLACK_TILE].Width);
 			Color black = Color.Black;
@@ -1023,9 +1034,9 @@ namespace Terraria
 		{
 			int gfx = (int)(255f * (1f - gfxQuality) + 100f * gfxQuality);
 			int gfx2 = (int)(120f * (1f - gfxQuality) + 40f * gfxQuality);
-			Vector2 pos = default(Vector2);
-			Color color = default(Color);
-			Rectangle s = default(Rectangle);
+			Vector2 pos = default;
+			Color color = default;
+			Rectangle s = default;
 			int num = FirstTileX;
 			fixed (Tile* ptr = Main.TileSet)
 			{
@@ -1171,10 +1182,10 @@ namespace Terraria
 		private unsafe void DrawWires()
 		{
 			int gfx = (int)(50f * (1f - gfxQuality) + 2f * gfxQuality);
-			Rectangle s = default(Rectangle);
+			Rectangle s = default;
 			s.Width = 16;
 			s.Height = 16;
-			Vector2 pos = default(Vector2);
+			Vector2 pos = default;
 			fixed (Tile* ptr = Main.TileSet)
 			{
 				for (int i = FirstTileX; i < LastTileX; i++)
@@ -1313,22 +1324,22 @@ namespace Terraria
 										Color color = colorUnsafe;
 										switch (j)
 										{
-										case 0:
-											color = ((!Lighting.Brighter(i, num - 1, i - 1, num)) ? Lighting.GetColorUnsafe(i, num - 1) : Lighting.GetColorUnsafe(i - 1, num));
-											break;
-										case 1:
-											color = ((!Lighting.Brighter(i, num - 1, i + 1, num)) ? Lighting.GetColorUnsafe(i, num - 1) : Lighting.GetColorUnsafe(i + 1, num));
-											num2 = 8;
-											break;
-										case 2:
-											color = ((!Lighting.Brighter(i, num + 1, i - 1, num)) ? Lighting.GetColorUnsafe(i, num + 1) : Lighting.GetColorUnsafe(i - 1, num));
-											num3 = 8;
-											break;
-										default:
-											color = ((!Lighting.Brighter(i, num + 1, i + 1, num)) ? Lighting.GetColorUnsafe(i, num + 1) : Lighting.GetColorUnsafe(i + 1, num));
-											num2 = 8;
-											num3 = 8;
-											break;
+											case 0:
+												color = ((!Lighting.Brighter(i, num - 1, i - 1, num)) ? Lighting.GetColorUnsafe(i, num - 1) : Lighting.GetColorUnsafe(i - 1, num));
+												break;
+											case 1:
+												color = ((!Lighting.Brighter(i, num - 1, i + 1, num)) ? Lighting.GetColorUnsafe(i, num - 1) : Lighting.GetColorUnsafe(i + 1, num));
+												num2 = 8;
+												break;
+											case 2:
+												color = ((!Lighting.Brighter(i, num + 1, i - 1, num)) ? Lighting.GetColorUnsafe(i, num + 1) : Lighting.GetColorUnsafe(i - 1, num));
+												num3 = 8;
+												break;
+											default:
+												color = ((!Lighting.Brighter(i, num + 1, i + 1, num)) ? Lighting.GetColorUnsafe(i, num + 1) : Lighting.GetColorUnsafe(i + 1, num));
+												num2 = 8;
+												num3 = 8;
+												break;
 										}
 										c.R = (byte)(colorUnsafe.R + color.R >> 1);
 										c.G = (byte)(colorUnsafe.G + color.G >> 1);
@@ -1360,7 +1371,7 @@ namespace Terraria
 
 		public unsafe void DrawBg(UI ui)
 		{
-            if (viewportAnimTheta > 0.0 && !Guide.IsVisible)
+			if (viewportAnimTheta > 0.0 && !Guide.IsVisible)
 			{
 				viewportAnimTheta -= Math.PI / 60.0;
 				if (viewportAnimTheta <= 0.0)
@@ -1445,12 +1456,12 @@ namespace Terraria
 					WorldTime.bgColor.B = (byte)(WorldTime.bgColor.B * AtmoOpacity);
 				}
 			}
-			Vector2 pos = default(Vector2);
+			Vector2 pos = default;
 			if (ScreenPosition.Y >= Main.WorldSurfacePixels)
 			{
 				return;
 			}
-			Rectangle dest = default(Rectangle);
+			Rectangle dest = default;
 #if USE_ORIGINAL_CODE
 			dest.X = -1; // Why is this set to -1?
 #else
@@ -1472,8 +1483,8 @@ namespace Terraria
 				{
 					num4 = 1f;
 				}
-				Color c = default(Color);
-				Vector2 pos2 = default(Vector2);
+				Color c = default;
+				Vector2 pos2 = default;
 				for (int i = 0; i < Star.MaxNumStars; i++)
 				{
 					fixed (Star* ptr = &Star.star[i])
@@ -1500,7 +1511,7 @@ namespace Terraria
 						pos2.X = ptr->position.X;
 						if (ViewWidth > ViewportWidth)
 						{
-							pos2.X = (pos2.X - ViewportWidth) * 2f + (ViewportWidth*2);
+							pos2.X = (pos2.X - ViewportWidth) * 2f + (ViewportWidth * 2);
 						}
 						pos2.Y = ptr->position.Y + BackgroundTop;
 						SpriteSheet<_sheetTiles>.Draw((int)_sheetTiles.ID.STAR_0 + ptr->type, ref pos2, c, ptr->rotation, ptr->scale * ptr->twinkle);
@@ -1566,7 +1577,7 @@ namespace Terraria
 			{
 				for (int k = 0; k < BackgroundLoops; k++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[7], new Vector2(BackgroundStart + num11 * k, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[7], new Vector2(BackgroundStart + num11 * k, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2f, SpriteEffects.None, 0f);
 				}
 			}
 			bgColor = WorldTime.bgColor;
@@ -1578,7 +1589,7 @@ namespace Terraria
 			{
 				for (int l = 0; l < BackgroundLoops; l++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[23], new Vector2(BackgroundStart + num11 * l, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[23], new Vector2(BackgroundStart + num11 * l, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2f, SpriteEffects.None, 0f);
 				}
 			}
 			bgColor = WorldTime.bgColor;
@@ -1590,7 +1601,7 @@ namespace Terraria
 			{
 				for (int m = 0; m < BackgroundLoops; m++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[24], new Vector2(BackgroundStart + num11 * m, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[24], new Vector2(BackgroundStart + num11 * m, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2f, SpriteEffects.None, 0f);
 				}
 			}
 			num10 = BackgroundTop - 50;
@@ -1642,11 +1653,11 @@ namespace Terraria
 				bgColor2.A = (byte)(bgColor2.A * num14 * 0.8f);
 				for (int num15 = 0; num15 < BackgroundLoops; num15++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[18], new Vector2(BackgroundStart + 8085 * num15, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[18].Width, backgroundTexture[18].Height), bgColor2, 0f, default(Vector2), 2.2f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[18], new Vector2(BackgroundStart + 8085 * num15, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[18].Width, backgroundTexture[18].Height), bgColor2, 0f, default, 2.2f, SpriteEffects.None, 0f);
 				}
 				for (int num16 = 0; num16 < BackgroundLoops; num16++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[19], new Vector2(BackgroundStart + 8085 * num16 + 1700, BackgroundTop + 100), (Rectangle?)new Rectangle(0, 0, backgroundTexture[19].Width, backgroundTexture[19].Height), bgColor2, 0f, default(Vector2), 1.98f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[19], new Vector2(BackgroundStart + 8085 * num16 + 1700, BackgroundTop + 100), (Rectangle?)new Rectangle(0, 0, backgroundTexture[19].Width, backgroundTexture[19].Height), bgColor2, 0f, default, 1.98f, SpriteEffects.None, 0f);
 				}
 			}
 			int num17 = (int)(backgroundTexture[7].Width * 2.3f);
@@ -1667,7 +1678,7 @@ namespace Terraria
 			{
 				for (int num18 = 0; num18 < BackgroundLoops; num18++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[8], new Vector2(BackgroundStart + num17 * num18, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2.3f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[8], new Vector2(BackgroundStart + num17 * num18, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2.3f, SpriteEffects.None, 0f);
 				}
 			}
 			bgColor = WorldTime.bgColor;
@@ -1679,7 +1690,7 @@ namespace Terraria
 			{
 				for (int num19 = 0; num19 < BackgroundLoops; num19++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[22], new Vector2(BackgroundStart + num17 * num19, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2.3f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[22], new Vector2(BackgroundStart + num17 * num19, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2.3f, SpriteEffects.None, 0f);
 				}
 			}
 			bgColor = WorldTime.bgColor;
@@ -1691,7 +1702,7 @@ namespace Terraria
 			{
 				for (int num20 = 0; num20 < BackgroundLoops; num20++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[25], new Vector2(BackgroundStart + num17 * num20, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2.3f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[25], new Vector2(BackgroundStart + num17 * num20, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2.3f, SpriteEffects.None, 0f);
 				}
 			}
 			bgColor = WorldTime.bgColor;
@@ -1703,7 +1714,7 @@ namespace Terraria
 			{
 				for (int num21 = 0; num21 < BackgroundLoops; num21++)
 				{
-					Main.SpriteBatch.Draw(backgroundTexture[28], new Vector2(BackgroundStart + num17 * num21, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default(Vector2), 2.3f, SpriteEffects.None, 0f);
+					Main.SpriteBatch.Draw(backgroundTexture[28], new Vector2(BackgroundStart + num17 * num21, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[7].Width, backgroundTexture[7].Height), bgColor, 0f, default, 2.3f, SpriteEffects.None, 0f);
 				}
 			}
 			num10 = BackgroundTop * 1.01f - 150f;
@@ -1941,7 +1952,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num28 + 2;
 					for (int num29 = 0; num29 < BackgroundLoops; num29++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[15], new Vector2(BackgroundStart + num28 * num29, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[15], new Vector2(BackgroundStart + num28 * num29, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num30 = (int)(backgroundTexture[8].Width * 2.62f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.43f, num30) - (num30 >> 1));
@@ -1954,7 +1965,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num30 + 2;
 					for (int num31 = 0; num31 < BackgroundLoops; num31++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[16], new Vector2(BackgroundStart + num30 * num31, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default(Vector2), 2.62f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[16], new Vector2(BackgroundStart + num30 * num31, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default, 2.62f, SpriteEffects.None, 0f);
 					}
 					int num32 = (int)(backgroundTexture[8].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num32) - (num32 >> 1));
@@ -1967,7 +1978,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num32 + 2;
 					for (int num33 = 0; num33 < BackgroundLoops; num33++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[17], new Vector2(BackgroundStart + num32 * num33, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[17], new Vector2(BackgroundStart + num32 * num33, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 				else if (num27 == 2 && bgAlpha[num27] > 0f)
@@ -1982,7 +1993,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num34 + 2;
 					for (int num35 = 0; num35 < BackgroundLoops; num35++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[21], new Vector2(BackgroundStart + num34 * num35, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[21].Width, backgroundTexture[21].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[21], new Vector2(BackgroundStart + num34 * num35, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[21].Width, backgroundTexture[21].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num36 = (int)(backgroundTexture[20].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num36) - (num36 >> 1));
@@ -1995,7 +2006,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num36 + 2;
 					for (int num37 = 0; num37 < BackgroundLoops; num37++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[20], new Vector2(BackgroundStart + num36 * num37, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[20].Width, backgroundTexture[20].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[20], new Vector2(BackgroundStart + num36 * num37, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[20].Width, backgroundTexture[20].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 				else if (num27 == 5 && bgAlpha[num27] > 0f)
@@ -2010,7 +2021,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num38 + 2;
 					for (int num39 = 0; num39 < BackgroundLoops; num39++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[26], new Vector2(BackgroundStart + num38 * num39, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[26].Width, backgroundTexture[26].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[26], new Vector2(BackgroundStart + num38 * num39, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[26].Width, backgroundTexture[26].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num40 = (int)(backgroundTexture[8].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num40) - (num40 >> 1));
@@ -2023,7 +2034,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num40 + 2;
 					for (int num41 = 0; num41 < BackgroundLoops; num41++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[27], new Vector2(BackgroundStart + num40 * num41, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[27].Width, backgroundTexture[27].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[27], new Vector2(BackgroundStart + num40 * num41, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[27].Width, backgroundTexture[27].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 				else if (num27 == 1 && bgAlpha[num27] > 0f)
@@ -2038,7 +2049,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num42 + 2;
 					for (int num43 = 0; num43 < BackgroundLoops; num43++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[12], new Vector2(BackgroundStart + num42 * num43, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[12].Width, backgroundTexture[12].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[12], new Vector2(BackgroundStart + num42 * num43, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[12].Width, backgroundTexture[12].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num44 = (int)(backgroundTexture[8].Width * 2.62f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.43f, num44) - (num44 >> 1));
@@ -2051,7 +2062,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num44 + 2;
 					for (int num45 = 0; num45 < BackgroundLoops; num45++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[13], new Vector2(BackgroundStart + num44 * num45, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[13].Width, backgroundTexture[13].Height), bgColor, 0f, default(Vector2), 2.62f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[13], new Vector2(BackgroundStart + num44 * num45, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[13].Width, backgroundTexture[13].Height), bgColor, 0f, default, 2.62f, SpriteEffects.None, 0f);
 					}
 					int num46 = (int)(backgroundTexture[8].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num46) - (num46 >> 1));
@@ -2064,7 +2075,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num46 + 2;
 					for (int num47 = 0; num47 < BackgroundLoops; num47++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[14], new Vector2(BackgroundStart + num46 * num47, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[14].Width, backgroundTexture[14].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[14], new Vector2(BackgroundStart + num46 * num47, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[14].Width, backgroundTexture[14].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 				else if (num27 == 6 && bgAlpha[num27] > 0f)
@@ -2082,7 +2093,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num48 + 2;
 					for (int num49 = 0; num49 < BackgroundLoops; num49++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[29], new Vector2(BackgroundStart + num48 * num49, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[29].Width, backgroundTexture[29].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[29], new Vector2(BackgroundStart + num48 * num49, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[29].Width, backgroundTexture[29].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num50 = (int)(backgroundTexture[8].Width * 2.62f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.43f, num50) - (num50 >> 1));
@@ -2098,7 +2109,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num50 + 2;
 					for (int num51 = 0; num51 < BackgroundLoops; num51++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[30], new Vector2(BackgroundStart + num50 * num51, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[30].Width, backgroundTexture[30].Height), bgColor, 0f, default(Vector2), 2.62f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[30], new Vector2(BackgroundStart + num50 * num51, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[30].Width, backgroundTexture[30].Height), bgColor, 0f, default, 2.62f, SpriteEffects.None, 0f);
 					}
 					int num52 = (int)(backgroundTexture[8].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num52) - (num52 >> 1));
@@ -2114,7 +2125,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num52 + 2;
 					for (int num53 = 0; num53 < BackgroundLoops; num53++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[31], new Vector2(BackgroundStart + num52 * num53, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[31].Width, backgroundTexture[31].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[31], new Vector2(BackgroundStart + num52 * num53, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[31].Width, backgroundTexture[31].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 				else if (num27 == 0 && bgAlpha[num27] > 0f)
@@ -2132,7 +2143,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num54 + 2;
 					for (int num55 = 0; num55 < BackgroundLoops; num55++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[9], new Vector2(BackgroundStart + num54 * num55, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[9].Width, backgroundTexture[9].Height), bgColor, 0f, default(Vector2), 2.5f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[9], new Vector2(BackgroundStart + num54 * num55, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[9].Width, backgroundTexture[9].Height), bgColor, 0f, default, 2.5f, SpriteEffects.None, 0f);
 					}
 					int num56 = (int)(backgroundTexture[8].Width * 2.62f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.43f, num56) - (num56 >> 1));
@@ -2148,7 +2159,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num56 + 2;
 					for (int num57 = 0; num57 < BackgroundLoops; num57++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[10], new Vector2(BackgroundStart + num56 * num57, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default(Vector2), 2.62f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[10], new Vector2(BackgroundStart + num56 * num57, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default, 2.62f, SpriteEffects.None, 0f);
 					}
 					int num58 = (int)(backgroundTexture[8].Width * 2.68f);
 					BackgroundStart = (int)(0.0 - Math.IEEERemainder(ScreenPosition.X * 0.49f, num58) - (num58 >> 1));
@@ -2164,7 +2175,7 @@ namespace Terraria
 					BackgroundLoops = ViewWidth / num58 + 2;
 					for (int num59 = 0; num59 < BackgroundLoops; num59++)
 					{
-						Main.SpriteBatch.Draw(backgroundTexture[11], new Vector2(BackgroundStart + num58 * num59, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default(Vector2), 2.68f, SpriteEffects.None, 0f);
+						Main.SpriteBatch.Draw(backgroundTexture[11], new Vector2(BackgroundStart + num58 * num59, BackgroundTop), (Rectangle?)new Rectangle(0, 0, backgroundTexture[8].Width, backgroundTexture[8].Height), bgColor, 0f, default, 2.68f, SpriteEffects.None, 0f);
 					}
 				}
 			}
@@ -2173,7 +2184,7 @@ namespace Terraria
 		public void DrawWorld()
 		{
 			Color white = Color.White;
-			Rectangle destinationRectangle = default(Rectangle);
+			Rectangle destinationRectangle = default;
 			destinationRectangle.Width = ViewWidth + (OFFSCREEN_RANGE_X * 2);
 			destinationRectangle.Height = ViewportHeight + OFFSCREEN_RANGE_VERTICAL;
 			destinationRectangle.X = sceneWaterPos.X - ScreenPosition.X;
@@ -2287,7 +2298,7 @@ namespace Terraria
 				num12 = 8;
 			}
 			Vector2 pos = new Vector2(num11 + num12 + 32, BackgroundTop + 32);
-			Rectangle s = default(Rectangle);
+			Rectangle s = default;
 			s.X = num12;
 			s.Width = 16;
 			s.Height = 16;
@@ -2327,7 +2338,7 @@ namespace Terraria
 
 				int HeightAdjust = 540;
 #if !USE_ORIGINAL_CODE
-				if (Main.ScreenHeightPtr == 2)
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 				{
 					HeightAdjust = 600; // Without this, good luck exploring the caverns in 1080p.
 				}
@@ -2345,8 +2356,8 @@ namespace Terraria
 				{
 					num16 = 8;
 				}
-				Vector2 pos2 = default(Vector2);
-				Rectangle s2 = default(Rectangle);
+				Vector2 pos2 = default;
+				Rectangle s2 = default;
 				s2.Width = 16;
 				s2.Height = 16;
 				int j = 0;
@@ -2591,7 +2602,7 @@ namespace Terraria
 
 			int HeightAdjust2 = 540;
 #if !USE_ORIGINAL_CODE
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				HeightAdjust2 = 600;
 			}
@@ -2662,75 +2673,75 @@ namespace Terraria
 											Color color4 = colorUnsafe2;
 											switch (num33)
 											{
-											case 0:
-												if (Main.TileSet[num29 - 1, num32 - 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 - 1, num32 - 1);
-												}
-												break;
-											case 1:
-												width = 8;
-												num34 = 4;
-												if (Main.TileSet[num29, num32 - 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29, num32 - 1);
-												}
-												break;
-											case 2:
-												if (Main.TileSet[num29 + 1, num32 - 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 + 1, num32 - 1);
-												}
-												num34 = 12;
-												break;
-											case 3:
-												if (Main.TileSet[num29 - 1, num32].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 - 1, num32);
-												}
-												height = 8;
-												num35 = 4;
-												break;
-											case 4:
-												width = 8;
-												height = 8;
-												num34 = 4;
-												num35 = 4;
-												break;
-											case 5:
-												num34 = 12;
-												num35 = 4;
-												height = 8;
-												if (Main.TileSet[num29 + 1, num32].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 + 1, num32);
-												}
-												break;
-											case 6:
-												if (Main.TileSet[num29 - 1, num32 + 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 - 1, num32 + 1);
-												}
-												num35 = 12;
-												break;
-											case 7:
-												width = 8;
-												height = 4;
-												num34 = 4;
-												num35 = 12;
-												if (Main.TileSet[num29, num32 + 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29, num32 + 1);
-												}
-												break;
-											default:
-												if (Main.TileSet[num29 + 1, num32 + 1].IsActive == 0)
-												{
-													color4 = Lighting.GetColorUnsafe(num29 + 1, num32 + 1);
-												}
-												num34 = 12;
-												num35 = 12;
-												break;
+												case 0:
+													if (Main.TileSet[num29 - 1, num32 - 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 - 1, num32 - 1);
+													}
+													break;
+												case 1:
+													width = 8;
+													num34 = 4;
+													if (Main.TileSet[num29, num32 - 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29, num32 - 1);
+													}
+													break;
+												case 2:
+													if (Main.TileSet[num29 + 1, num32 - 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 + 1, num32 - 1);
+													}
+													num34 = 12;
+													break;
+												case 3:
+													if (Main.TileSet[num29 - 1, num32].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 - 1, num32);
+													}
+													height = 8;
+													num35 = 4;
+													break;
+												case 4:
+													width = 8;
+													height = 8;
+													num34 = 4;
+													num35 = 4;
+													break;
+												case 5:
+													num34 = 12;
+													num35 = 4;
+													height = 8;
+													if (Main.TileSet[num29 + 1, num32].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 + 1, num32);
+													}
+													break;
+												case 6:
+													if (Main.TileSet[num29 - 1, num32 + 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 - 1, num32 + 1);
+													}
+													num35 = 12;
+													break;
+												case 7:
+													width = 8;
+													height = 4;
+													num34 = 4;
+													num35 = 12;
+													if (Main.TileSet[num29, num32 + 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29, num32 + 1);
+													}
+													break;
+												default:
+													if (Main.TileSet[num29 + 1, num32 + 1].IsActive == 0)
+													{
+														color4 = Lighting.GetColorUnsafe(num29 + 1, num32 + 1);
+													}
+													num34 = 12;
+													num35 = 12;
+													break;
 											}
 											color3.R = (byte)((colorUnsafe2.R + color4.R >> 1) * num);
 											color3.G = (byte)((colorUnsafe2.G + color4.G >> 1) * num2);
@@ -2748,22 +2759,22 @@ namespace Terraria
 											Color color6 = colorUnsafe2;
 											switch (num36)
 											{
-											case 0:
-												color6 = ((!Lighting.Brighter(num29, num32 - 1, num29 - 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 - 1) : Lighting.GetColorUnsafe(num29 - 1, num32));
-												break;
-											case 1:
-												color6 = ((!Lighting.Brighter(num29, num32 - 1, num29 + 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 - 1) : Lighting.GetColorUnsafe(num29 + 1, num32));
-												num37 = 8;
-												break;
-											case 2:
-												color6 = ((!Lighting.Brighter(num29, num32 + 1, num29 - 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 + 1) : Lighting.GetColorUnsafe(num29 - 1, num32));
-												num38 = 8;
-												break;
-											default:
-												color6 = ((!Lighting.Brighter(num29, num32 + 1, num29 + 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 + 1) : Lighting.GetColorUnsafe(num29 + 1, num32));
-												num37 = 8;
-												num38 = 8;
-												break;
+												case 0:
+													color6 = ((!Lighting.Brighter(num29, num32 - 1, num29 - 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 - 1) : Lighting.GetColorUnsafe(num29 - 1, num32));
+													break;
+												case 1:
+													color6 = ((!Lighting.Brighter(num29, num32 - 1, num29 + 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 - 1) : Lighting.GetColorUnsafe(num29 + 1, num32));
+													num37 = 8;
+													break;
+												case 2:
+													color6 = ((!Lighting.Brighter(num29, num32 + 1, num29 - 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 + 1) : Lighting.GetColorUnsafe(num29 - 1, num32));
+													num38 = 8;
+													break;
+												default:
+													color6 = ((!Lighting.Brighter(num29, num32 + 1, num29 + 1, num32)) ? Lighting.GetColorUnsafe(num29, num32 + 1) : Lighting.GetColorUnsafe(num29 + 1, num32));
+													num37 = 8;
+													num38 = 8;
+													break;
 											}
 											color5.R = (byte)((colorUnsafe2.R + color6.R >> 1) * num);
 											color5.G = (byte)((colorUnsafe2.G + color6.G >> 1) * num2);
@@ -2870,75 +2881,75 @@ namespace Terraria
 												Color color9 = colorUnsafe3;
 												switch (num50)
 												{
-												case 0:
-													if (Main.TileSet[num47 - 1, num48 - 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 - 1, num48 - 1);
-													}
-													break;
-												case 1:
-													width2 = 8;
-													num51 = 4;
-													if (Main.TileSet[num47, num48 - 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47, num48 - 1);
-													}
-													break;
-												case 2:
-													if (Main.TileSet[num47 + 1, num48 - 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 + 1, num48 - 1);
-													}
-													num51 = 12;
-													break;
-												case 3:
-													if (Main.TileSet[num47 - 1, num48].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 - 1, num48);
-													}
-													height2 = 8;
-													num52 = 4;
-													break;
-												case 4:
-													width2 = 8;
-													height2 = 8;
-													num51 = 4;
-													num52 = 4;
-													break;
-												case 5:
-													num51 = 12;
-													num52 = 4;
-													height2 = 8;
-													if (Main.TileSet[num47 + 1, num48].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 + 1, num48);
-													}
-													break;
-												case 6:
-													if (Main.TileSet[num47 - 1, num48 + 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 - 1, num48 + 1);
-													}
-													num52 = 12;
-													break;
-												case 7:
-													width2 = 8;
-													height2 = 4;
-													num51 = 4;
-													num52 = 12;
-													if (Main.TileSet[num47, num48 + 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47, num48 + 1);
-													}
-													break;
-												default:
-													if (Main.TileSet[num47 + 1, num48 + 1].IsActive == 0)
-													{
-														color9 = Lighting.GetColorUnsafe(num47 + 1, num48 + 1);
-													}
-													num51 = 12;
-													num52 = 12;
-													break;
+													case 0:
+														if (Main.TileSet[num47 - 1, num48 - 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 - 1, num48 - 1);
+														}
+														break;
+													case 1:
+														width2 = 8;
+														num51 = 4;
+														if (Main.TileSet[num47, num48 - 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47, num48 - 1);
+														}
+														break;
+													case 2:
+														if (Main.TileSet[num47 + 1, num48 - 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 + 1, num48 - 1);
+														}
+														num51 = 12;
+														break;
+													case 3:
+														if (Main.TileSet[num47 - 1, num48].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 - 1, num48);
+														}
+														height2 = 8;
+														num52 = 4;
+														break;
+													case 4:
+														width2 = 8;
+														height2 = 8;
+														num51 = 4;
+														num52 = 4;
+														break;
+													case 5:
+														num51 = 12;
+														num52 = 4;
+														height2 = 8;
+														if (Main.TileSet[num47 + 1, num48].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 + 1, num48);
+														}
+														break;
+													case 6:
+														if (Main.TileSet[num47 - 1, num48 + 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 - 1, num48 + 1);
+														}
+														num52 = 12;
+														break;
+													case 7:
+														width2 = 8;
+														height2 = 4;
+														num51 = 4;
+														num52 = 12;
+														if (Main.TileSet[num47, num48 + 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47, num48 + 1);
+														}
+														break;
+													default:
+														if (Main.TileSet[num47 + 1, num48 + 1].IsActive == 0)
+														{
+															color9 = Lighting.GetColorUnsafe(num47 + 1, num48 + 1);
+														}
+														num51 = 12;
+														num52 = 12;
+														break;
 												}
 												color8.R = (byte)((colorUnsafe3.R + color9.R >> 1) * num);
 												color8.G = (byte)((colorUnsafe3.G + color9.G >> 1) * num2);
@@ -2956,22 +2967,22 @@ namespace Terraria
 												Color color11 = colorUnsafe3;
 												switch (num53)
 												{
-												case 0:
-													color11 = ((!Lighting.Brighter(num47, num48 - 1, num47 - 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 - 1) : Lighting.GetColorUnsafe(num47 - 1, num48));
-													break;
-												case 1:
-													color11 = ((!Lighting.Brighter(num47, num48 - 1, num47 + 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 - 1) : Lighting.GetColorUnsafe(num47 + 1, num48));
-													num54 = 8;
-													break;
-												case 2:
-													color11 = ((!Lighting.Brighter(num47, num48 + 1, num47 - 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 + 1) : Lighting.GetColorUnsafe(num47 - 1, num48));
-													num55 = 8;
-													break;
-												default:
-													color11 = ((!Lighting.Brighter(num47, num48 + 1, num47 + 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 + 1) : Lighting.GetColorUnsafe(num47 + 1, num48));
-													num54 = 8;
-													num55 = 8;
-													break;
+													case 0:
+														color11 = ((!Lighting.Brighter(num47, num48 - 1, num47 - 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 - 1) : Lighting.GetColorUnsafe(num47 - 1, num48));
+														break;
+													case 1:
+														color11 = ((!Lighting.Brighter(num47, num48 - 1, num47 + 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 - 1) : Lighting.GetColorUnsafe(num47 + 1, num48));
+														num54 = 8;
+														break;
+													case 2:
+														color11 = ((!Lighting.Brighter(num47, num48 + 1, num47 - 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 + 1) : Lighting.GetColorUnsafe(num47 - 1, num48));
+														num55 = 8;
+														break;
+													default:
+														color11 = ((!Lighting.Brighter(num47, num48 + 1, num47 + 1, num48)) ? Lighting.GetColorUnsafe(num47, num48 + 1) : Lighting.GetColorUnsafe(num47 + 1, num48));
+														num54 = 8;
+														num55 = 8;
+														break;
 												}
 												color10.R = (byte)((colorUnsafe3.R + color11.R >> 1) * num);
 												color10.G = (byte)((colorUnsafe3.G + color11.G >> 1) * num2);
@@ -3007,7 +3018,7 @@ namespace Terraria
 		private void RenderBlack()
 		{
 			GraphicsDevice.SetRenderTarget(blackTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawBlack();
 			Main.SpriteBatch.End();
@@ -3018,7 +3029,7 @@ namespace Terraria
 		private void RenderWalls()
 		{
 			GraphicsDevice.SetRenderTarget(wallTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawWalls();
 			Main.SpriteBatch.End();
@@ -3029,7 +3040,7 @@ namespace Terraria
 		private void RenderBackWater()
 		{
 			GraphicsDevice.SetRenderTarget(backWaterTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawWater(bg: true);
 			Main.SpriteBatch.End();
@@ -3038,7 +3049,7 @@ namespace Terraria
 		private void RenderBackground()
 		{
 			GraphicsDevice.SetRenderTarget(backgroundTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawBackground();
 			Main.SpriteBatch.End();
@@ -3049,7 +3060,7 @@ namespace Terraria
 		private void RenderSolidTiles()
 		{
 			GraphicsDevice.SetRenderTarget(tileSolidTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, null, null, null, renderTargetProjection);
 			DrawSolidTiles();
 			Main.SpriteBatch.End();
@@ -3060,7 +3071,7 @@ namespace Terraria
 		private void RenderNonSolidTiles()
 		{
 			GraphicsDevice.SetRenderTarget(tileNonSolidTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawNonSolidTiles();
 			Main.SpriteBatch.End();
@@ -3071,7 +3082,7 @@ namespace Terraria
 		private void RenderWater()
 		{
 			GraphicsDevice.SetRenderTarget(waterTarget);
-			GraphicsDevice.Clear(default(Color));
+			GraphicsDevice.Clear(default);
 			Main.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, renderTargetProjection);
 			DrawWater();
 			if (Player.Inventory[Player.SelectedItem].Mech)
@@ -3090,33 +3101,33 @@ namespace Terraria
 			int num3;
 			switch (type)
 			{
-			case 25:
-				num = newColor.R * 243 >> 8;
-				num2 = newColor.G * 217 >> 8;
-				num3 = newColor.B * 281 >> 8;
-				break;
-			case 117:
-				num = newColor.R * 281 >> 8;
-				num2 = newColor.G;
-				num3 = newColor.B * 307 >> 8;
-				if (num > 255)
-				{
-					num = 255;
-				}
-				break;
-			default:
-				num = newColor.R * 409 >> 8;
-				num2 = newColor.G * 409 >> 8;
-				num3 = newColor.B * 409 >> 8;
-				if (num > 255)
-				{
-					num = 255;
-				}
-				if (num2 > 255)
-				{
-					num2 = 255;
-				}
-				break;
+				case 25:
+					num = newColor.R * 243 >> 8;
+					num2 = newColor.G * 217 >> 8;
+					num3 = newColor.B * 281 >> 8;
+					break;
+				case 117:
+					num = newColor.R * 281 >> 8;
+					num2 = newColor.G;
+					num3 = newColor.B * 307 >> 8;
+					if (num > 255)
+					{
+						num = 255;
+					}
+					break;
+				default:
+					num = newColor.R * 409 >> 8;
+					num2 = newColor.G * 409 >> 8;
+					num3 = newColor.B * 409 >> 8;
+					if (num > 255)
+					{
+						num = 255;
+					}
+					if (num2 > 255)
+					{
+						num2 = 255;
+					}
+					break;
 			}
 			if (num3 > 255)
 			{
@@ -3127,14 +3138,14 @@ namespace Terraria
 			newColor.B = (byte)num3;
 		}
 
-		private unsafe void Highlight2x1(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight2x1(Tile* pTile, Flags mask)
 		{
 			pTile->CurrentFlags |= mask;
 			pTile = ((pTile->FrameX != 0) ? (pTile - (Main.LargeWorldH)) : (pTile + (Main.LargeWorldH)));
 			pTile->CurrentFlags |= mask;
 		}
 
-		private unsafe void Highlight2x2(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight2x2(Tile* pTile, Flags mask)
 		{
 			int num = ((pTile->FrameY == 0) ? 1 : (-1));
 			pTile->CurrentFlags |= mask;
@@ -3146,7 +3157,7 @@ namespace Terraria
 			pTile->CurrentFlags |= mask;
 		}
 
-		private unsafe void Highlight1x3(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight1x3(Tile* pTile, Flags mask)
 		{
 			pTile->CurrentFlags |= mask;
 			if (pTile->FrameY == 0)
@@ -3170,7 +3181,7 @@ namespace Terraria
 			pTile->CurrentFlags |= mask;
 		}
 
-		private unsafe void Highlight2x3(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight2x3(Tile* pTile, Flags mask)
 		{
 			pTile->CurrentFlags |= mask;
 			if (pTile->FrameY == 0)
@@ -3245,7 +3256,7 @@ namespace Terraria
 			pTile->CurrentFlags |= mask;
 		}
 
-		private unsafe void Highlight4x2(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight4x2(Tile* pTile, Flags mask)
 		{
 			int num = ((pTile->FrameY == 0) ? 1 : (-1));
 			pTile->CurrentFlags |= mask;
@@ -3253,57 +3264,57 @@ namespace Terraria
 			pTile->CurrentFlags |= mask;
 			switch ((pTile->FrameX / 18) & 3)
 			{
-			case 0:
-				pTile += (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile += (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile += (Main.LargeWorldH);
-				break;
-			case 1:
-				pTile -= (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile += (Main.LargeWorldH * 2);
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile += (Main.LargeWorldH);
-				break;
-			case 2:
-				pTile += (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile -= (Main.LargeWorldH * 2);
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile -= (Main.LargeWorldH);
-				break;
-			default:
-				pTile -= (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile -= (Main.LargeWorldH);
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile -= (Main.LargeWorldH);
-				break;
+				case 0:
+					pTile += (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile += (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile += (Main.LargeWorldH);
+					break;
+				case 1:
+					pTile -= (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile += (Main.LargeWorldH * 2);
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile += (Main.LargeWorldH);
+					break;
+				case 2:
+					pTile += (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile -= (Main.LargeWorldH * 2);
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile -= (Main.LargeWorldH);
+					break;
+				default:
+					pTile -= (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile -= (Main.LargeWorldH);
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile -= (Main.LargeWorldH);
+					break;
 			}
 			pTile->CurrentFlags |= mask;
 			pTile -= num;
 			pTile->CurrentFlags |= mask;
 		}
 
-		private unsafe void Highlight2x5(Tile* pTile, Tile.Flags mask)
+		private unsafe void Highlight2x5(Tile* pTile, Flags mask)
 		{
 			int num = ((pTile->FrameX == 0) ? (Main.LargeWorldH) : (-(Main.LargeWorldH)));
 			pTile->CurrentFlags |= mask;
@@ -3311,81 +3322,81 @@ namespace Terraria
 			pTile->CurrentFlags |= mask;
 			switch (pTile->FrameY / 18)
 			{
-			case 0:
-				pTile++;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				break;
-			case 1:
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile += 2;
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				break;
-			case 2:
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile += 3;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile++;
-				break;
-			case 3:
-				pTile++;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile -= 2;
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				break;
-			default:
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile += num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				pTile->CurrentFlags |= mask;
-				pTile -= num;
-				pTile->CurrentFlags |= mask;
-				pTile--;
-				break;
+				case 0:
+					pTile++;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					break;
+				case 1:
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile += 2;
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					break;
+				case 2:
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile += 3;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile++;
+					break;
+				case 3:
+					pTile++;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile -= 2;
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					break;
+				default:
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile += num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					pTile->CurrentFlags |= mask;
+					pTile -= num;
+					pTile->CurrentFlags |= mask;
+					pTile--;
+					break;
 			}
 			pTile->CurrentFlags |= mask;
 			pTile += num;
@@ -3397,8 +3408,8 @@ namespace Terraria
 			int gfx = (int)(255f * (1f - gfxQuality) + 30f * gfxQuality);
 			int gfx2 = (int)(50f * (1f - gfxQuality) + 2f * gfxQuality);
 			int num = 0;
-			Rectangle s = default(Rectangle);
-			Vector2 pos = default(Vector2);
+			Rectangle s = default;
+			Vector2 pos = default;
 			Main.TileSolid[10] = false;
 			fixed (Tile* ptr = Main.TileSet)
 			{
@@ -3415,45 +3426,45 @@ namespace Terraria
 						{
 							if (ptr3->IsActive != 0)
 							{
-								Tile.Flags flags = ((ptr3 == ptr2) ? Flags.SELECTED : Flags.NEARBY);
+								Flags flags = ((ptr3 == ptr2) ? Flags.SELECTED : Flags.NEARBY);
 								if ((ptr3->CurrentFlags & flags) != flags)
 								{
 									switch (ptr3->Type)
 									{
-									case 4:
-									case 13:
-									case 33:
-									case 49:
-									case 50:
-									case 136:
-									case 144:
-										ptr3->CurrentFlags |= flags;
-										break;
-									case 11:
-									case 128:
-										Highlight2x3(ptr3, flags);
-										break;
-									case 10:
-										Highlight1x3(ptr3, flags);
-										break;
-									case 21:
-									case 55:
-									case 85:
-									case 97:
-									case 125:
-									case 132:
-									case 139:
-										Highlight2x2(ptr3, flags);
-										break;
-									case 29:
-										Highlight2x1(ptr3, flags);
-										break;
-									case 79:
-										Highlight4x2(ptr3, flags);
-										break;
-									case 104:
-										Highlight2x5(ptr3, flags);
-										break;
+										case 4:
+										case 13:
+										case 33:
+										case 49:
+										case 50:
+										case 136:
+										case 144:
+											ptr3->CurrentFlags |= flags;
+											break;
+										case 11:
+										case 128:
+											Highlight2x3(ptr3, flags);
+											break;
+										case 10:
+											Highlight1x3(ptr3, flags);
+											break;
+										case 21:
+										case 55:
+										case 85:
+										case 97:
+										case 125:
+										case 132:
+										case 139:
+											Highlight2x2(ptr3, flags);
+											break;
+										case 29:
+											Highlight2x1(ptr3, flags);
+											break;
+										case 79:
+											Highlight4x2(ptr3, flags);
+											break;
+										case 104:
+											Highlight2x5(ptr3, flags);
+											break;
 									}
 								}
 							}
@@ -3488,193 +3499,193 @@ namespace Terraria
 						s.Y = ptr4->FrameY;
 						switch (num7)
 						{
-						case 3:
-						case 24:
-						case 61:
-						case 71:
-						case 110:
-							height = 20;
-							break;
-						case 4:
-							num9 = 20;
-							height = 20;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 396;
-							}
-							break;
-						case 5:
-							num9 = 20;
-							height = 20;
-							break;
-						case 10:
-						case 11:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 108;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 54;
-							}
-							break;
-						case 13:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 36;
-							}
-							break;
-						case 29:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 36;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 18;
-							}
-							break;
-						case 21:
-							height = 18;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 76;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 38;
-							}
-							break;
-						case 33:
-						case 49:
-							num8 = -4;
-							height = 20;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 44;
-							}
-							break;
-						case 50:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 32;
-							}
-							break;
-						case 73:
-						case 74:
-						case 113:
-							num8 = -12;
-							height = 32;
-							break;
-						case 78:
-						case 105:
-						case 142:
-						case 143:
-							num8 = 2;
-							break;
-						case 81:
-							num8 = -8;
-							num9 = 24;
-							height = 26;
-							break;
-						case 85:
-							num8 = 2;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 72;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 36;
-							}
-							break;
-						case 104:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 176;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 88;
-							}
-							break;
-						case 97:
-						case 125:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 68;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 34;
-							}
-							break;
-						case 128:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 104;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 52;
-							}
-							break;
-						case 132:
-							num8 = 2;
-							height = 18;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 72;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 36;
-							}
-							break;
-						case 135:
-							num8 = 2;
-							height = 18;
-							break;
-						case 55:
-						case 79:
-						case 136:
-						case 144:
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 72;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 36;
-							}
-							break;
-						case 14:
-						case 15:
-						case 16:
-						case 17:
-						case 18:
-						case 20:
-						case 26:
-						case 27:
-						case 32:
-						case 69:
-						case 72:
-						case 77:
-						case 80:
-						case 124:
-							height = 18;
-							break;
-						case 139:
-							num8 = 2;
-							if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
-							{
-								s.Y += 1512;
-							}
-							else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
-							{
-								s.Y += 756;
-							}
-							break;
+							case 3:
+							case 24:
+							case 61:
+							case 71:
+							case 110:
+								height = 20;
+								break;
+							case 4:
+								num9 = 20;
+								height = 20;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 396;
+								}
+								break;
+							case 5:
+								num9 = 20;
+								height = 20;
+								break;
+							case 10:
+							case 11:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 108;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 54;
+								}
+								break;
+							case 13:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 36;
+								}
+								break;
+							case 29:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 36;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 18;
+								}
+								break;
+							case 21:
+								height = 18;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 76;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 38;
+								}
+								break;
+							case 33:
+							case 49:
+								num8 = -4;
+								height = 20;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 44;
+								}
+								break;
+							case 50:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 32;
+								}
+								break;
+							case 73:
+							case 74:
+							case 113:
+								num8 = -12;
+								height = 32;
+								break;
+							case 78:
+							case 105:
+							case 142:
+							case 143:
+								num8 = 2;
+								break;
+							case 81:
+								num8 = -8;
+								num9 = 24;
+								height = 26;
+								break;
+							case 85:
+								num8 = 2;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 72;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 36;
+								}
+								break;
+							case 104:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 176;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 88;
+								}
+								break;
+							case 97:
+							case 125:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 68;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 34;
+								}
+								break;
+							case 128:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 104;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 52;
+								}
+								break;
+							case 132:
+								num8 = 2;
+								height = 18;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 72;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 36;
+								}
+								break;
+							case 135:
+								num8 = 2;
+								height = 18;
+								break;
+							case 55:
+							case 79:
+							case 136:
+							case 144:
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 72;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 36;
+								}
+								break;
+							case 14:
+							case 15:
+							case 16:
+							case 17:
+							case 18:
+							case 20:
+							case 26:
+							case 27:
+							case 32:
+							case 69:
+							case 72:
+							case 77:
+							case 80:
+							case 124:
+								height = 18;
+								break;
+							case 139:
+								num8 = 2;
+								if ((ptr4->CurrentFlags & Flags.SELECTED) != 0)
+								{
+									s.Y += 1512;
+								}
+								else if ((ptr4->CurrentFlags & Flags.NEARBY) != 0)
+								{
+									s.Y += 756;
+								}
+								break;
 						}
 
 #if VERSION_101
@@ -3710,249 +3721,249 @@ namespace Terraria
 						{
 							switch (num7)
 							{
-							case 12:
-							case 21:
-							case 28:
-							case 82:
-							case 83:
-							case 84:
-								if (newColor.R < UI.MouseTextBrightness >> 1)
-								{
-									newColor.R = (byte)(UI.MouseTextBrightness >> 1);
-								}
-								if (newColor.G < 70)
-								{
-									newColor.G = 70;
-								}
-								if (newColor.B < 210)
-								{
-									newColor.B = 210;
-								}
-								newColor.A = UI.MouseTextBrightness;
-								if (Main.Rand.Next(150) == 0)
-								{
-									Dust* ptr5 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 15, 0.0, 0.0, 150, default(Color), 0.8f);
-									if (ptr5 != null)
+								case 12:
+								case 21:
+								case 28:
+								case 82:
+								case 83:
+								case 84:
+									if (newColor.R < UI.MouseTextBrightness >> 1)
 									{
-										ptr5->Velocity.X *= 0.1f;
-										ptr5->Velocity.Y *= 0.1f;
-										ptr5->NoLight = true;
+										newColor.R = (byte)(UI.MouseTextBrightness >> 1);
 									}
-								}
-								break;
+									if (newColor.G < 70)
+									{
+										newColor.G = 70;
+									}
+									if (newColor.B < 210)
+									{
+										newColor.B = 210;
+									}
+									newColor.A = UI.MouseTextBrightness;
+									if (Main.Rand.Next(150) == 0)
+									{
+										Dust* ptr5 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 15, 0.0, 0.0, 150, default, 0.8f);
+										if (ptr5 != null)
+										{
+											ptr5->Velocity.X *= 0.1f;
+											ptr5->Velocity.Y *= 0.1f;
+											ptr5->NoLight = true;
+										}
+									}
+									break;
 							}
 						}
 						switch (num7)
 						{
-						case 4:
-							if (ptr4->FrameX < 66 && Main.Rand.Next(40) == 0)
-							{
-								int num11 = ptr4->FrameY / 22;
-								switch (num11)
+							case 4:
+								if (ptr4->FrameX < 66 && Main.Rand.Next(40) == 0)
 								{
-								case 0:
-									num11 = 6;
-									break;
-								case 8:
-									num11 = 75;
-									break;
-								default:
-									num11 = 58 + num11;
-									break;
+									int num11 = ptr4->FrameY / 22;
+									switch (num11)
+									{
+										case 0:
+											num11 = 6;
+											break;
+										case 8:
+											num11 = 75;
+											break;
+										default:
+											num11 = 58 + num11;
+											break;
+									}
+									if (ptr4->FrameX == 22)
+									{
+										dustLocal.NewDust(i * 16 + 6, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
+									}
+									else if (ptr4->FrameX == 44)
+									{
+										dustLocal.NewDust(i * 16 + 2, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
+									}
+									else
+									{
+										dustLocal.NewDust(i * 16 + 4, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
+									}
 								}
-								if (ptr4->FrameX == 22)
-								{
-									dustLocal.NewDust(i * 16 + 6, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
-								}
-								else if (ptr4->FrameX == 44)
-								{
-									dustLocal.NewDust(i * 16 + 2, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
-								}
-								else
-								{
-									dustLocal.NewDust(i * 16 + 4, num6 * 16, 4, 4, num11, 0.0, 0.0, 100);
-								}
-							}
-							break;
-						case 24:
-						case 32:
-							if (Main.Rand.Next(500) == 0)
-							{
-								dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14);
-							}
-							break;
-						case 26:
-						case 31:
-							if (Main.Rand.Next(20) == 0)
-							{
-								dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14, 0.0, 0.0, 100);
-							}
-							break;
-						case 33:
-							if (ptr4->FrameX == 0 && Main.Rand.Next(40) == 0)
-							{
-								dustLocal.NewDust(i * 16 + 4, num6 * 16 - 4, 4, 4, 6, 0.0, 0.0, 100);
-							}
-							break;
-						case 34:
-						case 35:
-						case 36:
-							if ((ptr4->FrameX == 0 || ptr4->FrameX == 36) && ptr4->FrameY == 18 && Main.Rand.Next(40) == 0)
-							{
-								dustLocal.NewDust(i * 16, num6 * 16 + 2, 14, 6, 6, 0.0, 0.0, 100);
-							}
-							break;
-						case 49:
-							if (Main.Rand.Next(20) == 0)
-							{
-								dustLocal.NewDust(i * 16 + 4, num6 * 16 - 4, 4, 4, 29, 0.0, 0.0, 100);
-							}
-							break;
-						case 93:
-							if (ptr4->FrameX == 0 && ptr4->FrameY == 0 && Main.Rand.Next(40) == 0)
-							{
-								dustLocal.NewDust(i * 16 + 4, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
-							}
-							break;
-						case 98:
-							if (ptr4->FrameX == 0 && ptr4->FrameY == 0 && Main.Rand.Next(40) == 0)
-							{
-								dustLocal.NewDust(i * 16 + 12, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
-							}
-							break;
-						case 100:
-							if (ptr4->FrameY != 0 || ptr4->FrameX >= 36 || Main.Rand.Next(40) != 0)
-							{
 								break;
-							}
-							if (ptr4->FrameX == 0)
-							{
-								if (Main.Rand.Next(3) == 0)
+							case 24:
+							case 32:
+								if (Main.Rand.Next(500) == 0)
+								{
+									dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14);
+								}
+								break;
+							case 26:
+							case 31:
+								if (Main.Rand.Next(20) == 0)
+								{
+									dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14, 0.0, 0.0, 100);
+								}
+								break;
+							case 33:
+								if (ptr4->FrameX == 0 && Main.Rand.Next(40) == 0)
+								{
+									dustLocal.NewDust(i * 16 + 4, num6 * 16 - 4, 4, 4, 6, 0.0, 0.0, 100);
+								}
+								break;
+							case 34:
+							case 35:
+							case 36:
+								if ((ptr4->FrameX == 0 || ptr4->FrameX == 36) && ptr4->FrameY == 18 && Main.Rand.Next(40) == 0)
+								{
+									dustLocal.NewDust(i * 16, num6 * 16 + 2, 14, 6, 6, 0.0, 0.0, 100);
+								}
+								break;
+							case 49:
+								if (Main.Rand.Next(20) == 0)
+								{
+									dustLocal.NewDust(i * 16 + 4, num6 * 16 - 4, 4, 4, 29, 0.0, 0.0, 100);
+								}
+								break;
+							case 93:
+								if (ptr4->FrameX == 0 && ptr4->FrameY == 0 && Main.Rand.Next(40) == 0)
 								{
 									dustLocal.NewDust(i * 16 + 4, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
 								}
+								break;
+							case 98:
+								if (ptr4->FrameX == 0 && ptr4->FrameY == 0 && Main.Rand.Next(40) == 0)
+								{
+									dustLocal.NewDust(i * 16 + 12, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
+								}
+								break;
+							case 100:
+								if (ptr4->FrameY != 0 || ptr4->FrameX >= 36 || Main.Rand.Next(40) != 0)
+								{
+									break;
+								}
+								if (ptr4->FrameX == 0)
+								{
+									if (Main.Rand.Next(3) == 0)
+									{
+										dustLocal.NewDust(i * 16 + 4, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
+									}
+									else
+									{
+										dustLocal.NewDust(i * 16 + 14, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
+									}
+								}
+								else if (Main.Rand.Next(3) == 0)
+								{
+									dustLocal.NewDust(i * 16 + 6, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
+								}
 								else
 								{
-									dustLocal.NewDust(i * 16 + 14, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
+									dustLocal.NewDust(i * 16, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
 								}
-							}
-							else if (Main.Rand.Next(3) == 0)
-							{
-								dustLocal.NewDust(i * 16 + 6, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
-							}
-							else
-							{
-								dustLocal.NewDust(i * 16, num6 * 16 + 2, 4, 4, 6, 0.0, 0.0, 100);
-							}
-							break;
-						case 61:
-						{
-							if (ptr4->FrameX != 144)
-							{
 								break;
-							}
-							if (Main.Rand.Next(60) == 0)
-							{
-								Dust* ptr7 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 44, 0.0, 0.0, 250, default(Color), 0.4f);
-								if (ptr7 != null)
+							case 61:
 								{
-									ptr7->FadeIn = 0.7f;
+									if (ptr4->FrameX != 144)
+									{
+										break;
+									}
+									if (Main.Rand.Next(60) == 0)
+									{
+										Dust* ptr7 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 44, 0.0, 0.0, 250, default, 0.4f);
+										if (ptr7 != null)
+										{
+											ptr7->FadeIn = 0.7f;
+										}
+									}
+									byte b2 = (newColor.G = (byte)(245 - UI.MouseTextBrightness + (UI.MouseTextBrightness >> 1)));
+									b2 = (newColor.B = b2);
+									b2 = (newColor.R = b2);
+									newColor.A = b2;
+									break;
 								}
-							}
-							byte b2 = (newColor.G = (byte)(245 - UI.MouseTextBrightness + (UI.MouseTextBrightness >> 1)));
-							b2 = (newColor.B = b2);
-							b2 = (newColor.R = b2);
-							newColor.A = b2;
-							break;
-						}
-						case 71:
-						case 72:
-							if (Main.Rand.Next(500) == 0)
-							{
-								dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 41, 0.0, 0.0, 250, default(Color), 0.8f);
-							}
-							break;
-						case 17:
-						case 77:
-						case 133:
-							if (Main.Rand.Next(40) == 0 && ptr4->FrameX == 18 && ptr4->FrameY == 18)
-							{
-								dustLocal.NewDust(i * 16 + 2, num6 * 16, 8, 6, 6, 0.0, 0.0, 100);
-							}
-							break;
+							case 71:
+							case 72:
+								if (Main.Rand.Next(500) == 0)
+								{
+									dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 41, 0.0, 0.0, 250, default, 0.8f);
+								}
+								break;
+							case 17:
+							case 77:
+							case 133:
+								if (Main.Rand.Next(40) == 0 && ptr4->FrameX == 18 && ptr4->FrameY == 18)
+								{
+									dustLocal.NewDust(i * 16 + 2, num6 * 16, 8, 6, 6, 0.0, 0.0, 100);
+								}
+								break;
 
 #if !VERSION_INITIAL
-						case 150:
-							if (Main.Rand.Next(2) == 0 && ptr4->FrameY == 0)
-							{
-								Dust* ptrD = dustLocal.NewDust(i * 16, num6 * 16 - 4, 8, 8, 31, 0, 0, 100);
-								if (ptrD != null)
+							case 150:
+								if (Main.Rand.Next(2) == 0 && ptr4->FrameY == 0)
 								{
-									if (ptr4->FrameX == 0)
+									Dust* ptrD = dustLocal.NewDust(i * 16, num6 * 16 - 4, 8, 8, 31, 0, 0, 100);
+									if (ptrD != null)
 									{
-										ptrD->Position.X += Main.Rand.Next(8);
-									}
-									if (ptr4->FrameX == 36)
-									{
-										ptrD->Position.X -= Main.Rand.Next(8);
-									}
-									ptrD->Alpha += (short)Main.Rand.Next(100);
-									ptrD->Velocity *= 0.2f;
-									ptrD->Velocity.Y -= 0.5f + Main.Rand.Next(10) * 0.1f;
-									ptrD->FadeIn = 0.5f + Main.Rand.Next(10) * 0.1f;
-									if (Main.Rand.Next(4) == 0)
-									{
-										ptrD = dustLocal.NewDust(i * 16, num6 * 16, 8, 8, 6);
-										if (ptrD != null)
+										if (ptr4->FrameX == 0)
 										{
-											if (ptr4->FrameX == 0)
+											ptrD->Position.X += Main.Rand.Next(8);
+										}
+										if (ptr4->FrameX == 36)
+										{
+											ptrD->Position.X -= Main.Rand.Next(8);
+										}
+										ptrD->Alpha += (short)Main.Rand.Next(100);
+										ptrD->Velocity *= 0.2f;
+										ptrD->Velocity.Y -= 0.5f + Main.Rand.Next(10) * 0.1f;
+										ptrD->FadeIn = 0.5f + Main.Rand.Next(10) * 0.1f;
+										if (Main.Rand.Next(4) == 0)
+										{
+											ptrD = dustLocal.NewDust(i * 16, num6 * 16, 8, 8, 6);
+											if (ptrD != null)
 											{
-												ptrD->Position.X += Main.Rand.Next(8);
-											}
-											if (ptr4->FrameX == 36)
-											{
-												ptrD->Position.X -= Main.Rand.Next(8);
-											}
-											if (Main.Rand.Next(20) != 0)
-											{
-												ptrD->NoGravity = true;
-												ptrD->Scale *= 1f + Main.Rand.Next(10) * 0.1f;
-												ptrD->Velocity.Y -= 1f;
+												if (ptr4->FrameX == 0)
+												{
+													ptrD->Position.X += Main.Rand.Next(8);
+												}
+												if (ptr4->FrameX == 36)
+												{
+													ptrD->Position.X -= Main.Rand.Next(8);
+												}
+												if (Main.Rand.Next(20) != 0)
+												{
+													ptrD->NoGravity = true;
+													ptrD->Scale *= 1f + Main.Rand.Next(10) * 0.1f;
+													ptrD->Velocity.Y -= 1f;
+												}
 											}
 										}
 									}
 								}
-							}
-							break;
+								break;
 #endif
 
-						default:
-						{
-							if (Main.TileShine[num7] <= 0 || (newColor.R <= 20 && newColor.B <= 20 && newColor.G <= 20))
-							{
-								break;
-							}
-							int num10 = newColor.R;
-							if (newColor.G > num10)
-							{
-								num10 = newColor.G;
-							}
-							if (newColor.B > num10)
-							{
-								num10 = newColor.B;
-							}
-							num10 /= 30;
-							if (Main.Rand.Next(Main.TileShine[num7]) < num10 && (num7 != 21 || (ptr4->FrameX >= 36 && ptr4->FrameX < 180)))
-							{
-								Dust* ptr6 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 43, 0.0, 0.0, 254, default(Color), 0.5);
-								if (ptr6 != null)
+							default:
 								{
-									ptr6->Velocity.X = 0f;
-									ptr6->Velocity.Y = 0f;
+									if (Main.TileShine[num7] <= 0 || (newColor.R <= 20 && newColor.B <= 20 && newColor.G <= 20))
+									{
+										break;
+									}
+									int num10 = newColor.R;
+									if (newColor.G > num10)
+									{
+										num10 = newColor.G;
+									}
+									if (newColor.B > num10)
+									{
+										num10 = newColor.B;
+									}
+									num10 /= 30;
+									if (Main.Rand.Next(Main.TileShine[num7]) < num10 && (num7 != 21 || (ptr4->FrameX >= 36 && ptr4->FrameX < 180)))
+									{
+										Dust* ptr6 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 43, 0.0, 0.0, 254, default, 0.5);
+										if (ptr6 != null)
+										{
+											ptr6->Velocity.X = 0f;
+											ptr6->Velocity.Y = 0f;
+										}
+									}
+									break;
 								}
-							}
-							break;
-						}
 						}
 						if ((num7 == 5 && ptr4->FrameY >= 198 && ptr4->FrameX >= 22) || (num7 == 128 && ptr4->FrameX >= 100))
 						{
@@ -4021,74 +4032,74 @@ namespace Terraria
 									{
 										switch (num13)
 										{
-										case 0:
-											if (Main.Rand.Next(100) == 0)
-											{
-												Dust* ptr9 = dustLocal.NewDust(i * 16, num6 * 16 - 4, 16, 16, 19, 0.0, 0.0, 160, default(Color), 0.1f);
-												if (ptr9 != null)
+											case 0:
+												if (Main.Rand.Next(100) == 0)
 												{
-													ptr9->Velocity.X *= 0.5f;
-													ptr9->Velocity.Y *= 0.5f;
-													ptr9->NoGravity = true;
-													ptr9->FadeIn = 1f;
+													Dust* ptr9 = dustLocal.NewDust(i * 16, num6 * 16 - 4, 16, 16, 19, 0.0, 0.0, 160, default, 0.1f);
+													if (ptr9 != null)
+													{
+														ptr9->Velocity.X *= 0.5f;
+														ptr9->Velocity.Y *= 0.5f;
+														ptr9->NoGravity = true;
+														ptr9->FadeIn = 1f;
+													}
 												}
-											}
-											break;
-										case 1:
-											if (Main.Rand.Next(100) == 0)
-											{
-												dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 41, 0.0, 0.0, 250, default(Color), 0.8f);
-											}
-											break;
-										case 3:
-											if (Main.Rand.Next(200) == 0)
-											{
-												Dust* ptr10 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14, 0.0, 0.0, 100, default(Color), 0.2f);
-												if (ptr10 != null)
+												break;
+											case 1:
+												if (Main.Rand.Next(100) == 0)
 												{
-													ptr10->FadeIn = 1.2f;
+													dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 41, 0.0, 0.0, 250, default, 0.8f);
 												}
-											}
-											if (Main.Rand.Next(75) == 0)
-											{
-												Dust* ptr11 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 27, 0.0, 0.0, 100);
-												if (ptr11 != null)
+												break;
+											case 3:
+												if (Main.Rand.Next(200) == 0)
 												{
-													ptr11->Velocity.X *= 0.5f;
-													ptr11->Velocity.Y *= 0.5f;
+													Dust* ptr10 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 14, 0.0, 0.0, 100, default, 0.2f);
+													if (ptr10 != null)
+													{
+														ptr10->FadeIn = 1.2f;
+													}
 												}
-											}
-											break;
-										case 4:
-											if (Main.Rand.Next(150) == 0)
-											{
-												Dust* ptr12 = dustLocal.NewDust(i * 16, num6 * 16, 16, 8, 16);
-												if (ptr12 != null)
+												if (Main.Rand.Next(75) == 0)
 												{
-													ptr12->Velocity.X *= 0.333333343f;
-													ptr12->Velocity.Y *= 0.333333343f;
-													ptr12->Velocity.Y -= 0.7f;
-													ptr12->Alpha = 50;
-													ptr12->Scale *= 0.1f;
-													ptr12->FadeIn = 0.9f;
-													ptr12->NoGravity = true;
+													Dust* ptr11 = dustLocal.NewDust(i * 16, num6 * 16, 16, 16, 27, 0.0, 0.0, 100);
+													if (ptr11 != null)
+													{
+														ptr11->Velocity.X *= 0.5f;
+														ptr11->Velocity.Y *= 0.5f;
+													}
 												}
-											}
-											break;
-										case 5:
-											if (Main.Rand.Next(40) == 0)
-											{
-												Dust* ptr8 = dustLocal.NewDust(i * 16, num6 * 16 - 6, 16, 16, 6, 0.0, 0.0, 0, default(Color), 1.5);
-												if (ptr8 != null)
+												break;
+											case 4:
+												if (Main.Rand.Next(150) == 0)
 												{
-													ptr8->Velocity.Y -= 2f;
-													ptr8->NoGravity = true;
+													Dust* ptr12 = dustLocal.NewDust(i * 16, num6 * 16, 16, 8, 16);
+													if (ptr12 != null)
+													{
+														ptr12->Velocity.X *= 0.333333343f;
+														ptr12->Velocity.Y *= 0.333333343f;
+														ptr12->Velocity.Y -= 0.7f;
+														ptr12->Alpha = 50;
+														ptr12->Scale *= 0.1f;
+														ptr12->FadeIn = 0.9f;
+														ptr12->NoGravity = true;
+													}
 												}
-											}
-											newColor.A = (byte)(UI.MouseTextBrightness >> 1);
-											newColor.G = UI.MouseTextBrightness;
-											newColor.B = UI.MouseTextBrightness;
-											break;
+												break;
+											case 5:
+												if (Main.Rand.Next(40) == 0)
+												{
+													Dust* ptr8 = dustLocal.NewDust(i * 16, num6 * 16 - 6, 16, 16, 6, 0.0, 0.0, 0, default, 1.5);
+													if (ptr8 != null)
+													{
+														ptr8->Velocity.Y -= 2f;
+														ptr8->NoGravity = true;
+													}
+												}
+												newColor.A = (byte)(UI.MouseTextBrightness >> 1);
+												newColor.G = UI.MouseTextBrightness;
+												newColor.B = UI.MouseTextBrightness;
+												break;
 										}
 									}
 								}
@@ -4104,15 +4115,15 @@ namespace Terraria
 								int num14 = i;
 								switch (ptr4->FrameX)
 								{
-								case 36:
-									num14--;
-									break;
-								case 54:
-									num14++;
-									break;
-								case 108:
-									num14 = ((ptr4->FrameY != 16) ? (num14 + 1) : (num14 - 1));
-									break;
+									case 36:
+										num14--;
+										break;
+									case 54:
+										num14++;
+										break;
+									case 108:
+										num14 = ((ptr4->FrameY != 16) ? (num14 + 1) : (num14 - 1));
+										break;
 								}
 								int num15 = num6;
 								bool flag3 = false;
@@ -4330,26 +4341,26 @@ namespace Terraria
 							SpriteSheet<_sheetTiles>.Draw(id2, ref pos, ref s, newColor);
 							switch (num7)
 							{
-							case 139:
-								newColor.R = 200;
-								newColor.G = 200;
-								newColor.B = 200;
-								newColor.A = 0;
-								SpriteSheet<_sheetTiles>.Draw((int)_sheetTiles.ID.MUSIC_BOX, ref pos, ref s, newColor);
-								// BUG: The draw function here is for the glowmask for each music box; if active, it draws a sprite, and it draws blank if inactive.
-								// The problem? It does not account for the highlighted and selected boxes as unlike other tiles of their type, they are vertically separated, not horizontally.
-								// This changes in 1.02+, however this leads to the OG music boxes having fucked highlighted and selected sprites since this attempts to draw the glowmask for those notes using the highlighted/selected locations.
-								// It is even worse for the exclusive music boxes since there isn't even a glowmask sprite for them, meaning all sprites for those placed music boxes are ruined.
-								// What could fix it? Changing the source rectangle to always reflect the original dimensions, even if highlighted/selected, and then add glowmask sprites for the exclusive music boxes.
-								break;
-							case 144:
-								newColor.R = 200;
-								newColor.G = 200;
-								newColor.B = 200;
-								newColor.A = 0;
-								SpriteSheet<_sheetTiles>.Draw((int)_sheetTiles.ID.TIMER, ref pos, ref s, newColor);
-								// These are also buggered.
-								break;
+								case 139:
+									newColor.R = 200;
+									newColor.G = 200;
+									newColor.B = 200;
+									newColor.A = 0;
+									SpriteSheet<_sheetTiles>.Draw((int)_sheetTiles.ID.MUSIC_BOX, ref pos, ref s, newColor);
+									// BUG: The draw function here is for the glowmask for each music box; if active, it draws a sprite, and it draws blank if inactive.
+									// The problem? It does not account for the highlighted and selected boxes as unlike other tiles of their type, they are vertically separated, not horizontally.
+									// This changes in 1.02+, however this leads to the OG music boxes having fucked highlighted and selected sprites since this attempts to draw the glowmask for those notes using the highlighted/selected locations.
+									// It is even worse for the exclusive music boxes since there isn't even a glowmask sprite for them, meaning all sprites for those placed music boxes are ruined.
+									// What could fix it? Changing the source rectangle to always reflect the original dimensions, even if highlighted/selected, and then add glowmask sprites for the exclusive music boxes.
+									break;
+								case 144:
+									newColor.R = 200;
+									newColor.G = 200;
+									newColor.B = 200;
+									newColor.A = 0;
+									SpriteSheet<_sheetTiles>.Draw((int)_sheetTiles.ID.TIMER, ref pos, ref s, newColor);
+									// These are also buggered.
+									break;
 							}
 						}
 					}
@@ -4371,7 +4382,7 @@ namespace Terraria
 					}
 				}
 			}
-			Vector2 pos2 = default(Vector2);
+			Vector2 pos2 = default;
 			for (int l = 0; l < num; l++)
 			{
 				int x = spec[l].X;
@@ -4397,21 +4408,21 @@ namespace Terraria
 						int sh = 54;
 						switch (num18)
 						{
-						case 0:
-							num19 += 60;
-							sh = 36;
-							break;
-						case 1:
-							num19 += 32;
-							break;
-						default:
-							num19 += 107;
-							break;
+							case 0:
+								num19 += 60;
+								sh = 36;
+								break;
+							case 1:
+								num19 += 32;
+								break;
+							default:
+								num19 += 107;
+								break;
 						}
 						SpriteSheet<_sheetSprites>.Draw(num19, ref pos2, sh, tileColor, se);
 						continue;
 					}
-					Rectangle s2 = default(Rectangle);
+					Rectangle s2 = default;
 					if (ptr14->FrameX == 22)
 					{
 						int num20 = 0;
@@ -4432,28 +4443,28 @@ namespace Terraria
 						{
 							switch (ptr14[m].Type)
 							{
-							case 2:
-								num21 = 0;
-								break;
-							case 23:
-								num21 = 1;
-								break;
-							case 60:
-								num21 = 2;
-								s2.Width = 114;
-								s2.Height = 96;
-								num22 = 48;
-								break;
-							case 147:
-								num21 = 4;
-								break;
-							case 109:
-								num21 = 3;
-								num20 += x % 3 * 3;
-								s2.Height = 140;
-								break;
-							default:
-								continue;
+								case 2:
+									num21 = 0;
+									break;
+								case 23:
+									num21 = 1;
+									break;
+								case 60:
+									num21 = 2;
+									s2.Width = 114;
+									s2.Height = 96;
+									num22 = 48;
+									break;
+								case 147:
+									num21 = 4;
+									break;
+								case 109:
+									num21 = 3;
+									num20 += x % 3 * 3;
+									s2.Height = 140;
+									break;
+								default:
+									continue;
 							}
 							break;
 						}
@@ -4480,24 +4491,24 @@ namespace Terraria
 						{
 							switch (ptr14[n + (Main.LargeWorldH)].Type)
 							{
-							case 2:
-								num24 = 0;
-								break;
-							case 23:
-								num24 = 1;
-								break;
-							case 60:
-								num24 = 2;
-								break;
-							case 147:
-								num24 = 4;
-								break;
-							case 109:
-								num24 = 3;
-								s2.Y += x % 3 * 126;
-								break;
-							default:
-								continue;
+								case 2:
+									num24 = 0;
+									break;
+								case 23:
+									num24 = 1;
+									break;
+								case 60:
+									num24 = 2;
+									break;
+								case 147:
+									num24 = 4;
+									break;
+								case 109:
+									num24 = 3;
+									s2.Y += x % 3 * 126;
+									break;
+								default:
+									continue;
 							}
 							break;
 						}
@@ -4528,24 +4539,24 @@ namespace Terraria
 						{
 							switch (ptr14[num28 - (Main.LargeWorldH)].Type)
 							{
-							case 2:
-								num26 = 0;
-								break;
-							case 23:
-								num26 = 1;
-								break;
-							case 60:
-								num26 = 2;
-								break;
-							case 147:
-								num26 = 4;
-								break;
-							case 109:
-								num26 = 3;
-								s2.Y += x % 3 * 126;
-								break;
-							default:
-								continue;
+								case 2:
+									num26 = 0;
+									break;
+								case 23:
+									num26 = 1;
+									break;
+								case 60:
+									num26 = 2;
+									break;
+								case 147:
+									num26 = 4;
+									break;
+								case 109:
+									num26 = 3;
+									s2.Y += x % 3 * 126;
+									break;
+								default:
+									continue;
 							}
 							break;
 						}
@@ -4563,8 +4574,8 @@ namespace Terraria
 			int gfx = (int)(255f * (1f - gfxQuality) + 30f * gfxQuality);
 			int gfx2 = (int)(50f * (1f - gfxQuality) + 2f * gfxQuality);
 			Main.TileSolid[10] = false;
-			Rectangle s = default(Rectangle);
-			Vector2 pos = default(Vector2);
+			Rectangle s = default;
+			Vector2 pos = default;
 			int num = LastTileX;
 			int num2 = LastTileY;
 			int num3 = FirstTileX;
@@ -4597,121 +4608,121 @@ namespace Terraria
 						{
 							switch (type)
 							{
-							case 6:
-							case 7:
-							case 8:
-							case 9:
-							case 22:
-							case 63:
-							case 64:
-							case 65:
-							case 66:
-							case 67:
-							case 68:
-							case 107:
-							case 108:
-							case 111:
-								if (newColor.R < UI.MouseTextBrightness >> 1)
-								{
-									newColor.R = (byte)(UI.MouseTextBrightness >> 1);
-								}
-								if (newColor.G < 70)
-								{
-									newColor.G = 70;
-								}
-								if (newColor.B < 210)
-								{
-									newColor.B = 210;
-								}
-								newColor.A = UI.MouseTextBrightness;
-								if (Main.Rand.Next(150) == 0)
-								{
-									Dust* ptr3 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 15, 0.0, 0.0, 150, default(Color), 0.8f);
-									if (ptr3 != null)
+								case 6:
+								case 7:
+								case 8:
+								case 9:
+								case 22:
+								case 63:
+								case 64:
+								case 65:
+								case 66:
+								case 67:
+								case 68:
+								case 107:
+								case 108:
+								case 111:
+									if (newColor.R < UI.MouseTextBrightness >> 1)
 									{
-										ptr3->Velocity.X *= 0.1f;
-										ptr3->Velocity.Y *= 0.1f;
-										ptr3->NoLight = true;
+										newColor.R = (byte)(UI.MouseTextBrightness >> 1);
 									}
-								}
-								break;
+									if (newColor.G < 70)
+									{
+										newColor.G = 70;
+									}
+									if (newColor.B < 210)
+									{
+										newColor.B = 210;
+									}
+									newColor.A = UI.MouseTextBrightness;
+									if (Main.Rand.Next(150) == 0)
+									{
+										Dust* ptr3 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 15, 0.0, 0.0, 150, default, 0.8f);
+										if (ptr3 != null)
+										{
+											ptr3->Velocity.X *= 0.1f;
+											ptr3->Velocity.Y *= 0.1f;
+											ptr3->NoLight = true;
+										}
+									}
+									break;
 							}
 						}
 						switch (type)
 						{
-						case 22:
-							if (Main.Rand.Next(400) == 0)
-							{
-								dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
-							}
-							goto default;
-						case 25:
-							if (Main.Rand.Next(700) == 0)
-							{
-								dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
-							}
-							break;
-						case 23:
-							if (Main.Rand.Next(500) == 0)
-							{
-								dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
-							}
-							break;
-						case 37:
-							if (Main.Rand.Next(250) == 0)
-							{
-								Dust* ptr6 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 6, 0.0, 0.0, 0, default(Color), Main.Rand.Next(3));
-								if (ptr6 != null && ptr6->Scale > 1f)
+							case 22:
+								if (Main.Rand.Next(400) == 0)
 								{
-									ptr6->NoGravity = true;
+									dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
 								}
-							}
-							break;
-						case 58:
-						case 76:
-							if (Main.Rand.Next(250) == 0)
-							{
-								Dust* ptr4 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 6, 0.0, 0.0, 0, default(Color), Main.Rand.Next(3));
-								if (ptr4 != null && ptr4->Scale > 1f)
+								goto default;
+							case 25:
+								if (Main.Rand.Next(700) == 0)
 								{
-									ptr4->NoGravity = true;
-									ptr4->NoLight = true;
+									dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
 								}
-							}
-							break;
-						case 112:
-							if (Main.Rand.Next(700) == 0)
-							{
-								dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
-							}
-							break;
-						default:
-						{
-							if (Main.TileShine[type] <= 0 || (newColor.R <= 20 && newColor.B <= 20 && newColor.G <= 20))
-							{
 								break;
-							}
-							int num5 = newColor.R;
-							if (newColor.G > num5)
-							{
-								num5 = newColor.G;
-							}
-							if (newColor.B > num5)
-							{
-								num5 = newColor.B;
-							}
-							num5 /= 30;
-							if (Main.Rand.Next(Main.TileShine[type]) < num5)
-							{
-								Dust* ptr5 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 43, 0.0, 0.0, 254, default(Color), 0.5);
-								if (ptr5 != null)
+							case 23:
+								if (Main.Rand.Next(500) == 0)
 								{
-									ptr5->Velocity.X = 0f;
-									ptr5->Velocity.Y = 0f;
+									dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
 								}
-							}
-							break;
-						}
+								break;
+							case 37:
+								if (Main.Rand.Next(250) == 0)
+								{
+									Dust* ptr6 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 6, 0.0, 0.0, 0, default, Main.Rand.Next(3));
+									if (ptr6 != null && ptr6->Scale > 1f)
+									{
+										ptr6->NoGravity = true;
+									}
+								}
+								break;
+							case 58:
+							case 76:
+								if (Main.Rand.Next(250) == 0)
+								{
+									Dust* ptr4 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 6, 0.0, 0.0, 0, default, Main.Rand.Next(3));
+									if (ptr4 != null && ptr4->Scale > 1f)
+									{
+										ptr4->NoGravity = true;
+										ptr4->NoLight = true;
+									}
+								}
+								break;
+							case 112:
+								if (Main.Rand.Next(700) == 0)
+								{
+									dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 14);
+								}
+								break;
+							default:
+								{
+									if (Main.TileShine[type] <= 0 || (newColor.R <= 20 && newColor.B <= 20 && newColor.G <= 20))
+									{
+										break;
+									}
+									int num5 = newColor.R;
+									if (newColor.G > num5)
+									{
+										num5 = newColor.G;
+									}
+									if (newColor.B > num5)
+									{
+										num5 = newColor.B;
+									}
+									num5 /= 30;
+									if (Main.Rand.Next(Main.TileShine[type]) < num5)
+									{
+										Dust* ptr5 = dustLocal.NewDust(num3 * 16, num4 * 16, 16, 16, 43, 0.0, 0.0, 254, default, 0.5);
+										if (ptr5 != null)
+										{
+											ptr5->Velocity.X = 0f;
+											ptr5->Velocity.Y = 0f;
+										}
+									}
+									break;
+								}
 						}
 						if (newColor.R <= 1 && newColor.G <= 1 && newColor.B <= 1)
 						{
@@ -4822,9 +4833,9 @@ namespace Terraria
 #if (!IS_PATCHED && VERSION_INITIAL)
 										int num8 = (int)((256 - num6) * (1f / 32f)) << 1;
 #else
-                                        int num8 = 256 - num6 >> 4;
+										int num8 = 256 - num6 >> 4;
 #endif
-                                        pos2.Y += num8;
+										pos2.Y += num8;
 										s2.Height -= num8;
 										if (!flag || !flag2)
 										{
@@ -5144,7 +5155,7 @@ namespace Terraria
 								}
 								else if (s.Y == 0 && Main.Rand.Next(350) == 0)
 								{
-									Dust* ptr3 = dustLocal.NewDust(num4 << 4, (num8 << 4) + (liquid >> 4) - 8, 16, 8, 35, 0.0, 0.0, 50, default(Color), 1.5);
+									Dust* ptr3 = dustLocal.NewDust(num4 << 4, (num8 << 4) + (liquid >> 4) - 8, 16, 8, 35, 0.0, 0.0, 50, default, 1.5);
 									if (ptr3 != null)
 									{
 										ptr3->Velocity.X *= 1.6f;
@@ -5184,96 +5195,96 @@ namespace Terraria
 										Color colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8);
 										switch (i)
 										{
-										case 0:
-											if (Lighting.Brighter(num4, num8 - 1, num4 - 1, num8))
-											{
-												ptr2 -= (Main.LargeWorldH);
-												if (ptr2->IsActive == 0)
+											case 0:
+												if (Lighting.Brighter(num4, num8 - 1, num4 - 1, num8))
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4 - 1, num8);
+													ptr2 -= (Main.LargeWorldH);
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4 - 1, num8);
+													}
+													ptr2 += (Main.LargeWorldH);
 												}
-												ptr2 += (Main.LargeWorldH);
-											}
-											else
-											{
-												ptr2--;
-												if (ptr2->IsActive == 0)
+												else
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 - 1);
+													ptr2--;
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 - 1);
+													}
+													ptr2++;
 												}
-												ptr2++;
-											}
-											if (s.Height < 8)
-											{
-												height = s.Height;
-											}
-											break;
-										case 1:
-											if (Lighting.Brighter(num4, num8 - 1, num4 + 1, num8))
-											{
-												if (ptr2[(Main.LargeWorldH)].IsActive == 0)
+												if (s.Height < 8)
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4 + 1, num8);
+													height = s.Height;
 												}
-											}
-											else
-											{
-												ptr2--;
-												if (ptr2->IsActive == 0)
+												break;
+											case 1:
+												if (Lighting.Brighter(num4, num8 - 1, num4 + 1, num8))
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 - 1);
+													if (ptr2[(Main.LargeWorldH)].IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4 + 1, num8);
+													}
 												}
-												ptr2++;
-											}
-											num11 = 8;
-											if (s.Height < 8)
-											{
-												height = s.Height;
-											}
-											break;
-										case 2:
-											if (Lighting.Brighter(num4, num8 + 1, num4 - 1, num8))
-											{
-												ptr2 -= (Main.LargeWorldH);
-												if (ptr2->IsActive == 0)
+												else
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4 - 1, num8);
+													ptr2--;
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 - 1);
+													}
+													ptr2++;
 												}
-												ptr2 += (Main.LargeWorldH);
-											}
-											else
-											{
-												ptr2++;
-												if (ptr2->IsActive == 0)
+												num11 = 8;
+												if (s.Height < 8)
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 + 1);
+													height = s.Height;
 												}
-												ptr2--;
-											}
-											num12 = 8;
-											height = 8 - (16 - s.Height);
-											break;
-										default:
-											if (Lighting.Brighter(num4, num8 + 1, num4 + 1, num8))
-											{
-												if (ptr2[(Main.LargeWorldH)].IsActive == 0)
+												break;
+											case 2:
+												if (Lighting.Brighter(num4, num8 + 1, num4 - 1, num8))
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4 + 1, num8);
+													ptr2 -= (Main.LargeWorldH);
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4 - 1, num8);
+													}
+													ptr2 += (Main.LargeWorldH);
 												}
-											}
-											else
-											{
-												ptr2++;
-												if (ptr2->IsActive == 0)
+												else
 												{
-													colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 + 1);
+													ptr2++;
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 + 1);
+													}
+													ptr2--;
 												}
-												ptr2--;
-											}
-											num11 = 8;
-											num12 = 8;
-											height = 8 - (16 - s.Height);
-											break;
+												num12 = 8;
+												height = 8 - (16 - s.Height);
+												break;
+											default:
+												if (Lighting.Brighter(num4, num8 + 1, num4 + 1, num8))
+												{
+													if (ptr2[(Main.LargeWorldH)].IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4 + 1, num8);
+													}
+												}
+												else
+												{
+													ptr2++;
+													if (ptr2->IsActive == 0)
+													{
+														colorUnsafe2 = Lighting.GetColorUnsafe(num4, num8 + 1);
+													}
+													ptr2--;
+												}
+												num11 = 8;
+												num12 = 8;
+												height = 8 - (16 - s.Height);
+												break;
 										}
 										colorUnsafe2.R = (byte)(colorUnsafe2.R * num10 + color.R >> 9);
 										colorUnsafe2.G = (byte)(colorUnsafe2.G * num10 + color.G >> 9);
@@ -5508,7 +5519,7 @@ namespace Terraria
 						{
 							vector4.X += num15 * num17 - 16f;
 							vector4.Y += num16 * num17 - 6f;
-							Dust* ptr = dustLocal.NewDust((int)vector4.X, (int)vector4.Y, 30, 10, 5, num15 * 0.02f, num16 * 0.02f, 0, default(Color), 2.0);
+							Dust* ptr = dustLocal.NewDust((int)vector4.X, (int)vector4.Y, 30, 10, 5, num15 * 0.02f, num16 * 0.02f, 0, default, 2.0);
 							if (ptr != null)
 							{
 								ptr->NoGravity = true;
@@ -5552,7 +5563,7 @@ namespace Terraria
 						{
 							vector5.X += num18 * num20 - 16f;
 							vector5.Y += num19 * num20 - 6f;
-							Dust* ptr2 = dustLocal.NewDust((int)vector5.X, (int)vector5.Y, 30, 10, 6, num18 * 0.02f, num19 * 0.02f, 0, default(Color), 2.5);
+							Dust* ptr2 = dustLocal.NewDust((int)vector5.X, (int)vector5.Y, 30, 10, 6, num18 * 0.02f, num19 * 0.02f, 0, default, 2.5);
 							if (ptr2 != null)
 							{
 								ptr2->NoGravity = true;
@@ -5644,7 +5655,7 @@ namespace Terraria
 					}
 					if (Main.HasFocus && Main.Rand.Next(52) == 0)
 					{
-						Dust* ptr3 = dustLocal.NewDust(Main.NPCSet[num].XYWH.X, Main.NPCSet[num].XYWH.Y, Main.NPCSet[num].Width, Main.NPCSet[num].Height, 15, 0.0, 0.0, 150, default(Color), 0.8f);
+						Dust* ptr3 = dustLocal.NewDust(Main.NPCSet[num].XYWH.X, Main.NPCSet[num].XYWH.Y, Main.NPCSet[num].Width, Main.NPCSet[num].Height, 15, 0.0, 0.0, 150, default, 0.8f);
 						if (ptr3 != null)
 						{
 							ptr3->Velocity.X *= 0.1f;
@@ -5655,173 +5666,173 @@ namespace Terraria
 				}
 				switch (type)
 				{
-				case (int)NPC.ID.KING_SLIME:
-				{
-					Vector2 vector8 = default(Vector2);
-					vector8.Y = 0f - Main.NPCSet[num].Velocity.Y;
-					vector8.X = Main.NPCSet[num].Velocity.X * -2f;
-					float rotCenter4 = Main.NPCSet[num].Velocity.X * 0.05f;
-					if (Main.NPCSet[num].FrameY == 120)
-					{
-						vector8.Y += 2f;
-					}
-					else if (Main.NPCSet[num].FrameY == 360)
-					{
-						vector8.Y -= 2f;
-					}
-					else if (Main.NPCSet[num].FrameY == 480)
-					{
-						vector8.Y -= 6f;
-					}
-					pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) + vector8.X;
-					pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + (Main.NPCSet[num].Height >> 1) + vector8.Y;
-					SpriteSheet<_sheetSprites>.DrawRotated((int)_sheetSprites.ID.NINJA, ref pos, newColor, rotCenter4);
-					break;
-				}
-				case (int)NPC.ID.DUNGEON_SLIME:
-				{
-					Vector2 vector7 = default(Vector2);
-					vector7.Y = Main.NPCSet[num].Velocity.Y * -0.3f;
-					vector7.X = Main.NPCSet[num].Velocity.X * -0.6f;
-					float rotCenter3 = Main.NPCSet[num].Velocity.X * 0.09f;
-					if (Main.NPCSet[num].FrameY == 120)
-					{
-						vector7.Y += 2f;
-					}
-					else if (Main.NPCSet[num].FrameY == 360)
-					{
-						vector7.Y -= 2f;
-					}
-					else if (Main.NPCSet[num].FrameY == 480)
-					{
-						vector7.Y -= 6f;
-					}
-					pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) + vector7.X;
-					pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + (Main.NPCSet[num].Height >> 1) + vector7.Y;
-					SpriteSheet<_sheetSprites>.DrawRotated((int)_sheetSprites.ID.ITEM_327, ref pos, newColor, rotCenter3);
-					break;
-				}
-				case (int)NPC.ID.ANTLION:
-				case (int)NPC.ID.ALBINO_ANTLION:
-				{
-					pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1);
-					pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + Main.NPCSet[num].Height + 14f;
-					int id = ((type == (int)NPC.ID.ANTLION) ? (int)_sheetSprites.ID.ANTLIONBODY : (int)_sheetSprites.ID.ALBINOANTLIONBODY);
-					SpriteSheet<_sheetSprites>.DrawRotated(id, ref pos, newColor, (0f - Main.NPCSet[num].Rotation) * 0.3f);
-					break;
-				}
+					case (int)NPC.ID.KING_SLIME:
+						{
+							Vector2 vector8 = default;
+							vector8.Y = 0f - Main.NPCSet[num].Velocity.Y;
+							vector8.X = Main.NPCSet[num].Velocity.X * -2f;
+							float rotCenter4 = Main.NPCSet[num].Velocity.X * 0.05f;
+							if (Main.NPCSet[num].FrameY == 120)
+							{
+								vector8.Y += 2f;
+							}
+							else if (Main.NPCSet[num].FrameY == 360)
+							{
+								vector8.Y -= 2f;
+							}
+							else if (Main.NPCSet[num].FrameY == 480)
+							{
+								vector8.Y -= 6f;
+							}
+							pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) + vector8.X;
+							pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + (Main.NPCSet[num].Height >> 1) + vector8.Y;
+							SpriteSheet<_sheetSprites>.DrawRotated((int)_sheetSprites.ID.NINJA, ref pos, newColor, rotCenter4);
+							break;
+						}
+					case (int)NPC.ID.DUNGEON_SLIME:
+						{
+							Vector2 vector7 = default;
+							vector7.Y = Main.NPCSet[num].Velocity.Y * -0.3f;
+							vector7.X = Main.NPCSet[num].Velocity.X * -0.6f;
+							float rotCenter3 = Main.NPCSet[num].Velocity.X * 0.09f;
+							if (Main.NPCSet[num].FrameY == 120)
+							{
+								vector7.Y += 2f;
+							}
+							else if (Main.NPCSet[num].FrameY == 360)
+							{
+								vector7.Y -= 2f;
+							}
+							else if (Main.NPCSet[num].FrameY == 480)
+							{
+								vector7.Y -= 6f;
+							}
+							pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) + vector7.X;
+							pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + (Main.NPCSet[num].Height >> 1) + vector7.Y;
+							SpriteSheet<_sheetSprites>.DrawRotated((int)_sheetSprites.ID.ITEM_327, ref pos, newColor, rotCenter3);
+							break;
+						}
+					case (int)NPC.ID.ANTLION:
+					case (int)NPC.ID.ALBINO_ANTLION:
+						{
+							pos.X = Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1);
+							pos.Y = Main.NPCSet[num].Position.Y - ScreenPosition.Y + Main.NPCSet[num].Height + 14f;
+							int id = ((type == (int)NPC.ID.ANTLION) ? (int)_sheetSprites.ID.ANTLIONBODY : (int)_sheetSprites.ID.ALBINOANTLIONBODY);
+							SpriteSheet<_sheetSprites>.DrawRotated(id, ref pos, newColor, (0f - Main.NPCSet[num].Rotation) * 0.3f);
+							break;
+						}
 				}
 				float num30 = 0f;
 				float num31 = 0f;
 				int width = SpriteSheet<_sheetSprites>.Source[(int)_sheetSprites.ID.NPC_1 - 1 + type].Width;
-				Vector2 pivot = default(Vector2);
+				Vector2 pivot = default;
 				pivot.X = width >> 1;
 				pivot.Y = Main.NPCSet[num].FrameHeight >> 1;
 				switch ((NPC.ID)type)
 				{
-				case NPC.ID.WIZARD:
-				case NPC.ID.MECHANIC:
-					num30 = 2f;
-					break;
-				case NPC.ID.EYE_OF_CTHULHU:
-					pivot.Y = 107f;
-					break;
-				case NPC.ID.OCRAM:
-					// BUG: In all versions of Old-gen Console, Ocram has a major issue with his hitbox and sprite display.
-					// The issue is that Ocram will rarely be aligned with his hitbox due to a variety of inconsistencies as the programmer copied a lot from the EoC.
+					case NPC.ID.WIZARD:
+					case NPC.ID.MECHANIC:
+						num30 = 2f;
+						break;
+					case NPC.ID.EYE_OF_CTHULHU:
+						pivot.Y = 107f;
+						break;
+					case NPC.ID.OCRAM:
+						// BUG: In all versions of Old-gen Console, Ocram has a major issue with his hitbox and sprite display.
+						// The issue is that Ocram will rarely be aligned with his hitbox due to a variety of inconsistencies as the programmer copied a lot from the EoC.
 
-					pivot.Y *= 0.5f;
+						pivot.Y *= 0.5f;
 
-					// Changing his dimensions, and the pivot value all go towards fixing this issue.
-					// pivot.Y -= 5f;
-					break;
-				case NPC.ID.EATER_OF_SOULS:
-				case NPC.ID.EATER_OF_WORLDS_HEAD:
-				case NPC.ID.EATER_OF_WORLDS_BODY:
-				case NPC.ID.EATER_OF_WORLDS_TAIL:
-				case NPC.ID.BONE_SERPENT_HEAD:
-				case NPC.ID.BONE_SERPENT_BODY:
-				case NPC.ID.BONE_SERPENT_TAIL:
-					num31 = 26f;
-					break;
-				case NPC.ID.GIANT_WORM_HEAD:
-				case NPC.ID.GIANT_WORM_BODY:
-				case NPC.ID.GIANT_WORM_TAIL:
-					num31 = 8f;
-					break;
-				case NPC.ID.HARPY:
-					num31 = 32f;
-					break;
-				case NPC.ID.CAVE_BAT:
-				case NPC.ID.JUNGLE_BAT:
-					num31 = 4f;
-					break;
-				case NPC.ID.HELLBAT:
-					num31 = 10f;
-					break;
-				case NPC.ID.DEMON:
-				case NPC.ID.SHARK:
-				case NPC.ID.VOODOO_DEMON:
-					num31 = 14f;
-					break;
-				case NPC.ID.BLUE_JELLYFISH:
-				case NPC.ID.PINK_JELLYFISH:
-				case NPC.ID.GREEN_JELLYFISH:
-					num31 = 4f;
-					pivot.Y += 4f;
-					break;
-				case NPC.ID.ANTLION:
-					num31 = 4f;
-					pivot.Y += 8f;
-					break;
-				case NPC.ID.SPIKE_BALL:
-					num31 = -4f;
-					break;
-				case NPC.ID.BLAZING_WHEEL:
-					num31 = -2f;
-					break;
-				case NPC.ID.CURSED_HAMMER:
-				case NPC.ID.ENCHANTED_SWORD:
-					num31 = 20f;
-					break;
-				case NPC.ID.DEVOURER_HEAD:
-				case NPC.ID.DEVOURER_BODY:
-				case NPC.ID.DEVOURER_TAIL:
-				case NPC.ID.DIGGER_HEAD:
-				case NPC.ID.DIGGER_BODY:
-				case NPC.ID.DIGGER_TAIL:
-				case NPC.ID.SEEKER_HEAD:
-				case NPC.ID.SEEKER_BODY:
-				case NPC.ID.SEEKER_TAIL:
-					num31 = 13f;
-					break;
-				case NPC.ID.WYVERN_HEAD:
-				case NPC.ID.WYVERN_LEGS:
-				case NPC.ID.WYVERN_BODY1:
-				case NPC.ID.WYVERN_BODY2:
-				case NPC.ID.WYVERN_BODY3:
-				case NPC.ID.WYVERN_TAIL:
-				case NPC.ID.ARCH_WYVERN_HEAD:
-				case NPC.ID.ARCH_WYVERN_LEGS:
-				case NPC.ID.ARCH_WYVERN_BODY1:
-				case NPC.ID.ARCH_WYVERN_BODY2:
-				case NPC.ID.ARCH_WYVERN_BODY3:
-				case NPC.ID.ARCH_WYVERN_TAIL:
-					num31 = 56f;
-					break;
-				case NPC.ID.CORRUPTOR:
-					num31 = 14f;
-					break;
-				case NPC.ID.RETINAZER:
-				case NPC.ID.SPAZMATISM:
-					pivot = new Vector2(55f, 107f);
-					num31 = 30f;
-					break;
-				case NPC.ID.THE_DESTROYER_HEAD:
-				case NPC.ID.THE_DESTROYER_BODY:
-				case NPC.ID.THE_DESTROYER_TAIL:
-					num31 = 30f;
-					break;
+						// Changing his dimensions, and the pivot value all go towards fixing this issue.
+						// pivot.Y -= 5f;
+						break;
+					case NPC.ID.EATER_OF_SOULS:
+					case NPC.ID.EATER_OF_WORLDS_HEAD:
+					case NPC.ID.EATER_OF_WORLDS_BODY:
+					case NPC.ID.EATER_OF_WORLDS_TAIL:
+					case NPC.ID.BONE_SERPENT_HEAD:
+					case NPC.ID.BONE_SERPENT_BODY:
+					case NPC.ID.BONE_SERPENT_TAIL:
+						num31 = 26f;
+						break;
+					case NPC.ID.GIANT_WORM_HEAD:
+					case NPC.ID.GIANT_WORM_BODY:
+					case NPC.ID.GIANT_WORM_TAIL:
+						num31 = 8f;
+						break;
+					case NPC.ID.HARPY:
+						num31 = 32f;
+						break;
+					case NPC.ID.CAVE_BAT:
+					case NPC.ID.JUNGLE_BAT:
+						num31 = 4f;
+						break;
+					case NPC.ID.HELLBAT:
+						num31 = 10f;
+						break;
+					case NPC.ID.DEMON:
+					case NPC.ID.SHARK:
+					case NPC.ID.VOODOO_DEMON:
+						num31 = 14f;
+						break;
+					case NPC.ID.BLUE_JELLYFISH:
+					case NPC.ID.PINK_JELLYFISH:
+					case NPC.ID.GREEN_JELLYFISH:
+						num31 = 4f;
+						pivot.Y += 4f;
+						break;
+					case NPC.ID.ANTLION:
+						num31 = 4f;
+						pivot.Y += 8f;
+						break;
+					case NPC.ID.SPIKE_BALL:
+						num31 = -4f;
+						break;
+					case NPC.ID.BLAZING_WHEEL:
+						num31 = -2f;
+						break;
+					case NPC.ID.CURSED_HAMMER:
+					case NPC.ID.ENCHANTED_SWORD:
+						num31 = 20f;
+						break;
+					case NPC.ID.DEVOURER_HEAD:
+					case NPC.ID.DEVOURER_BODY:
+					case NPC.ID.DEVOURER_TAIL:
+					case NPC.ID.DIGGER_HEAD:
+					case NPC.ID.DIGGER_BODY:
+					case NPC.ID.DIGGER_TAIL:
+					case NPC.ID.SEEKER_HEAD:
+					case NPC.ID.SEEKER_BODY:
+					case NPC.ID.SEEKER_TAIL:
+						num31 = 13f;
+						break;
+					case NPC.ID.WYVERN_HEAD:
+					case NPC.ID.WYVERN_LEGS:
+					case NPC.ID.WYVERN_BODY1:
+					case NPC.ID.WYVERN_BODY2:
+					case NPC.ID.WYVERN_BODY3:
+					case NPC.ID.WYVERN_TAIL:
+					case NPC.ID.ARCH_WYVERN_HEAD:
+					case NPC.ID.ARCH_WYVERN_LEGS:
+					case NPC.ID.ARCH_WYVERN_BODY1:
+					case NPC.ID.ARCH_WYVERN_BODY2:
+					case NPC.ID.ARCH_WYVERN_BODY3:
+					case NPC.ID.ARCH_WYVERN_TAIL:
+						num31 = 56f;
+						break;
+					case NPC.ID.CORRUPTOR:
+						num31 = 14f;
+						break;
+					case NPC.ID.RETINAZER:
+					case NPC.ID.SPAZMATISM:
+						pivot = new Vector2(55f, 107f);
+						num31 = 30f;
+						break;
+					case NPC.ID.THE_DESTROYER_HEAD:
+					case NPC.ID.THE_DESTROYER_BODY:
+					case NPC.ID.THE_DESTROYER_TAIL:
+						num31 = 30f;
+						break;
 				}
 				num31 *= Main.NPCSet[num].Scale;
 				pos = new Vector2(Main.NPCSet[num].Position.X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].Position.Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31 + num30);
@@ -5832,80 +5843,80 @@ namespace Terraria
 				SpriteEffects e = ((Main.NPCSet[num].SpriteDirection == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
 				switch ((NPC.ID)type)
 				{
-				case NPC.ID.CURSED_HAMMER:
-				case NPC.ID.ENCHANTED_SWORD:
-				case NPC.ID.SHADOW_HAMMER:
-					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, Color.White, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					continue;
-				default:
-					if (type < (int)NPC.ID.ARCH_WYVERN_HEAD || type > (int)NPC.ID.ARCH_WYVERN_TAIL)
-					{
-						break;
-					}
-					goto case NPC.ID.WYVERN_HEAD;
-				case NPC.ID.WYVERN_HEAD:
-				case NPC.ID.WYVERN_LEGS:
-				case NPC.ID.WYVERN_BODY1:
-				case NPC.ID.WYVERN_BODY2:
-				case NPC.ID.WYVERN_BODY3:
-				case NPC.ID.WYVERN_TAIL:
-					{
-						c = Main.NPCSet[num].GetAlpha(newColor);
-						byte b = (byte)((WorldTime.tileColor.R + WorldTime.tileColor.G + WorldTime.tileColor.B) / 3);
-						if (c.R < b)
-						{
-							c.R = b;
-						}
-						if (c.G < b)
-						{
-							c.G = b;
-						}
-						if (c.B < b)
-						{
-							c.B = b;
-						}
-						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+					case NPC.ID.CURSED_HAMMER:
+					case NPC.ID.ENCHANTED_SWORD:
+					case NPC.ID.SHADOW_HAMMER:
+						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, Color.White, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
 						continue;
-					}
+					default:
+						if (type < (int)NPC.ID.ARCH_WYVERN_HEAD || type > (int)NPC.ID.ARCH_WYVERN_TAIL)
+						{
+							break;
+						}
+						goto case NPC.ID.WYVERN_HEAD;
+					case NPC.ID.WYVERN_HEAD:
+					case NPC.ID.WYVERN_LEGS:
+					case NPC.ID.WYVERN_BODY1:
+					case NPC.ID.WYVERN_BODY2:
+					case NPC.ID.WYVERN_BODY3:
+					case NPC.ID.WYVERN_TAIL:
+						{
+							c = Main.NPCSet[num].GetAlpha(newColor);
+							byte b = (byte)((WorldTime.tileColor.R + WorldTime.tileColor.G + WorldTime.tileColor.B) / 3);
+							if (c.R < b)
+							{
+								c.R = b;
+							}
+							if (c.G < b)
+							{
+								c.G = b;
+							}
+							if (c.B < b)
+							{
+								c.B = b;
+							}
+							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							continue;
+						}
 				}
 				switch ((NPC.ID)type)
 				{
-				case NPC.ID.CORRUPTOR:
-					{
-						for (int m = 1; m < 6; m += 2)
+					case NPC.ID.CORRUPTOR:
 						{
-							c = Main.NPCSet[num].GetAlpha(newColor);
-							c.R = (byte)(c.R * (10 - m) / 15);
-							c.G = (byte)(c.G * (10 - m) / 15);
-							c.B = (byte)(c.B * (10 - m) / 15);
-							c.A = (byte)(c.A * (10 - m) / 15);
-							pos = new Vector2(Main.NPCSet[num].OldPos[m].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[m].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
-							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							for (int m = 1; m < 6; m += 2)
+							{
+								c = Main.NPCSet[num].GetAlpha(newColor);
+								c.R = (byte)(c.R * (10 - m) / 15);
+								c.G = (byte)(c.G * (10 - m) / 15);
+								c.B = (byte)(c.B * (10 - m) / 15);
+								c.A = (byte)(c.A * (10 - m) / 15);
+								pos = new Vector2(Main.NPCSet[num].OldPos[m].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[m].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
+								SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							}
+							break;
 						}
-						break;
-					}
-				case NPC.ID.RETINAZER:
-				case NPC.ID.SPAZMATISM:
-				case NPC.ID.SKELETRON_PRIME:
-				case NPC.ID.PRIME_CANNON:
-				case NPC.ID.PRIME_SAW:
-				case NPC.ID.PRIME_VICE:
-				case NPC.ID.PRIME_LASER:
-				case NPC.ID.PROBE:
-				case NPC.ID.POSSESSED_ARMOR:
-					{
-						for (int num32 = 9; num32 >= 0; num32 -= 2)
+					case NPC.ID.RETINAZER:
+					case NPC.ID.SPAZMATISM:
+					case NPC.ID.SKELETRON_PRIME:
+					case NPC.ID.PRIME_CANNON:
+					case NPC.ID.PRIME_SAW:
+					case NPC.ID.PRIME_VICE:
+					case NPC.ID.PRIME_LASER:
+					case NPC.ID.PROBE:
+					case NPC.ID.POSSESSED_ARMOR:
 						{
-							c = Main.NPCSet[num].GetAlpha(newColor);
-							c.R = (byte)(c.R * (10 - num32) / 20);
-							c.G = (byte)(c.G * (10 - num32) / 20);
-							c.B = (byte)(c.B * (10 - num32) / 20);
-							c.A = (byte)(c.A * (10 - num32) / 20);
-							pos = new Vector2(Main.NPCSet[num].OldPos[num32].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[num32].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
-							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							for (int num32 = 9; num32 >= 0; num32 -= 2)
+							{
+								c = Main.NPCSet[num].GetAlpha(newColor);
+								c.R = (byte)(c.R * (10 - num32) / 20);
+								c.G = (byte)(c.G * (10 - num32) / 20);
+								c.B = (byte)(c.B * (10 - num32) / 20);
+								c.A = (byte)(c.A * (10 - num32) / 20);
+								pos = new Vector2(Main.NPCSet[num].OldPos[num32].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[num32].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
+								SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							}
+							break;
 						}
-						break;
-					}
 				}
 				SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, Main.NPCSet[num].GetAlpha(newColor), Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
 				if (Main.NPCSet[num].Colour.PackedValue != 0)
@@ -5921,72 +5932,72 @@ namespace Terraria
 				}
 				switch ((NPC.ID)type)
 				{
-				case NPC.ID.RETINAZER:
-					c.PackedValue = 0xFFFFFFu;
-					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.EYE_LASER, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					continue;
-				case NPC.ID.PROBE:
-					c.PackedValue = 0xFFFFFFu;
-					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.PROBE, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					continue;
-				case NPC.ID.SKELETRON_PRIME:
-					c.PackedValue = 0xC8C8C8u;
-					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.BONE_EYES, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					continue;
-				case NPC.ID.PRIME_LASER:
-					c.PackedValue = 0xC8C8C8u;
-					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.BONE_LASER, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					continue;
-				case NPC.ID.CHAOS_ELEMENTAL:
-				case NPC.ID.SPECTRAL_ELEMENTAL:
-					{
-						for (int n = 1; n < Main.NPCSet[num].OldPos.Length; n++)
+					case NPC.ID.RETINAZER:
+						c.PackedValue = 0xFFFFFFu;
+						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.EYE_LASER, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+						continue;
+					case NPC.ID.PROBE:
+						c.PackedValue = 0xFFFFFFu;
+						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.PROBE, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+						continue;
+					case NPC.ID.SKELETRON_PRIME:
+						c.PackedValue = 0xC8C8C8u;
+						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.BONE_EYES, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+						continue;
+					case NPC.ID.PRIME_LASER:
+						c.PackedValue = 0xC8C8C8u;
+						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.BONE_LASER, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+						continue;
+					case NPC.ID.CHAOS_ELEMENTAL:
+					case NPC.ID.SPECTRAL_ELEMENTAL:
 						{
-							c.R = (byte)(150 * (10 - n) / 15);
-							c.G = (byte)(100 * (10 - n) / 15);
-							c.B = (byte)(150 * (10 - n) / 15);
-							c.A = (byte)(50 * (10 - n) / 15);
-							pos = new Vector2(Main.NPCSet[num].OldPos[n].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[n].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
-							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.CHAOS, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							for (int n = 1; n < Main.NPCSet[num].OldPos.Length; n++)
+							{
+								c.R = (byte)(150 * (10 - n) / 15);
+								c.G = (byte)(100 * (10 - n) / 15);
+								c.B = (byte)(150 * (10 - n) / 15);
+								c.A = (byte)(50 * (10 - n) / 15);
+								pos = new Vector2(Main.NPCSet[num].OldPos[n].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[n].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
+								SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.CHAOS, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							}
+							continue;
+						}
+					case NPC.ID.THE_DESTROYER_HEAD:
+					case NPC.ID.THE_DESTROYER_BODY:
+					case NPC.ID.THE_DESTROYER_TAIL:
+						if (newColor.PackedValue != 0xFF000000)
+						{
+							c.PackedValue = 0xFFFFFFu;
+							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.DEST1 + type - (int)NPC.ID.THE_DESTROYER_HEAD, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
 						}
 						continue;
-					}
-				case NPC.ID.THE_DESTROYER_HEAD:
-				case NPC.ID.THE_DESTROYER_BODY:
-				case NPC.ID.THE_DESTROYER_TAIL:
-					if (newColor.PackedValue != 0xFF000000)
-					{
-						c.PackedValue = 0xFFFFFFu;
-						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.DEST1 + type - (int)NPC.ID.THE_DESTROYER_HEAD, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-					}
-					continue;
 				}
 				switch ((NPC.ID)type)
 				{
-				case NPC.ID.ILLUMINANT_BAT:
-				case NPC.ID.ILLUMINANT_SLIME:
-					{
-						for (int num34 = 1; num34 < Main.NPCSet[num].OldPos.Length; num34++)
+					case NPC.ID.ILLUMINANT_BAT:
+					case NPC.ID.ILLUMINANT_SLIME:
 						{
-							c.R = (byte)(150 * (10 - num34) / 15);
-							c.G = (byte)(100 * (10 - num34) / 15);
-							c.B = (byte)(150 * (10 - num34) / 15);
-							c.A = (byte)(50 * (10 - num34) / 15);
-							pos = new Vector2(Main.NPCSet[num].OldPos[num34].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[num34].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
-							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							for (int num34 = 1; num34 < Main.NPCSet[num].OldPos.Length; num34++)
+							{
+								c.R = (byte)(150 * (10 - num34) / 15);
+								c.G = (byte)(100 * (10 - num34) / 15);
+								c.B = (byte)(150 * (10 - num34) / 15);
+								c.A = (byte)(50 * (10 - num34) / 15);
+								pos = new Vector2(Main.NPCSet[num].OldPos[num34].X - ScreenPosition.X + (Main.NPCSet[num].Width >> 1) - width * Main.NPCSet[num].Scale * 0.5f + pivot.X * Main.NPCSet[num].Scale, Main.NPCSet[num].OldPos[num34].Y - ScreenPosition.Y + Main.NPCSet[num].Height - Main.NPCSet[num].FrameHeight * Main.NPCSet[num].Scale + 4f + pivot.Y * Main.NPCSet[num].Scale + num31);
+								SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.NPC_1 - 1 + type, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, c, Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							}
+							break;
 						}
-						break;
-					}
-				case NPC.ID.WRAITH:
-					{
-						SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.WRAITH_EYES, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, new Color(255, 255, 255, 255), Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
-						for (int num33 = 1; num33 < 10; num33++)
+					case NPC.ID.WRAITH:
 						{
-							Vector2 pos3 = pos - Main.NPCSet[num].Velocity * (num33 * 0.5f);
-							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.WRAITH_EYES, ref pos3, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, new Color(110 - num33 * 10, 110 - num33 * 10, 110 - num33 * 10, 110 - num33 * 10), Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.WRAITH_EYES, ref pos, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, new Color(255, 255, 255, 255), Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							for (int num33 = 1; num33 < 10; num33++)
+							{
+								Vector2 pos3 = pos - Main.NPCSet[num].Velocity * (num33 * 0.5f);
+								SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.WRAITH_EYES, ref pos3, Main.NPCSet[num].FrameY, Main.NPCSet[num].FrameHeight, new Color(110 - num33 * 10, 110 - num33 * 10, 110 - num33 * 10, 110 - num33 * 10), Main.NPCSet[num].Rotation, ref pivot, Main.NPCSet[num].Scale, e);
+							}
+							break;
 						}
-						break;
-					}
 				}
 			}
 		}

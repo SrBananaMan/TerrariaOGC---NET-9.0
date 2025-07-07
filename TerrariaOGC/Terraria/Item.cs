@@ -667,7 +667,7 @@ namespace Terraria
 		}
 
 		public const int MaxNumItemTypes = (int)ID.NUM_TYPES;
-		
+
 		public const uint PotionDelay = 3600u;
 
 		public const uint PotionDelayPhilosopher = 2700u;
@@ -1226,284 +1226,284 @@ namespace Terraria
 
 				switch (Setting)
 				{
-				case -3:
-					return true;
-				case -1:
-					if (((PrefixID >= 7 && PrefixID <= 11) || PrefixID == 22 || PrefixID == 23 || PrefixID == 24 || PrefixID == 29 || PrefixID == 30 || PrefixID == 31 || PrefixID == 39 || PrefixID == 40 || PrefixID == 41 || PrefixID == 47 || PrefixID == 48 || PrefixID == 49 || PrefixID == 56) && Main.Rand.Next(3) != 0)
-					{
-						PrefixID = 0;
-					}
-					break;
+					case -3:
+						return true;
+					case -1:
+						if (((PrefixID >= 7 && PrefixID <= 11) || PrefixID == 22 || PrefixID == 23 || PrefixID == 24 || PrefixID == 29 || PrefixID == 30 || PrefixID == 31 || PrefixID == 39 || PrefixID == 40 || PrefixID == 41 || PrefixID == 47 || PrefixID == 48 || PrefixID == 49 || PrefixID == 56) && Main.Rand.Next(3) != 0)
+						{
+							PrefixID = 0;
+						}
+						break;
 				}
 				switch (PrefixID)
 				{
-				case 1:
-					PrefixScale = 1.12f;
-					break;
-				case 2:
-					PrefixScale = 1.18f;
-					break;
-				case 3:
-					PrefixDamage = 1.05f;
-					PrefixCrit = 2;
-					PrefixScale = 1.05f;
-					break;
-				case 4:
-					PrefixDamage = 1.1f;
-					PrefixScale = 1.1f;
-					PrefixKB = 1.1f;
-					break;
-				case 5:
-					PrefixDamage = 1.15f;
-					break;
-				case 6:
-					PrefixDamage = 1.1f;
-					break;
-				case 81:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.15f;
-					PrefixCrit = 5;
-					PrefixDelay = 0.9f;
-					PrefixScale = 1.1f;
-					break;
-				case 7:
-					PrefixScale = 0.82f;
-					break;
-				case 8:
-					PrefixKB = 0.85f;
-					PrefixDamage = 0.85f;
-					PrefixScale = 0.87f;
-					break;
-				case 9:
-					PrefixScale = 0.9f;
-					break;
-				case 10:
-					PrefixDamage = 0.85f;
-					break;
-				case 11:
-					PrefixDelay = 1.1f;
-					PrefixKB = 0.9f;
-					PrefixScale = 0.9f;
-					break;
-				case 12:
-					PrefixKB = 1.1f;
-					PrefixDamage = 1.05f;
-					PrefixScale = 1.1f;
-					PrefixDelay = 1.15f;
-					break;
-				case 13:
-					PrefixKB = 0.8f;
-					PrefixDamage = 0.9f;
-					PrefixScale = 1.1f;
-					break;
-				case 14:
-					PrefixKB = 1.15f;
-					PrefixDelay = 1.1f;
-					break;
-				case 15:
-					PrefixKB = 0.9f;
-					PrefixDelay = 0.85f;
-					break;
-				case 16:
-					PrefixDamage = 1.1f;
-					PrefixCrit = 3;
-					break;
-				case 17:
-					PrefixDelay = 0.85f;
-					PrefixFireRate = 1.1f;
-					break;
-				case 18:
-					PrefixDelay = 0.9f;
-					PrefixFireRate = 1.15f;
-					break;
-				case 19:
-					PrefixKB = 1.15f;
-					PrefixFireRate = 1.05f;
-					break;
-				case 20:
-					PrefixKB = 1.05f;
-					PrefixFireRate = 1.05f;
-					PrefixDamage = 1.1f;
-					PrefixDelay = 0.95f;
-					PrefixCrit = 2;
-					break;
-				case 21:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.1f;
-					break;
-				case 82:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.15f;
-					PrefixCrit = 5;
-					PrefixDelay = 0.9f;
-					PrefixFireRate = 1.1f;
-					break;
-				case 22:
-					PrefixKB = 0.9f;
-					PrefixFireRate = 0.9f;
-					PrefixDamage = 0.85f;
-					break;
-				case 23:
-					PrefixDelay = 1.15f;
-					PrefixFireRate = 0.9f;
-					break;
-				case 24:
-					PrefixDelay = 1.1f;
-					PrefixKB = 0.8f;
-					break;
-				case 25:
-					PrefixDelay = 1.1f;
-					PrefixDamage = 1.15f;
-					PrefixCrit = 1;
-					break;
-				case 58:
-					PrefixDelay = 0.85f;
-					PrefixDamage = 0.85f;
-					break;
-				case 26:
-					PrefixManaSave = 0.85f;
-					PrefixDamage = 1.1f;
-					break;
-				case 27:
-					PrefixManaSave = 0.85f;
-					break;
-				case 28:
-					PrefixManaSave = 0.85f;
-					PrefixDamage = 1.15f;
-					PrefixKB = 1.05f;
-					break;
-				case 83:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.15f;
-					PrefixCrit = 5;
-					PrefixDelay = 0.9f;
-					PrefixManaSave = 0.9f;
-					break;
-				case 29:
-					PrefixManaSave = 1.1f;
-					break;
-				case 30:
-					PrefixManaSave = 1.2f;
-					PrefixDamage = 0.9f;
-					break;
-				case 31:
-					PrefixKB = 0.9f;
-					PrefixDamage = 0.9f;
-					break;
-				case 32:
-					PrefixManaSave = 1.15f;
-					PrefixDamage = 1.1f;
-					break;
-				case 33:
-					PrefixManaSave = 1.1f;
-					PrefixKB = 1.1f;
-					PrefixDelay = 0.9f;
-					break;
-				case 34:
-					PrefixManaSave = 0.9f;
-					PrefixKB = 1.1f;
-					PrefixDelay = 1.1f;
-					PrefixDamage = 1.1f;
-					break;
-				case 35:
-					PrefixManaSave = 1.2f;
-					PrefixDamage = 1.15f;
-					PrefixKB = 1.15f;
-					break;
-				case 52:
-					PrefixManaSave = 0.9f;
-					PrefixDamage = 0.9f;
-					PrefixDelay = 0.9f;
-					break;
-				case 36:
-					PrefixCrit = 3;
-					break;
-				case 37:
-					PrefixDamage = 1.1f;
-					PrefixCrit = 3;
-					PrefixKB = 1.1f;
-					break;
-				case 38:
-					PrefixKB = 1.15f;
-					break;
-				case 53:
-					PrefixDamage = 1.1f;
-					break;
-				case 54:
-					PrefixKB = 1.15f;
-					break;
-				case 55:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.05f;
-					break;
-				case 59:
-					PrefixKB = 1.15f;
-					PrefixDamage = 1.15f;
-					PrefixCrit = 5;
-					break;
-				case 60:
-					PrefixDamage = 1.15f;
-					PrefixCrit = 5;
-					break;
-				case 61:
-					PrefixCrit = 5;
-					break;
-				case 39:
-					PrefixDamage = 0.7f;
-					PrefixKB = 0.8f;
-					break;
-				case 40:
-					PrefixDamage = 0.85f;
-					break;
-				case 56:
-					PrefixKB = 0.8f;
-					break;
-				case 41:
-					PrefixKB = 0.85f;
-					PrefixDamage = 0.9f;
-					break;
-				case 57:
-					PrefixKB = 0.9f;
-					PrefixDamage = 1.18f;
-					break;
-				case 42:
-					PrefixDelay = 0.9f;
-					break;
-				case 43:
-					PrefixDamage = 1.1f;
-					PrefixDelay = 0.9f;
-					break;
-				case 44:
-					PrefixDelay = 0.9f;
-					PrefixCrit = 3;
-					break;
-				case 45:
-					PrefixDelay = 0.95f;
-					break;
-				case 46:
-					PrefixCrit = 3;
-					PrefixDelay = 0.94f;
-					PrefixDamage = 1.07f;
-					break;
-				case 47:
-					PrefixDelay = 1.15f;
-					break;
-				case 48:
-					PrefixDelay = 1.2f;
-					break;
-				case 49:
-					PrefixDelay = 1.08f;
-					break;
-				case 50:
-					PrefixDamage = 0.8f;
-					PrefixDelay = 1.15f;
-					break;
-				case 51:
-					PrefixKB = 0.9f;
-					PrefixDelay = 0.9f;
-					PrefixDamage = 1.05f;
-					PrefixCrit = 2;
-					break;
+					case 1:
+						PrefixScale = 1.12f;
+						break;
+					case 2:
+						PrefixScale = 1.18f;
+						break;
+					case 3:
+						PrefixDamage = 1.05f;
+						PrefixCrit = 2;
+						PrefixScale = 1.05f;
+						break;
+					case 4:
+						PrefixDamage = 1.1f;
+						PrefixScale = 1.1f;
+						PrefixKB = 1.1f;
+						break;
+					case 5:
+						PrefixDamage = 1.15f;
+						break;
+					case 6:
+						PrefixDamage = 1.1f;
+						break;
+					case 81:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.15f;
+						PrefixCrit = 5;
+						PrefixDelay = 0.9f;
+						PrefixScale = 1.1f;
+						break;
+					case 7:
+						PrefixScale = 0.82f;
+						break;
+					case 8:
+						PrefixKB = 0.85f;
+						PrefixDamage = 0.85f;
+						PrefixScale = 0.87f;
+						break;
+					case 9:
+						PrefixScale = 0.9f;
+						break;
+					case 10:
+						PrefixDamage = 0.85f;
+						break;
+					case 11:
+						PrefixDelay = 1.1f;
+						PrefixKB = 0.9f;
+						PrefixScale = 0.9f;
+						break;
+					case 12:
+						PrefixKB = 1.1f;
+						PrefixDamage = 1.05f;
+						PrefixScale = 1.1f;
+						PrefixDelay = 1.15f;
+						break;
+					case 13:
+						PrefixKB = 0.8f;
+						PrefixDamage = 0.9f;
+						PrefixScale = 1.1f;
+						break;
+					case 14:
+						PrefixKB = 1.15f;
+						PrefixDelay = 1.1f;
+						break;
+					case 15:
+						PrefixKB = 0.9f;
+						PrefixDelay = 0.85f;
+						break;
+					case 16:
+						PrefixDamage = 1.1f;
+						PrefixCrit = 3;
+						break;
+					case 17:
+						PrefixDelay = 0.85f;
+						PrefixFireRate = 1.1f;
+						break;
+					case 18:
+						PrefixDelay = 0.9f;
+						PrefixFireRate = 1.15f;
+						break;
+					case 19:
+						PrefixKB = 1.15f;
+						PrefixFireRate = 1.05f;
+						break;
+					case 20:
+						PrefixKB = 1.05f;
+						PrefixFireRate = 1.05f;
+						PrefixDamage = 1.1f;
+						PrefixDelay = 0.95f;
+						PrefixCrit = 2;
+						break;
+					case 21:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.1f;
+						break;
+					case 82:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.15f;
+						PrefixCrit = 5;
+						PrefixDelay = 0.9f;
+						PrefixFireRate = 1.1f;
+						break;
+					case 22:
+						PrefixKB = 0.9f;
+						PrefixFireRate = 0.9f;
+						PrefixDamage = 0.85f;
+						break;
+					case 23:
+						PrefixDelay = 1.15f;
+						PrefixFireRate = 0.9f;
+						break;
+					case 24:
+						PrefixDelay = 1.1f;
+						PrefixKB = 0.8f;
+						break;
+					case 25:
+						PrefixDelay = 1.1f;
+						PrefixDamage = 1.15f;
+						PrefixCrit = 1;
+						break;
+					case 58:
+						PrefixDelay = 0.85f;
+						PrefixDamage = 0.85f;
+						break;
+					case 26:
+						PrefixManaSave = 0.85f;
+						PrefixDamage = 1.1f;
+						break;
+					case 27:
+						PrefixManaSave = 0.85f;
+						break;
+					case 28:
+						PrefixManaSave = 0.85f;
+						PrefixDamage = 1.15f;
+						PrefixKB = 1.05f;
+						break;
+					case 83:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.15f;
+						PrefixCrit = 5;
+						PrefixDelay = 0.9f;
+						PrefixManaSave = 0.9f;
+						break;
+					case 29:
+						PrefixManaSave = 1.1f;
+						break;
+					case 30:
+						PrefixManaSave = 1.2f;
+						PrefixDamage = 0.9f;
+						break;
+					case 31:
+						PrefixKB = 0.9f;
+						PrefixDamage = 0.9f;
+						break;
+					case 32:
+						PrefixManaSave = 1.15f;
+						PrefixDamage = 1.1f;
+						break;
+					case 33:
+						PrefixManaSave = 1.1f;
+						PrefixKB = 1.1f;
+						PrefixDelay = 0.9f;
+						break;
+					case 34:
+						PrefixManaSave = 0.9f;
+						PrefixKB = 1.1f;
+						PrefixDelay = 1.1f;
+						PrefixDamage = 1.1f;
+						break;
+					case 35:
+						PrefixManaSave = 1.2f;
+						PrefixDamage = 1.15f;
+						PrefixKB = 1.15f;
+						break;
+					case 52:
+						PrefixManaSave = 0.9f;
+						PrefixDamage = 0.9f;
+						PrefixDelay = 0.9f;
+						break;
+					case 36:
+						PrefixCrit = 3;
+						break;
+					case 37:
+						PrefixDamage = 1.1f;
+						PrefixCrit = 3;
+						PrefixKB = 1.1f;
+						break;
+					case 38:
+						PrefixKB = 1.15f;
+						break;
+					case 53:
+						PrefixDamage = 1.1f;
+						break;
+					case 54:
+						PrefixKB = 1.15f;
+						break;
+					case 55:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.05f;
+						break;
+					case 59:
+						PrefixKB = 1.15f;
+						PrefixDamage = 1.15f;
+						PrefixCrit = 5;
+						break;
+					case 60:
+						PrefixDamage = 1.15f;
+						PrefixCrit = 5;
+						break;
+					case 61:
+						PrefixCrit = 5;
+						break;
+					case 39:
+						PrefixDamage = 0.7f;
+						PrefixKB = 0.8f;
+						break;
+					case 40:
+						PrefixDamage = 0.85f;
+						break;
+					case 56:
+						PrefixKB = 0.8f;
+						break;
+					case 41:
+						PrefixKB = 0.85f;
+						PrefixDamage = 0.9f;
+						break;
+					case 57:
+						PrefixKB = 0.9f;
+						PrefixDamage = 1.18f;
+						break;
+					case 42:
+						PrefixDelay = 0.9f;
+						break;
+					case 43:
+						PrefixDamage = 1.1f;
+						PrefixDelay = 0.9f;
+						break;
+					case 44:
+						PrefixDelay = 0.9f;
+						PrefixCrit = 3;
+						break;
+					case 45:
+						PrefixDelay = 0.95f;
+						break;
+					case 46:
+						PrefixCrit = 3;
+						PrefixDelay = 0.94f;
+						PrefixDamage = 1.07f;
+						break;
+					case 47:
+						PrefixDelay = 1.15f;
+						break;
+					case 48:
+						PrefixDelay = 1.2f;
+						break;
+					case 49:
+						PrefixDelay = 1.08f;
+						break;
+					case 50:
+						PrefixDamage = 0.8f;
+						PrefixDelay = 1.15f;
+						break;
+					case 51:
+						PrefixKB = 0.9f;
+						PrefixDelay = 0.9f;
+						PrefixDamage = 1.05f;
+						PrefixCrit = 2;
+						break;
 				}
 				if (PrefixDamage != 1f && Math.Round(Damage * PrefixDamage) == Damage)
 				{
@@ -1543,33 +1543,33 @@ namespace Terraria
 			float FinalMultiplier = PrefixDamage * (2f - PrefixDelay) * (2f - PrefixManaSave) * PrefixScale * PrefixKB * PrefixFireRate * (1f + Crit * 0.02f);
 			switch (PrefixID)
 			{
-			case 62:
-			case 69:
-			case 73:
-			case 77:
-				FinalMultiplier *= 1.05f;
-				break;
-			case 63:
-			case 67:
-			case 70:
-			case 74:
-			case 78:
-				FinalMultiplier *= 1.1f;
-				break;
-			case 64:
-			case 66:
-			case 71:
-			case 75:
-			case 79:
-				FinalMultiplier *= 1.15f;
-				break;
-			case 65:
-			case 68:
-			case 72:
-			case 76:
-			case 80:
-				FinalMultiplier *= 1.2f;
-				break;
+				case 62:
+				case 69:
+				case 73:
+				case 77:
+					FinalMultiplier *= 1.05f;
+					break;
+				case 63:
+				case 67:
+				case 70:
+				case 74:
+				case 78:
+					FinalMultiplier *= 1.1f;
+					break;
+				case 64:
+				case 66:
+				case 71:
+				case 75:
+				case 79:
+					FinalMultiplier *= 1.15f;
+					break;
+				case 65:
+				case 68:
+				case 72:
+				case 76:
+				case 80:
+					FinalMultiplier *= 1.2f;
+					break;
 			}
 			PrefixType = (byte)PrefixID;
 			if (FinalMultiplier >= 1.2f)
@@ -1616,247 +1616,247 @@ namespace Terraria
 			bool IsNotMaterial = false;
 			switch (ItemName)
 			{
-			case "Gold Pickaxe":
-				SetDefaults((int)ID.IRON_PICKAXE);
-				Colour = new Color(210, 190, 0, 100);
-				UseTime = 17;
-				PickPower = 55;
-				UseAnimation = 20;
-				Scale = 1.05f;
-				Damage = 6;
-				Value = 10000;
-				NetID = -1;
-				break;
-			case "Gold Broadsword":
-				SetDefaults((int)ID.IRON_BROADSWORD);
-				Colour = new Color(210, 190, 0, 100);
-				UseAnimation = 20;
-				Damage = 13;
-				Scale = 1.05f;
-				Value = 9000;
-				NetID = -2;
-				break;
-			case "Gold Shortsword":
-				SetDefaults((int)ID.IRON_SHORTSWORD);
-				Colour = new Color(210, 190, 0, 100);
-				Damage = 11;
-				UseAnimation = 11;
-				Scale = 0.95f;
-				Value = 7000;
-				NetID = -3;
-				break;
-			case "Gold Axe":
-				SetDefaults((int)ID.IRON_AXE);
-				Colour = new Color(210, 190, 0, 100);
-				UseTime = 18;
-				AxePower = 11;
-				UseAnimation = 26;
-				Scale = 1.15f;
-				Damage = 7;
-				Value = 8000;
-				NetID = -4;
-				break;
-			case "Gold Hammer":
-				SetDefaults((int)ID.IRON_HAMMER);
-				Colour = new Color(210, 190, 0, 100);
-				UseAnimation = 28;
-				UseTime = 23;
-				Scale = 1.25f;
-				Damage = 9;
-				HammerPower = 55;
-				Value = 8000;
-				NetID = -5;
-				break;
-			case "Gold Bow":
-				SetDefaults((int)ID.IRON_BOW);
-				UseAnimation = 26;
-				UseTime = 26;
-				Colour = new Color(210, 190, 0, 100);
-				Damage = 11;
-				Value = 7000;
-				NetID = -6;
-				break;
-			case "Silver Pickaxe":
-				SetDefaults((int)ID.IRON_PICKAXE);
-				Colour = new Color(180, 180, 180, 100);
-				UseTime = 11;
-				PickPower = 45;
-				UseAnimation = 19;
-				Scale = 1.05f;
-				Damage = 6;
-				Value = 5000;
-				NetID = -7;
-				break;
-			case "Silver Broadsword":
-				SetDefaults((int)ID.IRON_BROADSWORD);
-				Colour = new Color(180, 180, 180, 100);
-				UseAnimation = 21;
-				Damage = 11;
-				Value = 4500;
-				NetID = -8;
-				break;
-			case "Silver Shortsword":
-				SetDefaults((int)ID.IRON_SHORTSWORD);
-				Colour = new Color(180, 180, 180, 100);
-				Damage = 9;
-				UseAnimation = 12;
-				Scale = 0.95f;
-				Value = 3500;
-				NetID = -9;
-				break;
-			case "Silver Axe":
-				SetDefaults((int)ID.IRON_AXE);
-				Colour = new Color(180, 180, 180, 100);
-				UseTime = 18;
-				AxePower = 10;
-				UseAnimation = 26;
-				Scale = 1.15f;
-				Damage = 6;
-				Value = 4000;
-				NetID = -10;
-				break;
-			case "Silver Hammer":
-				SetDefaults((int)ID.IRON_HAMMER);
-				Colour = new Color(180, 180, 180, 100);
-				UseAnimation = 29;
-				UseTime = 19;
-				Scale = 1.25f;
-				Damage = 9;
-				HammerPower = 45;
-				Value = 4000;
-				NetID = -11;
-				break;
-			case "Silver Bow":
-				SetDefaults((int)ID.IRON_BOW);
-				UseAnimation = 27;
-				UseTime = 27;
-				Colour = new Color(180, 180, 180, 100);
-				Damage = 9;
-				Value = 3500;
-				NetID = -12;
-				break;
-			case "Copper Pickaxe":
-				SetDefaults((int)ID.IRON_PICKAXE);
-				Colour = new Color(180, 100, 45, 80);
-				UseTime = 15;
-				PickPower = 35;
-				UseAnimation = 23;
-				Damage = 4;
-				Scale = 0.9f;
-				TileBoost = -1;
-				Value = 500;
-				NetID = -13;
-				break;
-			case "Copper Broadsword":
-				SetDefaults((int)ID.IRON_BROADSWORD);
-				Colour = new Color(180, 100, 45, 80);
-				UseAnimation = 23;
-				Damage = 8;
-				Value = 450;
-				NetID = -14;
-				break;
-			case "Copper Shortsword":
-				SetDefaults((int)ID.IRON_SHORTSWORD);
-				Colour = new Color(180, 100, 45, 80);
-				Damage = 5;
-				UseAnimation = 13;
-				Scale = 0.8f;
-				Value = 350;
-				NetID = -15;
-				break;
-			case "Copper Axe":
-				SetDefaults((int)ID.IRON_AXE);
-				Colour = new Color(180, 100, 45, 80);
-				UseTime = 21;
-				AxePower = 7;
-				UseAnimation = 30;
-				Scale = 1f;
-				Damage = 3;
-				TileBoost = -1;
-				Value = 400;
-				NetID = -16;
-				break;
-			case "Copper Hammer":
-				SetDefaults((int)ID.IRON_HAMMER);
-				Colour = new Color(180, 100, 45, 80);
-				UseAnimation = 33;
-				UseTime = 23;
-				Scale = 1.1f;
-				Damage = 4;
-				HammerPower = 35;
-				TileBoost = -1;
-				Value = 400;
-				NetID = -17;
-				break;
-			case "Copper Bow":
-				SetDefaults((int)ID.IRON_BOW);
-				UseAnimation = 29;
-				UseTime = 29;
-				Colour = new Color(180, 100, 45, 80);
-				Damage = 6;
-				Value = 350;
-				NetID = -18;
-				break;
-			case "Blue Phasesaber":
-				SetDefaults((int)ID.BLUE_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -19;
-				break;
-			case "Red Phasesaber":
-				SetDefaults((int)ID.RED_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -20;
-				break;
-			case "Green Phasesaber":
-				SetDefaults((int)ID.GREEN_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -21;
-				break;
-			case "Purple Phasesaber":
-				SetDefaults((int)ID.PURPLE_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -22;
-				break;
-			case "White Phasesaber":
-				SetDefaults((int)ID.WHITE_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -23;
-				break;
-			case "Yellow Phasesaber":
-				SetDefaults((int)ID.YELLOW_PHASEBLADE);
-				Damage = 41;
-				Scale = 1.15f;
-				IsNotMaterial = true;
-				AutoReuse = true;
-				CanUseTurn = true;
-				Rarity = 4;
-				NetID = -24;
-				break;
+				case "Gold Pickaxe":
+					SetDefaults((int)ID.IRON_PICKAXE);
+					Colour = new Color(210, 190, 0, 100);
+					UseTime = 17;
+					PickPower = 55;
+					UseAnimation = 20;
+					Scale = 1.05f;
+					Damage = 6;
+					Value = 10000;
+					NetID = -1;
+					break;
+				case "Gold Broadsword":
+					SetDefaults((int)ID.IRON_BROADSWORD);
+					Colour = new Color(210, 190, 0, 100);
+					UseAnimation = 20;
+					Damage = 13;
+					Scale = 1.05f;
+					Value = 9000;
+					NetID = -2;
+					break;
+				case "Gold Shortsword":
+					SetDefaults((int)ID.IRON_SHORTSWORD);
+					Colour = new Color(210, 190, 0, 100);
+					Damage = 11;
+					UseAnimation = 11;
+					Scale = 0.95f;
+					Value = 7000;
+					NetID = -3;
+					break;
+				case "Gold Axe":
+					SetDefaults((int)ID.IRON_AXE);
+					Colour = new Color(210, 190, 0, 100);
+					UseTime = 18;
+					AxePower = 11;
+					UseAnimation = 26;
+					Scale = 1.15f;
+					Damage = 7;
+					Value = 8000;
+					NetID = -4;
+					break;
+				case "Gold Hammer":
+					SetDefaults((int)ID.IRON_HAMMER);
+					Colour = new Color(210, 190, 0, 100);
+					UseAnimation = 28;
+					UseTime = 23;
+					Scale = 1.25f;
+					Damage = 9;
+					HammerPower = 55;
+					Value = 8000;
+					NetID = -5;
+					break;
+				case "Gold Bow":
+					SetDefaults((int)ID.IRON_BOW);
+					UseAnimation = 26;
+					UseTime = 26;
+					Colour = new Color(210, 190, 0, 100);
+					Damage = 11;
+					Value = 7000;
+					NetID = -6;
+					break;
+				case "Silver Pickaxe":
+					SetDefaults((int)ID.IRON_PICKAXE);
+					Colour = new Color(180, 180, 180, 100);
+					UseTime = 11;
+					PickPower = 45;
+					UseAnimation = 19;
+					Scale = 1.05f;
+					Damage = 6;
+					Value = 5000;
+					NetID = -7;
+					break;
+				case "Silver Broadsword":
+					SetDefaults((int)ID.IRON_BROADSWORD);
+					Colour = new Color(180, 180, 180, 100);
+					UseAnimation = 21;
+					Damage = 11;
+					Value = 4500;
+					NetID = -8;
+					break;
+				case "Silver Shortsword":
+					SetDefaults((int)ID.IRON_SHORTSWORD);
+					Colour = new Color(180, 180, 180, 100);
+					Damage = 9;
+					UseAnimation = 12;
+					Scale = 0.95f;
+					Value = 3500;
+					NetID = -9;
+					break;
+				case "Silver Axe":
+					SetDefaults((int)ID.IRON_AXE);
+					Colour = new Color(180, 180, 180, 100);
+					UseTime = 18;
+					AxePower = 10;
+					UseAnimation = 26;
+					Scale = 1.15f;
+					Damage = 6;
+					Value = 4000;
+					NetID = -10;
+					break;
+				case "Silver Hammer":
+					SetDefaults((int)ID.IRON_HAMMER);
+					Colour = new Color(180, 180, 180, 100);
+					UseAnimation = 29;
+					UseTime = 19;
+					Scale = 1.25f;
+					Damage = 9;
+					HammerPower = 45;
+					Value = 4000;
+					NetID = -11;
+					break;
+				case "Silver Bow":
+					SetDefaults((int)ID.IRON_BOW);
+					UseAnimation = 27;
+					UseTime = 27;
+					Colour = new Color(180, 180, 180, 100);
+					Damage = 9;
+					Value = 3500;
+					NetID = -12;
+					break;
+				case "Copper Pickaxe":
+					SetDefaults((int)ID.IRON_PICKAXE);
+					Colour = new Color(180, 100, 45, 80);
+					UseTime = 15;
+					PickPower = 35;
+					UseAnimation = 23;
+					Damage = 4;
+					Scale = 0.9f;
+					TileBoost = -1;
+					Value = 500;
+					NetID = -13;
+					break;
+				case "Copper Broadsword":
+					SetDefaults((int)ID.IRON_BROADSWORD);
+					Colour = new Color(180, 100, 45, 80);
+					UseAnimation = 23;
+					Damage = 8;
+					Value = 450;
+					NetID = -14;
+					break;
+				case "Copper Shortsword":
+					SetDefaults((int)ID.IRON_SHORTSWORD);
+					Colour = new Color(180, 100, 45, 80);
+					Damage = 5;
+					UseAnimation = 13;
+					Scale = 0.8f;
+					Value = 350;
+					NetID = -15;
+					break;
+				case "Copper Axe":
+					SetDefaults((int)ID.IRON_AXE);
+					Colour = new Color(180, 100, 45, 80);
+					UseTime = 21;
+					AxePower = 7;
+					UseAnimation = 30;
+					Scale = 1f;
+					Damage = 3;
+					TileBoost = -1;
+					Value = 400;
+					NetID = -16;
+					break;
+				case "Copper Hammer":
+					SetDefaults((int)ID.IRON_HAMMER);
+					Colour = new Color(180, 100, 45, 80);
+					UseAnimation = 33;
+					UseTime = 23;
+					Scale = 1.1f;
+					Damage = 4;
+					HammerPower = 35;
+					TileBoost = -1;
+					Value = 400;
+					NetID = -17;
+					break;
+				case "Copper Bow":
+					SetDefaults((int)ID.IRON_BOW);
+					UseAnimation = 29;
+					UseTime = 29;
+					Colour = new Color(180, 100, 45, 80);
+					Damage = 6;
+					Value = 350;
+					NetID = -18;
+					break;
+				case "Blue Phasesaber":
+					SetDefaults((int)ID.BLUE_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -19;
+					break;
+				case "Red Phasesaber":
+					SetDefaults((int)ID.RED_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -20;
+					break;
+				case "Green Phasesaber":
+					SetDefaults((int)ID.GREEN_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -21;
+					break;
+				case "Purple Phasesaber":
+					SetDefaults((int)ID.PURPLE_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -22;
+					break;
+				case "White Phasesaber":
+					SetDefaults((int)ID.WHITE_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -23;
+					break;
+				case "Yellow Phasesaber":
+					SetDefaults((int)ID.YELLOW_PHASEBLADE);
+					Damage = 41;
+					Scale = 1.15f;
+					IsNotMaterial = true;
+					AutoReuse = true;
+					CanUseTurn = true;
+					Rarity = 4;
+					NetID = -24;
+					break;
 			}
 			if (IsNotMaterial)
 			{
@@ -1898,78 +1898,78 @@ namespace Terraria
 			{
 				switch (Type)
 				{
-				case -1:
-					SetDefaults("Gold Pickaxe");
-					break;
-				case -2:
-					SetDefaults("Gold Broadsword");
-					break;
-				case -3:
-					SetDefaults("Gold Shortsword");
-					break;
-				case -4:
-					SetDefaults("Gold Axe");
-					break;
-				case -5:
-					SetDefaults("Gold Hammer");
-					break;
-				case -6:
-					SetDefaults("Gold Bow");
-					break;
-				case -7:
-					SetDefaults("Silver Pickaxe");
-					break;
-				case -8:
-					SetDefaults("Silver Broadsword");
-					break;
-				case -9:
-					SetDefaults("Silver Shortsword");
-					break;
-				case -10:
-					SetDefaults("Silver Axe");
-					break;
-				case -11:
-					SetDefaults("Silver Hammer");
-					break;
-				case -12:
-					SetDefaults("Silver Bow");
-					break;
-				case -13:
-					SetDefaults("Copper Pickaxe");
-					break;
-				case -14:
-					SetDefaults("Copper Broadsword");
-					break;
-				case -15:
-					SetDefaults("Copper Shortsword");
-					break;
-				case -16:
-					SetDefaults("Copper Axe");
-					break;
-				case -17:
-					SetDefaults("Copper Hammer");
-					break;
-				case -18:
-					SetDefaults("Copper Bow");
-					break;
-				case -19:
-					SetDefaults("Blue Phasesaber");
-					break;
-				case -20:
-					SetDefaults("Red Phasesaber");
-					break;
-				case -21:
-					SetDefaults("Green Phasesaber");
-					break;
-				case -22:
-					SetDefaults("Purple Phasesaber");
-					break;
-				case -23:
-					SetDefaults("White Phasesaber");
-					break;
-				case -24:
-					SetDefaults("Yellow Phasesaber");
-					break;
+					case -1:
+						SetDefaults("Gold Pickaxe");
+						break;
+					case -2:
+						SetDefaults("Gold Broadsword");
+						break;
+					case -3:
+						SetDefaults("Gold Shortsword");
+						break;
+					case -4:
+						SetDefaults("Gold Axe");
+						break;
+					case -5:
+						SetDefaults("Gold Hammer");
+						break;
+					case -6:
+						SetDefaults("Gold Bow");
+						break;
+					case -7:
+						SetDefaults("Silver Pickaxe");
+						break;
+					case -8:
+						SetDefaults("Silver Broadsword");
+						break;
+					case -9:
+						SetDefaults("Silver Shortsword");
+						break;
+					case -10:
+						SetDefaults("Silver Axe");
+						break;
+					case -11:
+						SetDefaults("Silver Hammer");
+						break;
+					case -12:
+						SetDefaults("Silver Bow");
+						break;
+					case -13:
+						SetDefaults("Copper Pickaxe");
+						break;
+					case -14:
+						SetDefaults("Copper Broadsword");
+						break;
+					case -15:
+						SetDefaults("Copper Shortsword");
+						break;
+					case -16:
+						SetDefaults("Copper Axe");
+						break;
+					case -17:
+						SetDefaults("Copper Hammer");
+						break;
+					case -18:
+						SetDefaults("Copper Bow");
+						break;
+					case -19:
+						SetDefaults("Blue Phasesaber");
+						break;
+					case -20:
+						SetDefaults("Red Phasesaber");
+						break;
+					case -21:
+						SetDefaults("Green Phasesaber");
+						break;
+					case -22:
+						SetDefaults("Purple Phasesaber");
+						break;
+					case -23:
+						SetDefaults("White Phasesaber");
+						break;
+					case -24:
+						SetDefaults("Yellow Phasesaber");
+						break;
 				}
 			}
 			else
@@ -9588,7 +9588,7 @@ namespace Terraria
 					Width = 18;
 					Height = 18;
 					LegSlot = 29;
-					Value = 250000; 
+					Value = 250000;
 					IsVanity = true;
 					break;
 				case ID.CAMPFIRE:
@@ -9879,7 +9879,7 @@ namespace Terraria
 #if VERSION_103 || VERSION_FINAL // BUG: Souls of Blight don't float in versions prior to the console 1.2 update.
 				if (Type == (int)ID.SOUL_OF_LIGHT || Type == (int)ID.SOUL_OF_NIGHT || Type == (int)ID.SOUL_OF_FRIGHT || Type == (int)ID.SOUL_OF_MIGHT || Type == (int)ID.SOUL_OF_SIGHT || Type == (int)ID.SOUL_OF_FLIGHT || Type == (int)ID.SOUL_OF_BLIGHT)
 #else
-				if (Type == (int)ID.SOUL_OF_LIGHT || Type == (int)ID.SOUL_OF_NIGHT || Type == (int)ID.SOUL_OF_FRIGHT || Type == (int)ID.SOUL_OF_MIGHT || Type == (int)ID.SOUL_OF_SIGHT || Type == (int)ID.SOUL_OF_FLIGHT) 
+				if (Type == (int)ID.SOUL_OF_LIGHT || Type == (int)ID.SOUL_OF_NIGHT || Type == (int)ID.SOUL_OF_FRIGHT || Type == (int)ID.SOUL_OF_MIGHT || Type == (int)ID.SOUL_OF_SIGHT || Type == (int)ID.SOUL_OF_FLIGHT)
 #endif
 				{
 					Velocity.Y *= 0.95f;
@@ -10121,24 +10121,24 @@ namespace Terraria
 					Vector3 TorchLight;
 					switch (Type)
 					{
-					case (int)ID.BLUE_TORCH:
-						TorchLight = new Vector3(0.1f, 0.2f, 1.1f);
-						break;
-					case (int)ID.RED_TORCH:
-						TorchLight = new Vector3(1f, 0.1f, 0.1f);
-						break;
-					case (int)ID.GREEN_TORCH:
-						TorchLight = new Vector3(0f, 1f, 0.1f);
-						break;
-					case (int)ID.PURPLE_TORCH:
-						TorchLight = new Vector3(0.9f, 0f, 0.9f);
-						break;
-					case (int)ID.WHITE_TORCH:
-						TorchLight = new Vector3(1.3f, 1.3f, 1.3f);
-						break;
-					default: // Yellow Torch
-						TorchLight = new Vector3(0.9f, 0.9f, 0f);
-						break;
+						case (int)ID.BLUE_TORCH:
+							TorchLight = new Vector3(0.1f, 0.2f, 1.1f);
+							break;
+						case (int)ID.RED_TORCH:
+							TorchLight = new Vector3(1f, 0.1f, 0.1f);
+							break;
+						case (int)ID.GREEN_TORCH:
+							TorchLight = new Vector3(0f, 1f, 0.1f);
+							break;
+						case (int)ID.PURPLE_TORCH:
+							TorchLight = new Vector3(0.9f, 0f, 0.9f);
+							break;
+						case (int)ID.WHITE_TORCH:
+							TorchLight = new Vector3(1.3f, 1.3f, 1.3f);
+							break;
+						default: // Yellow Torch
+							TorchLight = new Vector3(0.9f, 0.9f, 0f);
+							break;
 					}
 					Lighting.AddLight((int)Position.X + (Width >> 1) >> 4, (int)Position.Y + (Height >> 1) >> 4, TorchLight);
 				}

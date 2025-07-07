@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Terraria.HowToPlay
 {
@@ -68,13 +68,13 @@ namespace Terraria.HowToPlay
 		public static HowToPlayLayout StackedLayout(string Text, int DialogWidth, int DialogHeight, Texture2D Image, int Padding = 20)
 		{
 #if !USE_ORIGINAL_CODE
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				DialogWidth += 15; // 1080p has the width as 675 and not 660
 			}
 #endif
 			int TextBGBorderWidth = Assets.TextBGBorderWidth;
-			CompiledText CompText = new CompiledText(Text, DialogWidth - TextBGBorderWidth * 2, Terraria.UI.BoldSmallTextStyle); 
+			CompiledText CompText = new CompiledText(Text, DialogWidth - TextBGBorderWidth * 2, Terraria.UI.BoldSmallTextStyle);
 			DialogHeight = Math.Min(CompText.Height + Terraria.UI.BoldSmallFont.LineSpacing + TextBGBorderWidth * 2, DialogHeight);
 			int RectX = MaxWidth - CompText.Width >> 1;
 			int RectY = MaxHeight - (DialogHeight + Padding + Image.Height) >> 1;

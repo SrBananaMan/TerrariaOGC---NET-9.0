@@ -1,7 +1,7 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Net;
+using System;
 
 namespace Terraria
 {
@@ -287,8 +287,8 @@ namespace Terraria
 			light = 0f;
 			penetrate = 1;
 			tileCollide = true;
-			position = default(Vector2);
-			velocity = default(Vector2);
+			position = default;
+			velocity = default;
 			aiStyle = 0;
 			alpha = 0;
 			type = (byte)Type;
@@ -510,7 +510,7 @@ namespace Terraria
 				height = 4;
 				aiStyle = 13;
 				penetrate = -1;
-				alpha =	255;
+				alpha = 255;
 				ranged = true;
 			}
 			else if (type == 24)
@@ -1346,7 +1346,7 @@ namespace Terraria
 				aiStyle = 1;
 				penetrate = 1;
 				light = 0.5f;
-				alpha =	255;
+				alpha = 255;
 				maxUpdates = 1;
 				scale = 1.2f;
 				timeLeft = 600;
@@ -1532,15 +1532,15 @@ namespace Terraria
 					{
 						switch (Type)
 						{
-						case 29:
-							ptr->timeLeft = 300;
-							break;
-						case 28:
-						case 30:
-						case 37:
-						case 75:
-							ptr->timeLeft = 180;
-							break;
+							case 29:
+								ptr->timeLeft = 300;
+								break;
+							case 28:
+							case 30:
+							case 37:
+							case 75:
+								ptr->timeLeft = 180;
+								break;
 						}
 						if (send)
 						{
@@ -1578,15 +1578,15 @@ namespace Terraria
 					{
 						switch (newType)
 						{
-						case 29:
-							ptr->timeLeft = 300;
-							break;
-						case 28:
-						case 30:
-						case 37:
-						case 75:
-							ptr->timeLeft = 180;
-							break;
+							case 29:
+								ptr->timeLeft = 300;
+								break;
+							case 28:
+							case 30:
+							case 37:
+							case 75:
+								ptr->timeLeft = 180;
+								break;
 						}
 					}
 					return (int)num;
@@ -1965,90 +1965,90 @@ namespace Terraria
 				}
 				switch (aiStyle)
 				{
-				case 1:
-					ArrowAI();
-					break;
-				case 2:
-					ShurikenAI();
-					break;
-				case 3:
-					BoomerangAI();
-					break;
-				case 4:
-					VilethornAI();
-					break;
-				case 5:
-					StarfuryAI();
-					break;
-				case 6:
-					PowderAI();
-					break;
-				case 7:
-					GrapplingAI();
-					break;
-				case 8:
-					BallOfFireAI();
-					break;
-				case 9:
-					MagicMissileAI();
-					break;
-				case 10:
-					DirtBallAI();
-					break;
-				case 11:
-					OrbOfLightAI();
-					break;
-				case 12:
-					BlueFlameAI();
-					break;
-				case 13:
-					HarpoonAI();
-					break;
-				case 14:
-					SpikyBallAI();
-					break;
-				case 15:
-					FlailAI();
-					break;
-				case 16:
-					BombAI();
-					break;
-				case 17:
-					TombstoneAI();
-					break;
-				case 18:
-					DemonSickleAI();
-					break;
-				case 19:
-					SpearAI();
-					break;
-				case 20:
-					ChainsawAI();
-					break;
-				case 21:
-					NoteAI();
-					break;
-				case 22:
-					IceBlockAI();
-					break;
-				case 23:
-					FlameAI();
-					break;
-				case 24:
-					CrystalShardAI();
-					break;
-				case 25:
-					BoulderAI();
-					break;
-				case 26:
-					PetAI();
-					break;
-				case 27:
-					FairyAI();
-					break;
-				case 28:
-					FlyingPetAI();
-					break;
+					case 1:
+						ArrowAI();
+						break;
+					case 2:
+						ShurikenAI();
+						break;
+					case 3:
+						BoomerangAI();
+						break;
+					case 4:
+						VilethornAI();
+						break;
+					case 5:
+						StarfuryAI();
+						break;
+					case 6:
+						PowderAI();
+						break;
+					case 7:
+						GrapplingAI();
+						break;
+					case 8:
+						BallOfFireAI();
+						break;
+					case 9:
+						MagicMissileAI();
+						break;
+					case 10:
+						DirtBallAI();
+						break;
+					case 11:
+						OrbOfLightAI();
+						break;
+					case 12:
+						BlueFlameAI();
+						break;
+					case 13:
+						HarpoonAI();
+						break;
+					case 14:
+						SpikyBallAI();
+						break;
+					case 15:
+						FlailAI();
+						break;
+					case 16:
+						BombAI();
+						break;
+					case 17:
+						TombstoneAI();
+						break;
+					case 18:
+						DemonSickleAI();
+						break;
+					case 19:
+						SpearAI();
+						break;
+					case 20:
+						ChainsawAI();
+						break;
+					case 21:
+						NoteAI();
+						break;
+					case 22:
+						IceBlockAI();
+						break;
+					case 23:
+						FlameAI();
+						break;
+					case 24:
+						CrystalShardAI();
+						break;
+					case 25:
+						BoulderAI();
+						break;
+					case 26:
+						PetAI();
+						break;
+					case 27:
+						FairyAI();
+						break;
+					case 28:
+						FlyingPetAI();
+						break;
 				}
 				if (owner < Player.MaxNumPlayers && Main.PlayerSet[owner].Active == 0)
 				{
@@ -3172,7 +3172,7 @@ namespace Terraria
 			{
 				if (alpha > 10)
 				{
-                    alpha -= 10;
+					alpha -= 10;
 				}
 				else
 				{
@@ -3183,8 +3183,8 @@ namespace Terraria
 			{
 				if (alpha > 15)
 				{
-                    alpha -= 15;
-                }
+					alpha -= 15;
+				}
 				else
 				{
 					alpha = 0;
@@ -3218,8 +3218,8 @@ namespace Terraria
 							velocity.X = (float)num8;
 							velocity.Y = (float)num9;
 							NetMessage.SendProjectile(num2);
-                        }
-                    }
+						}
+					}
 				}
 				else if (ai0 >= 15f)
 				{
@@ -3279,15 +3279,15 @@ namespace Terraria
 				int num;
 				switch (Main.Rand.Next(3))
 				{
-				case 0:
-					num = 15;
-					break;
-				case 1:
-					num = 57;
-					break;
-				default:
-					num = 58;
-					break;
+					case 0:
+						num = 15;
+						break;
+					case 1:
+						num = 57;
+						break;
+					default:
+						num = 58;
+						break;
 				}
 				Main.DustSet.NewDust(num, ref XYWH, velocity.X * 0.25f, velocity.Y * 0.25f, 150, default, 0.7f);
 			}
@@ -3467,9 +3467,9 @@ namespace Terraria
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					Main.DustSet.NewDust(18, ref XYWH, velocity.X * 0.025f, velocity.Y * 0.025f, 170, default(Color), 1.2);
+					Main.DustSet.NewDust(18, ref XYWH, velocity.X * 0.025f, velocity.Y * 0.025f, 170, default, 1.2);
 				}
-				Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 170, default(Color), 1.1);
+				Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 170, default, 1.1);
 			}
 			else if (alpha >= 255)
 			{
@@ -3528,7 +3528,7 @@ namespace Terraria
 				light = 0.9f;
 				if (Main.Rand.Next(12) == 0)
 				{
-					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.5f, velocity.Y * 0.5f, 150, default(Color), 1.2);
+					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.5f, velocity.Y * 0.5f, 150, default, 1.2);
 				}
 				if (Main.Rand.Next(24) == 0)
 				{
@@ -3578,7 +3578,7 @@ namespace Terraria
 			{
 				num4 = Main.MaxTilesY;
 			}
-			Vector2 vector = default(Vector2);
+			Vector2 vector = default;
 			for (int j = num; j < num2; j++)
 			{
 				for (int k = num3; k < num4; k++)
@@ -3594,42 +3594,42 @@ namespace Terraria
 					{
 						switch (num5)
 						{
-						case 23:
-							Main.TileSet[j, k].Type = 2;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
-						case 25:
-							Main.TileSet[j, k].Type = 1;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
-						case 112:
-							Main.TileSet[j, k].Type = 53;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
+							case 23:
+								Main.TileSet[j, k].Type = 2;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
+							case 25:
+								Main.TileSet[j, k].Type = 1;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
+							case 112:
+								Main.TileSet[j, k].Type = 53;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
 						}
 					}
 					else
 					{
 						switch (num5)
 						{
-						case 109:
-							Main.TileSet[j, k].Type = 2;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
-						case 116:
-							Main.TileSet[j, k].Type = 53;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
-						case 117:
-							Main.TileSet[j, k].Type = 1;
-							WorldGen.SquareTileFrame(j, k);
-							NetMessage.SendTile(j, k);
-							break;
+							case 109:
+								Main.TileSet[j, k].Type = 2;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
+							case 116:
+								Main.TileSet[j, k].Type = 53;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
+							case 117:
+								Main.TileSet[j, k].Type = 1;
+								WorldGen.SquareTileFrame(j, k);
+								NetMessage.SendTile(j, k);
+								break;
 						}
 					}
 				}
@@ -3674,7 +3674,7 @@ namespace Terraria
 				{
 					num7 = Main.MaxTilesY;
 				}
-				Vector2 vector2 = default(Vector2);
+				Vector2 vector2 = default;
 				for (int i = num4; i < num5; i++)
 				{
 					for (int j = num6; j < num7; j++)
@@ -3795,7 +3795,7 @@ namespace Terraria
 					num15 = Main.MaxTilesY;
 				}
 				bool flag = true;
-				Vector2 vector3 = default(Vector2);
+				Vector2 vector3 = default;
 				for (int m = num12; m < num13; m++)
 				{
 					for (int n = num14; n < num15; n++)
@@ -3829,19 +3829,19 @@ namespace Terraria
 			}
 			if (type == 27)
 			{
-				Dust* ptr = Main.DustSet.NewDust((int)(position.X + velocity.X), (int)(position.Y + velocity.Y), width, height, 29, velocity.X, velocity.Y, 100, default(Color), 3.0);
+				Dust* ptr = Main.DustSet.NewDust((int)(position.X + velocity.X), (int)(position.Y + velocity.Y), width, height, 29, velocity.X, velocity.Y, 100, default, 3.0);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
 					if (Main.Rand.Next(12) == 0)
 					{
-						Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default(Color), 1.4f);
+						Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default, 1.4f);
 					}
 				}
 			}
 			else if (type == 95 || type == 96)
 			{
-				Dust* ptr2 = Main.DustSet.NewDust((int)(position.X + velocity.X), (int)(position.Y + velocity.Y), width, height, 75, velocity.X, velocity.Y, 100, default(Color), 3f * scale);
+				Dust* ptr2 = Main.DustSet.NewDust((int)(position.X + velocity.X), (int)(position.Y + velocity.Y), width, height, 75, velocity.X, velocity.Y, 100, default, 3f * scale);
 				if (ptr2 != null)
 				{
 					ptr2->NoGravity = true;
@@ -3851,7 +3851,7 @@ namespace Terraria
 			{
 				for (int i = 0; i < 2; i++)
 				{
-					Dust* ptr3 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default(Color), 2.0);
+					Dust* ptr3 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default, 2.0);
 					if (ptr3 == null)
 					{
 						break;
@@ -3876,13 +3876,13 @@ namespace Terraria
 		{
 			if (type == 34)
 			{
-				Dust* ptr = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default(Color), 3.5);
+				Dust* ptr = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default, 3.5);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
 					ptr->Velocity.X *= 1.4f;
 					ptr->Velocity.Y *= 1.4f;
-					Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default(Color), 1.5);
+					Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 100, default, 1.5);
 				}
 			}
 			else if (type == 79)
@@ -3911,7 +3911,7 @@ namespace Terraria
 					soundDelay = 10;
 					Main.PlaySound(2, XYWH.X, XYWH.Y, 9);
 				}
-				Dust* ptr3 = Main.DustSet.NewDust(15, ref XYWH, 0.0, 0.0, 100, default(Color), 2.0);
+				Dust* ptr3 = Main.DustSet.NewDust(15, ref XYWH, 0.0, 0.0, 100, default, 2.0);
 				if (ptr3 != null)
 				{
 					ptr3->Velocity.X *= 0.3f;
@@ -4033,8 +4033,8 @@ namespace Terraria
 
 			if (type == 34)
 			{
-                Projectile projectile = this;
-                projectile.rotation += 0.3f * direction;
+				Projectile projectile = this;
+				projectile.rotation += 0.3f * direction;
 			}
 			else if (velocity.X != 0f || velocity.Y != 0f)
 			{
@@ -4266,7 +4266,7 @@ namespace Terraria
 				{
 					num = 74;
 				}
-				Dust* ptr = Main.DustSet.NewDust(num, ref XYWH, 0.0, 0.0, 200, default(Color), 0.8f);
+				Dust* ptr = Main.DustSet.NewDust(num, ref XYWH, 0.0, 0.0, 200, default, 0.8f);
 				if (ptr != null)
 				{
 					ptr->Velocity.X *= 0.3f;
@@ -4319,11 +4319,11 @@ namespace Terraria
 			{
 				alpha = 150;
 				light = 0.8f;
-				Dust* ptr = Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default(Color), 2.5);
+				Dust* ptr = Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default, 2.5);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
-					Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default(Color), 1.5);
+					Main.DustSet.NewDust(29, ref XYWH, velocity.X, velocity.Y, 100, default, 1.5);
 				}
 			}
 			else
@@ -4411,7 +4411,7 @@ namespace Terraria
 				{
 					num4 = Main.MaxTilesY;
 				}
-				Vector2 vector = default(Vector2);
+				Vector2 vector = default;
 				for (int i = num; i < num2; i++)
 				{
 					for (int j = num3; j < num4; j++)
@@ -4457,12 +4457,12 @@ namespace Terraria
 			{
 				if (Main.Rand.Next(16) == 0)
 				{
-					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default(Color), 1.3f);
+					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default, 1.3f);
 				}
 			}
 			else if (type == 26)
 			{
-				Dust* ptr = Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default(Color), 2.5);
+				Dust* ptr = Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default, 2.5);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
@@ -4472,7 +4472,7 @@ namespace Terraria
 			}
 			else if (type == 35)
 			{
-				Dust* ptr2 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default(Color), 3.0);
+				Dust* ptr2 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default, 3.0);
 				if (ptr2 != null)
 				{
 					ptr2->NoGravity = true;
@@ -4623,7 +4623,7 @@ namespace Terraria
 				{
 					num4 = Main.MaxTilesY;
 				}
-				Vector2 vector = default(Vector2);
+				Vector2 vector = default;
 				for (int i = num; i < num2; i++)
 				{
 					for (int j = num3; j < num4; j++)
@@ -4967,15 +4967,15 @@ namespace Terraria
 			{
 				if (Main.Rand.Next(6) == 0)
 				{
-					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default(Color), 1.4f);
+					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default, 1.4f);
 				}
-				Dust* ptr = Main.DustSet.NewDust(27, ref XYWH, velocity.X * 0.2f + direction * 3, velocity.Y * 0.2f, 100, default(Color), 1.2);
+				Dust* ptr = Main.DustSet.NewDust(27, ref XYWH, velocity.X * 0.2f + direction * 3, velocity.Y * 0.2f, 100, default, 1.2);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
 					ptr->Velocity.X *= 0.5f;
 					ptr->Velocity.Y *= 0.5f;
-					ptr = Main.DustSet.NewDust((int)(position.X - velocity.X * 2f), (int)(position.Y - velocity.Y * 2f), width, height, 27, 0.0, 0.0, 150, default(Color), 1.4f);
+					ptr = Main.DustSet.NewDust((int)(position.X - velocity.X * 2f), (int)(position.Y - velocity.Y * 2f), width, height, 27, 0.0, 0.0, 150, default, 1.4f);
 					if (ptr != null)
 					{
 						ptr->Velocity.X *= 0.2f;
@@ -4987,7 +4987,7 @@ namespace Terraria
 			{
 				if (Main.Rand.Next(4) == 0)
 				{
-					Dust* ptr2 = Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 200, default(Color), 1.2);
+					Dust* ptr2 = Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 200, default, 1.2);
 					if (ptr2 != null)
 					{
 						ptr2->Velocity.X += velocity.X * 0.3f;
@@ -4998,7 +4998,7 @@ namespace Terraria
 				}
 				if (Main.Rand.Next(5) == 0)
 				{
-					Dust* ptr3 = Main.DustSet.NewDust(43, ref XYWH, 0.0, 0.0, 254, default(Color), 0.3);
+					Dust* ptr3 = Main.DustSet.NewDust(43, ref XYWH, 0.0, 0.0, 254, default, 0.3);
 					if (ptr3 != null)
 					{
 						ptr3->Velocity.X += velocity.X * 0.5f;
@@ -5016,7 +5016,7 @@ namespace Terraria
 				}
 				if (Main.Rand.Next(3) == 0)
 				{
-					Dust* ptr4 = Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 200, default(Color), 1.2);
+					Dust* ptr4 = Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.2f, velocity.Y * 0.2f, 200, default, 1.2);
 					if (ptr4 != null)
 					{
 						ptr4->Velocity.X += velocity.X * 0.3f;
@@ -5027,7 +5027,7 @@ namespace Terraria
 				}
 				if (Main.Rand.Next(4) == 0)
 				{
-					Dust* ptr5 = Main.DustSet.NewDust(43, ref XYWH, 0.0, 0.0, 254, default(Color), 0.3);
+					Dust* ptr5 = Main.DustSet.NewDust(43, ref XYWH, 0.0, 0.0, 254, default, 0.3);
 					if (ptr5 != null)
 					{
 						ptr5->Velocity.X += velocity.X * 0.5f;
@@ -5098,7 +5098,7 @@ namespace Terraria
 			if (Main.Rand.Next(8) == 0)
 			{
 				float num5 = Main.Rand.Next(6, 10) * 0.1f;
-				Dust* ptr = Main.DustSet.NewDust((int)(position.X + velocity.X * num5) - 4, (int)(position.Y + velocity.Y * num5), width, height, 31, 0.0, 0.0, 80, default(Color), 1.4f);
+				Dust* ptr = Main.DustSet.NewDust((int)(position.X + velocity.X * num5) - 4, (int)(position.Y + velocity.Y * num5), width, height, 31, 0.0, 0.0, 80, default, 1.4f);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
@@ -5168,7 +5168,7 @@ namespace Terraria
 				}
 				int num5 = XYWH.X + 4;
 				int num6 = XYWH.Y + 4;
-				Vector2 vector = default(Vector2);
+				Vector2 vector = default;
 				for (int i = num; i < num2; i++)
 				{
 					for (int j = num3; j < num4; j++)
@@ -5204,7 +5204,7 @@ namespace Terraria
 				{
 					for (int k = 0; k < 8; k++)
 					{
-						Dust* ptr2 = Main.DustSet.NewDust(67, ref XYWH, 0.0, 0.0, 0, default(Color), 1.1f);
+						Dust* ptr2 = Main.DustSet.NewDust(67, ref XYWH, 0.0, 0.0, 0, default, 1.1f);
 						if (ptr2 == null)
 						{
 							break;
@@ -5260,7 +5260,7 @@ namespace Terraria
 			}
 			int num14 = XYWH.X + 4;
 			int num15 = XYWH.Y + 4;
-			Vector2 vector2 = default(Vector2);
+			Vector2 vector2 = default;
 			for (int l = num10; l < num11; l++)
 			{
 				for (int m = num12; m < num13; m++)
@@ -5520,7 +5520,7 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int j = 0; j < 8; j++)
 				{
-					Dust* ptr = Main.DustSet.NewDust(57, ref XYWH, 0.0, 0.0, 100, default(Color), 0.5);
+					Dust* ptr = Main.DustSet.NewDust(57, ref XYWH, 0.0, 0.0, 100, default, 0.5);
 					if (ptr == null)
 					{
 						break;
@@ -5551,7 +5551,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int l = 0; l < 8; l++)
 				{
-					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default(Color), 1.2f);
+					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default, 1.2f);
 				}
 				for (int m = 0; m < 3; m++)
 				{
@@ -5641,7 +5641,7 @@ namespace Terraria
 			{
 				for (int num15 = 0; num15 < 4; num15++)
 				{
-					Dust* ptr4 = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 80, default(Color), 1.5);
+					Dust* ptr4 = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 80, default, 1.5);
 					if (ptr4 == null)
 					{
 						break;
@@ -5653,7 +5653,7 @@ namespace Terraria
 			{
 				for (int num16 = 0; num16 < 4; num16++)
 				{
-					Dust* ptr5 = Main.DustSet.NewDust(18, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+					Dust* ptr5 = Main.DustSet.NewDust(18, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 					if (ptr5 == null)
 					{
 						break;
@@ -5666,7 +5666,7 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int num17 = 0; num17 < 4; num17++)
 				{
-					Main.DustSet.NewDust(0, ref XYWH, 0.0, 0.0, 0, default(Color), 0.7f);
+					Main.DustSet.NewDust(0, ref XYWH, 0.0, 0.0, 0, default, 0.7f);
 				}
 			}
 			else if (type == 2 || type == 82)
@@ -5701,7 +5701,7 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int num20 = 0; num20 < 7; num20++)
 				{
-					Main.DustSet.NewDust(1, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 0, default(Color), 0.75);
+					Main.DustSet.NewDust(1, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 0, default, 0.75);
 				}
 			}
 			else if (type == 4)
@@ -5709,7 +5709,7 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int num21 = 0; num21 < 7; num21++)
 				{
-					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default(Color), 1.1f);
+					Main.DustSet.NewDust(14, ref XYWH, 0.0, 0.0, 150, default, 1.1f);
 				}
 			}
 			else if (type == 5)
@@ -5720,17 +5720,17 @@ namespace Terraria
 					int num23;
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						num23 = 15;
-						break;
-					case 1:
-						num23 = 57;
-						break;
-					default:
-						num23 = 58;
-						break;
+						case 0:
+							num23 = 15;
+							break;
+						case 1:
+							num23 = 57;
+							break;
+						default:
+							num23 = 58;
+							break;
 					}
-					Main.DustSet.NewDust(num23, ref XYWH, velocity.X * 0.5f, velocity.Y * 0.5f, 150, default(Color), 1.5);
+					Main.DustSet.NewDust(num23, ref XYWH, velocity.X * 0.5f, velocity.Y * 0.5f, 150, default, 1.5);
 				}
 			}
 			else if (type == 9 || type == 12)
@@ -5738,7 +5738,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num24 = 0; num24 < 8; num24++)
 				{
-					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default(Color), 1.2);
+					Main.DustSet.NewDust(58, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default, 1.2);
 				}
 				for (int num25 = 0; num25 < 3; num25++)
 				{
@@ -5748,7 +5748,7 @@ namespace Terraria
 				{
 					for (int num26 = 0; num26 < 8; num26++)
 					{
-						Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default(Color), 1.2);
+						Main.DustSet.NewDust(57, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 150, default, 1.2);
 					}
 					for (int num27 = 0; num27 < 3; num27++)
 					{
@@ -5766,7 +5766,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num28 = 0; num28 < 16; num28++)
 				{
-					Dust* ptr7 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default(Color), 2.0);
+					Dust* ptr7 = Main.DustSet.NewDust(6, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default, 2.0);
 					if (ptr7 == null)
 					{
 						break;
@@ -5788,7 +5788,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num29 = 0; num29 < 16; num29++)
 				{
-					Dust* ptr8 = Main.DustSet.NewDust(75, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default(Color), 2f * scale);
+					Dust* ptr8 = Main.DustSet.NewDust(75, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default, 2f * scale);
 					if (ptr8 == null)
 					{
 						break;
@@ -5796,7 +5796,7 @@ namespace Terraria
 					ptr8->NoGravity = true;
 					ptr8->Velocity.X *= 2f;
 					ptr8->Velocity.Y *= 2f;
-					ptr8 = Main.DustSet.NewDust(75, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default(Color), 1f * scale);
+					ptr8 = Main.DustSet.NewDust(75, ref XYWH, velocity.X * -0.2f, velocity.Y * -0.2f, 100, default, 1f * scale);
 					if (ptr8 == null)
 					{
 						break;
@@ -5825,7 +5825,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num31 = 0; num31 < 12; num31++)
 				{
-					Dust* ptr10 = Main.DustSet.NewDust((int)(position.X - velocity.X), (int)(position.Y - velocity.Y), width, height, 15, 0.0, 0.0, 100, default(Color), 2.0);
+					Dust* ptr10 = Main.DustSet.NewDust((int)(position.X - velocity.X), (int)(position.Y - velocity.Y), width, height, 15, 0.0, 0.0, 100, default, 2.0);
 					if (ptr10 == null)
 					{
 						break;
@@ -5863,7 +5863,7 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int num34 = 0; num34 < 3; num34++)
 				{
-					Dust* ptr12 = Main.DustSet.NewDust(51, ref XYWH, 0.0, 0.0, 0, default(Color), 0.6);
+					Dust* ptr12 = Main.DustSet.NewDust(51, ref XYWH, 0.0, 0.0, 0, default, 0.6);
 					if (ptr12 == null)
 					{
 						break;
@@ -5919,14 +5919,14 @@ namespace Terraria
 				Main.PlaySound(0, num, num2);
 				for (int num38 = 0; num38 < 8; num38++)
 				{
-					Main.DustSet.NewDust(26, ref XYWH, 0.0, 0.0, 0, default(Color), 0.8);
+					Main.DustSet.NewDust(26, ref XYWH, 0.0, 0.0, 0, default, 0.8);
 				}
 			}
 			else if (type == 24)
 			{
 				for (int num39 = 0; num39 < 6; num39++)
 				{
-					Main.DustSet.NewDust(1, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 0, default(Color), 0.75);
+					Main.DustSet.NewDust(1, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 0, default, 0.75);
 				}
 			}
 			else if (type == 27)
@@ -5934,13 +5934,13 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num40 = 0; num40 < 20; num40++)
 				{
-					Dust* ptr16 = Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 100, default(Color), 3.0);
+					Dust* ptr16 = Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 100, default, 3.0);
 					if (ptr16 == null)
 					{
 						break;
 					}
 					ptr16->NoGravity = true;
-					Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 100, default(Color), 2.0);
+					Main.DustSet.NewDust(29, ref XYWH, velocity.X * 0.1f, velocity.Y * 0.1f, 100, default, 2.0);
 				}
 			}
 			else if (type == 38)
@@ -5955,7 +5955,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 10);
 				for (int num42 = 0; num42 < 18; num42++)
 				{
-					Dust* ptr17 = Main.DustSet.NewDust(27, ref XYWH, velocity.X, velocity.Y, 100, default(Color), 1.7);
+					Dust* ptr17 = Main.DustSet.NewDust(27, ref XYWH, velocity.X, velocity.Y, 100, default, 1.7);
 					if (ptr17 == null)
 					{
 						break;
@@ -5969,7 +5969,7 @@ namespace Terraria
 				Main.PlaySound(2, num, num2, 14);
 				for (int num43 = 0; num43 < 6; num43++)
 				{
-					Dust* ptr18 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr18 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr18 == null)
 					{
 						break;
@@ -5978,7 +5978,7 @@ namespace Terraria
 				int num44 = ((type == 114) ? 64 : 6);
 				for (int num45 = 0; num45 < 3; num45++)
 				{
-					Dust* ptr18 = Main.DustSet.NewDust(num44, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr18 = Main.DustSet.NewDust(num44, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr18 == null)
 					{
 						break;
@@ -5986,7 +5986,7 @@ namespace Terraria
 					ptr18->NoGravity = true;
 					ptr18->Velocity.X *= 3f;
 					ptr18->Velocity.Y *= 3f;
-					ptr18 = Main.DustSet.NewDust(num44, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr18 = Main.DustSet.NewDust(num44, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr18 == null)
 					{
 						break;
@@ -5994,11 +5994,11 @@ namespace Terraria
 					ptr18->Velocity.X *= 2f;
 					ptr18->Velocity.Y *= 2f;
 				}
-				int num46 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				int num46 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num46].Velocity *= 0.4f;
 				Main.GoreSet[num46].Velocity.X += Main.Rand.Next(-10, 11) * 0.1f;
 				Main.GoreSet[num46].Velocity.Y += Main.Rand.Next(-10, 11) * 0.1f;
-				num46 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				num46 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num46].Velocity *= 0.4f;
 				Main.GoreSet[num46].Velocity.X += Main.Rand.Next(-10, 11) * 0.1f;
 				Main.GoreSet[num46].Velocity.Y += Main.Rand.Next(-10, 11) * 0.1f;
@@ -6029,7 +6029,7 @@ namespace Terraria
 				num2 = (XYWH.Y = (int)position.Y);
 				for (int num47 = 0; num47 < 16; num47++)
 				{
-					Dust* ptr19 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr19 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr19 == null)
 					{
 						break;
@@ -6039,7 +6039,7 @@ namespace Terraria
 				}
 				for (int num48 = 0; num48 < 7; num48++)
 				{
-					Dust* ptr20 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr20 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr20 == null)
 					{
 						break;
@@ -6047,7 +6047,7 @@ namespace Terraria
 					ptr20->NoGravity = true;
 					ptr20->Velocity.X *= 5f;
 					ptr20->Velocity.Y *= 5f;
-					ptr20 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr20 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr20 == null)
 					{
 						break;
@@ -6055,19 +6055,19 @@ namespace Terraria
 					ptr20->Velocity.X *= 3f;
 					ptr20->Velocity.Y *= 3f;
 				}
-				int num49 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				int num49 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num49].Velocity *= 0.4f;
 				Main.GoreSet[num49].Velocity.X += 1f;
 				Main.GoreSet[num49].Velocity.Y += 1f;
-				num49 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				num49 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num49].Velocity *= 0.4f;
 				Main.GoreSet[num49].Velocity.X -= 1f;
 				Main.GoreSet[num49].Velocity.Y += 1f;
-				num49 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				num49 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num49].Velocity *= 0.4f;
 				Main.GoreSet[num49].Velocity.X += 1f;
 				Main.GoreSet[num49].Velocity.Y -= 1f;
-				num49 = Gore.NewGore(position, default(Vector2), Main.Rand.Next(61, 64));
+				num49 = Gore.NewGore(position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num49].Velocity *= 0.4f;
 				Main.GoreSet[num49].Velocity.X -= 1f;
 				Main.GoreSet[num49].Velocity.Y -= 1f;
@@ -6086,7 +6086,7 @@ namespace Terraria
 				}
 				for (int num50 = 0; num50 < 40; num50++)
 				{
-					Dust* ptr21 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 2.0);
+					Dust* ptr21 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 2.0);
 					if (ptr21 == null)
 					{
 						break;
@@ -6096,7 +6096,7 @@ namespace Terraria
 				}
 				for (int num51 = 0; num51 < 64; num51++)
 				{
-					Dust* ptr22 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 3.0);
+					Dust* ptr22 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 3.0);
 					if (ptr22 == null)
 					{
 						break;
@@ -6104,7 +6104,7 @@ namespace Terraria
 					ptr22->NoGravity = true;
 					ptr22->Velocity.X *= 5f;
 					ptr22->Velocity.Y *= 5f;
-					ptr22 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.0);
+					ptr22 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.0);
 					if (ptr22 == null)
 					{
 						break;
@@ -6114,19 +6114,19 @@ namespace Terraria
 				}
 				for (int num52 = 0; num52 < 2; num52++)
 				{
-					int num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default(Vector2), Main.Rand.Next(61, 64));
+					int num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default, Main.Rand.Next(61, 64));
 					Main.GoreSet[num53].Scale = 1.5f;
 					Main.GoreSet[num53].Velocity.X += 1.5f;
 					Main.GoreSet[num53].Velocity.Y += 1.5f;
-					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default(Vector2), Main.Rand.Next(61, 64));
+					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default, Main.Rand.Next(61, 64));
 					Main.GoreSet[num53].Scale = 1.5f;
 					Main.GoreSet[num53].Velocity.X -= 1.5f;
 					Main.GoreSet[num53].Velocity.Y += 1.5f;
-					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default(Vector2), Main.Rand.Next(61, 64));
+					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default, Main.Rand.Next(61, 64));
 					Main.GoreSet[num53].Scale = 1.5f;
 					Main.GoreSet[num53].Velocity.X += 1.5f;
 					Main.GoreSet[num53].Velocity.Y -= 1.5f;
-					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default(Vector2), Main.Rand.Next(61, 64));
+					num53 = Gore.NewGore(num + (width >> 1) - 24, num2 + (height >> 1) - 24, default, Main.Rand.Next(61, 64));
 					Main.GoreSet[num53].Scale = 1.5f;
 					Main.GoreSet[num53].Velocity.X -= 1.5f;
 					Main.GoreSet[num53].Velocity.Y -= 1.5f;
@@ -6147,7 +6147,7 @@ namespace Terraria
 				}
 				for (int num55 = 0; num55 < 20; num55++)
 				{
-					Dust* ptr23 = Main.DustSet.NewDust(num, num2, width, height, 33, 0.0, -2.0, 0, default(Color), 1.1);
+					Dust* ptr23 = Main.DustSet.NewDust(num, num2, width, height, 33, 0.0, -2.0, 0, default, 1.1);
 					if (ptr23 == null)
 					{
 						break;
@@ -6166,7 +6166,7 @@ namespace Terraria
 				}
 				for (int num57 = 0; num57 < 20; num57++)
 				{
-					Dust* ptr24 = Main.DustSet.NewDust(num, num2, width, height, 52, 0.0, -2.0, 0, default(Color), 1.1);
+					Dust* ptr24 = Main.DustSet.NewDust(num, num2, width, height, 52, 0.0, -2.0, 0, default, 1.1);
 					if (ptr24 == null)
 					{
 						break;
@@ -6178,7 +6178,7 @@ namespace Terraria
 			}
 			else if (type == 111 || (type >= 115 && type <= 119))
 			{
-				int num58 = Gore.NewGore(new Vector2(num - (width >> 1), num2 - (height >> 1)), default(Vector2), Main.Rand.Next(11, 14), scale);
+				int num58 = Gore.NewGore(new Vector2(num - (width >> 1), num2 - (height >> 1)), default, Main.Rand.Next(11, 14), scale);
 				Main.GoreSet[num58].Velocity *= 0.1f;
 			}
 			if (isLocal())
@@ -6291,35 +6291,35 @@ namespace Terraria
 					int num81 = 0;
 					switch (type)
 					{
-					case 31:
-					case 42:
-						num80 = 53;
-						break;
-					case 39:
-						num80 = 59;
-						num81 = (int)Item.ID.MUD_BLOCK;
-						break;
-					case 40:
-						num80 = 57;
-						num81 = (int)Item.ID.ASH_BLOCK;
-						break;
-					case 56:
-					case 65:
-						num80 = 112;
-						break;
-					case 67:
-					case 68:
-						num80 = 116;
-						break;
-					case 71:
-						num80 = 123;
-						break;
-					case 109:
-						num80 = 147;
-						break;
-					default:
-						num79 = Item.NewItem(num, num2, width, height, (int)Item.ID.DIRT_BLOCK);
-						break;
+						case 31:
+						case 42:
+							num80 = 53;
+							break;
+						case 39:
+							num80 = 59;
+							num81 = (int)Item.ID.MUD_BLOCK;
+							break;
+						case 40:
+							num80 = 57;
+							num81 = (int)Item.ID.ASH_BLOCK;
+							break;
+						case 56:
+						case 65:
+							num80 = 112;
+							break;
+						case 67:
+						case 68:
+							num80 = 116;
+							break;
+						case 71:
+							num80 = 123;
+							break;
+						case 109:
+							num80 = 147;
+							break;
+						default:
+							num79 = Item.NewItem(num, num2, width, height, (int)Item.ID.DIRT_BLOCK);
+							break;
 					}
 					if (num80 > 0)
 					{
@@ -6414,36 +6414,36 @@ namespace Terraria
 							{
 								switch (num88)
 								{
-								case 2:
-								case 23:
-									num89 = 109;
-									break;
-								case 1:
-								case 25:
-									num89 = 117;
-									break;
-								case 53:
-								case 112:
-									num89 = 116;
-									break;
+									case 2:
+									case 23:
+										num89 = 109;
+										break;
+									case 1:
+									case 25:
+										num89 = 117;
+										break;
+									case 53:
+									case 112:
+										num89 = 116;
+										break;
 								}
 							}
 							else
 							{
 								switch (num88)
 								{
-								case 2:
-								case 109:
-									num89 = 23;
-									break;
-								case 1:
-								case 117:
-									num89 = 25;
-									break;
-								case 53:
-								case 116:
-									num89 = 112;
-									break;
+									case 2:
+									case 109:
+										num89 = 23;
+										break;
+									case 1:
+									case 117:
+										num89 = 25;
+										break;
+									case 53:
+									case 116:
+										num89 = 112;
+										break;
 								}
 							}
 							if (num89 > 0)
@@ -6480,7 +6480,7 @@ namespace Terraria
 				{
 					return new Color(255 - alpha, 255 - alpha, 255 - alpha, 0);
 				}
-				return default(Color);
+				return default;
 			}
 			if (type == 34 || type == 35 || type == 15 || type == 19 || type == 44 || type == 45)
 			{
@@ -6488,7 +6488,7 @@ namespace Terraria
 			}
 			if (type == 79)
 			{
-				return default(Color);
+				return default;
 			}
 			int r;
 			int g;

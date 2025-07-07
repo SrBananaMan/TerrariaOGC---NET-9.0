@@ -8,7 +8,7 @@ namespace Terraria.CreateCharacter
 	{
 		public const int HairTypes = 36;
 
-		public static Texture2D CategoryContainer, SelectedCategoryContainer, HairContainer, SelectedHairContainer, Palette, SelectedColorContainer, 
+		public static Texture2D CategoryContainer, SelectedCategoryContainer, HairContainer, SelectedHairContainer, Palette, SelectedColorContainer,
 			MaleIcon, FemaleIcon, SoftcoreIcon, MediumcoreIcon, HardcoreIcon, SelectedHorizontalContainer, HorizontalContainer, Frame;
 
 		public static Texture2D[] CategoryIcons;

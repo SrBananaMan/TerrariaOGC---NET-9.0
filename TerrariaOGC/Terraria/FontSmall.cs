@@ -1,12 +1,12 @@
 ﻿#if !USE_ORIGINAL_CODE
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Terraria
 {
 	internal class FontSmall
 	{
-		public List<Rectangle> SmallGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> SmlBounds = new List<Rectangle>()
 		{
 			new Rectangle(75, 192, 9, 31),
 			new Rectangle(17, 0, 5, 31),
@@ -491,7 +491,7 @@ namespace Terraria
 			new Rectangle(104, 416, 16, 31),
 		};
 
-		public List<Rectangle> SmallSCGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> SmlSCBounds = new List<Rectangle>()
 		{
 			new Rectangle(232, 88, 6, 21),
 			new Rectangle(13, 0, 5, 21),
@@ -976,7 +976,7 @@ namespace Terraria
 			new Rectangle(315, 198, 11, 21),
 		};
 
-		public List<Rectangle> Small2GlyphBounds = new List<Rectangle>()
+		public List<Rectangle> Sml2Bounds = new List<Rectangle>()
 		{
 			new Rectangle(909, 108, 13, 35),
 			new Rectangle(21, 0, 9, 35),
@@ -1461,7 +1461,7 @@ namespace Terraria
 			new Rectangle(378, 288, 20, 35),
 		};
 
-		public List<Rectangle> Small2SCGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> Sml2SCBounds = new List<Rectangle>()
 		{
 			new Rectangle(259, 88, 6, 21),
 			new Rectangle(13, 0, 5, 21),
@@ -1945,9 +1945,9 @@ namespace Terraria
 			new Rectangle(341, 198, 10, 21),
 			new Rectangle(352, 198, 11, 21),
 		};
-		
+
 		//----------------------------------------------------------------------
-		public List<Rectangle> SmallGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> SmlCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 9, 31),
 			new Rectangle(0, 0, 5, 31),
@@ -2432,7 +2432,7 @@ namespace Terraria
 			new Rectangle(0, 0, 16, 31),
 		};
 
-		public List<Rectangle> SmallSCGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> SmlSCCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 6, 21),
 			new Rectangle(0, 0, 5, 21),
@@ -2917,7 +2917,7 @@ namespace Terraria
 			new Rectangle(0, 0, 11, 21),
 		};
 
-		public List<Rectangle> Small2GlyphCrops = new List<Rectangle>()
+		public List<Rectangle> Sml2Crops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 13, 35),
 			new Rectangle(0, 0, 9, 35),
@@ -3402,7 +3402,7 @@ namespace Terraria
 			new Rectangle(0, 0, 20, 35),
 		};
 
-		public List<Rectangle> Small2SCGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> Sml2SCCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 6, 21),
 			new Rectangle(0, 0, 5, 21),
@@ -3886,9 +3886,9 @@ namespace Terraria
 			new Rectangle(0, 0, 10, 21),
 			new Rectangle(0, 0, 11, 21),
 		};
-		
+
 		//----------------------------------------------------------------------
-		public List<Vector3> SmallKerning = new List<Vector3>()
+		public List<Vector3> SmlKerning = new List<Vector3>()
 		{
 			new Vector3(0, 9, 0),
 			new Vector3(0, 5, 0),
@@ -4373,7 +4373,7 @@ namespace Terraria
 			new Vector3(0, 16, 0),
 		};
 
-		public List<Vector3> SmallSCKerning = new List<Vector3>()
+		public List<Vector3> SmlSCKerning = new List<Vector3>()
 		{
 			new Vector3(0, 6, 0),
 			new Vector3(0, 5, 0),
@@ -4858,7 +4858,7 @@ namespace Terraria
 			new Vector3(0, 11, 0),
 		};
 
-		public List<Vector3> Small2Kerning = new List<Vector3>()
+		public List<Vector3> Sml2Kerning = new List<Vector3>()
 		{
 			new Vector3(0, 13, 0),
 			new Vector3(0, 9, 0),
@@ -5343,7 +5343,7 @@ namespace Terraria
 			new Vector3(0, 20, 0),
 		};
 
-		public List<Vector3> Small2SCKerning = new List<Vector3>()
+		public List<Vector3> Sml2SCKerning = new List<Vector3>()
 		{
 			new Vector3(0, 6, 0),
 			new Vector3(0, 5, 0),

@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace Terraria
 {
@@ -10,10 +8,11 @@ namespace Terraria
 	{
 		private static void Main(string[] args)
 		{
+#if USE_ORIGINAL_CODE
 			Marshal.PrelinkAll(typeof(Main));
 			ThreadPool.SetMinThreads(0, 0);
 			ThreadPool.SetMaxThreads(0, 0);
-#if !USE_ORIGINAL_CODE
+#else
 			Environment.SetEnvironmentVariable("FNA3D_FORCE_DRIVER", "D3D11");
 			Environment.SetEnvironmentVariable("FNA3D_BACKBUFFER_SCALE_NEAREST", "1");
 #endif
@@ -35,14 +34,14 @@ namespace Terraria
 							ErrorWriter.WriteLine("");
 #if !USE_ORIGINAL_CODE
 							var Tracer = new StackTrace(Ex, true);
-                            StackFrame frame = null;
-                            for (int i = 0; i < Tracer.FrameCount; i++)
-                            {
-                                frame = Tracer.GetFrame(i);
-                                ErrorWriter.WriteLine(frame.GetMethod());
-                                ErrorWriter.WriteLine(frame.GetFileLineNumber());
-                            }
-                            ErrorWriter.WriteLine("");
+							StackFrame frame = null;
+							for (int i = 0; i < Tracer.FrameCount; i++)
+							{
+								frame = Tracer.GetFrame(i);
+								ErrorWriter.WriteLine(frame.GetMethod());
+								ErrorWriter.WriteLine(frame.GetFileLineNumber());
+							}
+							ErrorWriter.WriteLine("");
 #endif
 						}
 					}

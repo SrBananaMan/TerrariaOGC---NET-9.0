@@ -10,7 +10,7 @@ namespace Terraria
 
 		public int PlayerCount;
 
-        public AvailableNetworkSession AvailableSession;
+		public AvailableNetworkSession AvailableSession;
 
 		public JoinableSession(AvailableNetworkSession Session)
 		{

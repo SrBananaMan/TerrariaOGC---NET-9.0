@@ -9,10 +9,10 @@ Alongside being decompiled from the original versions and ported away from conso
 
 * You will need to provide assets from the official 'Old-Gen' console releases in order to run TerrariaOGC.
 
-* The official releases can be found with the links below:
+* The official releases were found with the links below:
   * [Xbox Marketplace (X360 Version)](https://marketplace.xbox.com/Product/Terraria-Xbox-360-Edition/66acd000-77fe-1000-9115-d8025841128f)
   * [PlayStation Store (PS3 Version)](https://store.playstation.com/en-au/product/EP4040-NPEB01270_00-TERRARIA00000002)
-  * *Yea... sorry for the bait. These links no longer work as their storefronts have been decommissioned, so these links are here for archival reasons. Please still try and get either the physical or digital releases.*
+  * *These links no longer work as their storefronts have been decommissioned, so these links are here for archival reasons. Please still try and get either the physical or digital releases.*
 * You can also support the devs in today's age by buying the other releases or their merchandise from:
   * [Terraria's Official Store](https://terraria.org/store)
 
@@ -36,7 +36,7 @@ Alongside being decompiled from the original versions and ported away from conso
 # How to Build (Windows):
 * See the instructions I have made for setting up on Windows [here](https://github.com/PPrism/TerrariaOGC/blob/main/WINBUILD.md).
 * There is not yet direct support for other platforms as you would need to modify the GamerServices, Net, and base functions to support a non-Windows setup. I likely won't do this myself.
-* For compilation, some configuration symbols are available upon building with Visual Studio 2022, which you can see below.
+* For compilation, some configuration symbols are available upon building with Visual Studio, which you can see below.
 
 ## List of configuration symbols:
 * `USE_ORIGINAL_CODE`: *This requires an official Xbox 360 SDK setup.* If defined, the code should function on an official XDK setup. No additions are available if this is defined and only the initial version will be playable.
@@ -60,8 +60,7 @@ Most of these are purely visual, but there are some that are functional. Current
   * Some testing shows that it spawns with varying X-velocity to start with, leading to the mouth's AI to skip targeting.
 * **Some flying enemies may spawn with increased velocity.**
 * **In some instances, liquid may be magically replicated by causing it to flow.**
-* **The HD Xbox glyphs are incomplete and only support the 4 buttons. Similarly, the HD glyphs may be inaccurate in some areas.**
-  * I do not yet have the Xbox One game files so I had to make the button glyphs by hand. No chance am I making the rest by hand too.
+* **The HD glyphs may be inaccurate in some areas.**
 
 # FAQ
 ### Q: What to do if I have a suggestion/bug report/question for TerrariaOGC? 

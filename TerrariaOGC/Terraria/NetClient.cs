@@ -1,12 +1,12 @@
-using System.Collections.ObjectModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Net;
+using System.Collections.ObjectModel;
 
 namespace Terraria
 {
 	public sealed class NetClient
 	{
-        public NetworkMachine Machine;
+		public NetworkMachine Machine;
 
 		public NetworkGamer NetGamer;
 
@@ -18,7 +18,7 @@ namespace Terraria
 
 		public bool[,] TileSectionsTaken;
 
-        public NetClient(NetworkGamer Gamer)
+		public NetClient(NetworkGamer Gamer)
 		{
 			Machine = Gamer.Machine;
 			NetGamer = Gamer;
@@ -59,7 +59,7 @@ namespace Terraria
 				Netplay.Session.PrivateGamerSlots++;
 			}
 			LeftPlayer.client = null;
-            return ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count == 0;
+			return ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count == 0;
 		}
 
 		public void ResetSections()
@@ -117,68 +117,68 @@ namespace Terraria
 			}
 			switch (Packets[0])
 			{
-			case 13:
-			{
-				Player NetPlayer = Main.PlayerSet[Packets[1] & (Player.MaxNumPlayers-1)];
-				if (NetPlayer.netSkip == 0)
-				{
-					return true;
-				}
-				Rectangle PlayerRect = NetPlayer.XYWH;
-				PlayerRect.X -= 2500;
-				PlayerRect.Y -= 2500;
-				PlayerRect.Width += 5000;
-				PlayerRect.Height += 5000;
-				for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
-				{
-					NetworkGamer NetGamer = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers)[GamerIdx];
-					Player ActivePlayer = NetGamer.Tag as Player;
-					if (PlayerRect.Intersects(ActivePlayer.XYWH))
+				case 13:
 					{
-						return true;
+						Player NetPlayer = Main.PlayerSet[Packets[1] & (Player.MaxNumPlayers - 1)];
+						if (NetPlayer.netSkip == 0)
+						{
+							return true;
+						}
+						Rectangle PlayerRect = NetPlayer.XYWH;
+						PlayerRect.X -= 2500;
+						PlayerRect.Y -= 2500;
+						PlayerRect.Width += 5000;
+						PlayerRect.Height += 5000;
+						for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
+						{
+							NetworkGamer NetGamer = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers)[GamerIdx];
+							Player ActivePlayer = NetGamer.Tag as Player;
+							if (PlayerRect.Intersects(ActivePlayer.XYWH))
+							{
+								return true;
+							}
+						}
+						return false;
 					}
-				}
-				return false;
-			}
-			case 20:
-				return SectionRange(Packets[1], Packets[2] | (Packets[3] << 8), Packets[4] | (Packets[5] << 8));
-			case 23:
-			case 28:
-			{
-				NPC NetNPC = Main.NPCSet[Packets[1]];
-				if (NetNPC.Life <= 0)
-				{
-					return true;
-				}
-				if (NetNPC.IsTownNPC)
-				{
-					return true;
-				}
-				Rectangle NPCRect = NetNPC.XYWH;
+				case 20:
+					return SectionRange(Packets[1], Packets[2] | (Packets[3] << 8), Packets[4] | (Packets[5] << 8));
+				case 23:
+				case 28:
+					{
+						NPC NetNPC = Main.NPCSet[Packets[1]];
+						if (NetNPC.Life <= 0)
+						{
+							return true;
+						}
+						if (NetNPC.IsTownNPC)
+						{
+							return true;
+						}
+						Rectangle NPCRect = NetNPC.XYWH;
 #if !IS_PATCHED && VERSION_INITIAL
 				NPCRect.X -= 3000;
 				NPCRect.Y -= 3000;
 				NPCRect.Width += 6000;
 				NPCRect.Height += 6000;
 #else
-				NPCRect.X -= 2400;
-                NPCRect.Y -= 2400;
-                NPCRect.Width += 4800;
-                NPCRect.Height += 4800;
+						NPCRect.X -= 2400;
+						NPCRect.Y -= 2400;
+						NPCRect.Width += 4800;
+						NPCRect.Height += 4800;
 #endif
-				for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
-				{
-					NetworkGamer NetGamer = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers)[GamerIdx];
-					Player ActivePlayer = NetGamer.Tag as Player;
-					if (NPCRect.Intersects(ActivePlayer.XYWH))
-					{
-						return true;
+						for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
+						{
+							NetworkGamer NetGamer = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers)[GamerIdx];
+							Player ActivePlayer = NetGamer.Tag as Player;
+							if (NPCRect.Intersects(ActivePlayer.XYWH))
+							{
+								return true;
+							}
+						}
+						return false;
 					}
-				}
-				return false;
-			}
-			default:
-				return true;
+				default:
+					return true;
 			}
 		}
 
@@ -197,12 +197,12 @@ namespace Terraria
 				ProjRect.Width += 10000;
 				ProjRect.Height += 10000;
 #else
-                ProjRect.X -= 4000;
-                ProjRect.Y -= 4000;
-                ProjRect.Width += 8000;
-                ProjRect.Height += 8000;
+				ProjRect.X -= 4000;
+				ProjRect.Y -= 4000;
+				ProjRect.Width += 8000;
+				ProjRect.Height += 8000;
 #endif
-                for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
+				for (int GamerIdx = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers).Count - 1; GamerIdx >= 0; GamerIdx--)
 				{
 					NetworkGamer networkGamer = ((ReadOnlyCollection<NetworkGamer>)(object)Machine.Gamers)[GamerIdx];
 					Player ActivePlayer = networkGamer.Tag as Player;

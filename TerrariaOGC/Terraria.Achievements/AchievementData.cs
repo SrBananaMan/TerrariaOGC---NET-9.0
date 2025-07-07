@@ -53,9 +53,9 @@ namespace Terraria.Achievements
 
 		private Cache StaleCache, CurrentCache, MergedCache;
 
-        private MockReader Reader;
+		private MockReader Reader;
 
-		public static Dictionary<Achievement, AchievementSystem.TerrariaAchievement> CurrentAchievements;
+		public static Dictionary<Achievement, TerrariaAchievement> CurrentAchievements;
 
 		private IAsyncResult ReqResult;
 
@@ -65,7 +65,7 @@ namespace Terraria.Achievements
 
 		public int BatchSize, BatchStart, Selected;
 
-        public bool Ready => Reader != null;
+		public bool Ready => Reader != null;
 
 		private bool CanPageDown => Reader.CanPageDown;
 
@@ -74,18 +74,18 @@ namespace Terraria.Achievements
 		private static void ProcessEntries(MockReader Reader, ref Cache BoardCache)
 		{
 			Row[] entries = Reader.Entries;
-            int NumEntries = entries.Length;
+			int NumEntries = entries.Length;
 			int EntryIdx = 0;
 			for (int j = 0; j < entries.Length; j++)
 			{
 				Row Entry = entries[j];
 				if (Entry.Rank == 0)
-                {
-                    NumEntries--;
-                    continue;
-                }
-                Row BoardRow = BoardCache.Entries[EntryIdx];
-                BoardRow.Rank = Entry.Rank;
+				{
+					NumEntries--;
+					continue;
+				}
+				Row BoardRow = BoardCache.Entries[EntryIdx];
+				BoardRow.Rank = Entry.Rank;
 				BoardRow.Available = true;
 				EntryIdx++;
 			}
@@ -103,7 +103,7 @@ namespace Terraria.Achievements
 			return CurrentAchievements[Achievement];
 		}
 
-        public AchievementData(int Size)
+		public AchievementData(int Size)
 		{
 			CurrentAchievements = null;
 			DefaultBatchSize = Size;
@@ -172,7 +172,7 @@ namespace Terraria.Achievements
 				}
 				BatchStart = Reader.PageStart;
 				Selected = 0;
-                if (ReqResult.AsyncState != null)
+				if (ReqResult.AsyncState != null)
 				{
 					bool Active = (bool)ReqResult.AsyncState;
 					int BatchEntryIndex = BatchStart;
@@ -229,7 +229,7 @@ namespace Terraria.Achievements
 			}
 			BatchStart++;
 			bool NotAllCached = CurrentCache.StartIndex + CurrentCache.NumEntries < BatchStart + BatchSize;
-            if (NotAllCached && !CanPageDown && ReadStateReq == AsyncRequest.None)
+			if (NotAllCached && !CanPageDown && ReadStateReq == AsyncRequest.None)
 			{
 				Selected--;
 				BatchStart--;
@@ -261,7 +261,7 @@ namespace Terraria.Achievements
 			}
 			BatchStart--;
 			bool NotInCache = BatchStart < CurrentCache.StartIndex;
-            if (NotInCache && !CanPageUp && ReadStateReq == AsyncRequest.None)
+			if (NotInCache && !CanPageUp && ReadStateReq == AsyncRequest.None)
 			{
 				Selected++;
 				BatchStart++;
@@ -298,7 +298,7 @@ namespace Terraria.Achievements
 			int NewCacheStart = CurrentCache.StartIndex - PrevCachePtr;
 			FreeCache(NewCacheStart);
 			CreateMergedCache(CurrentCache, StaleCache);
-            ReadStateReq = AsyncRequest.PreviousPage;
+			ReadStateReq = AsyncRequest.PreviousPage;
 		}
 
 		private void FreeCache(int NewCacheStart)

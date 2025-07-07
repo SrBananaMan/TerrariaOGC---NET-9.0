@@ -941,25 +941,25 @@ namespace Terraria
 								}
 								switch (Main.TileSet[TileX, TileY].Type)
 								{
-								case 2:
-								case 23:
-								case 109:
-									Main.TileSet[TileX, TileY].Type = 0;
-									WorldGen.SquareTileFrame(TileX, TileY);
-									if (Main.NetMode == (byte)NetModeSetting.SERVER)
-									{
-										NetMessage.SendTileSquare(LiquidX, LiquidY, 3);
-									}
-									break;
-								case 60:
-								case 70:
-									Main.TileSet[TileX, TileY].Type = 59;
-									WorldGen.SquareTileFrame(TileX, TileY);
-									if (Main.NetMode == (byte)NetModeSetting.SERVER)
-									{
-										NetMessage.SendTileSquare(LiquidX, LiquidY, 3);
-									}
-									break;
+									case 2:
+									case 23:
+									case 109:
+										Main.TileSet[TileX, TileY].Type = 0;
+										WorldGen.SquareTileFrame(TileX, TileY);
+										if (Main.NetMode == (byte)NetModeSetting.SERVER)
+										{
+											NetMessage.SendTileSquare(LiquidX, LiquidY, 3);
+										}
+										break;
+									case 60:
+									case 70:
+										Main.TileSet[TileX, TileY].Type = 59;
+										WorldGen.SquareTileFrame(TileX, TileY);
+										if (Main.NetMode == (byte)NetModeSetting.SERVER)
+										{
+											NetMessage.SendTileSquare(LiquidX, LiquidY, 3);
+										}
+										break;
 								}
 							}
 						}

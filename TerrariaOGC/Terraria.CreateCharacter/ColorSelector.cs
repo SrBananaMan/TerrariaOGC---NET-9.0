@@ -29,7 +29,7 @@ namespace Terraria.CreateCharacter
 			PickerBounds = Picker.Bounds;
 			Selected = ResetValue;
 			this.ResetValue = ResetValue; // Yep, it set this variable twice.
-			// this.ResetValue = ResetValue;
+										  // this.ResetValue = ResetValue;
 			UpdateColor();
 		}
 
@@ -100,12 +100,12 @@ namespace Terraria.CreateCharacter
 
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					vector2i.X = (int)(vector2i.X * Main.ScreenMultiplier);
 					vector2i.Y = (int)(vector2i.Y * Main.ScreenMultiplier);
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					vector2i.X *= 2;
 					vector2i.Y *= 2;
 					break;
@@ -131,8 +131,8 @@ namespace Terraria.CreateCharacter
 						DestinationRect.X = (int)Position.X + ColorInRow * Magnify - vector2i.X;
 						DestinationRect.Y = (int)Position.Y + ColorInColumn * Magnify - vector2i.Y;
 						Main.SpriteBatch.Draw(Palette, DestinationRect, (Rectangle?)SourceRect, WhiteOutline);
-						UnpickedPosition.X = DestinationRect.X - (PickerBounds.Width - (ItemWidth - (2 * Main.ScreenHeightPtr)) >> 1);
-						UnpickedPosition.Y = DestinationRect.Y - (PickerBounds.Height - (ItemHeight - (2 * Main.ScreenHeightPtr)) >> 1);
+						UnpickedPosition.X = DestinationRect.X - (PickerBounds.Width - (ItemWidth - (2 * (byte)Main.ScreenHeightPtr)) >> 1);
+						UnpickedPosition.Y = DestinationRect.Y - (PickerBounds.Height - (ItemHeight - (2 * (byte)Main.ScreenHeightPtr)) >> 1);
 						Main.SpriteBatch.Draw(Picker, UnpickedPosition, null, BlackOutline, 0f, default, Main.ScreenMultiplier, SpriteEffects.None, 0f);
 					}
 				}

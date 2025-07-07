@@ -1,5 +1,5 @@
-using System.IO;
 using Microsoft.Xna.Framework.Net;
+using System.IO;
 
 namespace Terraria
 {

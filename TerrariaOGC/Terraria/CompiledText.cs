@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace Terraria
 {
@@ -176,12 +176,14 @@ namespace Terraria
 					Vector2 TextMeasurement = UI.MeasureString(Tags.Peek().Style.Font, Text.Substring(StartIdx, StringLength));
 					TextMeasurement.X += UI.Spacing(Tags.Peek().Style.Font);
 					TextMeasurement.Y = UI.LineSpacing(Tags.Peek().Style.Font);
+
 #if !USE_ORIGINAL_CODE
-					if (Main.PSMode && Main.ScreenHeightPtr != 2)
+					if (HowToPlay.UI.AdjustText)
 					{
 						TextMeasurement.Y += 7;
 					}
 #endif
+
 					AddSegment(Text, StartIdx, StringLength, Tags.Peek().Style, XPlacement, YPlacement, (int)TextMeasurement.X, (int)TextMeasurement.Y);
 					XPlacement += (int)TextMeasurement.X;
 					YSpacing = Math.Max(YSpacing, (int)TextMeasurement.Y);
@@ -209,12 +211,14 @@ namespace Terraria
 						Vector2 RevisedMeasurement = UI.MeasureString(Tags.Peek().Style.Font, Text.Substring(StartIdx, RevisedLength));
 						RevisedMeasurement.X += UI.Spacing(Tags.Peek().Style.Font);
 						RevisedMeasurement.Y = UI.LineSpacing(Tags.Peek().Style.Font);
+
 #if !USE_ORIGINAL_CODE
-						if (Main.PSMode && Main.ScreenHeightPtr != 2)
+						if (HowToPlay.UI.AdjustText)
 						{
 							RevisedMeasurement.Y += 7;
 						}
 #endif
+
 						AddSegment(Text, StartIdx, RevisedLength, Tags.Peek().Style, XPlacement, YPlacement, (int)RevisedMeasurement.X, (int)RevisedMeasurement.Y);
 						XPlacement += (int)RevisedMeasurement.X;
 						YSpacing = Math.Max(YSpacing, (int)RevisedMeasurement.Y);
@@ -370,48 +374,48 @@ namespace Terraria
 		{
 			switch (Text[CharIdx])
 			{
-			case 'B':
-			case 'b':
-				if (Text[CharIdx + 1] == 'r' || Text[CharIdx + 1] == 'R')
-				{
+				case 'B':
+				case 'b':
+					if (Text[CharIdx + 1] == 'r' || Text[CharIdx + 1] == 'R')
+					{
+						Type = TagType.Paragraph;
+					}
+					else
+					{
+						Type = TagType.Bold;
+					}
+					break;
+				case 'I':
+				case 'i':
+					Type = TagType.Italic;
+					break;
+				case 'C':
+				case 'c':
+					Type = TagType.Center;
+					break;
+				case 'F':
+				case 'f':
+					Type = TagType.Font;
+					break;
+				case 'R':
+				case 'r':
+					Type = TagType.Right;
+					break;
+				case 'P':
+				case 'p':
 					Type = TagType.Paragraph;
-				}
-				else
-				{
-					Type = TagType.Bold;
-				}
-				break;
-			case 'I':
-			case 'i':
-				Type = TagType.Italic;
-				break;
-			case 'C':
-			case 'c':
-				Type = TagType.Center;
-				break;
-			case 'F':
-			case 'f':
-				Type = TagType.Font;
-				break;
-			case 'R':
-			case 'r':
-				Type = TagType.Right;
-				break;
-			case 'P':
-			case 'p':
-				Type = TagType.Paragraph;
-				break;
-			case 'H':
-			case 'h':
-				Type = TagType.Highlighted;
-				break;
-			case 'T':
-			case 't':
-				Type = TagType.FontTitle;
-				break;
-			default:
-				Type = TagType.None;
-				break;
+					break;
+				case 'H':
+				case 'h':
+					Type = TagType.Highlighted;
+					break;
+				case 'T':
+				case 't':
+					Type = TagType.FontTitle;
+					break;
+				default:
+					Type = TagType.None;
+					break;
 			}
 			while (Text[CharIdx] != '=' && Text[CharIdx] != ' ' && Text[CharIdx] != '>')
 			{

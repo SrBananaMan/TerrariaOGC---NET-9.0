@@ -1,9 +1,9 @@
-using System;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Text;
 
 namespace Terraria.Leaderboards
 {
@@ -115,7 +115,7 @@ namespace Terraria.Leaderboards
 			{
 				UIDelay--;
 			}
-            else if (Data.Ready)
+			else if (Data.Ready)
 			{
 				bool MoveReq = false;
 				if (ParentUI.IsDownButtonDown())
@@ -178,19 +178,19 @@ namespace Terraria.Leaderboards
 		{
 			switch (Mode)
 			{
-			case LeaderboardMode.MyScore:
-				Data.LoadLeaderboard(SelectedLeaderboard, ParentUI.SignedInGamer);
-				break;
-            case LeaderboardMode.Friends:
-			{
-				SignedInGamer CurrentGamer = ParentUI.SignedInGamer;
-				FriendCollection Friends = CurrentGamer.GetFriends();
-				Data.LoadLeaderboard(SelectedLeaderboard, Friends, CurrentGamer);
-				break;
-			}
-			default:
-				Data.LoadLeaderboard(SelectedLeaderboard);
-				break;
+				case LeaderboardMode.MyScore:
+					Data.LoadLeaderboard(SelectedLeaderboard, ParentUI.SignedInGamer);
+					break;
+				case LeaderboardMode.Friends:
+					{
+						SignedInGamer CurrentGamer = ParentUI.SignedInGamer;
+						FriendCollection Friends = CurrentGamer.GetFriends();
+						Data.LoadLeaderboard(SelectedLeaderboard, Friends, CurrentGamer);
+						break;
+					}
+				default:
+					Data.LoadLeaderboard(SelectedLeaderboard);
+					break;
 			}
 			CalculateStatisticPositions();
 		}
@@ -289,7 +289,7 @@ namespace Terraria.Leaderboards
 				Box.Color = Colour;
 				Box.Draw(new Vector2i(BackgroundX, (int)(Vector.Y - (25 * Main.ScreenMultiplier))), 1f);
 #else
-				int TexID = (Selection == Data.Selected) ? (int)_sheetSprites.ID.INVENTORY_BACK10: (int)_sheetSprites.ID.INVENTORY_BACK;
+				int TexID = (Selection == Data.Selected) ? (int)_sheetSprites.ID.INVENTORY_BACK10 : (int)_sheetSprites.ID.INVENTORY_BACK;
 				Main.DrawRect(TexID, new Rectangle(BackgroundX + 8, (int)(Vector.Y - (25 * Main.ScreenMultiplier)) + 8, RowWidth - 16, RowHeight - 16), 192);
 #endif
 

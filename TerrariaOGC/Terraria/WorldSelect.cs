@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text;
 
 namespace Terraria
 {
@@ -44,16 +44,16 @@ namespace Terraria
 		public static void Update()
 		{
 #if !USE_ORIGINAL_CODE
-			if (WorldCap != 11 && Main.ScreenHeightPtr == 1)
+			if (WorldCap != 11 && Main.ScreenHeightPtr == ScreenHeights.HD)
 			{
 				WorldCap = 11;
 			}
-			else if (WorldCap != 16 && Main.ScreenHeightPtr == 2)
+			else if (WorldCap != 16 && Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				WorldCap = 16;
 			}
 
-			if (Main.ScreenHeightPtr != 2 && UI.MainUI.IsButtonTriggered(Buttons.LeftTrigger))
+			if (Main.ScreenHeightPtr != ScreenHeights.FHD && UI.MainUI.IsButtonTriggered(Buttons.LeftTrigger))
 			{
 				Main.PlaySound(12);
 				SecondPage = !SecondPage;
@@ -271,7 +271,7 @@ namespace Terraria
 
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					RectWidth = 560;
 					RectHeight = 608;
 					RectJoinX = 592;
@@ -280,7 +280,7 @@ namespace Terraria
 					Spacing += 1; // This isn't the direct equation but it needs to fit somehow so I'm reducing spacing by 1.
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					RectWidth = 848;
 					RectHeight = 932;
 					RectJoinX = 880;
@@ -417,7 +417,7 @@ namespace Terraria
 #endif
 			}
 #if !USE_ORIGINAL_CODE
-			if (Main.ScreenHeightPtr != 2)
+			if (Main.ScreenHeightPtr != ScreenHeights.FHD)
 			{
 				Lang.CONTROLS PageSwitch = (Lang.CONTROLS)77;
 
@@ -439,7 +439,7 @@ namespace Terraria
 		private static void SelectWorld()
 		{
 #if (!VERSION_INITIAL || IS_PATCHED)
-            isLocalWorld = true;
+			isLocalWorld = true;
 #endif
 			Main.PlaySound(10);
 			worldPathName = "world" + selectedWorld + ".wld";
@@ -449,7 +449,7 @@ namespace Terraria
 		public static void CreateWorld(string name)
 		{
 #if (!VERSION_INITIAL || IS_PATCHED)
-            isLocalWorld = true;
+			isLocalWorld = true;
 #endif
 			if (UI.MainUI.HasPlayerStorage())
 			{

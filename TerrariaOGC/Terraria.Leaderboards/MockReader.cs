@@ -2,7 +2,7 @@ using System;
 
 namespace Terraria.Leaderboards
 {
-	public class MockReader 
+	public class MockReader
 	{
 		// Hard to say with this project in particular, but I think this is a way for them (Engine) to test leaderboard functionality so that XBLive can be integrated.
 		// Could be used in the future to create a private server if XBLive for 360 gets terminated.

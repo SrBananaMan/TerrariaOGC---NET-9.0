@@ -69,9 +69,11 @@ namespace Terraria
 
 		public const int ResolutionHeight = 540;
 #else
-        public static int ResolutionWidth;
+		public static int ResolutionWidth;
 
-        public static int ResolutionHeight;
+		public static int ResolutionHeight;
+
+		internal const string OGCVersion = "TerrariaOGC v1.01";
 #endif
 
 		public const int SmallWorldW = 4200;
@@ -204,7 +206,7 @@ namespace Terraria
 
 		private const int UpsellDelay = 600; // This does not appear to have a use in the code.
 
-        private static readonly string[] MusicCueNames = new string[MaxNumMusic]
+		private static readonly string[] MusicCueNames = new string[MaxNumMusic]
 		{
 			"Music_1",
 			"Music_2",
@@ -492,6 +494,8 @@ namespace Terraria
 
 		public static SfxInstancePool SoundDrown;
 
+#if OLDMUSIC
+
 		public static AudioEngine UsedAudioEngine;
 
 		public static SoundBank UsedSoundBank;
@@ -499,6 +503,9 @@ namespace Terraria
 		public static WaveBank UsedWaveBank;
 
 		public static Cue[] MusicCues = new Cue[MaxNumMusic];
+#else
+		private static SoundManager UsedManager;
+#endif
 
 		public static float[] MusicFade = new float[MaxNumMusic];
 
@@ -654,14 +661,16 @@ namespace Terraria
 		public const string SettingsFile = "Settings.ini";
 		public static string Gamertag;
 		public static bool PSMode;
+		public static bool TouchpadButton;
 		public static bool UnlockAllRecipes;
 		public static bool ShowFPS;
 		public static bool AlwaysOnWatch;
 		public static bool AlwaysOnDepth;
 		public static bool AlwaysOnCompass;
-		public static int ScreenHeightPtr;
+		public static ScreenHeights ScreenHeightPtr;
 		public static float ScreenMultiplier;
 		public static bool HardmodeAlert;
+		private bool SoundResponse = false;
 #if VERSION_101
 		public static float LiquidFrCounter;
 		public static float LiquidFrame = 0;
@@ -684,7 +693,7 @@ namespace Terraria
 
 		public static Stopwatch RunTimer = new Stopwatch();
 
-		public void CheckKeys()
+		public void CheckKeyStates()
 		{
 			PrevKeyState = CurrentKeyState;
 			CurrentKeyState = Keyboard.GetState();
@@ -722,74 +731,40 @@ namespace Terraria
 		{
 			GraphicsGame = new GraphicsDeviceManager(this);
 			GraphicsGame.SynchronizeWithVerticalRetrace = true;
-            IsFixedTimeStep = true;
+			IsFixedTimeStep = true;
 			Content.RootDirectory = "Content";
 
 #if !USE_ORIGINAL_CODE
 			Settings ExistingSettings = new Settings(SettingsFile);
 
-            if (!ExistingSettings.AlreadyExists("Game", "Gamertag"))
-            {
-                ExistingSettings.Set("Game", "Gamertag", "Terrarian", "Sets the username of the player, since this is typically given by the console.");
-            }
-            if (!ExistingSettings.AlreadyExists("Game", "TrialActive"))
-			{
-                ExistingSettings.Set("Game", "TrialActive", "True", "Determines if trial mode is active; Included for archival/legal purposes, as this is not the full version.");
-            }
-			if (!ExistingSettings.AlreadyExists("Game", "PSMode"))
-			{
-				ExistingSettings.Set("Game", "PSMode", "False", "Determines whether the game will run in 'PlayStation 3' mode, rather than 'Xbox 360' mode.\n; This will change the font, controller, D-Pad, and button sprites used in game.");
-			}
-			if (!ExistingSettings.AlreadyExists("Game", "UnlockAllRecipes"))
-			{
-				ExistingSettings.Set("Game", "UnlockAllRecipes", "False");
-			}
-
-			if (!ExistingSettings.AlreadyExists("Display", "ScreenHeight"))
-            {
-                ExistingSettings.Set("Display", "ScreenHeight", "0", "This setting will determine the rendering height in pixels, allowing for upscaling from the original 540p.\n; There are 3 options: (0) 540p, (1) 720p, or (2) 1080p.");
-            }
-			if (!ExistingSettings.AlreadyExists("Display", "ShowFPS"))
-			{
-				ExistingSettings.Set("Display", "ShowFPS", "False");
-			}
-			if (!ExistingSettings.AlreadyExists("Display", "StartFullscreen"))
-			{
-				ExistingSettings.Set("Display", "StartFullscreen", "False", "Determines if the game is started in full-screen mode; This will not upscale, but stretch the current resolution to the display's max.\n; You can also toggle full-screen mode in-game by pressing 'F'.");
-			}
-			if (!ExistingSettings.AlreadyExists("Display", "ZoomLevel"))
-			{
-				ExistingSettings.Set("Display", "ZoomLevel", "0", "Sets how zoomed in the camera will be during initial gameplay; This must be a floating-point number between 0 and 1.\n; You can adjust this in-game by pressing '+' or '-'.");
-			}
-			if (!ExistingSettings.AlreadyExists("Display", "AlwaysOnWatch"))
-			{
-				ExistingSettings.Set("Display", "AlwaysOnWatch", "False", "Determines whether the information of the 3rd-tier Watch accessory will always active in-game.");
-			}
-			if (!ExistingSettings.AlreadyExists("Display", "AlwaysOnDepth"))
-			{
-				ExistingSettings.Set("Display", "AlwaysOnDepth", "False", "Determines whether the information of the Depth Meter accessory will always active in-game.");
-			}
-			if (!ExistingSettings.AlreadyExists("Display", "AlwaysOnCompass"))
-			{
-				ExistingSettings.Set("Display", "AlwaysOnCompass", "False", "Determines whether the information of the Compass accessory will always active in-game.");
-			}
-
-			if (!ExistingSettings.AlreadyExists("Additions", "HardmodeAlert"))
-			{
-				ExistingSettings.Set("Additions", "HardmodeAlert", "False", "Implements a pop-up alert once hardmode is activated within a world à la Pre-1.3 Terraria Mobile.\n; This basically just shows an introductory message about what hardmode is and what you can do from there.");
-			}
+			ExistingSettings.Set("Game", "Gamertag", "Terrarian", "Sets the username of the player, since this is typically given by the console.");
+			ExistingSettings.Set("Game", "TrialActive", "True", "Determines if trial mode is active; Included for archival/legal purposes, as this is not the full version.");
+			ExistingSettings.Set("Game", "PSMode", "False", "Determines whether the game will run in 'PlayStation 3' mode, rather than 'Xbox 360' mode.\n; This will change the font, controller, D-Pad, and button sprites used in game.");
+			ExistingSettings.Set("Game", "TouchpadButton", "False", "If you want the game to account for a touchpad button, enable this setting. This will not change the controller labels in-game.\n; This will only function if PSMode is enabled and is akin to the PS4 control scheme.");
+			ExistingSettings.Set("Game", "UnlockAllRecipes", "False");
+			// ---
+			ExistingSettings.Set("Display", "ScreenHeight", "0", "This setting will determine the rendering height in pixels, allowing for upscaling from the original 540p.\n; There are 3 options: (0) 540p, (1) 720p, or (2) 1080p.");
+			ExistingSettings.Set("Display", "ShowFPS", "False");
+			ExistingSettings.Set("Display", "StartFullscreen", "False", "Determines if the game is started in full-screen mode; This will not upscale, but stretch the current resolution to the display's max.\n; You can also toggle full-screen mode in-game by pressing 'F'.");
+			ExistingSettings.Set("Display", "ZoomLevel", "0", "Sets how zoomed in the camera will be during initial gameplay; This must be a floating-point number between 0 and 1.\n; You can adjust this in-game by pressing '+' or '-'.");
+			ExistingSettings.Set("Display", "AlwaysOnWatch", "False", "Determines whether the information of the 3rd-tier Watch accessory will always active in-game.");
+			ExistingSettings.Set("Display", "AlwaysOnDepth", "False", "Determines whether the information of the Depth Meter accessory will always active in-game.");
+			ExistingSettings.Set("Display", "AlwaysOnCompass", "False", "Determines whether the information of the Compass accessory will always active in-game.");
+			// ---
+			ExistingSettings.Set("Additions", "HardmodeAlert", "False", "Implements a pop-up alert once hardmode is activated within a world à la Pre-1.3 Terraria Mobile.\n; This basically just shows an introductory message about what hardmode is and what you can do from there.");
 
 			Gamertag = ExistingSettings.Get("Game", "Gamertag");
 
-            IsTrial = ExistingSettings.Get("Game", "TrialActive").ToLower().Equals("true");
+			IsTrial = ExistingSettings.Get("Game", "TrialActive").ToLower().Equals("true");
 
 			PSMode = ExistingSettings.Get("Game", "PSMode").ToLower().Equals("true");
+			TouchpadButton = PSMode && ExistingSettings.Get("Game", "TouchpadButton").ToLower().Equals("true");
 
 			UnlockAllRecipes = ExistingSettings.Get("Game", "UnlockAllRecipes").ToLower().Equals("true");
 
-			ScreenHeightPtr = Convert.ToInt32(ExistingSettings.Get("Display", "ScreenHeight"));
-			ScreenMultiplier = (float)((1f / 6f) * Math.Pow(ScreenHeightPtr, 2)) + ((1f / 6f) * ScreenHeightPtr) + 1;
-			if (ScreenHeightPtr < 1 || ScreenHeightPtr > 2)
+			ScreenHeightPtr = (ScreenHeights)Convert.ToByte(ExistingSettings.Get("Display", "ScreenHeight"));
+			ScreenMultiplier = (float)((1f / 6f) * Math.Pow((byte)ScreenHeightPtr, 2)) + ((1f / 6f) * (byte)ScreenHeightPtr) + 1;
+			if (ScreenHeightPtr < ScreenHeights.HD || ScreenHeightPtr > ScreenHeights.FHD)
 			{
 				ResolutionHeight = 540;
 			}
@@ -802,7 +777,7 @@ namespace Terraria
 			ShowFPS = ExistingSettings.Get("Display", "ShowFPS").ToLower().Equals("true");
 
 			StartFullscreen = ExistingSettings.Get("Display", "StartFullscreen").ToLower().Equals("true");
-			
+
 			ZoomLevel = Convert.ToSingle(ExistingSettings.Get("Display", "ZoomLevel"));
 			if (ZoomLevel < 0 || ZoomLevel > 1)
 			{
@@ -818,9 +793,9 @@ namespace Terraria
 
 			ExistingSettings.Close();
 #endif
-        }
+		}
 
-        protected override void Initialize()
+		protected override void Initialize()
 		{
 			base.Initialize();
 			MenuTime.reset(86.4f);
@@ -1537,16 +1512,16 @@ namespace Terraria
 			}
 
 			SignedInGamer.SignedIn += SignedInGamer_SignedIn;
-            SignedInGamer.SignedOut += SignedInGamer_SignedOut;
+			SignedInGamer.SignedOut += SignedInGamer_SignedOut;
 			NetworkSession.InviteAccepted += Netplay.NetworkSession_InviteAccepted;
 #endif
 		}
 
-        protected override void LoadContent()
+		protected override void LoadContent()
 		{
 			GraphicsDevice.DepthStencilState = DepthStencilState.None;
 			GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            GraphicsGame.PreferredBackBufferWidth = ResolutionWidth;
+			GraphicsGame.PreferredBackBufferWidth = ResolutionWidth;
 			GraphicsGame.PreferredBackBufferHeight = ResolutionHeight;
 
 #if !USE_ORIGINAL_CODE
@@ -1569,7 +1544,7 @@ namespace Terraria
 				SplashDelay = SplashDelayBase;
 			}
 			SplashTextures[1] = Content.Load<Texture2D>("Images/logo_1");
-            ContentThread = new Thread(LoadingThread);
+			ContentThread = new Thread(LoadingThread);
 			ContentThread.IsBackground = true;
 			ContentThread.Start();
 		}
@@ -1582,12 +1557,13 @@ namespace Terraria
 				5
 			});
 #endif
-            try
-            {
+			try
+			{
 				for (int LogoIdx = 2; LogoIdx < NumSplashLogos; LogoIdx++)
 				{
 					SplashTextures[LogoIdx] = Content.Load<Texture2D>("Images/logo_" + LogoIdx);
 				}
+#if USE_ORIGINAL_CODE
 				UsedAudioEngine = new AudioEngine("Content/TerrariaMusic.xgs");
 				UsedSoundBank = new SoundBank(UsedAudioEngine, "Content/Sound Bank.xsb");
 				UsedWaveBank = new WaveBank(UsedAudioEngine, "Content/Wave Bank.xwb");
@@ -1595,6 +1571,9 @@ namespace Terraria
 				{
 					MusicCues[j] = UsedSoundBank.GetCue(MusicCueNames[j]);
 				}
+#else
+				UsedManager = new SoundManager(MusicCueNames);
+#endif
 				SoundMech = new SfxInstancePool(Content, "Sounds/Mech_0", 3);
 				SoundGrab = new SfxInstancePool(Content, "Sounds/Grab", 3);
 				SoundPixie = new SfxInstancePool(Content, "Sounds/Pixie", 2);
@@ -1679,10 +1658,17 @@ namespace Terraria
 		{
 			try
 			{
+#if USE_ORIGINAL_CODE
 				if (CurrentMusic != Music.NUM_SONGS && MusicCues[(uint)CurrentMusic].IsPaused)
 				{
 					MusicCues[(uint)CurrentMusic].Resume();
 				}
+#else
+				if (CurrentMusic != Music.NUM_SONGS && UsedManager.CheckState(MusicCueNames[(uint)CurrentMusic], SoundState.Paused))
+				{
+					UsedManager.Resume(MusicCueNames[(uint)CurrentMusic]);
+				}
+#endif
 				if (MusicVolume == 0f)
 				{
 					NewMusic = Music.NUM_SONGS;
@@ -1731,26 +1717,10 @@ namespace Terraria
 							int NPCType = NPCSet[NPCIdx].Type;
 							switch (NPCType)
 							{
-							case (int)NPC.ID.THE_DESTROYER_HEAD:
-							case (int)NPC.ID.SNOWMAN_GANGSTA:
-							case (int)NPC.ID.MISTER_STABBY:
-							case (int)NPC.ID.SNOW_BALLA:
-								GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
-								GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
-								CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
-								if (!InArea)
-								{
-									continue;
-								}
-								BossMusic = 3;
-								break;
-							default:
-								switch (NPCType)
-								{
-								case (int)NPC.ID.WALL_OF_FLESH: // For some reason it checks if both the eyes and the mouth of the WoF are active... like as if they can be separated.
-								case (int)NPC.ID.WALL_OF_FLESH_EYE: // Interesting since literally 17 lines up is a case where only The Destroyer's head is checked, rather than each segment.
-								case (int)NPC.ID.RETINAZER:
-								case (int)NPC.ID.SPAZMATISM:
+								case (int)NPC.ID.THE_DESTROYER_HEAD:
+								case (int)NPC.ID.SNOWMAN_GANGSTA:
+								case (int)NPC.ID.MISTER_STABBY:
+								case (int)NPC.ID.SNOW_BALLA:
 									GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
 									GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
 									CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
@@ -1758,35 +1728,51 @@ namespace Terraria
 									{
 										continue;
 									}
-									BossMusic = 2;
-									break;
-								case (int)NPC.ID.EYE_OF_CTHULHU: // Console Exclusive: If an Eye of Cthulhu is active, play the Ocram music
-								case (int)NPC.ID.OCRAM:
-									GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
-									GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
-									CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
-									if (!InArea)
-									{
-										continue;
-									}
-									BossMusic = 4;
+									BossMusic = 3;
 									break;
 								default:
-									if (!NPCSet[NPCIdx].IsBoss && (NPCType < (int)NPC.ID.EATER_OF_WORLDS_HEAD || NPCType > (int)NPC.ID.EATER_OF_WORLDS_TAIL) && (NPCType < (int)NPC.ID.GOBLIN_PEON || NPCType > (int)NPC.ID.GOBLIN_SORCERER) && NPCType != (int)NPC.ID.GOBLIN_ARCHER) // Checks for the EoW's segments (again, like they can be separated) or the Goblin Army.
+									switch (NPCType)
 									{
-										continue;
+										case (int)NPC.ID.WALL_OF_FLESH: // For some reason it checks if both the eyes and the mouth of the WoF are active... like as if they can be separated.
+										case (int)NPC.ID.WALL_OF_FLESH_EYE: // Interesting since literally 17 lines up is a case where only The Destroyer's head is checked, rather than each segment.
+										case (int)NPC.ID.RETINAZER:
+										case (int)NPC.ID.SPAZMATISM:
+											GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
+											GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
+											CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
+											if (!InArea)
+											{
+												continue;
+											}
+											BossMusic = 2;
+											break;
+										case (int)NPC.ID.EYE_OF_CTHULHU: // Console Exclusive: If an Eye of Cthulhu is active, play the Ocram music
+										case (int)NPC.ID.OCRAM:
+											GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
+											GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
+											CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
+											if (!InArea)
+											{
+												continue;
+											}
+											BossMusic = 4;
+											break;
+										default:
+											if (!NPCSet[NPCIdx].IsBoss && (NPCType < (int)NPC.ID.EATER_OF_WORLDS_HEAD || NPCType > (int)NPC.ID.EATER_OF_WORLDS_TAIL) && (NPCType < (int)NPC.ID.GOBLIN_PEON || NPCType > (int)NPC.ID.GOBLIN_SORCERER) && NPCType != (int)NPC.ID.GOBLIN_ARCHER) // Checks for the EoW's segments (again, like they can be separated) or the Goblin Army.
+											{
+												continue;
+											}
+											GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
+											GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
+											CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
+											if (!InArea)
+											{
+												continue;
+											}
+											BossMusic = 1;
+											break;
 									}
-									GameArea.X = NPCSet[NPCIdx].XYWH.X + (NPCSet[NPCIdx].Width >> 1) - (Area / 2);
-									GameArea.Y = NPCSet[NPCIdx].XYWH.Y + (NPCSet[NPCIdx].Height >> 1) - (Area / 2);
-									CurrentView.ViewArea.Intersects(ref GameArea, out InArea);
-									if (!InArea)
-									{
-										continue;
-									}
-									BossMusic = 1;
 									break;
-								}
-								break;
 							}
 							break;
 						}
@@ -1794,18 +1780,18 @@ namespace Terraria
 						{
 							switch (BossMusic)
 							{
-							case 1:
-								NewMusic = Music.BOSS1;
-								break;
-							case 2:
-								NewMusic = Music.BOSS2;
-								break;
-							case 3:
-								NewMusic = Music.BOSS3;
-								break;
-							case 4:
-								NewMusic = Music.BOSS4;
-								break;
+								case 1:
+									NewMusic = Music.BOSS1;
+									break;
+								case 2:
+									NewMusic = Music.BOSS2;
+									break;
+								case 3:
+									NewMusic = Music.BOSS3;
+									break;
+								case 4:
+									NewMusic = Music.BOSS4;
+									break;
 							}
 						}
 						else if (CurrentView.ScreenPosition.Y > MaxTilesY - 200 << 4)
@@ -1898,6 +1884,7 @@ namespace Terraria
 				CurrentMusic = NewMusic;
 				for (int Cue = 0; Cue < MaxNumMusic; Cue++)
 				{
+#if USE_ORIGINAL_CODE
 					if (Cue == (int)CurrentMusic)
 					{
 						if (!MusicCues[Cue].IsPlaying)
@@ -1940,6 +1927,49 @@ namespace Terraria
 					{
 						MusicFade[Cue] = 0f;
 					}
+#else
+					if (Cue == (int)CurrentMusic)
+					{
+						if (!UsedManager.CheckState(MusicCueNames[Cue], SoundState.Playing))
+						{
+							UsedManager.Play(MusicCueNames[Cue]);
+						}
+						else
+						{
+							MusicFade[Cue] += 0.005f;
+							if (MusicFade[Cue] > 1f)
+							{
+								MusicFade[Cue] = 1f;
+							}
+						}
+						UsedManager.SetVolume(MusicCueNames[Cue], MusicFade[Cue] * MusicVolume);
+					}
+					else if (UsedManager.CheckState(MusicCueNames[Cue], SoundState.Playing))
+					{
+						if (CurrentMusic == Music.NUM_SONGS)
+						{
+							MusicFade[Cue] = 0f;
+							UsedManager.Stop(MusicCueNames[Cue]);
+						}
+						else if (MusicFade[(uint)CurrentMusic] > 0.25f)
+						{
+							MusicFade[Cue] -= 0.005f;
+							if (MusicFade[Cue] <= 0f)
+							{
+								MusicFade[Cue] = 0f;
+								UsedManager.Stop(MusicCueNames[Cue]);
+							}
+							else
+							{
+								UsedManager.SetVolume(MusicCueNames[Cue], MusicFade[Cue] * MusicVolume);
+							}
+						}
+					}
+					else
+					{
+						MusicFade[Cue] = 0f;
+					}
+#endif
 				}
 			}
 			catch
@@ -1961,14 +1991,14 @@ namespace Terraria
 			FrameCounter++;
 			switch (ShowSplash)
 			{
-			case 0:
-				return;
-			case 1:
-				ContentThread.Join();
-				ContentThread = null;
-				ShowSplash = 2;
-				InitializePostSplash();
-				return;
+				case 0:
+					return;
+				case 1:
+					ContentThread.Join();
+					ContentThread = null;
+					ShowSplash = 2;
+					InitializePostSplash();
+					return;
 			}
 			for (int Instance = 0; Instance < 4; Instance++)
 			{
@@ -1990,7 +2020,14 @@ namespace Terraria
 			}
 			UI.UpdateOnce();
 			AchievementSystem.Update();
+#if USE_ORIGINAL_CODE
 			UsedAudioEngine.Update();
+#else
+			if (!SoundResponse)
+			{
+				SoundResponse = UsedManager.MatchCounted(Window.Handle);
+			}
+#endif
 			WorldGen.ToDestroyObject = false;
 			UpdateMusic(UI.MainUI.ActivePlayer);
 			HasFocus = IsActive;
@@ -2008,34 +2045,65 @@ namespace Terraria
 				FPSTimer.Restart();
 			}
 
-			CheckKeys();
+			CheckKeyStates();
 			if (HasKeyBeenPressed(Keys.F))
 			{
 				GraphicsGame.ToggleFullScreen();
 			}
 
-			if (HasKeyBeenPressed(Keys.OemPlus))
+			if (IsGameStarted)
 			{
-				if (ZoomLevel < 2f)
+				if (CurrentKeyState.IsKeyDown(Keys.OemPlus))
 				{
-					if ((ZoomLevel += 0.1f) > 2f)
+					if (ZoomLevel < 2f)
 					{
-						ZoomLevel = 2f;
-					}
+						if ((ZoomLevel += 0.01f) > 2f)
+						{
+							ZoomLevel = 2f;
+						}
 
-					UI.MainUI.ActivePlayer.CurrentView.Zoom(ZoomLevel);
+						UI.MainUI.ActivePlayer.CurrentView.DirectZoom(ZoomLevel);
+					}
 				}
-			}
 
-			if (HasKeyBeenPressed(Keys.OemMinus))
-			{
-				if (ZoomLevel > 1f)
+				if (CurrentKeyState.IsKeyDown(Keys.OemMinus))
 				{
-					if ((ZoomLevel -= 0.1f) < 1f)
+					if (ZoomLevel > 1f)
 					{
-						ZoomLevel = 1f;
+						if ((ZoomLevel -= 0.01f) < 1f)
+						{
+							ZoomLevel = 1f;
+						}
+						UI.MainUI.ActivePlayer.CurrentView.DirectZoom(ZoomLevel);
 					}
-					UI.MainUI.ActivePlayer.CurrentView.Zoom(ZoomLevel);
+				}
+
+				if (UI.MainUI.CurMenuMode == MenuMode.PAUSE)
+				{
+					if (UI.MainUI.PadState.IsButtonDown(Buttons.RightTrigger))
+					{
+						if (ZoomLevel < 2f)
+						{
+							if ((ZoomLevel += 0.01f) > 2f)
+							{
+								ZoomLevel = 2f;
+							}
+
+							UI.MainUI.ActivePlayer.CurrentView.DirectZoom(ZoomLevel);
+						}
+					}
+
+					if (UI.MainUI.PadState.IsButtonDown(Buttons.LeftTrigger))
+					{
+						if (ZoomLevel > 1f)
+						{
+							if ((ZoomLevel -= 0.01f) < 1f)
+							{
+								ZoomLevel = 1f;
+							}
+							UI.MainUI.ActivePlayer.CurrentView.DirectZoom(ZoomLevel);
+						}
+					}
 				}
 			}
 #endif
@@ -2464,11 +2532,11 @@ namespace Terraria
 #if !USE_ORIGINAL_CODE
 				switch (ScreenHeightPtr)
 				{
-					case 1:
+					case ScreenHeights.HD:
 						IconX = 1182;
 						IconY = 650;
 						break;
-					case 2:
+					case ScreenHeights.FHD:
 						IconX = 1790;
 						IconY = 992;
 						break;
@@ -2649,9 +2717,9 @@ namespace Terraria
 					RemoteGamer.Machine.RemoveFromSession();
 				}
 			}
-        }
+		}
 
-        public static void NewText(string Text, int R, int G, int B)
+		public static void NewText(string Text, int R, int G, int B)
 		{
 			for (int LineIdx = MaxNumChatLines - 1; LineIdx > 0; LineIdx--)
 			{
@@ -2662,7 +2730,7 @@ namespace Terraria
 			ChatLineSet[0].Text = Text;
 
 #if (!VERSION_INITIAL || IS_PATCHED)
-            ChatLineSet[0].Size = UI.BoldSmallFont.MeasureString(Text);
+			ChatLineSet[0].Size = UI.BoldSmallFont.MeasureString(Text);
 #endif
 
 			ChatLineSet[0].ShowTime = ChatLength;
@@ -2762,11 +2830,11 @@ namespace Terraria
 
 			switch (ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					PosX = 66;
 					PosY = 620;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					PosX = 98;
 					PosY = 980;
 					break;
@@ -2779,13 +2847,13 @@ namespace Terraria
 			{
 				if (ChatLineSet[LineIdx].ShowTime > 0)
 				{
-                    LineHeight += (int)ChatLineSet[LineIdx].Size.Y;
-                    if (ChatLineSet[LineIdx].Size.X > LineWidth)
-                    {
-                        LineWidth = ChatLineSet[LineIdx].Size.X;
-                    }
-                    YOffset++;
-                }
+					LineHeight += (int)ChatLineSet[LineIdx].Size.Y;
+					if (ChatLineSet[LineIdx].Size.X > LineWidth)
+					{
+						LineWidth = ChatLineSet[LineIdx].Size.X;
+					}
+					YOffset++;
+				}
 			}
 			if (YOffset == 0 || LineWidth == 0f)
 			{
@@ -2797,7 +2865,7 @@ namespace Terraria
 			{
 				if (ChatLineSet[LineIdx].ShowTime > 0)
 				{
-                    TextAdjust += ChatLineSet[LineIdx].Size.Y;
+					TextAdjust += ChatLineSet[LineIdx].Size.Y;
 					float Alpha = UI.MouseTextBrightness * (1f / 255f);
 					SpriteBatch.DrawString(UI.BoldSmallFont, ChatLineSet[LineIdx].Text, new Vector2(ChatX, ChatY - TextAdjust), new Color((byte)(ChatLineSet[LineIdx].Color.R * Alpha), (byte)(ChatLineSet[LineIdx].Color.G * Alpha), (byte)(ChatLineSet[LineIdx].Color.B * Alpha), UI.MouseTextBrightness));
 				}
@@ -3004,120 +3072,120 @@ namespace Terraria
 				}
 				switch (SoundType)
 				{
-				case 0:
-				{
-					int DigType = Rand.Next(3);
-					SoundDig[DigType].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				}
-				case 1:
-				{
-					int HurtType = Rand.Next(3);
-					SoundPlayerHit[HurtType].Play(Volume, Pan);
-					break;
-				}
-				case 2:
-				{
-					if (Style == 1)
-					{
-						int ItemType = Rand.Next(3);
-						if (ItemType != 0)
+					case 0:
 						{
-							Style = ItemType + 17;
+							int DigType = Rand.Next(3);
+							SoundDig[DigType].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+							break;
 						}
-					}
-					double NewVolume = Volume;
-					double Pitch;
-					if (Style == 26 || Style == 35)
-					{
-						NewVolume *= 0.75f;
-						Pitch = HarpNote;
-					}
-					else
-					{
-						Pitch = Rand.Next(-6, 7) * 0.01f;
-					}
-					SoundItem[Style - 1].Play(NewVolume, Pan, Pitch);
-					break;
-				}
-				case 3:
-					SoundNPCHit[Style - 1].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 4:
-					if (Style != 10 || !SoundNPCKilled[Style - 1].IsPlaying())
-					{
-						SoundNPCKilled[Style - 1].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					}
-					break;
-				case 5:
-					SoundPlayerKilled.Play(Volume, Pan);
-					break;
-				case 6:
-					SoundGrass.Play(Volume, Pan, Rand.Next(-30, 31) * 0.01f);
-					break;
-				case 7:
-					SoundGrab.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 8:
-					SoundDoorOpen.Play(Volume, Pan, Rand.Next(-20, 21) * 0.01f);
-					break;
-				case 9:
-					SoundDoorClosed.Play(Volume, Pan, Rand.Next(-20, 21) * 0.01f);
-					break;
-				case 13:
-					SoundShatter.Play(Volume, Pan);
-					break;
-				case 14:
-				{
-					int num11 = Rand.Next(3);
-					SoundZombie[num11].Play(Volume * 0.4f, Pan);
-					break;
-				}
-				case 15:
-					if (!SoundRoar[Style].IsPlaying())
-					{
-						SoundRoar[Style].Play(Volume, Pan);
-					}
-					break;
-				case 16:
-					SoundDoubleJump.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 17:
-					SoundRun.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 19:
-					SoundSplash[Style].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 20:
-				{
-					int FemType = Rand.Next(3);
-					SoundFemaleHit[FemType].Play(Volume, Pan);
-					break;
-				}
-				case 21:
-				{
-					int TinkType = Rand.Next(3);
-					SoundTink[TinkType].Play(Volume, Pan);
-					break;
-				}
-				case 22:
-					SoundUnlock.Play(Volume, Pan);
-					break;
-				case 26:
-				{
-					int ZombieType = Rand.Next(3, 5);
-					SoundZombie[ZombieType].Play(Volume * 0.9f, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				}
-				case 27:
-					SoundPixie.UpdateOrPlay(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 28:
-					if (!SoundMech.IsPlaying())
-					{
-						SoundMech.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
-					}
-					break;
+					case 1:
+						{
+							int HurtType = Rand.Next(3);
+							SoundPlayerHit[HurtType].Play(Volume, Pan);
+							break;
+						}
+					case 2:
+						{
+							if (Style == 1)
+							{
+								int ItemType = Rand.Next(3);
+								if (ItemType != 0)
+								{
+									Style = ItemType + 17;
+								}
+							}
+							double NewVolume = Volume;
+							double Pitch;
+							if (Style == 26 || Style == 35)
+							{
+								NewVolume *= 0.75f;
+								Pitch = HarpNote;
+							}
+							else
+							{
+								Pitch = Rand.Next(-6, 7) * 0.01f;
+							}
+							SoundItem[Style - 1].Play(NewVolume, Pan, Pitch);
+							break;
+						}
+					case 3:
+						SoundNPCHit[Style - 1].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 4:
+						if (Style != 10 || !SoundNPCKilled[Style - 1].IsPlaying())
+						{
+							SoundNPCKilled[Style - 1].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						}
+						break;
+					case 5:
+						SoundPlayerKilled.Play(Volume, Pan);
+						break;
+					case 6:
+						SoundGrass.Play(Volume, Pan, Rand.Next(-30, 31) * 0.01f);
+						break;
+					case 7:
+						SoundGrab.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 8:
+						SoundDoorOpen.Play(Volume, Pan, Rand.Next(-20, 21) * 0.01f);
+						break;
+					case 9:
+						SoundDoorClosed.Play(Volume, Pan, Rand.Next(-20, 21) * 0.01f);
+						break;
+					case 13:
+						SoundShatter.Play(Volume, Pan);
+						break;
+					case 14:
+						{
+							int num11 = Rand.Next(3);
+							SoundZombie[num11].Play(Volume * 0.4f, Pan);
+							break;
+						}
+					case 15:
+						if (!SoundRoar[Style].IsPlaying())
+						{
+							SoundRoar[Style].Play(Volume, Pan);
+						}
+						break;
+					case 16:
+						SoundDoubleJump.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 17:
+						SoundRun.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 19:
+						SoundSplash[Style].Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 20:
+						{
+							int FemType = Rand.Next(3);
+							SoundFemaleHit[FemType].Play(Volume, Pan);
+							break;
+						}
+					case 21:
+						{
+							int TinkType = Rand.Next(3);
+							SoundTink[TinkType].Play(Volume, Pan);
+							break;
+						}
+					case 22:
+						SoundUnlock.Play(Volume, Pan);
+						break;
+					case 26:
+						{
+							int ZombieType = Rand.Next(3, 5);
+							SoundZombie[ZombieType].Play(Volume * 0.9f, Pan, Rand.Next(-10, 11) * 0.01f);
+							break;
+						}
+					case 27:
+						SoundPixie.UpdateOrPlay(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 28:
+						if (!SoundMech.IsPlaying())
+						{
+							SoundMech.Play(Volume, Pan, Rand.Next(-10, 11) * 0.01f);
+						}
+						break;
 				}
 			}
 			catch
@@ -3136,42 +3204,42 @@ namespace Terraria
 				float Volume = SoundVolume;
 				switch (SoundType)
 				{
-				case 1:
-				{
-					int HurtType = Rand.Next(3);
-					SoundPlayerHit[HurtType].Play(Volume);
-					break;
-				}
-				case 7:
-					SoundGrab.Play(Volume, 0, Rand.Next(-10, 11) * 0.01f);
-					break;
-				case 10:
-					SoundMenuOpen.Play(Volume);
-					break;
-				case 11:
-					SoundMenuClose.Play(Volume);
-					break;
-				case 12:
-					SoundMenuTick.Play(Volume);
-					break;
-				case 18:
-					SoundCoins.Play(Volume);
-					break;
-				case 20:
-				{
-					int FemType = Rand.Next(3);
-					SoundFemaleHit[FemType].Play(Volume);
-					break;
-				}
-				case 23:
-					SoundDrown.Play(Volume);
-					break;
-				case 24:
-					SoundChat.Play(Volume);
-					break;
-				case 25:
-					SoundMaxMana.Play(Volume);
-					break;
+					case 1:
+						{
+							int HurtType = Rand.Next(3);
+							SoundPlayerHit[HurtType].Play(Volume);
+							break;
+						}
+					case 7:
+						SoundGrab.Play(Volume, 0, Rand.Next(-10, 11) * 0.01f);
+						break;
+					case 10:
+						SoundMenuOpen.Play(Volume);
+						break;
+					case 11:
+						SoundMenuClose.Play(Volume);
+						break;
+					case 12:
+						SoundMenuTick.Play(Volume);
+						break;
+					case 18:
+						SoundCoins.Play(Volume);
+						break;
+					case 20:
+						{
+							int FemType = Rand.Next(3);
+							SoundFemaleHit[FemType].Play(Volume);
+							break;
+						}
+					case 23:
+						SoundDrown.Play(Volume);
+						break;
+					case 24:
+						SoundChat.Play(Volume);
+						break;
+					case 25:
+						SoundMaxMana.Play(Volume);
+						break;
 				}
 			}
 			catch
@@ -3253,400 +3321,400 @@ namespace Terraria
 			UI.MainUI.PadState = new GamePadState(LeftThumbStick, RightThumbStick, LeftTrigger, RightTrigger, PadButtons);
 			switch (TutorialState)
 			{
-			case Tutorial.INTRO:
-			case Tutorial.MONSTER_INFO_1:
-			case Tutorial.POTIONS_1:
-			case Tutorial.TORCH_1:
-			case Tutorial.INVENTORY_2:
-			case Tutorial.MOVEMENT_1:
-			case Tutorial.DROP_1:
-			case Tutorial.EQUIPSCREEN_1:
-			case Tutorial.CHEST_1:
-			case Tutorial.CRAFTSCREEN_1:
-			case Tutorial.MINED_ORE_1:
-			case Tutorial.CURSOR_SWITCH_1:
-			case Tutorial.DAY_NIGHT_1:
-			case Tutorial.USE_BENCH_1:
-			case Tutorial.BACK_WALL_INFO_1:
-			case Tutorial.HOUSE_INFO_1:
-			case Tutorial.HOUSE_DONE_1:
-			case Tutorial.THE_GUIDE_1:
-			case Tutorial.HAMMER_1:
-			case Tutorial.CONGRATS_1:
-				if (TutorialInputDelay == 0)
-				{
-					NextTutorial();
-				}
-				break;
+				case Tutorial.INTRO:
+				case Tutorial.MONSTER_INFO_1:
+				case Tutorial.POTIONS_1:
+				case Tutorial.TORCH_1:
+				case Tutorial.INVENTORY_2:
+				case Tutorial.MOVEMENT_1:
+				case Tutorial.DROP_1:
+				case Tutorial.EQUIPSCREEN_1:
+				case Tutorial.CHEST_1:
+				case Tutorial.CRAFTSCREEN_1:
+				case Tutorial.MINED_ORE_1:
+				case Tutorial.CURSOR_SWITCH_1:
+				case Tutorial.DAY_NIGHT_1:
+				case Tutorial.USE_BENCH_1:
+				case Tutorial.BACK_WALL_INFO_1:
+				case Tutorial.HOUSE_INFO_1:
+				case Tutorial.HOUSE_DONE_1:
+				case Tutorial.THE_GUIDE_1:
+				case Tutorial.HAMMER_1:
+				case Tutorial.CONGRATS_1:
+					if (TutorialInputDelay == 0)
+					{
+						NextTutorial();
+					}
+					break;
 			}
 			switch (TutorialState)
 			{
-			case Tutorial.INTRO_2:
-			case Tutorial.MONSTER_INFO_2:
-			case Tutorial.POTIONS_2:
-			case Tutorial.TORCH_2:
-			case Tutorial.INVENTORY_3:
-			case Tutorial.MOVEMENT_2:
-			case Tutorial.DROP_2:
-			case Tutorial.EQUIPSCREEN_2:
-			case Tutorial.CHEST_2:
-			case Tutorial.CRAFTSCREEN_2:
-			case Tutorial.MINED_ORE_2:
-			case Tutorial.CURSOR_SWITCH_2:
-			case Tutorial.DAY_NIGHT_2:
-			case Tutorial.USE_BENCH_2:
-			case Tutorial.BACK_WALL_INFO_2:
-			case Tutorial.HOUSE_INFO_2:
-			case Tutorial.HOUSE_DONE_2:
-			case Tutorial.THE_GUIDE_2:
-			case Tutorial.HAMMER_2:
-			case Tutorial.CONGRATS_2:
-				if (UI.MainUI.IsButtonTriggered(Buttons.B))
-				{
-					UI.MainUI.ClearButtonTriggers();
-					TutorialMaskB = TutorialVar != 0;
-					NextTutorial();
-				}
-				return;
+				case Tutorial.INTRO_2:
+				case Tutorial.MONSTER_INFO_2:
+				case Tutorial.POTIONS_2:
+				case Tutorial.TORCH_2:
+				case Tutorial.INVENTORY_3:
+				case Tutorial.MOVEMENT_2:
+				case Tutorial.DROP_2:
+				case Tutorial.EQUIPSCREEN_2:
+				case Tutorial.CHEST_2:
+				case Tutorial.CRAFTSCREEN_2:
+				case Tutorial.MINED_ORE_2:
+				case Tutorial.CURSOR_SWITCH_2:
+				case Tutorial.DAY_NIGHT_2:
+				case Tutorial.USE_BENCH_2:
+				case Tutorial.BACK_WALL_INFO_2:
+				case Tutorial.HOUSE_INFO_2:
+				case Tutorial.HOUSE_DONE_2:
+				case Tutorial.THE_GUIDE_2:
+				case Tutorial.HAMMER_2:
+				case Tutorial.CONGRATS_2:
+					if (UI.MainUI.IsButtonTriggered(Buttons.B))
+					{
+						UI.MainUI.ClearButtonTriggers();
+						TutorialMaskB = TutorialVar != 0;
+						NextTutorial();
+					}
+					return;
 			}
 			Player ActivePlayer = UI.MainUI.ActivePlayer;
 			switch (TutorialState)
 			{
-			case Tutorial.MOVE:
-				if (UI.MainUI.PadState.ThumbSticks.Left.LengthSquared() > UI.SquaredDeadZone)
-				{
-					TutorialVar++;
-				}
-				if (TutorialVar > 4 && TutorialInputDelay == 0)
-				{
-					UI.MainUI.AchievementTriggers.SetState(Trigger.FirstTutorialTaskCompleted, State: true);
-					NextTutorial();
-				}
-				break;
-			case Tutorial.JUMP:
-				if (UI.MainUI.TotalJumps - TutorialVar >= 1)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.FALL_DOWN:
-				if (ActivePlayer.IsControlDown)
-				{
-					int TileX = (int)ActivePlayer.Position.X + 10 >> 4;
-					int TileY = (int)ActivePlayer.Position.Y + 42 >> 4;
-					if (TileSet[TileX, TileY - 1].Type == 19 || TileSet[TileX - 1, TileY - 1].Type == 19 || TileSet[TileX + 1, TileY - 1].Type == 19)
+				case Tutorial.MOVE:
+					if (UI.MainUI.PadState.ThumbSticks.Left.LengthSquared() > UI.SquaredDeadZone)
+					{
+						TutorialVar++;
+					}
+					if (TutorialVar > 4 && TutorialInputDelay == 0)
+					{
+						UI.MainUI.AchievementTriggers.SetState(Trigger.FirstTutorialTaskCompleted, State: true);
+						NextTutorial();
+					}
+					break;
+				case Tutorial.JUMP:
+					if (UI.MainUI.TotalJumps - TutorialVar >= 1)
 					{
 						NextTutorial();
 					}
-				}
-				break;
-			case Tutorial.JUMP_OUT:
-				if (UI.MainUI.TotalJumps - TutorialVar >= 1)
-				{
-					int TileX = (int)ActivePlayer.Position.X + 10 >> 4;
-					int TileY = (int)ActivePlayer.Position.Y + 42 >> 4;
-					if (TileSet[TileX, TileY + 1].Type == 19 || TileSet[TileX - 1, TileY + 1].Type == 19 || TileSet[TileX + 1, TileY + 1].Type == 19)
-					{
-						NextTutorial();
-					}
-				}
-				break;
-			case Tutorial.CURSOR:
-				if (UI.MainUI.PadState.ThumbSticks.Right.LengthSquared() > UI.SquaredDeadZone)
-				{
-					TutorialVar++;
-				}
-				if (UI.MainUI.IsButtonTriggered(Buttons.RightTrigger))
-				{
-					TutorialVar2++;
-				}
-				if (TutorialInputDelay == 0 && TutorialVar != 0 && TutorialVar2 != 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.HOTBAR:
-				if (TutorialInputDelay == 0 && ActivePlayer.SelectedItem == 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.SWORD_ATTACK:
-				if (UI.MainUI.TotalDeadSlimes > TutorialVar)
-				{
-					Item.NewItem((int)ActivePlayer.Position.X, (int)ActivePlayer.Position.Y, 1, 1, (int)Item.ID.GEL);
-					NextTutorial();
-				}
-				else if (TutorialVar2 != 0 && --TutorialVar2 == 0)
-				{
-					TutorialVar2 = 900;
-					int SlimeIdx = NPC.NewNPC(ActivePlayer.XYWH.X - (ResolutionWidth / 2), ActivePlayer.XYWH.Y - ResolutionHeight, (int)NPC.ID.SLIME);
-					NPCSet[SlimeIdx].SetDefaults("Green Slime");
-				}
-				break;
-			case Tutorial.SELECT_AXE:
-				if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].AxePower > 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.USE_AXE:
-				if (UI.MainUI.TotalChopsTaken > TutorialVar)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.INVENTORY:
-				if (UI.MainUI.InventoryMode == 1)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.EQUIPMENT:
-				if (UI.MainUI.ActiveInvSection == UI.InventorySection.EQUIP)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.CRAFTING:
-				if (UI.MainUI.ActiveInvSection == UI.InventorySection.CRAFTING)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.CRAFT_TORCH:
-				if (UI.MainUI.TotalTorchesCrafted > TutorialVar)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.CRAFT_CATEGORIES:
-				if (UI.MainUI.IsButtonTriggered(Buttons.LeftTrigger) || UI.MainUI.IsButtonTriggered(Buttons.RightTrigger))
-				{
-					TutorialVar++;
-				}
-				if (TutorialVar != 0 && TutorialInputDelay == 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.CRAFTING_EXIT:
-				if (UI.MainUI.InventoryMode == 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.SELECT_PICK:
-				if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].PickPower > 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.USE_PICK:
-				if (UI.MainUI.TotalCopperObtained - TutorialVar >= 55)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.WOOD_PLATFORM:
-				if (UI.MainUI.TotalWoodPlatformsCrafted - TutorialVar >= MaxNumItemUpdates)
-				{
-					NextTutorial(2);
-				}
-				else if (--TutorialVar2 == 0)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.WOOD_PLATFORM_TIME_OUT:
-				if (UI.MainUI.TotalWoodPlatformsCrafted - TutorialVar >= MaxNumItemUpdates) // Unintentionally supporting 1.2's platform recipe since 2013
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.SELECT_PLATFORM:
-				if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].Type == (int)Item.ID.WOOD_PLATFORM)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.BUILD_CURSOR:
-				if (TutorialInputDelay == 0 && !UI.MainUI.UsingSmartCursor)
-				{
-					TutorialMaskRSpress = true;
-					NextTutorial();
-				}
-				break;
-			case Tutorial.PLACING_1:
-				if (UI.MainUI.TotalWoodPlatformsPlaced > TutorialVar)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.PLACING_2:
-				if (ActivePlayer.XYWH.Y < 3360)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.BUILD_HOUSE:
-				if (TutorialInputDelay == 0)
-				{
-					NextTutorial();
-				}
-				goto case Tutorial.BUILD_HOUSE_EXTRA_INFO;
-			case Tutorial.BUILD_HOUSE_EXTRA_INFO:
-			{
-				if ((FrameCounter & 31u) != 0)
-				{
 					break;
-				}
-				int PlaceX = UI.MainUI.MouseX + UI.MainUI.CurrentView.ScreenPosition.X >> 4;
-				int PlaceY = UI.MainUI.MouseY + UI.MainUI.CurrentView.ScreenPosition.Y >> 4;
-				bool EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
-				if (!EnoughSpace)
-				{
-					PlaceX--;
-					EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
-					if (!EnoughSpace)
+				case Tutorial.FALL_DOWN:
+					if (ActivePlayer.IsControlDown)
 					{
-						PlaceX += 2;
-						EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
-					}
-					if (!EnoughSpace)
-					{
-						PlaceX--;
-						PlaceY++;
-						EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
-					}
-				}
-				if (EnoughSpace)
-				{
-					TutorialHouse.X = (short)PlaceX;
-					TutorialHouse.Y = (short)PlaceY;
-					NextTutorial((TutorialState != Tutorial.BUILD_HOUSE) ? 1 : 2);
-				}
-				break;
-			}
-			case Tutorial.BUILD_HOUSE_2:
-				if (TutorialInputDelay == 0)
-				{
-					NextTutorial();
-				}
-				goto case Tutorial.BUILD_HOUSE_2_EXTRA_INFO;
-			case Tutorial.BUILD_HOUSE_2_EXTRA_INFO:
-				if ((FrameCounter & 31) == 0 && (UI.MainUI.TotalWoodAxed - TutorialVar >= 3 || UI.MainUI.TotalOrePicked - TutorialVar2 >= 3) && !WorldGen.StartSpaceCheck(TutorialHouse.X, TutorialHouse.Y))
-				{
-					NextTutorial((TutorialState != Tutorial.BUILD_HOUSE_2) ? 1 : 2);
-				}
-				break;
-			case Tutorial.CRAFT_WORKBENCH:
-			case Tutorial.CRAFT_WORKBENCH_EXTRA_INFO:
-			{
-				if ((FrameCounter & 31u) != 0)
-				{
-					break;
-				}
-				int PlayerX = (int)ActivePlayer.Position.X + 10 >> 4;
-				int PlayerY = ((int)ActivePlayer.Position.Y + 42 >> 4) - 1;
-				for (int TileX = PlayerX - 5; TileX < PlayerX + 5; TileX++)
-				{
-					for (int TileY = PlayerY - 5; TileY < PlayerY + 5; TileY++)
-					{
-						if (TileSet[TileX, TileY].Type == 18)
+						int TileX = (int)ActivePlayer.Position.X + 10 >> 4;
+						int TileY = (int)ActivePlayer.Position.Y + 42 >> 4;
+						if (TileSet[TileX, TileY - 1].Type == 19 || TileSet[TileX - 1, TileY - 1].Type == 19 || TileSet[TileX + 1, TileY - 1].Type == 19)
 						{
-							NextTutorial((TutorialState != Tutorial.CRAFT_WORKBENCH) ? 1 : 2);
-							return;
+							NextTutorial();
 						}
 					}
-				}
-				break;
-			}
-			case Tutorial.CRAFT_DOOR:
-			case Tutorial.CRAFT_DOOR_EXTRA_INFO:
-				if (TutorialInputDelay == 0 && ActivePlayer.HasItemInInventory((int)Item.ID.WOODEN_DOOR))
-				{
-					NextTutorial((TutorialState != Tutorial.CRAFT_DOOR) ? 1 : 2);
-				}
-				break;
-			case Tutorial.PLACE_DOOR:
-				if ((FrameCounter & 31) == 0 && WorldGen.StartSpaceCheck(TutorialHouse.X, TutorialHouse.Y) && (WorldGen.HouseTile[10] || WorldGen.HouseTile[11]))
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.USE_DOOR:
-				if (TutorialInputDelay == 0 && (UI.MainUI.TotalDoorsOpened > TutorialVar || UI.MainUI.TotalDoorsClosed > TutorialVar2))
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.CRAFT_WALL:
-			case Tutorial.CRAFT_WALL_EXTRA_INFO:
-				if (TutorialInputDelay == 0 && UI.MainUI.TotalWallsCrafted - TutorialVar >= 32)
-				{
-					NextTutorial((TutorialState != Tutorial.CRAFT_WALL) ? 1 : 2);
-				}
-				break;
-			case Tutorial.PLACE_WALL:
-				if (TutorialInputDelay == 0 && UI.MainUI.TotalWallsPlaced - TutorialVar >= 8)
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.BACK_WALL:
-				if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y))
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.PLACE_CHAIR:
-				if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y))
-				{
-					WorldGen.RoomNeeds();
-					if (WorldGen.roomChair)
+					break;
+				case Tutorial.JUMP_OUT:
+					if (UI.MainUI.TotalJumps - TutorialVar >= 1)
+					{
+						int TileX = (int)ActivePlayer.Position.X + 10 >> 4;
+						int TileY = (int)ActivePlayer.Position.Y + 42 >> 4;
+						if (TileSet[TileX, TileY + 1].Type == 19 || TileSet[TileX - 1, TileY + 1].Type == 19 || TileSet[TileX + 1, TileY + 1].Type == 19)
+						{
+							NextTutorial();
+						}
+					}
+					break;
+				case Tutorial.CURSOR:
+					if (UI.MainUI.PadState.ThumbSticks.Right.LengthSquared() > UI.SquaredDeadZone)
+					{
+						TutorialVar++;
+					}
+					if (UI.MainUI.IsButtonTriggered(Buttons.RightTrigger))
+					{
+						TutorialVar2++;
+					}
+					if (TutorialInputDelay == 0 && TutorialVar != 0 && TutorialVar2 != 0)
 					{
 						NextTutorial();
 					}
-				}
-				break;
-			case Tutorial.PLACE_TORCH:
-				if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y) && WorldGen.RoomNeeds())
-				{
-					NextTutorial();
-				}
-				break;
-			case Tutorial.MONSTER_INFO_1:
-			case Tutorial.MONSTER_INFO_2:
-			case Tutorial.POTIONS_1:
-			case Tutorial.POTIONS_2:
-			case Tutorial.TORCH_1:
-			case Tutorial.TORCH_2:
-			case Tutorial.INVENTORY_2:
-			case Tutorial.INVENTORY_3:
-			case Tutorial.MOVEMENT_1:
-			case Tutorial.MOVEMENT_2:
-			case Tutorial.DROP_1:
-			case Tutorial.DROP_2:
-			case Tutorial.EQUIPSCREEN_1:
-			case Tutorial.EQUIPSCREEN_2:
-			case Tutorial.CHEST_1:
-			case Tutorial.CHEST_2:
-			case Tutorial.CRAFTSCREEN_1:
-			case Tutorial.CRAFTSCREEN_2:
-			case Tutorial.MINED_ORE_1:
-			case Tutorial.MINED_ORE_2:
-			case Tutorial.CURSOR_SWITCH_1:
-			case Tutorial.CURSOR_SWITCH_2:
-			case Tutorial.DAY_NIGHT_1:
-			case Tutorial.DAY_NIGHT_2:
-			case Tutorial.USE_BENCH_1:
-			case Tutorial.USE_BENCH_2:
-			case Tutorial.BACK_WALL_INFO_1:
-			case Tutorial.BACK_WALL_INFO_2:
-			case Tutorial.HOUSE_INFO_1:
-			case Tutorial.HOUSE_INFO_2:
-				break;
+					break;
+				case Tutorial.HOTBAR:
+					if (TutorialInputDelay == 0 && ActivePlayer.SelectedItem == 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.SWORD_ATTACK:
+					if (UI.MainUI.TotalDeadSlimes > TutorialVar)
+					{
+						Item.NewItem((int)ActivePlayer.Position.X, (int)ActivePlayer.Position.Y, 1, 1, (int)Item.ID.GEL);
+						NextTutorial();
+					}
+					else if (TutorialVar2 != 0 && --TutorialVar2 == 0)
+					{
+						TutorialVar2 = 900;
+						int SlimeIdx = NPC.NewNPC(ActivePlayer.XYWH.X - (ResolutionWidth / 2), ActivePlayer.XYWH.Y - ResolutionHeight, (int)NPC.ID.SLIME);
+						NPCSet[SlimeIdx].SetDefaults("Green Slime");
+					}
+					break;
+				case Tutorial.SELECT_AXE:
+					if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].AxePower > 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.USE_AXE:
+					if (UI.MainUI.TotalChopsTaken > TutorialVar)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.INVENTORY:
+					if (UI.MainUI.InventoryMode == 1)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.EQUIPMENT:
+					if (UI.MainUI.ActiveInvSection == UI.InventorySection.EQUIP)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.CRAFTING:
+					if (UI.MainUI.ActiveInvSection == UI.InventorySection.CRAFTING)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.CRAFT_TORCH:
+					if (UI.MainUI.TotalTorchesCrafted > TutorialVar)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.CRAFT_CATEGORIES:
+					if (UI.MainUI.IsButtonTriggered(Buttons.LeftTrigger) || UI.MainUI.IsButtonTriggered(Buttons.RightTrigger))
+					{
+						TutorialVar++;
+					}
+					if (TutorialVar != 0 && TutorialInputDelay == 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.CRAFTING_EXIT:
+					if (UI.MainUI.InventoryMode == 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.SELECT_PICK:
+					if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].PickPower > 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.USE_PICK:
+					if (UI.MainUI.TotalCopperObtained - TutorialVar >= 55)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.WOOD_PLATFORM:
+					if (UI.MainUI.TotalWoodPlatformsCrafted - TutorialVar >= MaxNumItemUpdates)
+					{
+						NextTutorial(2);
+					}
+					else if (--TutorialVar2 == 0)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.WOOD_PLATFORM_TIME_OUT:
+					if (UI.MainUI.TotalWoodPlatformsCrafted - TutorialVar >= MaxNumItemUpdates) // Unintentionally supporting 1.2's platform recipe since 2013
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.SELECT_PLATFORM:
+					if (TutorialInputDelay == 0 && ActivePlayer.Inventory[ActivePlayer.SelectedItem].Type == (int)Item.ID.WOOD_PLATFORM)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.BUILD_CURSOR:
+					if (TutorialInputDelay == 0 && !UI.MainUI.UsingSmartCursor)
+					{
+						TutorialMaskRSpress = true;
+						NextTutorial();
+					}
+					break;
+				case Tutorial.PLACING_1:
+					if (UI.MainUI.TotalWoodPlatformsPlaced > TutorialVar)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.PLACING_2:
+					if (ActivePlayer.XYWH.Y < 3360)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.BUILD_HOUSE:
+					if (TutorialInputDelay == 0)
+					{
+						NextTutorial();
+					}
+					goto case Tutorial.BUILD_HOUSE_EXTRA_INFO;
+				case Tutorial.BUILD_HOUSE_EXTRA_INFO:
+					{
+						if ((FrameCounter & 31u) != 0)
+						{
+							break;
+						}
+						int PlaceX = UI.MainUI.MouseX + UI.MainUI.CurrentView.ScreenPosition.X >> 4;
+						int PlaceY = UI.MainUI.MouseY + UI.MainUI.CurrentView.ScreenPosition.Y >> 4;
+						bool EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
+						if (!EnoughSpace)
+						{
+							PlaceX--;
+							EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
+							if (!EnoughSpace)
+							{
+								PlaceX += 2;
+								EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
+							}
+							if (!EnoughSpace)
+							{
+								PlaceX--;
+								PlaceY++;
+								EnoughSpace = WorldGen.StartSpaceCheck(PlaceX, PlaceY);
+							}
+						}
+						if (EnoughSpace)
+						{
+							TutorialHouse.X = (short)PlaceX;
+							TutorialHouse.Y = (short)PlaceY;
+							NextTutorial((TutorialState != Tutorial.BUILD_HOUSE) ? 1 : 2);
+						}
+						break;
+					}
+				case Tutorial.BUILD_HOUSE_2:
+					if (TutorialInputDelay == 0)
+					{
+						NextTutorial();
+					}
+					goto case Tutorial.BUILD_HOUSE_2_EXTRA_INFO;
+				case Tutorial.BUILD_HOUSE_2_EXTRA_INFO:
+					if ((FrameCounter & 31) == 0 && (UI.MainUI.TotalWoodAxed - TutorialVar >= 3 || UI.MainUI.TotalOrePicked - TutorialVar2 >= 3) && !WorldGen.StartSpaceCheck(TutorialHouse.X, TutorialHouse.Y))
+					{
+						NextTutorial((TutorialState != Tutorial.BUILD_HOUSE_2) ? 1 : 2);
+					}
+					break;
+				case Tutorial.CRAFT_WORKBENCH:
+				case Tutorial.CRAFT_WORKBENCH_EXTRA_INFO:
+					{
+						if ((FrameCounter & 31u) != 0)
+						{
+							break;
+						}
+						int PlayerX = (int)ActivePlayer.Position.X + 10 >> 4;
+						int PlayerY = ((int)ActivePlayer.Position.Y + 42 >> 4) - 1;
+						for (int TileX = PlayerX - 5; TileX < PlayerX + 5; TileX++)
+						{
+							for (int TileY = PlayerY - 5; TileY < PlayerY + 5; TileY++)
+							{
+								if (TileSet[TileX, TileY].Type == 18)
+								{
+									NextTutorial((TutorialState != Tutorial.CRAFT_WORKBENCH) ? 1 : 2);
+									return;
+								}
+							}
+						}
+						break;
+					}
+				case Tutorial.CRAFT_DOOR:
+				case Tutorial.CRAFT_DOOR_EXTRA_INFO:
+					if (TutorialInputDelay == 0 && ActivePlayer.HasItemInInventory((int)Item.ID.WOODEN_DOOR))
+					{
+						NextTutorial((TutorialState != Tutorial.CRAFT_DOOR) ? 1 : 2);
+					}
+					break;
+				case Tutorial.PLACE_DOOR:
+					if ((FrameCounter & 31) == 0 && WorldGen.StartSpaceCheck(TutorialHouse.X, TutorialHouse.Y) && (WorldGen.HouseTile[10] || WorldGen.HouseTile[11]))
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.USE_DOOR:
+					if (TutorialInputDelay == 0 && (UI.MainUI.TotalDoorsOpened > TutorialVar || UI.MainUI.TotalDoorsClosed > TutorialVar2))
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.CRAFT_WALL:
+				case Tutorial.CRAFT_WALL_EXTRA_INFO:
+					if (TutorialInputDelay == 0 && UI.MainUI.TotalWallsCrafted - TutorialVar >= 32)
+					{
+						NextTutorial((TutorialState != Tutorial.CRAFT_WALL) ? 1 : 2);
+					}
+					break;
+				case Tutorial.PLACE_WALL:
+					if (TutorialInputDelay == 0 && UI.MainUI.TotalWallsPlaced - TutorialVar >= 8)
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.BACK_WALL:
+					if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y))
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.PLACE_CHAIR:
+					if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y))
+					{
+						WorldGen.RoomNeeds();
+						if (WorldGen.roomChair)
+						{
+							NextTutorial();
+						}
+					}
+					break;
+				case Tutorial.PLACE_TORCH:
+					if ((FrameCounter & 31) == 0 && WorldGen.StartRoomCheck(TutorialHouse.X, TutorialHouse.Y) && WorldGen.RoomNeeds())
+					{
+						NextTutorial();
+					}
+					break;
+				case Tutorial.MONSTER_INFO_1:
+				case Tutorial.MONSTER_INFO_2:
+				case Tutorial.POTIONS_1:
+				case Tutorial.POTIONS_2:
+				case Tutorial.TORCH_1:
+				case Tutorial.TORCH_2:
+				case Tutorial.INVENTORY_2:
+				case Tutorial.INVENTORY_3:
+				case Tutorial.MOVEMENT_1:
+				case Tutorial.MOVEMENT_2:
+				case Tutorial.DROP_1:
+				case Tutorial.DROP_2:
+				case Tutorial.EQUIPSCREEN_1:
+				case Tutorial.EQUIPSCREEN_2:
+				case Tutorial.CHEST_1:
+				case Tutorial.CHEST_2:
+				case Tutorial.CRAFTSCREEN_1:
+				case Tutorial.CRAFTSCREEN_2:
+				case Tutorial.MINED_ORE_1:
+				case Tutorial.MINED_ORE_2:
+				case Tutorial.CURSOR_SWITCH_1:
+				case Tutorial.CURSOR_SWITCH_2:
+				case Tutorial.DAY_NIGHT_1:
+				case Tutorial.DAY_NIGHT_2:
+				case Tutorial.USE_BENCH_1:
+				case Tutorial.USE_BENCH_2:
+				case Tutorial.BACK_WALL_INFO_1:
+				case Tutorial.BACK_WALL_INFO_2:
+				case Tutorial.HOUSE_INFO_1:
+				case Tutorial.HOUSE_INFO_2:
+					break;
 			}
 		}
 
@@ -3682,177 +3750,177 @@ namespace Terraria
 			Player ActivePlayer = UI.MainUI.ActivePlayer;
 			switch (State)
 			{
-			case Tutorial.INTRO:
-				TutorialMaskLS = true;
-				TutorialMaskRS = true;
-				TutorialMaskRSpress = true;
-				TutorialMaskA = true;
-				TutorialMaskB = true;
-				TutorialMaskX = true;
-				TutorialMaskY = true;
-				TutorialMaskLB = true;
-				TutorialMaskRB = true;
-				TutorialMaskLT = true;
-				TutorialMaskRT = true;
-				TutorialMaskBack = true;
-				UI.MainUI.UsingSmartCursor = true;
-				break;
-			case Tutorial.INTRO_2:
-			case Tutorial.MONSTER_INFO_2:
-			case Tutorial.POTIONS_2:
-			case Tutorial.TORCH_2:
-			case Tutorial.INVENTORY_3:
-			case Tutorial.MOVEMENT_2:
-			case Tutorial.DROP_2:
-			case Tutorial.EQUIPSCREEN_2:
-			case Tutorial.CHEST_2:
-			case Tutorial.CRAFTSCREEN_2:
-			case Tutorial.MINED_ORE_2:
-			case Tutorial.CURSOR_SWITCH_2:
-			case Tutorial.DAY_NIGHT_2:
-			case Tutorial.USE_BENCH_2:
-			case Tutorial.BACK_WALL_INFO_2:
-			case Tutorial.HOUSE_INFO_2:
-			case Tutorial.HOUSE_DONE_2:
-			case Tutorial.THE_GUIDE_2:
-			case Tutorial.HAMMER_2:
-			case Tutorial.CONGRATS_2:
-				TutText = Lang.TutorialLocale(State - 1) + TutText;
-				TutorialVar = (TutorialMaskB ? 1u : 0u);
-				TutorialMaskB = false;
-				break;
-			case Tutorial.MOVE:
-				TutorialMaskLS = false;
-				TutorialVar = 0;
-				break;
-			case Tutorial.JUMP:
-				TutorialMaskA = false;
-				TutorialVar = UI.MainUI.TotalJumps;
-				break;
-			case Tutorial.JUMP_OUT:
-				TutorialVar = UI.MainUI.TotalJumps;
-				break;
-			case Tutorial.CURSOR:
-				TutorialMaskRT = false;
-				TutorialMaskRS = false;
-				TutorialVar = 0;
-				TutorialVar2 = 0;
-				break;
-			case Tutorial.HOTBAR:
-				TutorialMaskLB = false;
-				TutorialMaskRB = false;
-				break;
-			case Tutorial.SWORD_ATTACK:
-				TutorialVar = UI.MainUI.TotalDeadSlimes;
-				TutorialVar2 = 120;
-				break;
-			case Tutorial.MONSTER_INFO_1:
-			{
-				for (int NPCIdx = NPC.MaxNumNPCs - 1; NPCIdx >= 0; NPCIdx--)
-				{
-					if (NPCSet[NPCIdx].Type == (int)NPC.ID.SLIME && NPCSet[NPCIdx].Active != 0)
+				case Tutorial.INTRO:
+					TutorialMaskLS = true;
+					TutorialMaskRS = true;
+					TutorialMaskRSpress = true;
+					TutorialMaskA = true;
+					TutorialMaskB = true;
+					TutorialMaskX = true;
+					TutorialMaskY = true;
+					TutorialMaskLB = true;
+					TutorialMaskRB = true;
+					TutorialMaskLT = true;
+					TutorialMaskRT = true;
+					TutorialMaskBack = true;
+					UI.MainUI.UsingSmartCursor = true;
+					break;
+				case Tutorial.INTRO_2:
+				case Tutorial.MONSTER_INFO_2:
+				case Tutorial.POTIONS_2:
+				case Tutorial.TORCH_2:
+				case Tutorial.INVENTORY_3:
+				case Tutorial.MOVEMENT_2:
+				case Tutorial.DROP_2:
+				case Tutorial.EQUIPSCREEN_2:
+				case Tutorial.CHEST_2:
+				case Tutorial.CRAFTSCREEN_2:
+				case Tutorial.MINED_ORE_2:
+				case Tutorial.CURSOR_SWITCH_2:
+				case Tutorial.DAY_NIGHT_2:
+				case Tutorial.USE_BENCH_2:
+				case Tutorial.BACK_WALL_INFO_2:
+				case Tutorial.HOUSE_INFO_2:
+				case Tutorial.HOUSE_DONE_2:
+				case Tutorial.THE_GUIDE_2:
+				case Tutorial.HAMMER_2:
+				case Tutorial.CONGRATS_2:
+					TutText = Lang.TutorialLocale(State - 1) + TutText;
+					TutorialVar = (TutorialMaskB ? 1u : 0u);
+					TutorialMaskB = false;
+					break;
+				case Tutorial.MOVE:
+					TutorialMaskLS = false;
+					TutorialVar = 0;
+					break;
+				case Tutorial.JUMP:
+					TutorialMaskA = false;
+					TutorialVar = UI.MainUI.TotalJumps;
+					break;
+				case Tutorial.JUMP_OUT:
+					TutorialVar = UI.MainUI.TotalJumps;
+					break;
+				case Tutorial.CURSOR:
+					TutorialMaskRT = false;
+					TutorialMaskRS = false;
+					TutorialVar = 0;
+					TutorialVar2 = 0;
+					break;
+				case Tutorial.HOTBAR:
+					TutorialMaskLB = false;
+					TutorialMaskRB = false;
+					break;
+				case Tutorial.SWORD_ATTACK:
+					TutorialVar = UI.MainUI.TotalDeadSlimes;
+					TutorialVar2 = 120;
+					break;
+				case Tutorial.MONSTER_INFO_1:
 					{
-						NPCSet[NPCIdx].HitEffect(0, 999);
-						NPCSet[NPCIdx].Active = 0;
+						for (int NPCIdx = NPC.MaxNumNPCs - 1; NPCIdx >= 0; NPCIdx--)
+						{
+							if (NPCSet[NPCIdx].Type == (int)NPC.ID.SLIME && NPCSet[NPCIdx].Active != 0)
+							{
+								NPCSet[NPCIdx].HitEffect(0, 999);
+								NPCSet[NPCIdx].Active = 0;
+							}
+						}
+						break;
 					}
-				}
-				break;
-			}
-			case Tutorial.USE_AXE:
-				TutorialVar = UI.MainUI.TotalChopsTaken;
-				break;
-			case Tutorial.INVENTORY:
-				TutorialMaskY = false;
-				TutorialMaskB = true;
-				break;
-			case Tutorial.INVENTORY_2:
-				TutorialMaskLB = true;
-				TutorialMaskRB = true;
-				break;
-			case Tutorial.EQUIPMENT:
-				TutorialMaskRB = false;
-				TutorialMaskLB = false;
-				TutorialMaskRT = false;
-				TutorialMaskLT = false;
-				break;
-			case Tutorial.CRAFT_TORCH:
-				TutorialMaskX = false;
-				TutorialVar = UI.MainUI.TotalTorchesCrafted;
-				break;
-			case Tutorial.CRAFT_CATEGORIES:
-				TutorialVar = 0;
-				break;
-			case Tutorial.CRAFTING_EXIT:
-				TutorialMaskB = false;
-				break;
-			case Tutorial.USE_PICK:
-				TutorialVar = UI.MainUI.TotalCopperObtained;
-				break;
-			case Tutorial.WOOD_PLATFORM:
-				TutorialVar = UI.MainUI.TotalWoodPlatformsCrafted;
+				case Tutorial.USE_AXE:
+					TutorialVar = UI.MainUI.TotalChopsTaken;
+					break;
+				case Tutorial.INVENTORY:
+					TutorialMaskY = false;
+					TutorialMaskB = true;
+					break;
+				case Tutorial.INVENTORY_2:
+					TutorialMaskLB = true;
+					TutorialMaskRB = true;
+					break;
+				case Tutorial.EQUIPMENT:
+					TutorialMaskRB = false;
+					TutorialMaskLB = false;
+					TutorialMaskRT = false;
+					TutorialMaskLT = false;
+					break;
+				case Tutorial.CRAFT_TORCH:
+					TutorialMaskX = false;
+					TutorialVar = UI.MainUI.TotalTorchesCrafted;
+					break;
+				case Tutorial.CRAFT_CATEGORIES:
+					TutorialVar = 0;
+					break;
+				case Tutorial.CRAFTING_EXIT:
+					TutorialMaskB = false;
+					break;
+				case Tutorial.USE_PICK:
+					TutorialVar = UI.MainUI.TotalCopperObtained;
+					break;
+				case Tutorial.WOOD_PLATFORM:
+					TutorialVar = UI.MainUI.TotalWoodPlatformsCrafted;
 #if VERSION_103 || VERSION_FINAL
 				TutorialVar2 = 720; // Altered bc platform recipe
 #else
-				TutorialVar2 = 600;
+					TutorialVar2 = 600;
 #endif
-				break;
-			case Tutorial.BUILD_CURSOR:
-				TutorialMaskRSpress = false;
-				break;
-			case Tutorial.PLACING_1:
-				TutorialVar = UI.MainUI.TotalWoodPlatformsPlaced;
-				break;
-			case Tutorial.PLACING_2:
-				TutText = Lang.TutorialLocale(State - 1) + TutText;
-				break;
-			case Tutorial.CURSOR_SWITCH_1:
-				TutorialMaskRSpress = false;
-				break;
-			case Tutorial.BUILD_HOUSE:
-				TutorialInputDelay = 1800;
-				break;
-			case Tutorial.BUILD_HOUSE_2:
-				TutorialVar = UI.MainUI.TotalWoodAxed;
-				TutorialVar2 = UI.MainUI.TotalOrePicked;
-				TutorialInputDelay = 600;
-				break;
-			case Tutorial.BUILD_HOUSE_EXTRA_INFO:
-			case Tutorial.BUILD_HOUSE_2_EXTRA_INFO:
-				TutText = Lang.TutorialLocale(State - 1) + TutText;
-				break;
-			case Tutorial.CRAFT_WORKBENCH:
-				if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 10)
-				{
-					TutorialState = State + 1;
-					TutText += Lang.TutorialLocale(TutorialState);
-				}
-				break;
-			case Tutorial.CRAFT_DOOR:
-				if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 6)
-				{
-					TutorialState = State + 1;
-					TutText += Lang.TutorialLocale(TutorialState);
-				}
-				break;
-			case Tutorial.USE_DOOR:
-				TutorialVar = UI.MainUI.TotalDoorsOpened;
-				TutorialVar2 = UI.MainUI.TotalDoorsClosed;
-				break;
-			case Tutorial.CRAFT_WALL:
-				TutorialVar = UI.MainUI.TotalWallsCrafted;
-				if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 6)
-				{
-					TutorialState = State + 1;
-					TutText += Lang.TutorialLocale(TutorialState);
-				}
-				break;
-			case Tutorial.PLACE_WALL:
-				TutorialVar = UI.MainUI.TotalWallsPlaced;
-				break;
-			case Tutorial.THE_END:
-				GameTime.DayRate = 1f;
-				UI.MainUI.AchievementTriggers.SetState(Trigger.AllTutorialTasksCompleted, State: true);
-				break;
+					break;
+				case Tutorial.BUILD_CURSOR:
+					TutorialMaskRSpress = false;
+					break;
+				case Tutorial.PLACING_1:
+					TutorialVar = UI.MainUI.TotalWoodPlatformsPlaced;
+					break;
+				case Tutorial.PLACING_2:
+					TutText = Lang.TutorialLocale(State - 1) + TutText;
+					break;
+				case Tutorial.CURSOR_SWITCH_1:
+					TutorialMaskRSpress = false;
+					break;
+				case Tutorial.BUILD_HOUSE:
+					TutorialInputDelay = 1800;
+					break;
+				case Tutorial.BUILD_HOUSE_2:
+					TutorialVar = UI.MainUI.TotalWoodAxed;
+					TutorialVar2 = UI.MainUI.TotalOrePicked;
+					TutorialInputDelay = 600;
+					break;
+				case Tutorial.BUILD_HOUSE_EXTRA_INFO:
+				case Tutorial.BUILD_HOUSE_2_EXTRA_INFO:
+					TutText = Lang.TutorialLocale(State - 1) + TutText;
+					break;
+				case Tutorial.CRAFT_WORKBENCH:
+					if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 10)
+					{
+						TutorialState = State + 1;
+						TutText += Lang.TutorialLocale(TutorialState);
+					}
+					break;
+				case Tutorial.CRAFT_DOOR:
+					if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 6)
+					{
+						TutorialState = State + 1;
+						TutText += Lang.TutorialLocale(TutorialState);
+					}
+					break;
+				case Tutorial.USE_DOOR:
+					TutorialVar = UI.MainUI.TotalDoorsOpened;
+					TutorialVar2 = UI.MainUI.TotalDoorsClosed;
+					break;
+				case Tutorial.CRAFT_WALL:
+					TutorialVar = UI.MainUI.TotalWallsCrafted;
+					if (ActivePlayer.CountInventory((int)Item.ID.WOOD) < 6)
+					{
+						TutorialState = State + 1;
+						TutText += Lang.TutorialLocale(TutorialState);
+					}
+					break;
+				case Tutorial.PLACE_WALL:
+					TutorialVar = UI.MainUI.TotalWallsPlaced;
+					break;
+				case Tutorial.THE_END:
+					GameTime.DayRate = 1f;
+					UI.MainUI.AchievementTriggers.SetState(Trigger.AllTutorialTasksCompleted, State: true);
+					break;
 			}
 			if (TutText != null)
 			{
@@ -3862,10 +3930,10 @@ namespace Terraria
 				int WrapWidth = 470;
 				switch (ScreenHeightPtr)
 				{
-					case 1:
+					case ScreenHeights.HD:
 						WrapWidth = 548;
 						break;
-					case 2:
+					case ScreenHeights.FHD:
 						WrapWidth = 705;
 						break;
 				}
@@ -3887,7 +3955,7 @@ namespace Terraria
 		{
 			Player NewPlayer = new Player();
 			NewPlayer.Name = UI.MainUI.SignedInGamer.Gamertag; // All references to the .Gamertag property being used for .name are removed in 1.01+, but this leaves the death message blank in the tutorial.
-			// I will be changing this up so the Gamertag remains in all versions for non-CharacterName uses.
+															   // I will be changing this up so the Gamertag remains in all versions for non-CharacterName uses.
 			NewPlayer.SelectedItem = 1;
 			UI.MainUI.CreateCharacterGUI.Randomize(NewPlayer);
 			UI.MainUI.SetPlayer(NewPlayer);
@@ -3927,24 +3995,24 @@ namespace Terraria
 			}
 #else
 			if (IsTutorial())
-            {
-                UI.MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Tutorial");
-            }
-            else if (MainUI.IsOnline)
-            {
-                NetMode = (byte)NetModeSetting.SERVER;
-                MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Online");
-            }
-            else
-            {
-                MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Offline");
-            }
+			{
+				UI.MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Tutorial");
+			}
+			else if (MainUI.IsOnline)
+			{
+				NetMode = (byte)NetModeSetting.SERVER;
+				MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Online");
+			}
+			else
+			{
+				MainUI.SignedInGamer.Presence.SetPresenceModeStringEXT("Offline");
+			}
 #endif
-            Netplay.StartServer();
+			Netplay.StartServer();
 			MusicBox = -1;
 			GameTime = WorldGen.tempTime;
 			MainUI.InitGame();
-			Netplay.SessionReadyEvent.WaitOne(); 
+			Netplay.SessionReadyEvent.WaitOne();
 			MainUI.ActivePlayer.Spawn();
 			MainUI.CurMenuType = MenuType.NONE;
 			MainUI.CurrentView.OnStartGame();
@@ -4275,7 +4343,7 @@ namespace Terraria
 			Exit();
 		}
 
-        private static void SignedInGamer_SignedIn(object Sender, SignedInEventArgs Event)
+		private static void SignedInGamer_SignedIn(object Sender, SignedInEventArgs Event)
 		{
 			IsTrial = Guide.IsTrialMode;
 			CheckUserGeneratedContent = true;

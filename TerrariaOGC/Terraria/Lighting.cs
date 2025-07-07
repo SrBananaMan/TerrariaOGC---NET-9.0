@@ -180,10 +180,13 @@ namespace Terraria
 		{
 			lock (this)
 			{
-				MaxLightArrayX = (ResolutionWidth + 64 >> 4) + 68;
+#if USE_ORIGINAL_CODE
+				MaxLightArrayX = (ResolutionWidth + 64 >> 4) + (OffScreenTiles * 2);
 				ColourW = MaxLightArrayX + 10;
-#if !USE_ORIGINAL_CODE
-				MaxLightArrayY = (Main.ResolutionHeight + 64 >> 4) + 70;
+#else
+				MaxLightArrayX = (ResolutionWidth + (int)(64 * Main.ScreenMultiplier) >> 4) + (OffScreenTiles * 2);
+				ColourW = MaxLightArrayX + 10;
+				MaxLightArrayY = (Main.ResolutionHeight + (int)(64 * Main.ScreenMultiplier) >> 4) + (OffScreenTiles * 2) + (byte)(2 * Main.ScreenMultiplier);
 				ColourH = MaxLightArrayY + 10;
 #endif
 				Colour = new Vector3[MaxLightArrayX, MaxLightArrayY];
@@ -577,74 +580,74 @@ namespace Terraria
 							else
 							{
 								int TileID = ActiveTile->Type;
-								int XOffset = OffX - FTLX - 99 >> 1;
-								int YOffset = OffY - FTLY - 87 >> 1;
+								int XOffset = OffX - FTLX - Main.ZoneX >> 1;
+								int YOffset = OffY - FTLY - Main.ZoneY >> 1;
 								if (X > FTLX + XOffset && X < OffX - XOffset && Y > FTLY + YOffset && Y < OffY - YOffset)
 								{
 									switch (TileID)
 									{
-									case 23:
-									case 24:
-									case 25:
-									case 32:
-										CurrentView.EvilTiles++;
-										break;
-									case 112:
-										CurrentView.SandTiles++;
-										CurrentView.EvilTiles++;
-										break;
-									case 109:
-									case 110:
-									case 113:
-									case 117:
-										CurrentView.HolyTiles++;
-										break;
-									case 116:
-										CurrentView.SandTiles++;
-										CurrentView.HolyTiles++;
-										break;
-									case 27:
-										CurrentView.EvilTiles -= 5;
-										break;
-									case 37:
-										CurrentView.MeteorTiles++;
-										break;
-									case 41:
-									case 43:
-									case 44:
-										CurrentView.DungeonTiles++;
-										break;
-									case 60:
-									case 61:
-									case 62:
-									case 84:
-										CurrentView.JungleTiles++;
-										break;
-									case 53:
-										CurrentView.SandTiles++;
-										break;
-									case 147:
-									case 148:
-										CurrentView.SnowTiles++;
-										break;
+										case 23:
+										case 24:
+										case 25:
+										case 32:
+											CurrentView.EvilTiles++;
+											break;
+										case 112:
+											CurrentView.SandTiles++;
+											CurrentView.EvilTiles++;
+											break;
+										case 109:
+										case 110:
+										case 113:
+										case 117:
+											CurrentView.HolyTiles++;
+											break;
+										case 116:
+											CurrentView.SandTiles++;
+											CurrentView.HolyTiles++;
+											break;
+										case 27:
+											CurrentView.EvilTiles -= 5;
+											break;
+										case 37:
+											CurrentView.MeteorTiles++;
+											break;
+										case 41:
+										case 43:
+										case 44:
+											CurrentView.DungeonTiles++;
+											break;
+										case 60:
+										case 61:
+										case 62:
+										case 84:
+											CurrentView.JungleTiles++;
+											break;
+										case 53:
+											CurrentView.SandTiles++;
+											break;
+										case 147:
+										case 148:
+											CurrentView.SnowTiles++;
+											break;
 #if !USE_ORIGINAL_CODE
-									// This was made for the Floating Island achievement, and due to how it is done, you can fabricate it by building into space and just placing over 98 in total of these bricks.
+										// This was made for the Floating Island achievement, and due to how it is done, you can fabricate it by building into space and just placing over 98 in total of these bricks.
 #if VERSION_103 || VERSION_FINAL
-									case 202: // Skyplate
+										case 202: // Skyplate
 #else
-									case 45: // Gold Brick
-									case 46: // Silver Brick
-									case 47: // Copper Brick
+										case 45: // Gold Brick
+										case 46: // Silver Brick
+										case 47: // Copper Brick
 #endif
-										CurrentView.SkyTiles++;
-										break;
+											CurrentView.SkyTiles++;
+											break;
 #endif
 										case 139:
-										if (ActiveTile->FrameX >= 36)
-										{
-											CurrentView.MusicBox = ActiveTile->FrameY / 36;
-										}
-										break;
+											if (ActiveTile->FrameX >= 36)
+											{
+												CurrentView.MusicBox = ActiveTile->FrameY / 36;
+											}
+											break;
 									}
 								}
 								if (Main.TileBlockLight[TileID])
@@ -656,456 +659,35 @@ namespace Terraria
 									switch (TileID)
 									{
 #if VERSION_101
-									case 150:
-										float Flicker = Main.Rand.Next(28, 42) * 0.005f;
-										Flicker += (270 - UI.MouseTextBrightness) / 700f;
-										if (ActiveTile->FrameY <= 18 && ActiveTile->FrameX == 0)
-										{
-											float R = 0.9f + Flicker;
-											float G = 0.3f + Flicker;
-											float B = 0.1f + Flicker;
-											if (R > ActiveColour->X)
+										case 150:
+											float Flicker = Main.Rand.Next(28, 42) * 0.005f;
+											Flicker += (270 - UI.MouseTextBrightness) / 700f;
+											if (ActiveTile->FrameY <= 18 && ActiveTile->FrameX == 0)
 											{
-												ActiveColour->X = R;
+												float R = 0.9f + Flicker;
+												float G = 0.3f + Flicker;
+												float B = 0.1f + Flicker;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
+											break;
 #endif
-									case 92:
-										if (ActiveTile->FrameY <= 18 && ActiveTile->FrameX == 0)
-										{
-											float R = 1f;
-											float G = 1f;
-											float B = 1f;
-											if (R > ActiveColour->X)
+										case 92:
+											if (ActiveTile->FrameY <= 18 && ActiveTile->FrameX == 0)
 											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 93:
-										if (ActiveTile->FrameY == 0 && ActiveTile->FrameX == 0)
-										{
-											float R = 1f;
-											float G = 0.97f;
-											float B = 0.85f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 98:
-										if (ActiveTile->FrameY == 0)
-										{
-											float R = 1f;
-											float G = 0.97f;
-											float B = 0.85f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 4:
-										if (ActiveTile->FrameX < 66)
-										{
-											float R;
-											float G;
-											float B;
-											switch (ActiveTile->FrameY)
-											{
-											case 22:
-												R = 0f;
-												G = 0.1f;
-												B = 1.3f;
-												break;
-											case 44:
-												R = 1f;
-												G = 0.1f;
-												B = 0.1f;
-												break;
-											case 66:
-												R = 0f;
-												G = 1f;
-												B = 0.1f;
-												break;
-											case 88:
-												R = 0.95f;
-												G = 0.1f;
-												B = 0.95f;
-												break;
-											case 110:
-												R = 1.3f;
-												G = 1.3f;
-												B = 1.3f;
-												break;
-											case 132:
-												R = 1f;
-												G = 1f;
-												B = 0.1f;
-												break;
-											case 154:
-												R = 0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch);
-												G = 0.3f;
-												B = Main.DemonTorch + 0.5f * (1f - Main.DemonTorch);
-												break;
-											case 176:
-												R = 0.85f;
-												G = 1f;
-												B = 0.7f;
-												break;
-											default:
-												R = 1f;
-												G = 0.95f;
-												B = 0.8f;
-												break;
-											}
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 33:
-										if (ActiveTile->FrameX == 0)
-										{
-											float R = 1f;
-											float G = 0.95f;
-											float B = 0.65f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 36:
-										if (ActiveTile->FrameX < 54)
-										{
-											float R = 1f;
-											float G = 0.95f;
-											float B = 0.65f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 100:
-										if (ActiveTile->FrameX < 36)
-										{
-											float R = 1f;
-											float G = 0.95f;
-											float B = 0.65f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 34:
-									case 35:
-										if (ActiveTile->FrameX < 54)
-										{
-											float R = 1f;
-											float G = 0.95f;
-											float B = 0.8f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 95:
-										if (ActiveTile->FrameX < 36)
-										{
-											float R = 1f;
-											float G = 0.95f;
-											float B = 0.8f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 17:
-									case 133:
-									{
-										float R = 0.83f;
-										float G = 0.6f;
-										float B = 0.5f;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 77:
-									{
-										float R = 0.75f;
-										float G = 0.45f;
-										float B = 0.25f;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 37:
-									{
-										float R = 0.56f;
-										float G = 0.43f;
-										float B = 0.15f;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 22:
-									case 140:
-									{
-										float R = 0.12f;
-										float G = 0.07f;
-										float B = 0.32f;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 42:
-										if (ActiveTile->FrameX == 0)
-										{
-											float R = 0.65f;
-											float G = 0.8f;
-											float B = 0.54f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 49:
-									{
-										float R = 0.3f;
-										float G = 0.3f;
-										float B = 0.75f;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 70:
-									case 71:
-									case 72:
-									{
-										float A = Main.Rand.Next(28, 42) * 0.005f;
-										A += (270 - UI.MouseTextBrightness) * 0.002f;
-										float R = 0.1f;
-										float G = 0.3f + A;
-										float B = 0.6f + A;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 61:
-										if (ActiveTile->FrameX == 144)
-										{
-											float R = 0.42f;
-											float G = 0.81f;
-											float B = 0.52f;
-											if (R > ActiveColour->X)
-											{
-												ActiveColour->X = R;
-											}
-											if (G > ActiveColour->Y)
-											{
-												ActiveColour->Y = G;
-											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 26:
-									case 31:
-									{
-										float A = Main.Rand.Next(-5, 6) * 0.0025f;
-										float R = 0.31f + A;
-										float G = 0.1f;
-										float B = 0.44f + A;
-										if (R > ActiveColour->X)
-										{
-											ActiveColour->X = R;
-										}
-										if (G > ActiveColour->Y)
-										{
-											ActiveColour->Y = G;
-										}
-										if (B > ActiveColour->Z)
-										{
-											ActiveColour->Z = B;
-										}
-										break;
-									}
-									case 84:
-										switch (ActiveTile->FrameX / 18)
-										{
-											case 2:
-											{
-												float A = (270 - UI.MouseTextBrightness) * 0.00125f;
-												if (A > 1f)
-												{
-													A = 1f;
-												}
-												else if (A < 0f)
-												{
-													A = 0f;
-												}
-												float R = 0.7f * A;
-												float G = A;
-												float B = 0.1f * A;
+												float R = 1f;
+												float G = 1f;
+												float B = 1f;
 												if (R > ActiveColour->X)
 												{
 													ActiveColour->X = R;
@@ -1118,13 +700,14 @@ namespace Terraria
 												{
 													ActiveColour->Z = B;
 												}
-												break;
 											}
-											case 5:
+											break;
+										case 93:
+											if (ActiveTile->FrameY == 0 && ActiveTile->FrameX == 0)
 											{
-												float R = 0.9f;
-												float G = 0.71999997f;
-												float B = 0.17999999f;
+												float R = 1f;
+												float G = 0.97f;
+												float B = 0.85f;
 												if (R > ActiveColour->X)
 												{
 													ActiveColour->X = R;
@@ -1137,136 +720,556 @@ namespace Terraria
 												{
 													ActiveColour->Z = B;
 												}
-												break;
 											}
-										}
-										break;
-									case 83:
-										if (ActiveTile->FrameX == 18 && !CurrentView.WorldTime.DayTime)
-										{
-											float R = 0.1f;
-											float G = 0.4f;
-											float B = 0.6f;
-											if (R > ActiveColour->X)
+											break;
+										case 98:
+											if (ActiveTile->FrameY == 0)
 											{
-												ActiveColour->X = R;
+												float R = 1f;
+												float G = 0.97f;
+												float B = 0.85f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (G > ActiveColour->Y)
+											break;
+										case 4:
+											if (ActiveTile->FrameX < 66)
 											{
-												ActiveColour->Y = G;
+												float R;
+												float G;
+												float B;
+												switch (ActiveTile->FrameY)
+												{
+													case 22:
+														R = 0f;
+														G = 0.1f;
+														B = 1.3f;
+														break;
+													case 44:
+														R = 1f;
+														G = 0.1f;
+														B = 0.1f;
+														break;
+													case 66:
+														R = 0f;
+														G = 1f;
+														B = 0.1f;
+														break;
+													case 88:
+														R = 0.95f;
+														G = 0.1f;
+														B = 0.95f;
+														break;
+													case 110:
+														R = 1.3f;
+														G = 1.3f;
+														B = 1.3f;
+														break;
+													case 132:
+														R = 1f;
+														G = 1f;
+														B = 0.1f;
+														break;
+													case 154:
+														R = 0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch);
+														G = 0.3f;
+														B = Main.DemonTorch + 0.5f * (1f - Main.DemonTorch);
+														break;
+													case 176:
+														R = 0.85f;
+														G = 1f;
+														B = 0.7f;
+														break;
+													default:
+														R = 1f;
+														G = 0.95f;
+														B = 0.8f;
+														break;
+												}
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (B > ActiveColour->Z)
-											{
-												ActiveColour->Z = B;
-											}
-										}
-										break;
-									case 126:
-										if (ActiveTile->FrameX < 36)
-										{
-											if (Main.DiscoRGB.X > ActiveColour->X)
-											{
-												ActiveColour->X = Main.DiscoRGB.X;
-											}
-											if (Main.DiscoRGB.Y > ActiveColour->Y)
-											{
-												ActiveColour->Y = Main.DiscoRGB.Y;
-											}
-											if (Main.DiscoRGB.Z > ActiveColour->Z)
-											{
-												ActiveColour->Z = Main.DiscoRGB.Z;
-											}
-										}
-										break;
-									case 125:
-									{
-										float A = Main.Rand.Next(28, 42) * 0.01f;
-										A += (270 - UI.MouseTextBrightness) * 0.00125f;
-										if (ActiveColour->Y < 0.1f * A)
-										{
-											ActiveColour->Y = 0.3f * A;
-										}
-										if (ActiveColour->Z < 0.3f * A)
-										{
-											ActiveColour->Z = 0.6f * A;
-										}
-										break;
-									}
-									case 129:
-									{
-										float R;
-										float G;
-										float B;
-										if (ActiveTile->FrameX == 0 || ActiveTile->FrameX == 54 || ActiveTile->FrameX == 108)
-										{
-											R = 0f;
-											G = 0.05f;
-											B = 0.25f;
-										}
-										else if (ActiveTile->FrameX == 18 || ActiveTile->FrameX == 72 || ActiveTile->FrameX == 126)
-										{
-											R = 0.2f;
-											G = 0f;
-											B = 0.15f;
-										}
-										else
-										{
-											R = 0.1f;
-											G = 0f;
-											B = 0.2f;
-										}
-										if (ActiveColour->X < R)
-										{
-											ActiveColour->X = R * Main.Rand.Next(970, 1031) * 0.001f;
-										}
-										if (ActiveColour->Y < G)
-										{
-											ActiveColour->Y = G * Main.Rand.Next(970, 1031) * 0.001f;
-										}
-										if (ActiveColour->Z < B)
-										{
-											ActiveColour->Z = B * Main.Rand.Next(970, 1031) * 0.001f;
-										}
-										break;
-									}
-									case 149:
-										if (ActiveTile->FrameX <= 36)
-										{
-											float R;
-											float G;
-											float B;
+											break;
+										case 33:
 											if (ActiveTile->FrameX == 0)
 											{
-												R = 0.1f;
-												G = 0.2f;
-												B = 0.5f;
+												float R = 1f;
+												float G = 0.95f;
+												float B = 0.65f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											else if (ActiveTile->FrameX == 18)
+											break;
+										case 36:
+											if (ActiveTile->FrameX < 54)
 											{
-												R = 0.5f;
-												G = 0.1f;
-												B = 0.1f;
+												float R = 1f;
+												float G = 0.95f;
+												float B = 0.65f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											else
+											break;
+										case 100:
+											if (ActiveTile->FrameX < 36)
 											{
-												R = 0.2f;
-												G = 0.5f;
-												B = 0.1f;
+												float R = 1f;
+												float G = 0.95f;
+												float B = 0.65f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (ActiveColour->X < R)
+											break;
+										case 34:
+										case 35:
+											if (ActiveTile->FrameX < 54)
 											{
-												ActiveColour->X = R * Main.Rand.Next(970, 1031) * 0.001f;
+												float R = 1f;
+												float G = 0.95f;
+												float B = 0.8f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (ActiveColour->Y < G)
+											break;
+										case 95:
+											if (ActiveTile->FrameX < 36)
 											{
-												ActiveColour->Y = G * Main.Rand.Next(970, 1031) * 0.001f;
+												float R = 1f;
+												float G = 0.95f;
+												float B = 0.8f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
 											}
-											if (ActiveColour->Z < B)
+											break;
+										case 17:
+										case 133:
 											{
-												ActiveColour->Z = B * Main.Rand.Next(970, 1031) * 0.001f;
+												float R = 0.83f;
+												float G = 0.6f;
+												float B = 0.5f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
 											}
-										}
-										break;
+										case 77:
+											{
+												float R = 0.75f;
+												float G = 0.45f;
+												float B = 0.25f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 37:
+											{
+												float R = 0.56f;
+												float G = 0.43f;
+												float B = 0.15f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 22:
+										case 140:
+											{
+												float R = 0.12f;
+												float G = 0.07f;
+												float B = 0.32f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 42:
+											if (ActiveTile->FrameX == 0)
+											{
+												float R = 0.65f;
+												float G = 0.8f;
+												float B = 0.54f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+											}
+											break;
+										case 49:
+											{
+												float R = 0.3f;
+												float G = 0.3f;
+												float B = 0.75f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 70:
+										case 71:
+										case 72:
+											{
+												float A = Main.Rand.Next(28, 42) * 0.005f;
+												A += (270 - UI.MouseTextBrightness) * 0.002f;
+												float R = 0.1f;
+												float G = 0.3f + A;
+												float B = 0.6f + A;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 61:
+											if (ActiveTile->FrameX == 144)
+											{
+												float R = 0.42f;
+												float G = 0.81f;
+												float B = 0.52f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+											}
+											break;
+										case 26:
+										case 31:
+											{
+												float A = Main.Rand.Next(-5, 6) * 0.0025f;
+												float R = 0.31f + A;
+												float G = 0.1f;
+												float B = 0.44f + A;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+												break;
+											}
+										case 84:
+											switch (ActiveTile->FrameX / 18)
+											{
+												case 2:
+													{
+														float A = (270 - UI.MouseTextBrightness) * 0.00125f;
+														if (A > 1f)
+														{
+															A = 1f;
+														}
+														else if (A < 0f)
+														{
+															A = 0f;
+														}
+														float R = 0.7f * A;
+														float G = A;
+														float B = 0.1f * A;
+														if (R > ActiveColour->X)
+														{
+															ActiveColour->X = R;
+														}
+														if (G > ActiveColour->Y)
+														{
+															ActiveColour->Y = G;
+														}
+														if (B > ActiveColour->Z)
+														{
+															ActiveColour->Z = B;
+														}
+														break;
+													}
+												case 5:
+													{
+														float R = 0.9f;
+														float G = 0.71999997f;
+														float B = 0.17999999f;
+														if (R > ActiveColour->X)
+														{
+															ActiveColour->X = R;
+														}
+														if (G > ActiveColour->Y)
+														{
+															ActiveColour->Y = G;
+														}
+														if (B > ActiveColour->Z)
+														{
+															ActiveColour->Z = B;
+														}
+														break;
+													}
+											}
+											break;
+										case 83:
+											if (ActiveTile->FrameX == 18 && !CurrentView.WorldTime.DayTime)
+											{
+												float R = 0.1f;
+												float G = 0.4f;
+												float B = 0.6f;
+												if (R > ActiveColour->X)
+												{
+													ActiveColour->X = R;
+												}
+												if (G > ActiveColour->Y)
+												{
+													ActiveColour->Y = G;
+												}
+												if (B > ActiveColour->Z)
+												{
+													ActiveColour->Z = B;
+												}
+											}
+											break;
+										case 126:
+											if (ActiveTile->FrameX < 36)
+											{
+												if (Main.DiscoRGB.X > ActiveColour->X)
+												{
+													ActiveColour->X = Main.DiscoRGB.X;
+												}
+												if (Main.DiscoRGB.Y > ActiveColour->Y)
+												{
+													ActiveColour->Y = Main.DiscoRGB.Y;
+												}
+												if (Main.DiscoRGB.Z > ActiveColour->Z)
+												{
+													ActiveColour->Z = Main.DiscoRGB.Z;
+												}
+											}
+											break;
+										case 125:
+											{
+												float A = Main.Rand.Next(28, 42) * 0.01f;
+												A += (270 - UI.MouseTextBrightness) * 0.00125f;
+												if (ActiveColour->Y < 0.1f * A)
+												{
+													ActiveColour->Y = 0.3f * A;
+												}
+												if (ActiveColour->Z < 0.3f * A)
+												{
+													ActiveColour->Z = 0.6f * A;
+												}
+												break;
+											}
+										case 129:
+											{
+												float R;
+												float G;
+												float B;
+												if (ActiveTile->FrameX == 0 || ActiveTile->FrameX == 54 || ActiveTile->FrameX == 108)
+												{
+													R = 0f;
+													G = 0.05f;
+													B = 0.25f;
+												}
+												else if (ActiveTile->FrameX == 18 || ActiveTile->FrameX == 72 || ActiveTile->FrameX == 126)
+												{
+													R = 0.2f;
+													G = 0f;
+													B = 0.15f;
+												}
+												else
+												{
+													R = 0.1f;
+													G = 0f;
+													B = 0.2f;
+												}
+												if (ActiveColour->X < R)
+												{
+													ActiveColour->X = R * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+												if (ActiveColour->Y < G)
+												{
+													ActiveColour->Y = G * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+												if (ActiveColour->Z < B)
+												{
+													ActiveColour->Z = B * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+												break;
+											}
+										case 149:
+											if (ActiveTile->FrameX <= 36)
+											{
+												float R;
+												float G;
+												float B;
+												if (ActiveTile->FrameX == 0)
+												{
+													R = 0.1f;
+													G = 0.2f;
+													B = 0.5f;
+												}
+												else if (ActiveTile->FrameX == 18)
+												{
+													R = 0.5f;
+													G = 0.1f;
+													B = 0.1f;
+												}
+												else
+												{
+													R = 0.2f;
+													G = 0.5f;
+													B = 0.1f;
+												}
+												if (ActiveColour->X < R)
+												{
+													ActiveColour->X = R * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+												if (ActiveColour->Y < G)
+												{
+													ActiveColour->Y = G * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+												if (ActiveColour->Z < B)
+												{
+													ActiveColour->Z = B * Main.Rand.Next(970, 1031) * 0.001f;
+												}
+											}
+											break;
 									}
 								}
 							}

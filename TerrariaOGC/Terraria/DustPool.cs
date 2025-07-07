@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Newtonsoft.Json.Linq;
 
 #if !VERSION_INITIAL
 using System;
@@ -100,71 +99,71 @@ namespace Terraria
 						ActiveDust->Position.Y = Y + Main.Rand.Next(DustHeight - 4) + 4;
 						switch (Type)
 						{
-						case 6:
-						case 29:
-						case 59:
-						case 60:
-						case 61:
-						case 62:
-						case 63:
-						case 64:
-						case 65:
-						case 75:
-						case 135:
-						case 158:
-						case 169:
-							ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.3);
-							ActiveDust->Velocity.Y = Main.Rand.Next(-10, 6) * 0.1f;
-							ActiveDust->Scale *= 0.7f;
-							break;
-						case 127:
-						case 187:
-							ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.3);
-							ActiveDust->Velocity.Y = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedY) * 0.3);
-							ActiveDust->Scale *= 0.7f;
-							break;
-						case 33:
-						case 52:
-						case 98:
-						case 99:
-						case 100:
-						case 101:
-						case 102:
-						case 103:
-						case 104:
-						case 105:
-							ActiveDust->Alpha = 170;
-							ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.5);
-							ActiveDust->Velocity.Y = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedY) * 0.5 + 1.0);
-							break;
-						case 41:
-							ActiveDust->Velocity.X = 0f;
-							ActiveDust->Velocity.Y = 0f;
-							break;
-						case 80:
-							ActiveDust->Alpha = 50;
-							break;
-						case 34:
-							ActiveDust->Position.Y -= 8f;
-							if (!Collision.WetCollision(ref ActiveDust->Position, 4, 4))
-							{
-								ActiveDust->Active = 0;
-								NextDust = (short)DustIdx;
-								return ActiveDust;
-							}
-							ActiveDust->Position.Y += 8f;
-							ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.1);
-							ActiveDust->Velocity.Y = -0.5f;
-							break;
-						case 35:
-						case 152:
-							ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.1);
-							ActiveDust->Velocity.Y = -0.5f;
-							break;
-						default:
-							ActiveDust->Velocity.X = (float)(Main.Rand.Next(-20, 21) * 0.1 + SpeedX);
-							ActiveDust->Velocity.Y = (float)(Main.Rand.Next(-20, 21) * 0.1 + SpeedY);
-							break;
+							case 6:
+							case 29:
+							case 59:
+							case 60:
+							case 61:
+							case 62:
+							case 63:
+							case 64:
+							case 65:
+							case 75:
+							case 135:
+							case 158:
+							case 169:
+								ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.3);
+								ActiveDust->Velocity.Y = Main.Rand.Next(-10, 6) * 0.1f;
+								ActiveDust->Scale *= 0.7f;
+								break;
+							case 127:
+							case 187:
+								ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.3);
+								ActiveDust->Velocity.Y = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedY) * 0.3);
+								ActiveDust->Scale *= 0.7f;
+								break;
+							case 33:
+							case 52:
+							case 98:
+							case 99:
+							case 100:
+							case 101:
+							case 102:
+							case 103:
+							case 104:
+							case 105:
+								ActiveDust->Alpha = 170;
+								ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.5);
+								ActiveDust->Velocity.Y = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedY) * 0.5 + 1.0);
+								break;
+							case 41:
+								ActiveDust->Velocity.X = 0f;
+								ActiveDust->Velocity.Y = 0f;
+								break;
+							case 80:
+								ActiveDust->Alpha = 50;
+								break;
+							case 34:
+								ActiveDust->Position.Y -= 8f;
+								if (!Collision.WetCollision(ref ActiveDust->Position, 4, 4))
+								{
+									ActiveDust->Active = 0;
+									NextDust = (short)DustIdx;
+									return ActiveDust;
+								}
+								ActiveDust->Position.Y += 8f;
+								ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.1);
+								ActiveDust->Velocity.Y = -0.5f;
+								break;
+							case 35:
+							case 152:
+								ActiveDust->Velocity.X = (float)((Main.Rand.Next(-20, 21) * 0.1 + SpeedX) * 0.1);
+								ActiveDust->Velocity.Y = -0.5f;
+								break;
+							default:
+								ActiveDust->Velocity.X = (float)(Main.Rand.Next(-20, 21) * 0.1 + SpeedX);
+								ActiveDust->Velocity.Y = (float)(Main.Rand.Next(-20, 21) * 0.1 + SpeedY);
+								break;
 						}
 						NextDust = (short)(DustIdx + 1);
 						return ActiveDust;
@@ -280,464 +279,464 @@ namespace Terraria
 
 					switch (DustType)
 					{
-					case 6:
-					case 29:
-					case 59:
-					case 60:
-					case 61:
-					case 62:
-					case 63:
-					case 64:
-					case 65:
-					case 75:
-					case 127:
-					case 135:
-					case 158:
-					case 167:
-						if (!ActiveDust->NoLight)
-						{
-							if (ClipDust(DustX, DustY))
+						case 6:
+						case 29:
+						case 59:
+						case 60:
+						case 61:
+						case 62:
+						case 63:
+						case 64:
+						case 65:
+						case 75:
+						case 127:
+						case 135:
+						case 158:
+						case 167:
+							if (!ActiveDust->NoLight)
 							{
-								ActiveDust->Active = 0;
-								continue;
-							}
-							DustScale *= 1.4f;
-							switch (DustType)
-							{
-							case 6:
-								if (DustScale > 0.6f)
-								{
-									DustScale = 0.6f;
-								}
-								RGB.X = DustScale;
-								RGB.Y = DustScale * 0.65f;
-								RGB.Z = DustScale * 0.4f;
-								break;
-							case 29:
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 0.1f;
-								RGB.Y = DustScale * 0.4f;
-								RGB.Z = DustScale;
-								break;
-							case 59:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = 0f;
-								RGB.Y = DustScale * 0.1f;
-								RGB.Z = DustScale * 1.3f;
-								break;
-							case 60:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = DustScale;
-								RGB.Y = (RGB.Z = DustScale * 0.1f);
-								break;
-							case 61:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = 0f;
-								RGB.Y = DustScale;
-								RGB.Z = DustScale * 0.1f;
-								break;
-							case 62:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = (RGB.Z = DustScale * 0.9f);
-								RGB.Y = 0f;
-								break;
-							default:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = (RGB.Y = (RGB.Z = DustScale * 1.3f));
-								break;
-							case 64:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = (RGB.Y = DustScale * 0.9f);
-								RGB.Z = 0f;
-								break;
-							case 65:
-								if (DustScale > 0.8f)
-								{
-									DustScale = 0.8f;
-								}
-								RGB.X = 0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch);
-								RGB.Y = 0.3f;
-								RGB.Z = Main.DemonTorch + 0.5f * (1f - Main.DemonTorch);
-								break;
-							case 75:
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 0.7f;
-								RGB.Y = DustScale;
-								RGB.Z = DustScale * 0.2f;
-								break;
-							case 127:
-								DustScale *= 1.3f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale;
-								RGB.Y = DustScale * 0.45f;
-								RGB.Z = DustScale * 0.2f;
-								break;
-							case 135:
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 0.2f;
-								RGB.Y = DustScale * 0.7f;
-								RGB.Z = DustScale;
-								break;
-							case 158:
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 1f;
-								RGB.Y = DustScale * 0.5f;
-								RGB.Z = 0;
-								break;
-							case 169:
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 1.1f;
-								RGB.Y = DustScale * 1.1f;
-								RGB.Z = DustScale * 0.2f;
-								break;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-						}
-						if (!ActiveDust->NoGravity)
-						{
-							ActiveDust->Velocity.Y += 0.05f;
-						}
-						break;
-					default:
-						switch (DustType)
-						{
-						case 14:
-						case 16:
-						case 46:
-						case 124:
-						case 186:
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							break;
-						case 31:
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							if (ActiveDust->NoGravity)
-							{
-								ActiveDust->Alpha += 4;
-								if (ActiveDust->Alpha > 255)
+								if (ClipDust(DustX, DustY))
 								{
 									ActiveDust->Active = 0;
 									continue;
 								}
-								ActiveDust->Velocity.X *= 1.02f;
-								ActiveDust->Velocity.Y *= 1.02f;
-								ActiveDust->Scale += 0.02f;
-							}
-							break;
-						case 32:
-							ActiveDust->Scale -= 0.01f;
-							ActiveDust->Velocity.X *= 0.96f;
-							ActiveDust->Velocity.Y += 0.1f;
-							break;
-						case 43:
-							ActiveDust->Rotation += 0.1f * ActiveDust->Scale;
-							if (DustScale > 0.048f)
-							{
-								RGB.X = (RGB.Y = (RGB.Z = DustScale * 1.01055562f));
+								DustScale *= 1.4f;
+								switch (DustType)
+								{
+									case 6:
+										if (DustScale > 0.6f)
+										{
+											DustScale = 0.6f;
+										}
+										RGB.X = DustScale;
+										RGB.Y = DustScale * 0.65f;
+										RGB.Z = DustScale * 0.4f;
+										break;
+									case 29:
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 0.1f;
+										RGB.Y = DustScale * 0.4f;
+										RGB.Z = DustScale;
+										break;
+									case 59:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = 0f;
+										RGB.Y = DustScale * 0.1f;
+										RGB.Z = DustScale * 1.3f;
+										break;
+									case 60:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = DustScale;
+										RGB.Y = (RGB.Z = DustScale * 0.1f);
+										break;
+									case 61:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = 0f;
+										RGB.Y = DustScale;
+										RGB.Z = DustScale * 0.1f;
+										break;
+									case 62:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = (RGB.Z = DustScale * 0.9f);
+										RGB.Y = 0f;
+										break;
+									default:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = (RGB.Y = (RGB.Z = DustScale * 1.3f));
+										break;
+									case 64:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = (RGB.Y = DustScale * 0.9f);
+										RGB.Z = 0f;
+										break;
+									case 65:
+										if (DustScale > 0.8f)
+										{
+											DustScale = 0.8f;
+										}
+										RGB.X = 0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch);
+										RGB.Y = 0.3f;
+										RGB.Z = Main.DemonTorch + 0.5f * (1f - Main.DemonTorch);
+										break;
+									case 75:
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 0.7f;
+										RGB.Y = DustScale;
+										RGB.Z = DustScale * 0.2f;
+										break;
+									case 127:
+										DustScale *= 1.3f;
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale;
+										RGB.Y = DustScale * 0.45f;
+										RGB.Z = DustScale * 0.2f;
+										break;
+									case 135:
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 0.2f;
+										RGB.Y = DustScale * 0.7f;
+										RGB.Z = DustScale;
+										break;
+									case 158:
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 1f;
+										RGB.Y = DustScale * 0.5f;
+										RGB.Z = 0;
+										break;
+									case 169:
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 1.1f;
+										RGB.Y = DustScale * 1.1f;
+										RGB.Z = DustScale * 0.2f;
+										break;
+								}
 								Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-								if (ActiveDust->Alpha < 255)
-								{
-									ActiveDust->Scale += 0.09f;
-									if (ActiveDust->Scale >= 1f)
-									{
-										ActiveDust->Scale = 1f;
-										ActiveDust->Alpha = 255;
-									}
-								}
-								else if (ActiveDust->Scale < 0.5f)
-								{
-									ActiveDust->Scale -= 0.02f;
-								}
-								else if (ActiveDust->Scale < 0.8f)
-								{
-									ActiveDust->Scale -= 0.01f;
-								}
-								break;
 							}
-							ActiveDust->Active = 0;
-							continue;
-						case 15:
-						case 57:
-						case 58:
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							if (DustType != 15)
+							if (!ActiveDust->NoGravity)
 							{
-								DustScale *= 0.8f;
-							}
-							if (ActiveDust->NoLight)
-							{
-								ActiveDust->Velocity.X *= 0.95f;
-								ActiveDust->Velocity.Y *= 0.95f;
-							}
-							if (DustScale > 1f)
-							{
-								DustScale = 1f;
-							}
-							switch (DustType)
-							{
-							case 15:
-								Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.45f, DustScale * 0.55f, DustScale));
-								break;
-							case 57:
-								Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.95f, DustScale * 0.95f, DustScale * 0.45f));
-								break;
-							case 58:
-								Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale, DustScale * 0.55f, DustScale * 0.75f));
-								break;
-							}
-							break;
-
-						case 110:
-						case 111:
-						case 112:
-						case 113:
-						case 114:
-							float ScaleAdjust = ActiveDust->Scale * 0.1f;
-							if (DustType == 111)
-							{
-								ScaleAdjust = ActiveDust->Scale * 0.125f;
-							}
-							if (ScaleAdjust > 1f)
-							{
-								ScaleAdjust = 1f;
-							}
-							switch (DustType)
-							{
-							case 110:
-								RGB.X = ScaleAdjust * 0.2f;
-								RGB.Y = ScaleAdjust;
-								RGB.Z = ScaleAdjust * 0.5f;
-								break;
-							case 111:
-								RGB.X = ScaleAdjust * 0.2f;
-								RGB.Y = ScaleAdjust * 0.7f;
-								RGB.Z = ScaleAdjust;
-								break;
-							case 112:
-								RGB.X = ScaleAdjust * 0.8f;
-								RGB.Y = ScaleAdjust * 0.2f;
-								RGB.Z = ScaleAdjust * 0.8f;
-								break;
-							case 113:
-								RGB.X = ScaleAdjust * 0.2f;
-								RGB.Y = ScaleAdjust * 0.3f;
-								RGB.Z = ScaleAdjust * 1.3f;
-								break;
-							case 114:
-								RGB.X = ScaleAdjust * 1.2f;
-								RGB.Y = ScaleAdjust * 0.5f;
-								RGB.Z = ScaleAdjust * 0.4f;
-								break;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-							break;
-
-						case 66:
-							if (ActiveDust->Velocity.X < 0f)
-							{
-								ActiveDust->Rotation -= 1f;
-							}
-							else
-							{
-								ActiveDust->Rotation += 1f;
-							}
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							ActiveDust->Scale += 0.02f;
-							DustScale *= (1f / 318.75f);
-							if (DustScale > (1f / 255f))
-							{
-								DustScale = (1f / 255f);
-							}
-							RGB.X = DustScale * ActiveDust->Color.R;
-							RGB.Y = DustScale * ActiveDust->Color.G;
-							RGB.Z = DustScale * ActiveDust->Color.B;
-							Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-							break;
-						case 20:
-						case 21:
-							ActiveDust->Scale += 0.005f;
-							ActiveDust->Velocity.X *= 0.94f;
-							ActiveDust->Velocity.Y *= 0.94f;
-							if (DustType == 21)
-							{
-								DustScale *= 0.4f;
-								RGB.X = DustScale * 0.8f;
-								RGB.Y = DustScale * 0.3f;
-							}
-							else
-							{
-								DustScale *= 0.8f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB.X = DustScale * 0.3f;
-								RGB.Y = DustScale * 0.6f;
-							}
-							RGB.Z = DustScale;
-							Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-							break;
-						case 27:
-						case 45:
-							ActiveDust->Velocity.X *= 0.94f;
-							ActiveDust->Velocity.Y *= 0.94f;
-							ActiveDust->Scale += 0.002f;
-							if (ActiveDust->NoLight)
-							{
-								DustScale *= 0.1f;
-								ActiveDust->Scale -= 0.06f;
-								if (ActiveDust->Scale < 1f)
-								{
-									ActiveDust->Scale -= 0.06f;
-								}
-								if (View != null)
-								{
-									if (View.Player.IsWet)
-									{
-										ActiveDust->Position.X += View.Player.velocity.X * 0.5f;
-										ActiveDust->Position.Y += View.Player.velocity.Y * 0.5f;
-									}
-									else
-									{
-										ActiveDust->Position.X += View.Player.velocity.X;
-										ActiveDust->Position.Y += View.Player.velocity.Y;
-									}
-								}
-							}
-							if (DustScale > 1f)
-							{
-								DustScale = 1f;
-							}
-							Lighting.AddLight((int)ActiveDust->Position.X >> 4, (int)ActiveDust->Position.Y >> 4, new Vector3(DustScale * 0.6f, DustScale * 0.2f, DustScale));
-							break;
-						case 55:
-						case 56:
-						case 73:
-						case 74:
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							switch (DustType)
-							{
-							case 55:
-								DustScale *= 0.8f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB = new Vector3(DustScale, DustScale, DustScale * 0.6f);
-								break;
-							case 73:
-								DustScale *= 0.8f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB = new Vector3(DustScale, DustScale * 0.35f, DustScale * 0.5f);
-								break;
-							case 74:
-								DustScale *= 0.8f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB = new Vector3(DustScale * 0.35f, DustScale, DustScale * 0.5f);
-								break;
-							default:
-								DustScale *= 1.2f;
-								if (DustScale > 1f)
-								{
-									DustScale = 1f;
-								}
-								RGB = new Vector3(DustScale * 0.35f, DustScale * 0.5f, DustScale);
-								break;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
-							break;
-						case 71:
-						case 72:
-							ActiveDust->Velocity.X *= 0.98f;
-							ActiveDust->Velocity.Y *= 0.98f;
-							if (DustScale > 1f)
-							{
-								DustScale = 1f;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.2f, 0f, DustScale * 0.1f));
-							break;
-						case 76:
-							SnowDust++;
-							ActiveDust->Scale += 0.009f;
-							if (View != null)
-							{
-								if (Collision.SolidCollision(ref ActiveDust->Position, 1, 1))
-								{
-									ActiveDust->Active = 0;
-									continue;
-								}
-								ActiveDust->Position.X += View.Player.velocity.X * 0.2f;
-								ActiveDust->Position.Y += View.Player.velocity.Y * 0.2f;
+								ActiveDust->Velocity.Y += 0.05f;
 							}
 							break;
 						default:
-							if (!ActiveDust->NoGravity)
+							switch (DustType)
 							{
-								if (DustType != 41 && DustType != 44)
-								{
-									if (DustType == 107) 
+								case 14:
+								case 16:
+								case 46:
+								case 124:
+								case 186:
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									break;
+								case 31:
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									if (ActiveDust->NoGravity)
 									{
-										ActiveDust->Velocity.Y *= 0.9f;
+										ActiveDust->Alpha += 4;
+										if (ActiveDust->Alpha > 255)
+										{
+											ActiveDust->Active = 0;
+											continue;
+										}
+										ActiveDust->Velocity.X *= 1.02f;
+										ActiveDust->Velocity.Y *= 1.02f;
+										ActiveDust->Scale += 0.02f;
+									}
+									break;
+								case 32:
+									ActiveDust->Scale -= 0.01f;
+									ActiveDust->Velocity.X *= 0.96f;
+									ActiveDust->Velocity.Y += 0.1f;
+									break;
+								case 43:
+									ActiveDust->Rotation += 0.1f * ActiveDust->Scale;
+									if (DustScale > 0.048f)
+									{
+										RGB.X = (RGB.Y = (RGB.Z = DustScale * 1.01055562f));
+										Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
+										if (ActiveDust->Alpha < 255)
+										{
+											ActiveDust->Scale += 0.09f;
+											if (ActiveDust->Scale >= 1f)
+											{
+												ActiveDust->Scale = 1f;
+												ActiveDust->Alpha = 255;
+											}
+										}
+										else if (ActiveDust->Scale < 0.5f)
+										{
+											ActiveDust->Scale -= 0.02f;
+										}
+										else if (ActiveDust->Scale < 0.8f)
+										{
+											ActiveDust->Scale -= 0.01f;
+										}
+										break;
+									}
+									ActiveDust->Active = 0;
+									continue;
+								case 15:
+								case 57:
+								case 58:
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									if (DustType != 15)
+									{
+										DustScale *= 0.8f;
+									}
+									if (ActiveDust->NoLight)
+									{
+										ActiveDust->Velocity.X *= 0.95f;
+										ActiveDust->Velocity.Y *= 0.95f;
+									}
+									if (DustScale > 1f)
+									{
+										DustScale = 1f;
+									}
+									switch (DustType)
+									{
+										case 15:
+											Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.45f, DustScale * 0.55f, DustScale));
+											break;
+										case 57:
+											Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.95f, DustScale * 0.95f, DustScale * 0.45f));
+											break;
+										case 58:
+											Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale, DustScale * 0.55f, DustScale * 0.75f));
+											break;
+									}
+									break;
+
+								case 110:
+								case 111:
+								case 112:
+								case 113:
+								case 114:
+									float ScaleAdjust = ActiveDust->Scale * 0.1f;
+									if (DustType == 111)
+									{
+										ScaleAdjust = ActiveDust->Scale * 0.125f;
+									}
+									if (ScaleAdjust > 1f)
+									{
+										ScaleAdjust = 1f;
+									}
+									switch (DustType)
+									{
+										case 110:
+											RGB.X = ScaleAdjust * 0.2f;
+											RGB.Y = ScaleAdjust;
+											RGB.Z = ScaleAdjust * 0.5f;
+											break;
+										case 111:
+											RGB.X = ScaleAdjust * 0.2f;
+											RGB.Y = ScaleAdjust * 0.7f;
+											RGB.Z = ScaleAdjust;
+											break;
+										case 112:
+											RGB.X = ScaleAdjust * 0.8f;
+											RGB.Y = ScaleAdjust * 0.2f;
+											RGB.Z = ScaleAdjust * 0.8f;
+											break;
+										case 113:
+											RGB.X = ScaleAdjust * 0.2f;
+											RGB.Y = ScaleAdjust * 0.3f;
+											RGB.Z = ScaleAdjust * 1.3f;
+											break;
+										case 114:
+											RGB.X = ScaleAdjust * 1.2f;
+											RGB.Y = ScaleAdjust * 0.5f;
+											RGB.Z = ScaleAdjust * 0.4f;
+											break;
+									}
+									Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
+									break;
+
+								case 66:
+									if (ActiveDust->Velocity.X < 0f)
+									{
+										ActiveDust->Rotation -= 1f;
 									}
 									else
 									{
-										ActiveDust->Velocity.Y += 0.1f;
+										ActiveDust->Rotation += 1f;
 									}
-								}
-							}
-							else if (DustType == 5)
-							{
-								ActiveDust->Scale -= 0.04f;
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									ActiveDust->Scale += 0.02f;
+									DustScale *= (1f / 318.75f);
+									if (DustScale > (1f / 255f))
+									{
+										DustScale = (1f / 255f);
+									}
+									RGB.X = DustScale * ActiveDust->Color.R;
+									RGB.Y = DustScale * ActiveDust->Color.G;
+									RGB.Z = DustScale * ActiveDust->Color.B;
+									Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
+									break;
+								case 20:
+								case 21:
+									ActiveDust->Scale += 0.005f;
+									ActiveDust->Velocity.X *= 0.94f;
+									ActiveDust->Velocity.Y *= 0.94f;
+									if (DustType == 21)
+									{
+										DustScale *= 0.4f;
+										RGB.X = DustScale * 0.8f;
+										RGB.Y = DustScale * 0.3f;
+									}
+									else
+									{
+										DustScale *= 0.8f;
+										if (DustScale > 1f)
+										{
+											DustScale = 1f;
+										}
+										RGB.X = DustScale * 0.3f;
+										RGB.Y = DustScale * 0.6f;
+									}
+									RGB.Z = DustScale;
+									Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
+									break;
+								case 27:
+								case 45:
+									ActiveDust->Velocity.X *= 0.94f;
+									ActiveDust->Velocity.Y *= 0.94f;
+									ActiveDust->Scale += 0.002f;
+									if (ActiveDust->NoLight)
+									{
+										DustScale *= 0.1f;
+										ActiveDust->Scale -= 0.06f;
+										if (ActiveDust->Scale < 1f)
+										{
+											ActiveDust->Scale -= 0.06f;
+										}
+										if (View != null)
+										{
+											if (View.Player.IsWet)
+											{
+												ActiveDust->Position.X += View.Player.velocity.X * 0.5f;
+												ActiveDust->Position.Y += View.Player.velocity.Y * 0.5f;
+											}
+											else
+											{
+												ActiveDust->Position.X += View.Player.velocity.X;
+												ActiveDust->Position.Y += View.Player.velocity.Y;
+											}
+										}
+									}
+									if (DustScale > 1f)
+									{
+										DustScale = 1f;
+									}
+									Lighting.AddLight((int)ActiveDust->Position.X >> 4, (int)ActiveDust->Position.Y >> 4, new Vector3(DustScale * 0.6f, DustScale * 0.2f, DustScale));
+									break;
+								case 55:
+								case 56:
+								case 73:
+								case 74:
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									switch (DustType)
+									{
+										case 55:
+											DustScale *= 0.8f;
+											if (DustScale > 1f)
+											{
+												DustScale = 1f;
+											}
+											RGB = new Vector3(DustScale, DustScale, DustScale * 0.6f);
+											break;
+										case 73:
+											DustScale *= 0.8f;
+											if (DustScale > 1f)
+											{
+												DustScale = 1f;
+											}
+											RGB = new Vector3(DustScale, DustScale * 0.35f, DustScale * 0.5f);
+											break;
+										case 74:
+											DustScale *= 0.8f;
+											if (DustScale > 1f)
+											{
+												DustScale = 1f;
+											}
+											RGB = new Vector3(DustScale * 0.35f, DustScale, DustScale * 0.5f);
+											break;
+										default:
+											DustScale *= 1.2f;
+											if (DustScale > 1f)
+											{
+												DustScale = 1f;
+											}
+											RGB = new Vector3(DustScale * 0.35f, DustScale * 0.5f, DustScale);
+											break;
+									}
+									Lighting.AddLight(DustX >> 4, DustY >> 4, RGB);
+									break;
+								case 71:
+								case 72:
+									ActiveDust->Velocity.X *= 0.98f;
+									ActiveDust->Velocity.Y *= 0.98f;
+									if (DustScale > 1f)
+									{
+										DustScale = 1f;
+									}
+									Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.2f, 0f, DustScale * 0.1f));
+									break;
+								case 76:
+									SnowDust++;
+									ActiveDust->Scale += 0.009f;
+									if (View != null)
+									{
+										if (Collision.SolidCollision(ref ActiveDust->Position, 1, 1))
+										{
+											ActiveDust->Active = 0;
+											continue;
+										}
+										ActiveDust->Position.X += View.Player.velocity.X * 0.2f;
+										ActiveDust->Position.Y += View.Player.velocity.Y * 0.2f;
+									}
+									break;
+								default:
+									if (!ActiveDust->NoGravity)
+									{
+										if (DustType != 41 && DustType != 44)
+										{
+											if (DustType == 107)
+											{
+												ActiveDust->Velocity.Y *= 0.9f;
+											}
+											else
+											{
+												ActiveDust->Velocity.Y += 0.1f;
+											}
+										}
+									}
+									else if (DustType == 5)
+									{
+										ActiveDust->Scale -= 0.04f;
+									}
+									break;
 							}
 							break;
-						}
-						break;
 					}
 					if (DustType == 33 || DustType == 52 || (DustType >= 98 && DustType <= 105) || DustType == 123)
 					{
@@ -916,85 +915,85 @@ namespace Terraria
 					{
 						switch (DustType)
 						{
-						case 68:
-							DustScale *= 0.3f;
-							if (DustScale > 1f)
-							{
-								DustScale = 1f;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.1f, DustScale * 0.2f, DustScale));
-							break;
-						case 70:
-							DustScale *= 0.3f;
-							if (DustScale > 1f)
-							{
-								DustScale = 1f;
-							}
-							Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.5f, 0f, DustScale));
-							break;
+							case 68:
+								DustScale *= 0.3f;
+								if (DustScale > 1f)
+								{
+									DustScale = 1f;
+								}
+								Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.1f, DustScale * 0.2f, DustScale));
+								break;
+							case 70:
+								DustScale *= 0.3f;
+								if (DustScale > 1f)
+								{
+									DustScale = 1f;
+								}
+								Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.5f, 0f, DustScale));
+								break;
 						}
 					}
 					switch (DustType)
 					{
-					case 41:
-						ActiveDust->Velocity.X += Main.Rand.Next(-10, 11) * 0.01f;
-						ActiveDust->Velocity.Y += Main.Rand.Next(-10, 11) * 0.01f;
-						if (ActiveDust->Velocity.X > 0.75f)
-						{
-							ActiveDust->Velocity.X = 0.75f;
-						}
-						else if (ActiveDust->Velocity.X < -0.75f)
-						{
-							ActiveDust->Velocity.X = -0.75f;
-						}
-						if (ActiveDust->Velocity.Y > 0.75f)
-						{
-							ActiveDust->Velocity.Y = 0.75f;
-						}
-						else if (ActiveDust->Velocity.Y < -0.75f)
-						{
-							ActiveDust->Velocity.Y = -0.75f;
-						}
-						ActiveDust->Scale += 0.007f;
-						DustScale = DustScale * 0.7f + 0.0049f;
-						if (DustScale > 1f)
-						{
-							DustScale = 1f;
-						}
-						Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.4f, DustScale * 0.9f, DustScale));
-						break;
-					case 44:
-						ActiveDust->Velocity.X += Main.Rand.Next(-10, 11) * 0.003f;
-						ActiveDust->Velocity.Y += Main.Rand.Next(-10, 11) * 0.003f;
-						if (ActiveDust->Velocity.X > 0.35f)
-						{
-							ActiveDust->Velocity.X = 0.35f;
-						}
-						else if (ActiveDust->Velocity.X < -0.35f)
-						{
-							ActiveDust->Velocity.X = -0.35f;
-						}
-						if (ActiveDust->Velocity.Y > 0.35f)
-						{
-							ActiveDust->Velocity.Y = 0.35f;
-						}
-						else if (ActiveDust->Velocity.Y < -0.35f)
-						{
-							ActiveDust->Velocity.Y = -0.35f;
-						}
-						ActiveDust->Scale += 0.0085f;
-						DustScale = DustScale * 0.7f + 0.00595f;
-						if (DustScale > 1f)
-						{
-							DustScale = 1f;
-						}
-						Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.7f, DustScale, DustScale * 0.8f));
-						break;
-					default:
-						ActiveDust->Velocity.X *= 0.99f;
-						break;
+						case 41:
+							ActiveDust->Velocity.X += Main.Rand.Next(-10, 11) * 0.01f;
+							ActiveDust->Velocity.Y += Main.Rand.Next(-10, 11) * 0.01f;
+							if (ActiveDust->Velocity.X > 0.75f)
+							{
+								ActiveDust->Velocity.X = 0.75f;
+							}
+							else if (ActiveDust->Velocity.X < -0.75f)
+							{
+								ActiveDust->Velocity.X = -0.75f;
+							}
+							if (ActiveDust->Velocity.Y > 0.75f)
+							{
+								ActiveDust->Velocity.Y = 0.75f;
+							}
+							else if (ActiveDust->Velocity.Y < -0.75f)
+							{
+								ActiveDust->Velocity.Y = -0.75f;
+							}
+							ActiveDust->Scale += 0.007f;
+							DustScale = DustScale * 0.7f + 0.0049f;
+							if (DustScale > 1f)
+							{
+								DustScale = 1f;
+							}
+							Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.4f, DustScale * 0.9f, DustScale));
+							break;
+						case 44:
+							ActiveDust->Velocity.X += Main.Rand.Next(-10, 11) * 0.003f;
+							ActiveDust->Velocity.Y += Main.Rand.Next(-10, 11) * 0.003f;
+							if (ActiveDust->Velocity.X > 0.35f)
+							{
+								ActiveDust->Velocity.X = 0.35f;
+							}
+							else if (ActiveDust->Velocity.X < -0.35f)
+							{
+								ActiveDust->Velocity.X = -0.35f;
+							}
+							if (ActiveDust->Velocity.Y > 0.35f)
+							{
+								ActiveDust->Velocity.Y = 0.35f;
+							}
+							else if (ActiveDust->Velocity.Y < -0.35f)
+							{
+								ActiveDust->Velocity.Y = -0.35f;
+							}
+							ActiveDust->Scale += 0.0085f;
+							DustScale = DustScale * 0.7f + 0.00595f;
+							if (DustScale > 1f)
+							{
+								DustScale = 1f;
+							}
+							Lighting.AddLight(DustX >> 4, DustY >> 4, new Vector3(DustScale * 0.7f, DustScale, DustScale * 0.8f));
+							break;
+						default:
+							ActiveDust->Velocity.X *= 0.99f;
+							break;
 					}
-					AfterYChange:
+				AfterYChange:
 					if (ActiveDust->FadeIn > 0f)
 					{
 						if (DustType == 46)

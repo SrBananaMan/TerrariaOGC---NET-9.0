@@ -1,7 +1,7 @@
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Text;
 
 namespace Terraria.HowToPlay
 {
@@ -104,6 +104,10 @@ namespace Terraria.HowToPlay
 		private static HowToPlayLayout[] Pages;
 
 		private int Index;
+
+#if !USE_ORIGINAL_CODE
+		public static bool AdjustText = false;
+#endif
 
 		private short OffsetY;
 
@@ -214,18 +218,18 @@ namespace Terraria.HowToPlay
 			string[] TextSet = HowToPlayEN;
 			switch (Lang.LangOption)
 			{
-			case (int)Lang.ID.GERMAN:
-				TextSet = HowToPlayDE;
-				break;
-			case (int)Lang.ID.FRENCH:
-				TextSet = HowToPlayFR;
-				break;
-			case (int)Lang.ID.ITALIAN:
-				TextSet = HowToPlayIT;
-				break;
-			case (int)Lang.ID.SPANISH:
-				TextSet = HowToPlayES;
-				break;
+				case (int)Lang.ID.GERMAN:
+					TextSet = HowToPlayDE;
+					break;
+				case (int)Lang.ID.FRENCH:
+					TextSet = HowToPlayFR;
+					break;
+				case (int)Lang.ID.ITALIAN:
+					TextSet = HowToPlayIT;
+					break;
+				case (int)Lang.ID.SPANISH:
+					TextSet = HowToPlayES;
+					break;
 			}
 			int PageIndex = 0;
 			int DialogWidth = 700; // These 3 aren't in original but it makes controlling it easier
@@ -234,17 +238,19 @@ namespace Terraria.HowToPlay
 #if !USE_ORIGINAL_CODE
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					DialogWidth = 933;
 					DialogHeight = 347;
 					SBSOffset = 667;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					DialogWidth *= 2;
 					DialogHeight *= 2;
 					SBSOffset *= 2;
 					break;
 			}
+
+			if (Main.PSMode && Main.ScreenHeightPtr != ScreenHeights.FHD) { AdjustText = true; }
 #endif
 			Pages = new HowToPlayLayout[14]
 			{
@@ -267,6 +273,10 @@ namespace Terraria.HowToPlay
 				HowToPlayLayout.TextOnlyLayout(TextSet[PageIndex++], DialogWidth),
 				HowToPlayLayout.TextOnlyLayout(TextSet[PageIndex++], DialogWidth)
 			};
+
+#if !USE_ORIGINAL_CODE
+			if (AdjustText) { AdjustText = false; }
+#endif
 			HowToPlayLayout[] PageSet = Pages;
 			foreach (HowToPlayLayout Layout in PageSet)
 			{

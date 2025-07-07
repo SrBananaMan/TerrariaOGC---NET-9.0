@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
+using System;
+using System.Collections.Generic;
 
 namespace Terraria
 {
@@ -98,7 +98,7 @@ namespace Terraria
 			{
 				lock (Queue)
 				{
-                    if (!Guide.IsVisible)
+					if (!Guide.IsVisible)
 					{
 						try
 						{

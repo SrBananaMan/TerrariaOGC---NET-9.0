@@ -5,15 +5,11 @@ using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Storage;
-using System.Runtime.InteropServices.ComTypes;
 
 #if !USE_ORIGINAL_CODE
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
-using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static Terraria.Tile;
 #endif
 
 namespace Terraria.Achievements
@@ -271,7 +267,7 @@ namespace Terraria.Achievements
 				foreach (KeyValuePair<Achievement, TerrariaAchievement> Single in AchievementsList)
 				{
 					int AchievementIdx = -1;
-					
+
 					try
 					{
 						AchievementIdx = (int)Single.Key;
@@ -341,5 +337,5 @@ namespace Terraria.Achievements
 			}
 		}
 #endif
-		}
+	}
 }

@@ -1,7 +1,7 @@
-using System;
-using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Threading;
 
 namespace Terraria
 {
@@ -563,18 +563,18 @@ namespace Terraria
 			}
 			switch (Main.MagmaBGFrame)
 			{
-			case 0:
-				Source.X = 659;
-				Source.Y = 10;
-				break;
-			case 1:
-				Source.X = 659;
-				Source.Y = 0;
-				break;
-			default:
-				Source.X = 759;
-				Source.Y = 10;
-				break;
+				case 0:
+					Source.X = 659;
+					Source.Y = 10;
+					break;
+				case 1:
+					Source.X = 659;
+					Source.Y = 0;
+					break;
+				default:
+					Source.X = 759;
+					Source.Y = 10;
+					break;
 			}
 			Source.Width = 10;
 			Source.Height = 10;
@@ -614,7 +614,7 @@ namespace Terraria
 			}
 			Main.SpriteBatch.End();
 			Matrix ViewedWorld = ActiveView.ScreenProjection.World;
-			float FrameScale = (float)(0.6875f + 0.0625f * Math.Sin(Main.FrameCounter * (1f/12f)));
+			float FrameScale = (float)(0.6875f + 0.0625f * Math.Sin(Main.FrameCounter * (1f / 12f)));
 			Translation = Matrix.CreateTranslation(-10f, -8f, 0f) * Matrix.CreateScale(FrameScale, FrameScale, 1f);
 			for (int PlayerIdx = Player.MaxNumPlayers - 1; PlayerIdx >= 0; PlayerIdx--)
 			{

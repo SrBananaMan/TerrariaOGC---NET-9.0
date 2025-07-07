@@ -1,6 +1,5 @@
-using System;
-using System.Security.Policy;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Terraria
 {
@@ -518,8 +517,8 @@ namespace Terraria
 					}
 					Tile* TileIdx = CreatedTile + (X * Main.LargeWorldH + MinY);
 
-                    for (int Y = MinY; Y < MaxY; Y++)
-                    {
+					for (int Y = MinY; Y < MaxY; Y++)
+					{
 						if (TileIdx->IsActive != 0)
 						{
 							float YVar = Y << 4;

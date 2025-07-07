@@ -32,7 +32,7 @@ namespace Terraria.Leaderboards
 			}
 		}
 
-        private readonly LeaderboardIdentity Identity;
+		private readonly LeaderboardIdentity Identity;
 
 		private readonly ColumnMapping[] Columns;
 
@@ -46,11 +46,11 @@ namespace Terraria.Leaderboards
 			return new ColumnMapping(Entry, Column, Name);
 		}
 
-        private static LeaderboardIdentity CreateId(string Key)
+		private static LeaderboardIdentity CreateId(string Key)
 		{
 			LeaderboardIdentity Result = default;
-            Result.Key = Key;
-            Result.GameMode = 0;
+			Result.Key = Key;
+			Result.GameMode = 0;
 			return Result;
 		}
 
@@ -110,7 +110,7 @@ namespace Terraria.Leaderboards
 			return MetricCategories;
 		}
 
-        public static LeaderboardIdentity GetIdentity(Leaderboard BoardType)
+		public static LeaderboardIdentity GetIdentity(Leaderboard BoardType)
 		{
 			return LeaderboardsInfo[(int)BoardType].Identity;
 		}
@@ -132,7 +132,7 @@ namespace Terraria.Leaderboards
 			return Lang.MenuText[LeaderboardInfo.NameID];
 		}
 
-        public static void SubmitStatistics(Statistics Stats, NetworkGamer Gamer)
+		public static void SubmitStatistics(Statistics Stats, NetworkGamer Gamer)
 		{
 			if (Netplay.Session.SessionState != NetworkSessionState.Playing)
 			{
@@ -172,6 +172,6 @@ namespace Terraria.Leaderboards
 			}
 
 			Leaderboard.Rating = Rating;
-        }
-    }
+		}
+	}
 }

@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Terraria.CreateCharacter
 {
@@ -57,12 +57,12 @@ namespace Terraria.CreateCharacter
 #if !USE_ORIGINAL_CODE
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					Scale = 1.1f;
 					ArrowOffset = 18;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					Scale = 1.3f;
 					ArrowOffset = 35;
 					break;

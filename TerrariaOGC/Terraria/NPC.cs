@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria.Achievements;
 
 namespace Terraria
@@ -665,75 +665,75 @@ namespace Terraria
 				string NurseName;
 				switch (WorldGen.genRand.Next(23))
 				{
-				case 0:
-					NurseName = "Molly";
-					break;
-				case 1:
-					NurseName = "Amy";
-					break;
-				case 2:
-					NurseName = "Claire";
-					break;
-				case 3:
-					NurseName = "Emily";
-					break;
-				case 4:
-					NurseName = "Katie";
-					break;
-				case 5:
-					NurseName = "Madeline";
-					break;
-				case 6:
-					NurseName = "Katelyn";
-					break;
-				case 7:
-					NurseName = "Emma";
-					break;
-				case 8:
-					NurseName = "Abigail";
-					break;
-				case 9:
-					NurseName = "Carly";
-					break;
-				case 10:
-					NurseName = "Jenna";
-					break;
-				case 11:
-					NurseName = "Heather";
-					break;
-				case 12:
-					NurseName = "Katherine";
-					break;
-				case 13:
-					NurseName = "Caitlin";
-					break;
-				case 14:
-					NurseName = "Kaitlin";
-					break;
-				case 15:
-					NurseName = "Holly";
-					break;
-				case 16:
-					NurseName = "Kaitlyn";
-					break;
-				case 17:
-					NurseName = "Hannah";
-					break;
-				case 18:
-					NurseName = "Kathryn";
-					break;
-				case 19:
-					NurseName = "Lorraine";
-					break;
-				case 20:
-					NurseName = "Helen";
-					break;
-				case 21:
-					NurseName = "Kayla";
-					break;
-				default:
-					NurseName = "Allison";
-					break;
+					case 0:
+						NurseName = "Molly";
+						break;
+					case 1:
+						NurseName = "Amy";
+						break;
+					case 2:
+						NurseName = "Claire";
+						break;
+					case 3:
+						NurseName = "Emily";
+						break;
+					case 4:
+						NurseName = "Katie";
+						break;
+					case 5:
+						NurseName = "Madeline";
+						break;
+					case 6:
+						NurseName = "Katelyn";
+						break;
+					case 7:
+						NurseName = "Emma";
+						break;
+					case 8:
+						NurseName = "Abigail";
+						break;
+					case 9:
+						NurseName = "Carly";
+						break;
+					case 10:
+						NurseName = "Jenna";
+						break;
+					case 11:
+						NurseName = "Heather";
+						break;
+					case 12:
+						NurseName = "Katherine";
+						break;
+					case 13:
+						NurseName = "Caitlin";
+						break;
+					case 14:
+						NurseName = "Kaitlin";
+						break;
+					case 15:
+						NurseName = "Holly";
+						break;
+					case 16:
+						NurseName = "Kaitlyn";
+						break;
+					case 17:
+						NurseName = "Hannah";
+						break;
+					case 18:
+						NurseName = "Kathryn";
+						break;
+					case 19:
+						NurseName = "Lorraine";
+						break;
+					case 20:
+						NurseName = "Helen";
+						break;
+					case 21:
+						NurseName = "Kayla";
+						break;
+					default:
+						NurseName = "Allison";
+						break;
 				}
 				TypeNames[(int)ID.NURSE] = NurseName;
 			}
@@ -742,78 +742,78 @@ namespace Terraria
 				string MechName;
 				switch (WorldGen.genRand.Next(24))
 				{
-				case 0:
-					MechName = "Shayna";
-					break;
-				case 1:
-					MechName = "Korrie";
-					break;
-				case 2:
-					MechName = "Ginger";
-					break;
-				case 3:
-					MechName = "Brooke";
-					break;
-				case 4:
-					MechName = "Jenny";
-					break;
-				case 5:
-					MechName = "Autumn";
-					break;
-				case 6:
-					MechName = "Nancy";
-					break;
-				case 7:
-					MechName = "Ella";
-					break;
-				case 8:
-					MechName = "Kayla";
-					break;
-				case 9:
-					MechName = "Beth";
-					break;
-				case 10:
-					MechName = "Sophia";
-					break;
-				case 11:
-					MechName = "Marshanna";
-					break;
-				case 12:
-					MechName = "Lauren";
-					break;
-				case 13:
-					MechName = "Trisha";
-					break;
-				case 14:
-					MechName = "Shirlena";
-					break;
-				case 15:
-					MechName = "Sheena";
-					break;
-				case 16:
-					MechName = "Ellen";
-					break;
-				case 17:
-					MechName = "Amy";
-					break;
-				case 18:
-					MechName = "Dawn";
-					break;
-				case 19:
-					MechName = "Susana";
-					break;
-				case 20:
-					MechName = "Meredith";
-					break;
-				case 21:
-					MechName = "Selene";
-					break;
-				case 22:
-					MechName = "Terra";
-					break;
-				default:
-					MechName = "Sally";
-					break;
+					case 0:
+						MechName = "Shayna";
+						break;
+					case 1:
+						MechName = "Korrie";
+						break;
+					case 2:
+						MechName = "Ginger";
+						break;
+					case 3:
+						MechName = "Brooke";
+						break;
+					case 4:
+						MechName = "Jenny";
+						break;
+					case 5:
+						MechName = "Autumn";
+						break;
+					case 6:
+						MechName = "Nancy";
+						break;
+					case 7:
+						MechName = "Ella";
+						break;
+					case 8:
+						MechName = "Kayla";
+						break;
+					case 9:
+						MechName = "Beth";
+						break;
+					case 10:
+						MechName = "Sophia";
+						break;
+					case 11:
+						MechName = "Marshanna";
+						break;
+					case 12:
+						MechName = "Lauren";
+						break;
+					case 13:
+						MechName = "Trisha";
+						break;
+					case 14:
+						MechName = "Shirlena";
+						break;
+					case 15:
+						MechName = "Sheena";
+						break;
+					case 16:
+						MechName = "Ellen";
+						break;
+					case 17:
+						MechName = "Amy";
+						break;
+					case 18:
+						MechName = "Dawn";
+						break;
+					case 19:
+						MechName = "Susana";
+						break;
+					case 20:
+						MechName = "Meredith";
+						break;
+					case 21:
+						MechName = "Selene";
+						break;
+					case 22:
+						MechName = "Terra";
+						break;
+					default:
+						MechName = "Sally";
+						break;
 				}
 				TypeNames[(int)ID.MECHANIC] = MechName;
 			}
@@ -822,75 +822,75 @@ namespace Terraria
 				string DealerName;
 				switch (WorldGen.genRand.Next(23))
 				{
-				case 0:
-					DealerName = "DeShawn";
-					break;
-				case 1:
-					DealerName = "DeAndre";
-					break;
-				case 2:
-					DealerName = "Marquis";
-					break;
-				case 3:
-					DealerName = "Darnell";
-					break;
-				case 4:
-					DealerName = "Terrell";
-					break;
-				case 5:
-					DealerName = "Malik";
-					break;
-				case 6:
-					DealerName = "Trevon";
-					break;
-				case 7:
-					DealerName = "Tyrone";
-					break;
-				case 8:
-					DealerName = "Willie";
-					break;
-				case 9:
-					DealerName = "Dominique";
-					break;
-				case 10:
-					DealerName = "Demetrius";
-					break;
-				case 11:
-					DealerName = "Reginald";
-					break;
-				case 12:
-					DealerName = "Jamal";
-					break;
-				case 13:
-					DealerName = "Maurice";
-					break;
-				case 14:
-					DealerName = "Jalen";
-					break;
-				case 15:
-					DealerName = "Darius";
-					break;
-				case 16:
-					DealerName = "Xavier";
-					break;
-				case 17:
-					DealerName = "Terrance";
-					break;
-				case 18:
-					DealerName = "Andre";
-					break;
-				case 19:
-					DealerName = "Dante";
-					break;
-				case 20:
-					DealerName = "Brimst";
-					break;
-				case 21:
-					DealerName = "Bronson";
-					break;
-				default:
-					DealerName = "Darryl";
-					break;
+					case 0:
+						DealerName = "DeShawn";
+						break;
+					case 1:
+						DealerName = "DeAndre";
+						break;
+					case 2:
+						DealerName = "Marquis";
+						break;
+					case 3:
+						DealerName = "Darnell";
+						break;
+					case 4:
+						DealerName = "Terrell";
+						break;
+					case 5:
+						DealerName = "Malik";
+						break;
+					case 6:
+						DealerName = "Trevon";
+						break;
+					case 7:
+						DealerName = "Tyrone";
+						break;
+					case 8:
+						DealerName = "Willie";
+						break;
+					case 9:
+						DealerName = "Dominique";
+						break;
+					case 10:
+						DealerName = "Demetrius";
+						break;
+					case 11:
+						DealerName = "Reginald";
+						break;
+					case 12:
+						DealerName = "Jamal";
+						break;
+					case 13:
+						DealerName = "Maurice";
+						break;
+					case 14:
+						DealerName = "Jalen";
+						break;
+					case 15:
+						DealerName = "Darius";
+						break;
+					case 16:
+						DealerName = "Xavier";
+						break;
+					case 17:
+						DealerName = "Terrance";
+						break;
+					case 18:
+						DealerName = "Andre";
+						break;
+					case 19:
+						DealerName = "Dante";
+						break;
+					case 20:
+						DealerName = "Brimst";
+						break;
+					case 21:
+						DealerName = "Bronson";
+						break;
+					default:
+						DealerName = "Darryl";
+						break;
 				}
 				TypeNames[(int)ID.ARMS_DEALER] = DealerName;
 			}
@@ -899,111 +899,111 @@ namespace Terraria
 				string GuideName;
 				switch (WorldGen.genRand.Next(35))
 				{
-				case 0:
-					GuideName = "Jake";
-					break;
-				case 1:
-					GuideName = "Connor";
-					break;
-				case 2:
-					GuideName = "Tanner";
-					break;
-				case 3:
-					GuideName = "Wyatt";
-					break;
-				case 4:
-					GuideName = "Cody";
-					break;
-				case 5:
-					GuideName = "Dustin";
-					break;
-				case 6:
-					GuideName = "Luke";
-					break;
-				case 7:
-					GuideName = "Jack";
-					break;
-				case 8:
-					GuideName = "Scott";
-					break;
-				case 9:
-					GuideName = "Logan";
-					break;
-				case 10:
-					GuideName = "Cole";
-					break;
-				case 11:
-					GuideName = "Lucas";
-					break;
-				case 12:
-					GuideName = "Bradley";
-					break;
-				case 13:
-					GuideName = "Jacob";
-					break;
-				case 14:
-					GuideName = "Garrett";
-					break;
-				case 15:
-					GuideName = "Dylan";
-					break;
-				case 16:
-					GuideName = "Maxwell";
-					break;
-				case 17:
-					GuideName = "Steve";
-					break;
-				case 18:
-					GuideName = "Brett";
-					break;
-				case 19:
-					GuideName = "Andrew";
-					break;
-				case 20:
-					GuideName = "Harley";
-					break;
-				case 21:
-					GuideName = "Kyle";
-					break;
-				case 22:
-					GuideName = "Jake";
-					break;
-				case 23:
-					GuideName = "Ryan";
-					break;
-				case 24:
-					GuideName = "Jeffrey";
-					break;
-				case 25:
-					GuideName = "Seth";
-					break;
-				case 26:
-					GuideName = "Marty";
-					break;
-				case 27:
-					GuideName = "Brandon";
-					break;
-				case 28:
-					GuideName = "Zach";
-					break;
-				case 29:
-					GuideName = "Jeff";
-					break;
-				case 30:
-					GuideName = "Daniel";
-					break;
-				case 31:
-					GuideName = "Trent";
-					break;
-				case 32:
-					GuideName = "Kevin";
-					break;
-				case 33:
-					GuideName = "Brian";
-					break;
-				default:
-					GuideName = "Colin";
-					break;
+					case 0:
+						GuideName = "Jake";
+						break;
+					case 1:
+						GuideName = "Connor";
+						break;
+					case 2:
+						GuideName = "Tanner";
+						break;
+					case 3:
+						GuideName = "Wyatt";
+						break;
+					case 4:
+						GuideName = "Cody";
+						break;
+					case 5:
+						GuideName = "Dustin";
+						break;
+					case 6:
+						GuideName = "Luke";
+						break;
+					case 7:
+						GuideName = "Jack";
+						break;
+					case 8:
+						GuideName = "Scott";
+						break;
+					case 9:
+						GuideName = "Logan";
+						break;
+					case 10:
+						GuideName = "Cole";
+						break;
+					case 11:
+						GuideName = "Lucas";
+						break;
+					case 12:
+						GuideName = "Bradley";
+						break;
+					case 13:
+						GuideName = "Jacob";
+						break;
+					case 14:
+						GuideName = "Garrett";
+						break;
+					case 15:
+						GuideName = "Dylan";
+						break;
+					case 16:
+						GuideName = "Maxwell";
+						break;
+					case 17:
+						GuideName = "Steve";
+						break;
+					case 18:
+						GuideName = "Brett";
+						break;
+					case 19:
+						GuideName = "Andrew";
+						break;
+					case 20:
+						GuideName = "Harley";
+						break;
+					case 21:
+						GuideName = "Kyle";
+						break;
+					case 22:
+						GuideName = "Jake";
+						break;
+					case 23:
+						GuideName = "Ryan";
+						break;
+					case 24:
+						GuideName = "Jeffrey";
+						break;
+					case 25:
+						GuideName = "Seth";
+						break;
+					case 26:
+						GuideName = "Marty";
+						break;
+					case 27:
+						GuideName = "Brandon";
+						break;
+					case 28:
+						GuideName = "Zach";
+						break;
+					case 29:
+						GuideName = "Jeff";
+						break;
+					case 30:
+						GuideName = "Daniel";
+						break;
+					case 31:
+						GuideName = "Trent";
+						break;
+					case 32:
+						GuideName = "Kevin";
+						break;
+					case 33:
+						GuideName = "Brian";
+						break;
+					default:
+						GuideName = "Colin";
+						break;
 				}
 				TypeNames[(int)ID.GUIDE] = GuideName;
 			}
@@ -1012,72 +1012,72 @@ namespace Terraria
 				string DryadName;
 				switch (WorldGen.genRand.Next(22))
 				{
-				case 0:
-					DryadName = "Alalia";
-					break;
-				case 1:
-					DryadName = "Alalia";
-					break;
-				case 2:
-					DryadName = "Alura";
-					break;
-				case 3:
-					DryadName = "Ariella";
-					break;
-				case 4:
-					DryadName = "Caelia";
-					break;
-				case 5:
-					DryadName = "Calista";
-					break;
-				case 6:
-					DryadName = "Chryseis";
-					break;
-				case 7:
-					DryadName = "Emerenta";
-					break;
-				case 8:
-					DryadName = "Elysia";
-					break;
-				case 9:
-					DryadName = "Evvie";
-					break;
-				case 10:
-					DryadName = "Faye";
-					break;
-				case 11:
-					DryadName = "Felicitae";
-					break;
-				case 12:
-					DryadName = "Lunette";
-					break;
-				case 13:
-					DryadName = "Nata";
-					break;
-				case 14:
-					DryadName = "Nissa";
-					break;
-				case 15:
-					DryadName = "Tatiana";
-					break;
-				case 16:
-					DryadName = "Rosalva";
-					break;
-				case 17:
-					DryadName = "Shea";
-					break;
-				case 18:
-					DryadName = "Tania";
-					break;
-				case 19:
-					DryadName = "Isis";
-					break;
-				case 20:
-					DryadName = "Celestia";
-					break;
-				default:
-					DryadName = "Xylia";
-					break;
+					case 0:
+						DryadName = "Alalia";
+						break;
+					case 1:
+						DryadName = "Alalia";
+						break;
+					case 2:
+						DryadName = "Alura";
+						break;
+					case 3:
+						DryadName = "Ariella";
+						break;
+					case 4:
+						DryadName = "Caelia";
+						break;
+					case 5:
+						DryadName = "Calista";
+						break;
+					case 6:
+						DryadName = "Chryseis";
+						break;
+					case 7:
+						DryadName = "Emerenta";
+						break;
+					case 8:
+						DryadName = "Elysia";
+						break;
+					case 9:
+						DryadName = "Evvie";
+						break;
+					case 10:
+						DryadName = "Faye";
+						break;
+					case 11:
+						DryadName = "Felicitae";
+						break;
+					case 12:
+						DryadName = "Lunette";
+						break;
+					case 13:
+						DryadName = "Nata";
+						break;
+					case 14:
+						DryadName = "Nissa";
+						break;
+					case 15:
+						DryadName = "Tatiana";
+						break;
+					case 16:
+						DryadName = "Rosalva";
+						break;
+					case 17:
+						DryadName = "Shea";
+						break;
+					case 18:
+						DryadName = "Tania";
+						break;
+					case 19:
+						DryadName = "Isis";
+						break;
+					case 20:
+						DryadName = "Celestia";
+						break;
+					default:
+						DryadName = "Xylia";
+						break;
 				}
 				TypeNames[(int)ID.DRYAD] = DryadName;
 			}
@@ -1086,72 +1086,72 @@ namespace Terraria
 				string DemoName;
 				switch (WorldGen.genRand.Next(22))
 				{
-				case 0:
-					DemoName = "Dolbere";
-					break;
-				case 1:
-					DemoName = "Bazdin";
-					break;
-				case 2:
-					DemoName = "Durim";
-					break;
-				case 3:
-					DemoName = "Tordak";
-					break;
-				case 4:
-					DemoName = "Garval";
-					break;
-				case 5:
-					DemoName = "Morthal";
-					break;
-				case 6:
-					DemoName = "Oten";
-					break;
-				case 7:
-					DemoName = "Dolgen";
-					break;
-				case 8:
-					DemoName = "Gimli";
-					break;
-				case 9:
-					DemoName = "Gimut";
-					break;
-				case 10:
-					DemoName = "Duerthen";
-					break;
-				case 11:
-					DemoName = "Beldin";
-					break;
-				case 12:
-					DemoName = "Jarut";
-					break;
-				case 13:
-					DemoName = "Ovbere";
-					break;
-				case 14:
-					DemoName = "Norkas";
-					break;
-				case 15:
-					DemoName = "Dolgrim";
-					break;
-				case 16:
-					DemoName = "Boften";
-					break;
-				case 17:
-					DemoName = "Norsun";
-					break;
-				case 18:
-					DemoName = "Dias";
-					break;
-				case 19:
-					DemoName = "Fikod";
-					break;
-				case 20:
-					DemoName = "Urist";
-					break;
-				default:
-					DemoName = "Darur";
-					break;
+					case 0:
+						DemoName = "Dolbere";
+						break;
+					case 1:
+						DemoName = "Bazdin";
+						break;
+					case 2:
+						DemoName = "Durim";
+						break;
+					case 3:
+						DemoName = "Tordak";
+						break;
+					case 4:
+						DemoName = "Garval";
+						break;
+					case 5:
+						DemoName = "Morthal";
+						break;
+					case 6:
+						DemoName = "Oten";
+						break;
+					case 7:
+						DemoName = "Dolgen";
+						break;
+					case 8:
+						DemoName = "Gimli";
+						break;
+					case 9:
+						DemoName = "Gimut";
+						break;
+					case 10:
+						DemoName = "Duerthen";
+						break;
+					case 11:
+						DemoName = "Beldin";
+						break;
+					case 12:
+						DemoName = "Jarut";
+						break;
+					case 13:
+						DemoName = "Ovbere";
+						break;
+					case 14:
+						DemoName = "Norkas";
+						break;
+					case 15:
+						DemoName = "Dolgrim";
+						break;
+					case 16:
+						DemoName = "Boften";
+						break;
+					case 17:
+						DemoName = "Norsun";
+						break;
+					case 18:
+						DemoName = "Dias";
+						break;
+					case 19:
+						DemoName = "Fikod";
+						break;
+					case 20:
+						DemoName = "Urist";
+						break;
+					default:
+						DemoName = "Darur";
+						break;
 				}
 				TypeNames[(int)ID.DEMOLITIONIST] = DemoName;
 			}
@@ -1160,69 +1160,69 @@ namespace Terraria
 				string WizardName;
 				switch (WorldGen.genRand.Next(21))
 				{
-				case 0:
-					WizardName = "Dalamar";
-					break;
-				case 1:
-					WizardName = "Dulais";
-					break;
-				case 2:
-					WizardName = "Elric";
-					break;
-				case 3:
-					WizardName = "Arddun";
-					break;
-				case 4:
-					WizardName = "Maelor";
-					break;
-				case 5:
-					WizardName = "Leomund";
-					break;
-				case 6:
-					WizardName = "Hirael";
-					break;
-				case 7:
-					WizardName = "Gwentor";
-					break;
-				case 8:
-					WizardName = "Greum";
-					break;
-				case 9:
-					WizardName = "Gearroid";
-					break;
-				case 10:
-					WizardName = "Fizban";
-					break;
-				case 11:
-					WizardName = "Ningauble";
-					break;
-				case 12:
-					WizardName = "Seonag";
-					break;
-				case 13:
-					WizardName = "Sargon";
-					break;
-				case 14:
-					WizardName = "Merlyn";
-					break;
-				case 15:
-					WizardName = "Magius";
-					break;
-				case 16:
-					WizardName = "Berwyn";
-					break;
-				case 17:
-					WizardName = "Arwyn";
-					break;
-				case 18:
-					WizardName = "Alasdair";
-					break;
-				case 19:
-					WizardName = "Tagar";
-					break;
-				default:
-					WizardName = "Xanadu";
-					break;
+					case 0:
+						WizardName = "Dalamar";
+						break;
+					case 1:
+						WizardName = "Dulais";
+						break;
+					case 2:
+						WizardName = "Elric";
+						break;
+					case 3:
+						WizardName = "Arddun";
+						break;
+					case 4:
+						WizardName = "Maelor";
+						break;
+					case 5:
+						WizardName = "Leomund";
+						break;
+					case 6:
+						WizardName = "Hirael";
+						break;
+					case 7:
+						WizardName = "Gwentor";
+						break;
+					case 8:
+						WizardName = "Greum";
+						break;
+					case 9:
+						WizardName = "Gearroid";
+						break;
+					case 10:
+						WizardName = "Fizban";
+						break;
+					case 11:
+						WizardName = "Ningauble";
+						break;
+					case 12:
+						WizardName = "Seonag";
+						break;
+					case 13:
+						WizardName = "Sargon";
+						break;
+					case 14:
+						WizardName = "Merlyn";
+						break;
+					case 15:
+						WizardName = "Magius";
+						break;
+					case 16:
+						WizardName = "Berwyn";
+						break;
+					case 17:
+						WizardName = "Arwyn";
+						break;
+					case 18:
+						WizardName = "Alasdair";
+						break;
+					case 19:
+						WizardName = "Tagar";
+						break;
+					default:
+						WizardName = "Xanadu";
+						break;
 				}
 				TypeNames[(int)ID.WIZARD] = WizardName;
 			}
@@ -1231,75 +1231,75 @@ namespace Terraria
 				string MerchName;
 				switch (WorldGen.genRand.Next(23))
 				{
-				case 0:
-					MerchName = "Alfred";
-					break;
-				case 1:
-					MerchName = "Barney";
-					break;
-				case 2:
-					MerchName = "Calvin";
-					break;
-				case 3:
-					MerchName = "Edmund";
-					break;
-				case 4:
-					MerchName = "Edwin";
-					break;
-				case 5:
-					MerchName = "Eugene";
-					break;
-				case 6:
-					MerchName = "Frank";
-					break;
-				case 7:
-					MerchName = "Frederick";
-					break;
-				case 8:
-					MerchName = "Gilbert";
-					break;
-				case 9:
-					MerchName = "Gus";
-					break;
-				case 10:
-					MerchName = "Wilbur";
-					break;
-				case 11:
-					MerchName = "Seymour";
-					break;
-				case 12:
-					MerchName = "Louis";
-					break;
-				case 13:
-					MerchName = "Humphrey";
-					break;
-				case 14:
-					MerchName = "Harold";
-					break;
-				case 15:
-					MerchName = "Milton";
-					break;
-				case 16:
-					MerchName = "Mortimer";
-					break;
-				case 17:
-					MerchName = "Howard";
-					break;
-				case 18:
-					MerchName = "Walter";
-					break;
-				case 19:
-					MerchName = "Finn";
-					break;
-				case 20:
-					MerchName = "Isacc";
-					break;
-				case 21:
-					MerchName = "Joseph";
-					break;
-				default:
-					MerchName = "Ralph";
-					break;
+					case 0:
+						MerchName = "Alfred";
+						break;
+					case 1:
+						MerchName = "Barney";
+						break;
+					case 2:
+						MerchName = "Calvin";
+						break;
+					case 3:
+						MerchName = "Edmund";
+						break;
+					case 4:
+						MerchName = "Edwin";
+						break;
+					case 5:
+						MerchName = "Eugene";
+						break;
+					case 6:
+						MerchName = "Frank";
+						break;
+					case 7:
+						MerchName = "Frederick";
+						break;
+					case 8:
+						MerchName = "Gilbert";
+						break;
+					case 9:
+						MerchName = "Gus";
+						break;
+					case 10:
+						MerchName = "Wilbur";
+						break;
+					case 11:
+						MerchName = "Seymour";
+						break;
+					case 12:
+						MerchName = "Louis";
+						break;
+					case 13:
+						MerchName = "Humphrey";
+						break;
+					case 14:
+						MerchName = "Harold";
+						break;
+					case 15:
+						MerchName = "Milton";
+						break;
+					case 16:
+						MerchName = "Mortimer";
+						break;
+					case 17:
+						MerchName = "Howard";
+						break;
+					case 18:
+						MerchName = "Walter";
+						break;
+					case 19:
+						MerchName = "Finn";
+						break;
+					case 20:
+						MerchName = "Isacc";
+						break;
+					case 21:
+						MerchName = "Joseph";
+						break;
+					default:
+						MerchName = "Ralph";
+						break;
 				}
 				TypeNames[(int)ID.MERCHANT] = MerchName;
 			}
@@ -1308,78 +1308,78 @@ namespace Terraria
 				string ClothName;
 				switch (WorldGen.genRand.Next(24))
 				{
-				case 0:
-					ClothName = "Sebastian";
-					break;
-				case 1:
-					ClothName = "Rupert";
-					break;
-				case 2:
-					ClothName = "Clive";
-					break;
-				case 3:
-					ClothName = "Nigel";
-					break;
-				case 4:
-					ClothName = "Mervyn";
-					break;
-				case 5:
-					ClothName = "Cedric";
-					break;
-				case 6:
-					ClothName = "Pip";
-					break;
-				case 7:
-					ClothName = "Cyril";
-					break;
-				case 8:
-					ClothName = "Fitz";
-					break;
-				case 9:
-					ClothName = "Lloyd";
-					break;
-				case 10:
-					ClothName = "Arthur";
-					break;
-				case 11:
-					ClothName = "Rodney";
-					break;
-				case 12:
-					ClothName = "Graham";
-					break;
-				case 13:
-					ClothName = "Edward";
-					break;
-				case 14:
-					ClothName = "Alfred";
-					break;
-				case 15:
-					ClothName = "Edmund";
-					break;
-				case 16:
-					ClothName = "Henry";
-					break;
-				case 17:
-					ClothName = "Herald";
-					break;
-				case 18:
-					ClothName = "Roland";
-					break;
-				case 19:
-					ClothName = "Lincoln";
-					break;
-				case 20:
-					ClothName = "Lloyd";
-					break;
-				case 21:
-					ClothName = "Edgar";
-					break;
-				case 22:
-					ClothName = "Eustace";
-					break;
-				default:
-					ClothName = "Rodrick";
-					break;
+					case 0:
+						ClothName = "Sebastian";
+						break;
+					case 1:
+						ClothName = "Rupert";
+						break;
+					case 2:
+						ClothName = "Clive";
+						break;
+					case 3:
+						ClothName = "Nigel";
+						break;
+					case 4:
+						ClothName = "Mervyn";
+						break;
+					case 5:
+						ClothName = "Cedric";
+						break;
+					case 6:
+						ClothName = "Pip";
+						break;
+					case 7:
+						ClothName = "Cyril";
+						break;
+					case 8:
+						ClothName = "Fitz";
+						break;
+					case 9:
+						ClothName = "Lloyd";
+						break;
+					case 10:
+						ClothName = "Arthur";
+						break;
+					case 11:
+						ClothName = "Rodney";
+						break;
+					case 12:
+						ClothName = "Graham";
+						break;
+					case 13:
+						ClothName = "Edward";
+						break;
+					case 14:
+						ClothName = "Alfred";
+						break;
+					case 15:
+						ClothName = "Edmund";
+						break;
+					case 16:
+						ClothName = "Henry";
+						break;
+					case 17:
+						ClothName = "Herald";
+						break;
+					case 18:
+						ClothName = "Roland";
+						break;
+					case 19:
+						ClothName = "Lincoln";
+						break;
+					case 20:
+						ClothName = "Lloyd";
+						break;
+					case 21:
+						ClothName = "Edgar";
+						break;
+					case 22:
+						ClothName = "Eustace";
+						break;
+					default:
+						ClothName = "Rodrick";
+						break;
 				}
 				TypeNames[(int)ID.CLOTHIER] = ClothName;
 			}
@@ -1388,81 +1388,81 @@ namespace Terraria
 				string GoblinName;
 				switch (WorldGen.genRand.Next(25))
 				{
-				case 0:
-					GoblinName = "Grodax";
-					break;
-				case 1:
-					GoblinName = "Sarx";
-					break;
-				case 2:
-					GoblinName = "Xon";
-					break;
-				case 3:
-					GoblinName = "Mrunok";
-					break;
-				case 4:
-					GoblinName = "Nuxatk";
-					break;
-				case 5:
-					GoblinName = "Tgerd";
-					break;
-				case 6:
-					GoblinName = "Darz";
-					break;
-				case 7:
-					GoblinName = "Smador";
-					break;
-				case 8:
-					GoblinName = "Stazen";
-					break;
-				case 9:
-					GoblinName = "Mobart";
-					break;
-				case 10:
-					GoblinName = "Knogs";
-					break;
-				case 11:
-					GoblinName = "Tkanus";
-					break;
-				case 12:
-					GoblinName = "Negurk";
-					break;
-				case 13:
-					GoblinName = "Nort";
-					break;
-				case 14:
-					GoblinName = "Durnok";
-					break;
-				case 15:
-					GoblinName = "Trogem";
-					break;
-				case 16:
-					GoblinName = "Stezom";
-					break;
-				case 17:
-					GoblinName = "Gnudar";
-					break;
-				case 18:
-					GoblinName = "Ragz";
-					break;
-				case 19:
-					GoblinName = "Fahd";
-					break;
-				case 20:
-					GoblinName = "Xanos";
-					break;
-				case 21:
-					GoblinName = "Arback";
-					break;
-				case 22:
-					GoblinName = "Fjell";
-					break;
-				case 23:
-					GoblinName = "Dalek";
-					break;
-				default:
-					GoblinName = "Knub";
-					break;
+					case 0:
+						GoblinName = "Grodax";
+						break;
+					case 1:
+						GoblinName = "Sarx";
+						break;
+					case 2:
+						GoblinName = "Xon";
+						break;
+					case 3:
+						GoblinName = "Mrunok";
+						break;
+					case 4:
+						GoblinName = "Nuxatk";
+						break;
+					case 5:
+						GoblinName = "Tgerd";
+						break;
+					case 6:
+						GoblinName = "Darz";
+						break;
+					case 7:
+						GoblinName = "Smador";
+						break;
+					case 8:
+						GoblinName = "Stazen";
+						break;
+					case 9:
+						GoblinName = "Mobart";
+						break;
+					case 10:
+						GoblinName = "Knogs";
+						break;
+					case 11:
+						GoblinName = "Tkanus";
+						break;
+					case 12:
+						GoblinName = "Negurk";
+						break;
+					case 13:
+						GoblinName = "Nort";
+						break;
+					case 14:
+						GoblinName = "Durnok";
+						break;
+					case 15:
+						GoblinName = "Trogem";
+						break;
+					case 16:
+						GoblinName = "Stezom";
+						break;
+					case 17:
+						GoblinName = "Gnudar";
+						break;
+					case 18:
+						GoblinName = "Ragz";
+						break;
+					case 19:
+						GoblinName = "Fahd";
+						break;
+					case 20:
+						GoblinName = "Xanos";
+						break;
+					case 21:
+						GoblinName = "Arback";
+						break;
+					case 22:
+						GoblinName = "Fjell";
+						break;
+					case 23:
+						GoblinName = "Dalek";
+						break;
+					default:
+						GoblinName = "Knub";
+						break;
 				}
 				TypeNames[(int)ID.GOBLIN_TINKERER] = GoblinName;
 			}
@@ -1474,60 +1474,60 @@ namespace Terraria
 			{
 				switch (NPCType)
 				{
-				case -1:
-					SetDefaults("Slimeling");
-					break;
-				case -2:
-					SetDefaults("Slimer2");
-					break;
-				case -3:
-					SetDefaults("Green Slime");
-					break;
-				case -4:
-					SetDefaults("Pinky");
-					break;
-				case -5:
-					SetDefaults("Baby Slime");
-					break;
-				case -6:
-					SetDefaults("Black Slime");
-					break;
-				case -7:
-					SetDefaults("Purple Slime");
-					break;
-				case -8:
-					SetDefaults("Red Slime");
-					break;
-				case -9:
-					SetDefaults("Yellow Slime");
-					break;
-				case -10:
-					SetDefaults("Jungle Slime");
-					break;
-				case -11:
-					SetDefaults("Little Eater");
-					break;
-				case -12:
-					SetDefaults("Big Eater");
-					break;
-				case -13:
-					SetDefaults("Short Bones");
-					break;
-				case -14:
-					SetDefaults("Big Boned");
-					break;
-				case -15:
-					SetDefaults("Heavy Skeleton");
-					break;
-				case -16:
-					SetDefaults("Little Stinger");
-					break;
-				case -17:
-					SetDefaults("Big Stinger");
-					break;
-				case -18:
-					SetDefaults("Slimeling2");
-					break;
+					case -1:
+						SetDefaults("Slimeling");
+						break;
+					case -2:
+						SetDefaults("Slimer2");
+						break;
+					case -3:
+						SetDefaults("Green Slime");
+						break;
+					case -4:
+						SetDefaults("Pinky");
+						break;
+					case -5:
+						SetDefaults("Baby Slime");
+						break;
+					case -6:
+						SetDefaults("Black Slime");
+						break;
+					case -7:
+						SetDefaults("Purple Slime");
+						break;
+					case -8:
+						SetDefaults("Red Slime");
+						break;
+					case -9:
+						SetDefaults("Yellow Slime");
+						break;
+					case -10:
+						SetDefaults("Jungle Slime");
+						break;
+					case -11:
+						SetDefaults("Little Eater");
+						break;
+					case -12:
+						SetDefaults("Big Eater");
+						break;
+					case -13:
+						SetDefaults("Short Bones");
+						break;
+					case -14:
+						SetDefaults("Big Boned");
+						break;
+					case -15:
+						SetDefaults("Heavy Skeleton");
+						break;
+					case -16:
+						SetDefaults("Little Stinger");
+						break;
+					case -17:
+						SetDefaults("Big Stinger");
+						break;
+					case -18:
+						SetDefaults("Slimeling2");
+						break;
 				}
 			}
 			else
@@ -1540,418 +1540,418 @@ namespace Terraria
 		{
 			switch (Name)
 			{
-			case "Slimeling":
-				SetDefaults((int)ID.CORRUPT_SLIME, 0.6);
-				TypeName = Name;
-				Damage = 45;
-				Defense = 10;
-				Life = 90;
-				KnockBackResist = 1.2f;
-				Value = 100f;
-				NetID = -1;
-				break;
-			case "Slimeling2":
-				SetDefaults((int)ID.SHADOW_SLIME, 0.6);
-				TypeName = Name;
-				Damage = 45;
-				Defense = 10;
-				Life = 105;
-				KnockBackResist = 1.2f;
-				Value = 100f;
-				NetID = -18;
-				break;
-			case "Slimer2":
-				SetDefaults((int)ID.CORRUPT_SLIME, 0.9);
-				TypeName = Name;
-				Damage = 45;
-				Defense = 20;
-				Life = 90;
-				KnockBackResist = 1.2f;
-				Value = 100f;
-				NetID = -2;
-				break;
-			case "Green Slime":
-				SetDefaults((int)ID.SLIME, 0.9);
-				TypeName = Name;
-				Damage = 6;
-				Defense = 0;
-				Life = 14;
-				KnockBackResist = 1.2f;
-				Colour = new Color(0, 220, 40, 100);
-				Value = 3f;
-				NetID = -3;
-				break;
-			case "Pinky":
-				SetDefaults((int)ID.SLIME, 0.6);
-				TypeName = Name;
-				Damage = 5;
-				Defense = 5;
-				Life = 150;
-				KnockBackResist = 1.4f;
-				Colour = new Color(250, 30, 90, 90);
-				Value = 10000f;
-				NetID = -4;
-				break;
-			case "Baby Slime":
-				SetDefaults((int)ID.SLIME, 0.9);
-				TypeName = Name;
-				Damage = 13;
-				Defense = 4;
-				Life = 30;
-				KnockBackResist = 0.95f;
-				Alpha = 120;
-				Colour = new Color(0, 0, 0, 50);
-				Value = 10f;
-				NetID = -5;
-				break;
-			case "Black Slime":
-				SetDefaults((int)ID.SLIME);
-				TypeName = Name;
-				Damage = 15;
-				Defense = 4;
-				Life = 45;
-				Colour = new Color(0, 0, 0, 50);
-				Value = 20f;
-				NetID = -6;
-				break;
-			case "Purple Slime":
-				SetDefaults((int)ID.SLIME, 1.2);
-				TypeName = Name;
-				Damage = 12;
-				Defense = 6;
-				Life = 40;
-				KnockBackResist = 0.9f;
-				Colour = new Color(200, 0, 255, 150);
-				Value = 10f;
-				NetID = -7;
-				break;
-			case "Red Slime":
-				SetDefaults((int)ID.SLIME);
-				TypeName = Name;
-				Damage = 12;
-				Defense = 4;
-				Life = 35;
-				Colour = new Color(255, 30, 0, 100);
-				Value = 8f;
-				NetID = -8;
-				break;
-			case "Yellow Slime":
-				SetDefaults((int)ID.SLIME, 1.2);
-				TypeName = Name;
-				Damage = 15;
-				Defense = 7;
-				Life = 45;
-				Colour = new Color(255, 255, 0, 100);
-				Value = 10f;
-				NetID = -9;
-				break;
-			case "Jungle Slime":
-				SetDefaults((int)ID.SLIME, 1.1);
-				TypeName = Name;
-				Damage = 18;
-				Defense = 6;
-				Life = 60;
-				Colour = new Color(143, 215, 93, 100);
-				Value = 500f;
-				NetID = -10;
-				break;
-			case "Little Eater":
-				SetDefaults((int)ID.EATER_OF_SOULS, 0.85);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -11;
-				break;
-			case "Big Eater":
-				SetDefaults((int)ID.EATER_OF_SOULS, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -12;
-				break;
-			case "Short Bones":
-				SetDefaults((int)ID.BONES, 0.9);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NetID = -13;
-				break;
-			case "Big Boned":
-				SetDefaults((int)ID.BONES, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)((double)(Damage * Scale) * 1.1);
-				Life = (int)((double)(Life * Scale) * 1.1);
-				Value = (int)(Value * Scale);
-				NpcSlots = 2f;
-				KnockBackResist *= 2f - Scale;
-				NetID = -14;
-				break;
-			case "Heavy Skeleton":
-				SetDefaults((int)ID.ARMORED_SKELETON, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)((double)(Damage * Scale) * 1.1);
-				Life = 400;
-				Value = (int)(Value * Scale);
-				NpcSlots = 2f;
-				KnockBackResist *= 2f - Scale;
-				Height = 44;
-				NetID = -15;
-				break;
-			case "Little Stinger":
-				SetDefaults((int)ID.HORNET, 0.85);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -16;
-				break;
-			case "Big Stinger":
-				SetDefaults((int)ID.HORNET, 1.2);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -17;
-				break;
+				case "Slimeling":
+					SetDefaults((int)ID.CORRUPT_SLIME, 0.6);
+					TypeName = Name;
+					Damage = 45;
+					Defense = 10;
+					Life = 90;
+					KnockBackResist = 1.2f;
+					Value = 100f;
+					NetID = -1;
+					break;
+				case "Slimeling2":
+					SetDefaults((int)ID.SHADOW_SLIME, 0.6);
+					TypeName = Name;
+					Damage = 45;
+					Defense = 10;
+					Life = 105;
+					KnockBackResist = 1.2f;
+					Value = 100f;
+					NetID = -18;
+					break;
+				case "Slimer2":
+					SetDefaults((int)ID.CORRUPT_SLIME, 0.9);
+					TypeName = Name;
+					Damage = 45;
+					Defense = 20;
+					Life = 90;
+					KnockBackResist = 1.2f;
+					Value = 100f;
+					NetID = -2;
+					break;
+				case "Green Slime":
+					SetDefaults((int)ID.SLIME, 0.9);
+					TypeName = Name;
+					Damage = 6;
+					Defense = 0;
+					Life = 14;
+					KnockBackResist = 1.2f;
+					Colour = new Color(0, 220, 40, 100);
+					Value = 3f;
+					NetID = -3;
+					break;
+				case "Pinky":
+					SetDefaults((int)ID.SLIME, 0.6);
+					TypeName = Name;
+					Damage = 5;
+					Defense = 5;
+					Life = 150;
+					KnockBackResist = 1.4f;
+					Colour = new Color(250, 30, 90, 90);
+					Value = 10000f;
+					NetID = -4;
+					break;
+				case "Baby Slime":
+					SetDefaults((int)ID.SLIME, 0.9);
+					TypeName = Name;
+					Damage = 13;
+					Defense = 4;
+					Life = 30;
+					KnockBackResist = 0.95f;
+					Alpha = 120;
+					Colour = new Color(0, 0, 0, 50);
+					Value = 10f;
+					NetID = -5;
+					break;
+				case "Black Slime":
+					SetDefaults((int)ID.SLIME);
+					TypeName = Name;
+					Damage = 15;
+					Defense = 4;
+					Life = 45;
+					Colour = new Color(0, 0, 0, 50);
+					Value = 20f;
+					NetID = -6;
+					break;
+				case "Purple Slime":
+					SetDefaults((int)ID.SLIME, 1.2);
+					TypeName = Name;
+					Damage = 12;
+					Defense = 6;
+					Life = 40;
+					KnockBackResist = 0.9f;
+					Colour = new Color(200, 0, 255, 150);
+					Value = 10f;
+					NetID = -7;
+					break;
+				case "Red Slime":
+					SetDefaults((int)ID.SLIME);
+					TypeName = Name;
+					Damage = 12;
+					Defense = 4;
+					Life = 35;
+					Colour = new Color(255, 30, 0, 100);
+					Value = 8f;
+					NetID = -8;
+					break;
+				case "Yellow Slime":
+					SetDefaults((int)ID.SLIME, 1.2);
+					TypeName = Name;
+					Damage = 15;
+					Defense = 7;
+					Life = 45;
+					Colour = new Color(255, 255, 0, 100);
+					Value = 10f;
+					NetID = -9;
+					break;
+				case "Jungle Slime":
+					SetDefaults((int)ID.SLIME, 1.1);
+					TypeName = Name;
+					Damage = 18;
+					Defense = 6;
+					Life = 60;
+					Colour = new Color(143, 215, 93, 100);
+					Value = 500f;
+					NetID = -10;
+					break;
+				case "Little Eater":
+					SetDefaults((int)ID.EATER_OF_SOULS, 0.85);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -11;
+					break;
+				case "Big Eater":
+					SetDefaults((int)ID.EATER_OF_SOULS, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -12;
+					break;
+				case "Short Bones":
+					SetDefaults((int)ID.BONES, 0.9);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NetID = -13;
+					break;
+				case "Big Boned":
+					SetDefaults((int)ID.BONES, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)((double)(Damage * Scale) * 1.1);
+					Life = (int)((double)(Life * Scale) * 1.1);
+					Value = (int)(Value * Scale);
+					NpcSlots = 2f;
+					KnockBackResist *= 2f - Scale;
+					NetID = -14;
+					break;
+				case "Heavy Skeleton":
+					SetDefaults((int)ID.ARMORED_SKELETON, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)((double)(Damage * Scale) * 1.1);
+					Life = 400;
+					Value = (int)(Value * Scale);
+					NpcSlots = 2f;
+					KnockBackResist *= 2f - Scale;
+					Height = 44;
+					NetID = -15;
+					break;
+				case "Little Stinger":
+					SetDefaults((int)ID.HORNET, 0.85);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -16;
+					break;
+				case "Big Stinger":
+					SetDefaults((int)ID.HORNET, 1.2);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -17;
+					break;
 #if VERSION_101
-			case "Small Zombie":
-				SetDefaults((int)ID.ZOMBIE, 0.9);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -26;
-				break;
-			case "Big Zombie":
-				SetDefaults((int)ID.ZOMBIE, 1.1);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -27;
-				break;
-			case "Small Bald Zombie":
-				SetDefaults((int)ID.BALD_ZOMBIE, 0.85);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -28;
-				break;
-			case "Big Bald Zombie":
-				SetDefaults((int)ID.BALD_ZOMBIE, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -29;
-				break;
-			case "Small Pincushion Zombie":
-				SetDefaults((int)ID.PINCUSHION_ZOMBIE, 0.93);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -30;
-				break;
-			case "Big Pincushion Zombie":
-				SetDefaults((int)ID.PINCUSHION_ZOMBIE, 1.13);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -31;
-				break;
-			case "Small Slimed Zombie":
-				SetDefaults((int)ID.SLIMED_ZOMBIE, 0.89);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -32;
-				break;
-			case "Big Slimed Zombie":
-				SetDefaults((int)ID.SLIMED_ZOMBIE, 1.11);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -33;
-				break;
-			case "Small Swamp Zombie":
-				SetDefaults((int)ID.SWAMP_ZOMBIE, 0.87);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -34;
-				break;
-			case "Big Swamp Zombie":
-				SetDefaults((int)ID.SWAMP_ZOMBIE, 1.13);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -35;
-				break;
-			case "Small Twiggy Zombie":
-				SetDefaults((int)ID.TWIGGY_ZOMBIE, 0.92);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -36;
-				break;
-			case "Big Twiggy Zombie":
-				SetDefaults((int)ID.TWIGGY_ZOMBIE, 1.08);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -37;
-				break;
-			case "Cataract Eye 2":
-				SetDefaults((int)ID.CATARACT_EYE, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -38;
-				break;
-			case "Sleepy Eye 2":
-				SetDefaults((int)ID.SLEEPY_EYE, 1.1);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -39;
-				break;
-			case "Dialated Eye 2":
-				SetDefaults((int)ID.DIALATED_EYE, 0.9);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -40;
-				break;
-			case "Green Eye 2":
-				SetDefaults((int)ID.GREEN_EYE, 0.85);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -41;
-				break;
-			case "Purple Eye 2":
-				SetDefaults((int)ID.PURPLE_EYE, 1.1);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -42;
-				break;
-			case "Demon Eye 2":
-				SetDefaults((int)ID.DEMON_EYE, 1.15);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -43;
-				break;
-			case "Small Female Zombie":
-				SetDefaults((int)ID.FEMALE_ZOMBIE, 0.87);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -44;
-				break;
-			case "Big Female Zombie":
-				SetDefaults((int)ID.FEMALE_ZOMBIE, 1.05);
-				TypeName = Name;
-				Defense = (int)(Defense * Scale);
-				Damage = (int)(Damage * Scale);
-				Life = (int)(Life * Scale);
-				Value = (int)(Value * Scale);
-				NpcSlots *= Scale;
-				KnockBackResist *= 2f - Scale;
-				NetID = -45;
-				break;
+				case "Small Zombie":
+					SetDefaults((int)ID.ZOMBIE, 0.9);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -26;
+					break;
+				case "Big Zombie":
+					SetDefaults((int)ID.ZOMBIE, 1.1);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -27;
+					break;
+				case "Small Bald Zombie":
+					SetDefaults((int)ID.BALD_ZOMBIE, 0.85);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -28;
+					break;
+				case "Big Bald Zombie":
+					SetDefaults((int)ID.BALD_ZOMBIE, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -29;
+					break;
+				case "Small Pincushion Zombie":
+					SetDefaults((int)ID.PINCUSHION_ZOMBIE, 0.93);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -30;
+					break;
+				case "Big Pincushion Zombie":
+					SetDefaults((int)ID.PINCUSHION_ZOMBIE, 1.13);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -31;
+					break;
+				case "Small Slimed Zombie":
+					SetDefaults((int)ID.SLIMED_ZOMBIE, 0.89);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -32;
+					break;
+				case "Big Slimed Zombie":
+					SetDefaults((int)ID.SLIMED_ZOMBIE, 1.11);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -33;
+					break;
+				case "Small Swamp Zombie":
+					SetDefaults((int)ID.SWAMP_ZOMBIE, 0.87);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -34;
+					break;
+				case "Big Swamp Zombie":
+					SetDefaults((int)ID.SWAMP_ZOMBIE, 1.13);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -35;
+					break;
+				case "Small Twiggy Zombie":
+					SetDefaults((int)ID.TWIGGY_ZOMBIE, 0.92);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -36;
+					break;
+				case "Big Twiggy Zombie":
+					SetDefaults((int)ID.TWIGGY_ZOMBIE, 1.08);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -37;
+					break;
+				case "Cataract Eye 2":
+					SetDefaults((int)ID.CATARACT_EYE, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -38;
+					break;
+				case "Sleepy Eye 2":
+					SetDefaults((int)ID.SLEEPY_EYE, 1.1);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -39;
+					break;
+				case "Dialated Eye 2":
+					SetDefaults((int)ID.DIALATED_EYE, 0.9);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -40;
+					break;
+				case "Green Eye 2":
+					SetDefaults((int)ID.GREEN_EYE, 0.85);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -41;
+					break;
+				case "Purple Eye 2":
+					SetDefaults((int)ID.PURPLE_EYE, 1.1);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -42;
+					break;
+				case "Demon Eye 2":
+					SetDefaults((int)ID.DEMON_EYE, 1.15);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -43;
+					break;
+				case "Small Female Zombie":
+					SetDefaults((int)ID.FEMALE_ZOMBIE, 0.87);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -44;
+					break;
+				case "Big Female Zombie":
+					SetDefaults((int)ID.FEMALE_ZOMBIE, 1.05);
+					TypeName = Name;
+					Defense = (int)(Defense * Scale);
+					Damage = (int)(Damage * Scale);
+					Life = (int)(Life * Scale);
+					Value = (int)(Value * Scale);
+					NpcSlots *= Scale;
+					KnockBackResist *= 2f - Scale;
+					NetID = -45;
+					break;
 #endif
 			}
 			DisplayName = Lang.NpcName(NetID);
@@ -2005,30 +2005,30 @@ namespace Terraria
 		{
 			switch ((ID)Type)
 			{
-			case ID.MERCHANT:
-				return 2;
-			case ID.NURSE:
-				return 3;
-			case ID.ARMS_DEALER:
-				return 6;
-			case ID.DRYAD:
-				return 5;
-			case ID.GUIDE:
-				return 1;
-			case ID.DEMOLITIONIST:
-				return 4;
-			case ID.CLOTHIER:
-				return 7;
-			case ID.GOBLIN_TINKERER:
-				return 9;
-			case ID.WIZARD:
-				return 10;
-			case ID.MECHANIC:
-				return 8;
-			case ID.SANTA_CLAUS:
-				return 11;
-			default:
-				return -1;
+				case ID.MERCHANT:
+					return 2;
+				case ID.NURSE:
+					return 3;
+				case ID.ARMS_DEALER:
+					return 6;
+				case ID.DRYAD:
+					return 5;
+				case ID.GUIDE:
+					return 1;
+				case ID.DEMOLITIONIST:
+					return 4;
+				case ID.CLOTHIER:
+					return 7;
+				case ID.GOBLIN_TINKERER:
+					return 9;
+				case ID.WIZARD:
+					return 10;
+				case ID.MECHANIC:
+					return 8;
+				case ID.SANTA_CLAUS:
+					return 11;
+				default:
+					return -1;
 			}
 		}
 
@@ -5049,7 +5049,7 @@ namespace Terraria
 			else if (Type == (int)ID.LAVA_SLIME)
 			{
 				Lighting.AddLight(XYWH.X + (Width >> 1) >> 4, XYWH.Y + (Height >> 1) >> 4, new Vector3(1f, 0.3f, 0.1f));
-				Dust* ptr2 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 1.7000000476837158);
+				Dust* ptr2 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 1.7000000476837158);
 				if (ptr2 != null)
 				{
 					ptr2->NoGravity = true;
@@ -5598,7 +5598,7 @@ namespace Terraria
 					num3 *= num4;
 					for (int i = 0; i < 16; i++)
 					{
-						Dust* ptr = Main.DustSet.NewDust(71, ref XYWH, num2, num3, 200, default(Color), 2.0);
+						Dust* ptr = Main.DustSet.NewDust(71, ref XYWH, num2, num3, 200, default, 2.0);
 						if (ptr == null)
 						{
 							break;
@@ -5608,7 +5608,7 @@ namespace Terraria
 					}
 					for (int j = 0; j < 16; j++)
 					{
-						Dust* ptr2 = Main.DustSet.NewDust((int)OldPos[2].X, (int)OldPos[2].Y, Width, Height, 71, 0f - num2, 0f - num3, 200, default(Color), 2.0);
+						Dust* ptr2 = Main.DustSet.NewDust((int)OldPos[2].X, (int)OldPos[2].Y, Width, Height, 71, 0f - num2, 0f - num3, 200, default, 2.0);
 						if (ptr2 == null)
 						{
 							break;
@@ -6478,7 +6478,7 @@ namespace Terraria
 							float num13 = (float)Math.Sqrt(num11 * num11 + num12 * num12);
 							num13 = 5f / num13;
 							Vector2 vector2 = vector;
-							Vector2 vector3 = default(Vector2);
+							Vector2 vector3 = default;
 							vector3.X = num11 * num13;
 							vector3.Y = num12 * num13;
 							vector2.X += vector3.X * 10f;
@@ -6747,36 +6747,36 @@ namespace Terraria
 			float num2;
 			switch (Type)
 			{
-			case (int)ID.SERVANT_OF_CTHULHU:
-				num = 5f;
-				num2 = 0.03f;
-				break;
-			case (int)ID.SERVANT_OF_OCRAM:
-				Lighting.AddLight(XYWH.X >> 4, XYWH.Y >> 4, new Vector3(1f, 1f, 1f));
-				num = 9f;
-				num2 = 0.1f;
-				break;
-			case (int)ID.EATER_OF_SOULS:
-				num = 4f;
-				num2 = 0.02f;
-				break;
-			case (int)ID.HORNET:
-			case (int)ID.DRAGON_HORNET:
-				num = 3.5f;
-				num2 = 0.021f;
-				break;
-			case (int)ID.METEOR_HEAD:
-				num = 1f;
-				num2 = 0.03f;
-				break;
-			case (int)ID.CORRUPTOR:
-				num = 4.2f;
-				num2 = 0.022f;
-				break;
-			default:
-				num = 6f;
-				num2 = 0.05f;
-				break;
+				case (int)ID.SERVANT_OF_CTHULHU:
+					num = 5f;
+					num2 = 0.03f;
+					break;
+				case (int)ID.SERVANT_OF_OCRAM:
+					Lighting.AddLight(XYWH.X >> 4, XYWH.Y >> 4, new Vector3(1f, 1f, 1f));
+					num = 9f;
+					num2 = 0.1f;
+					break;
+				case (int)ID.EATER_OF_SOULS:
+					num = 4f;
+					num2 = 0.02f;
+					break;
+				case (int)ID.HORNET:
+				case (int)ID.DRAGON_HORNET:
+					num = 3.5f;
+					num2 = 0.021f;
+					break;
+				case (int)ID.METEOR_HEAD:
+					num = 1f;
+					num2 = 0.03f;
+					break;
+				case (int)ID.CORRUPTOR:
+					num = 4.2f;
+					num2 = 0.022f;
+					break;
+				default:
+					num = 6f;
+					num2 = 0.05f;
+					break;
 			}
 			int num3 = (XYWH.X + (Width >> 1)) & -8;
 			int num4 = (XYWH.Y + (Height >> 1)) & -8;
@@ -6972,7 +6972,7 @@ namespace Terraria
 				}
 				if (Type == (int)ID.METEOR_HEAD)
 				{
-					Dust* ptr = Main.DustSet.NewDust((int)(Position.X - Velocity.X), (int)(Position.Y - Velocity.Y), Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+					Dust* ptr = Main.DustSet.NewDust((int)(Position.X - Velocity.X), (int)(Position.Y - Velocity.Y), Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 					if (ptr != null)
 					{
 						ptr->NoGravity = true;
@@ -7171,19 +7171,19 @@ namespace Terraria
 							int num5 = (int)ID.WYVERN_BODY1;
 							switch (j)
 							{
-							case 1:
-							case 8:
-								num5 = (int)ID.WYVERN_LEGS;
-								break;
-							case 11:
-								num5 = (int)ID.WYVERN_BODY2;
-								break;
-							case 12:
-								num5 = (int)ID.WYVERN_BODY3;
-								break;
-							case 13:
-								num5 = (int)ID.WYVERN_TAIL;
-								break;
+								case 1:
+								case 8:
+									num5 = (int)ID.WYVERN_LEGS;
+									break;
+								case 11:
+									num5 = (int)ID.WYVERN_BODY2;
+									break;
+								case 12:
+									num5 = (int)ID.WYVERN_BODY3;
+									break;
+								case 13:
+									num5 = (int)ID.WYVERN_TAIL;
+									break;
 							}
 							num2 = NewNPC(XYWH.X + (Width >> 1), XYWH.Y + Height, num5 + num4, WhoAmI);
 							Main.NPCSet[num2].AI3 = WhoAmI;
@@ -7836,7 +7836,7 @@ namespace Terraria
 			if (Main.NetMode != (byte)NetModeSetting.CLIENT && IsTownNPC && !IsHomeless && (num != HomeTileX || num2 != j) && (!Main.GameTime.DayTime || Main.TileDungeon[Main.TileSet[num, num2].Type]))
 			{
 				bool flag2 = true;
-				Rectangle rectangle = default(Rectangle);
+				Rectangle rectangle = default;
 				rectangle.X = XYWH.X + (Width >> 1) - (SpawnWidth / 2) - SafeRangeX;
 				rectangle.Y = XYWH.Y + (Height >> 1) - (SpawnHeight / 2) - SafeRangeY;
 				rectangle.Width = SpawnWidth + SafeRangeX * 2;
@@ -8197,7 +8197,7 @@ namespace Terraria
 					Dust* ptr;
 					if (Type == (int)ID.GOBLIN_SORCERER || Type == (int)ID.TIM)
 					{
-						ptr = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 100, default(Color), Main.Rand.Next(1, 3));
+						ptr = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 100, default, Main.Rand.Next(1, 3));
 						if (ptr == null)
 						{
 							break;
@@ -8209,7 +8209,7 @@ namespace Terraria
 					}
 					else if (Type == (int)ID.DARK_CASTER)
 					{
-						ptr = Main.DustSet.NewDust(29, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+						ptr = Main.DustSet.NewDust(29, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 						if (ptr == null)
 						{
 							break;
@@ -8218,7 +8218,7 @@ namespace Terraria
 					}
 					else
 					{
-						ptr = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+						ptr = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 						if (ptr == null)
 						{
 							break;
@@ -8242,7 +8242,7 @@ namespace Terraria
 					Dust* ptr2;
 					if (Type == (int)ID.GOBLIN_SORCERER || Type == (int)ID.TIM)
 					{
-						ptr2 = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 100, default(Color), Main.Rand.Next(1, 3));
+						ptr2 = Main.DustSet.NewDust(27, ref XYWH, 0.0, 0.0, 100, default, Main.Rand.Next(1, 3));
 						if (ptr2 == null)
 						{
 							break;
@@ -8254,7 +8254,7 @@ namespace Terraria
 					}
 					else if (Type == (int)ID.DARK_CASTER)
 					{
-						ptr2 = Main.DustSet.NewDust(29, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+						ptr2 = Main.DustSet.NewDust(29, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 						if (ptr2 == null)
 						{
 							break;
@@ -8263,7 +8263,7 @@ namespace Terraria
 					}
 					else
 					{
-						ptr2 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+						ptr2 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 						if (ptr2 == null)
 						{
 							break;
@@ -8353,7 +8353,7 @@ namespace Terraria
 			{
 				if (Main.Rand.Next(5) == 0)
 				{
-					Dust* ptr3 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 27, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 1.5);
+					Dust* ptr3 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 27, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 1.5);
 					if (ptr3 != null)
 					{
 						ptr3->NoGravity = true;
@@ -8366,7 +8366,7 @@ namespace Terraria
 			{
 				if (Main.Rand.Next(2) == 0)
 				{
-					Dust* ptr4 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 29, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+					Dust* ptr4 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 29, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 					if (ptr4 != null)
 					{
 						ptr4->NoGravity = true;
@@ -8377,7 +8377,7 @@ namespace Terraria
 			}
 			else if (Main.Rand.Next(2) == 0)
 			{
-				Dust* ptr5 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+				Dust* ptr5 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 				if (ptr5 != null)
 				{
 					ptr5->NoGravity = true;
@@ -8425,7 +8425,7 @@ namespace Terraria
 					Main.PlaySound(4, XYWH.X, XYWH.Y, 9);
 					for (int i = 0; i < 16; i++)
 					{
-						Dust* ptr = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, 0.0, 0.0, 100, default(Color), 1.8f);
+						Dust* ptr = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, 0.0, 0.0, 100, default, 1.8f);
 						if (ptr == null)
 						{
 							break;
@@ -8502,7 +8502,7 @@ namespace Terraria
 				Dust* ptr2;
 				if (Type == (int)ID.CHAOS_BALL)
 				{
-					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 27, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 27, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 					if (ptr2 == null)
 					{
 						break;
@@ -8510,7 +8510,7 @@ namespace Terraria
 				}
 				else if (Type == (int)ID.WATER_SPHERE)
 				{
-					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 29, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 29, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 					if (ptr2 == null)
 					{
 						break;
@@ -8518,7 +8518,7 @@ namespace Terraria
 				}
 				else if (Type == (int)ID.VILE_SPIT)
 				{
-					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, Velocity.X * 0.1f, Velocity.Y * 0.1f, 80, default(Color), 1.3f);
+					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, Velocity.X * 0.1f, Velocity.Y * 0.1f, 80, default, 1.3f);
 					if (ptr2 == null)
 					{
 						break;
@@ -8527,7 +8527,7 @@ namespace Terraria
 				else
 				{
 					Lighting.AddLight(XYWH.X + (Width >> 1) >> 4, XYWH.Y + (Height >> 1) >> 4, new Vector3(1f, 0.3f, 0.1f));
-					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+					ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 6, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 				}
 				if (ptr2 != null)
 				{
@@ -8791,7 +8791,7 @@ namespace Terraria
 			{
 				return;
 			}
-			Dust* ptr = Main.DustSet.NewDust(XYWH.X + (Width >> 1) - 15 - (int)(Velocity.X * 5f), XYWH.Y + Height - 2, 30, 10, 5, Velocity.X * -0.2f, 3.0, 0, default(Color), 2.0);
+			Dust* ptr = Main.DustSet.NewDust(XYWH.X + (Width >> 1) - 15 - (int)(Velocity.X * 5f), XYWH.Y + Height - 2, 30, 10, 5, Velocity.X * -0.2f, 3.0, 0, default, 2.0);
 			if (ptr != null)
 			{
 				ptr->NoGravity = true;
@@ -8801,7 +8801,7 @@ namespace Terraria
 			}
 			for (int i = 0; i < 2; i++)
 			{
-				ptr = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 120, Width, 60, 5, Velocity.X, Velocity.Y, 0, default(Color), 2.0);
+				ptr = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 120, Width, 60, 5, Velocity.X, Velocity.Y, 0, default, 2.0);
 				if (ptr == null)
 				{
 					break;
@@ -9198,7 +9198,7 @@ namespace Terraria
 		{
 			if (Type == (int)ID.HELLBAT)
 			{
-				Dust* ptr = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default(Color), 2.0);
+				Dust* ptr = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2f, Velocity.Y * 0.2f, 100, default, 2.0);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
@@ -10633,12 +10633,12 @@ namespace Terraria
 			Vector3 rgb = new Vector3(0.05f, 0.2f, 0.3f);
 			switch (Type)
 			{
-			case (int)ID.CURSED_HAMMER:
-				rgb = new Vector3(0.2f, 0.05f, 0.3f);
-				break;
-			case (int)ID.SHADOW_HAMMER:
-				rgb = new Vector3(0.3f, 0.05f, 0.2f);
-				break;
+				case (int)ID.CURSED_HAMMER:
+					rgb = new Vector3(0.2f, 0.05f, 0.3f);
+					break;
+				case (int)ID.SHADOW_HAMMER:
+					rgb = new Vector3(0.3f, 0.05f, 0.2f);
+					break;
 			}
 			Lighting.AddLight(XYWH.X + (Width >> 1) >> 4, XYWH.Y + (Height >> 1) >> 4, rgb);
 			if (Target == Player.MaxNumPlayers || Main.PlayerSet[Target].IsDead)
@@ -11207,7 +11207,7 @@ namespace Terraria
 			// BUG: I am unable to tell if this is a TerrariaOGC-made bug or if it exists in the original game. Basically, the WoF spawns with a target set to 8, which is not the player.
 			// The problem lies with it's spawn velocity, as that seems to start at random variables, like one time, it was 2.88? This means the check below cannot pass.
 			// This results in the mouth sometimes not targeting the player and remaining stationary at various angles. Leech spawning, roars, and animations remain intact however.
-			if (Velocity.X == 0f) 
+			if (Velocity.X == 0f)
 			{
 				TargetClosest();
 				Velocity.X = Direction;
@@ -13779,7 +13779,7 @@ namespace Terraria
 			bool flag2 = false;
 			if (!flag2)
 			{
-				Vector2 vector2 = default(Vector2);
+				Vector2 vector2 = default;
 				for (int j = num9; j < num10; j++)
 				{
 					for (int k = num11; k < num12; k++)
@@ -14396,7 +14396,7 @@ namespace Terraria
 							float num13 = (float)Math.Sqrt(num11 * num11 + num12 * num12);
 							num13 = 5f / num13;
 							Vector2 vector2 = vector;
-							Vector2 vector3 = default(Vector2);
+							Vector2 vector3 = default;
 							vector3.X = num11 * num13;
 							vector3.Y = num12 * num13;
 							vector2.X += vector3.X * 10f;
@@ -14689,7 +14689,7 @@ namespace Terraria
 					float num30 = (float)Math.Sqrt(num28 * num28 + num29 * num29);
 					num30 = 5f / num30;
 					Vector2 vector8 = vector7;
-					Vector2 vector9 = default(Vector2);
+					Vector2 vector9 = default;
 					vector9.X = num28 * num30;
 					vector9.Y = num29 * num30;
 					vector8.X += vector9.X * 10f;
@@ -16074,7 +16074,7 @@ namespace Terraria
 				{
 					TimeLeft = NPCActiveTime;
 				}
-				
+
 			}
 			TimeLeft--;
 			if (TimeLeft <= 0)
@@ -16498,22 +16498,22 @@ namespace Terraria
 					int Type;
 					switch (Main.Rand.Next(16))
 					{
-					case 0:
-						Type = (int)ID.SHARK;
-						break;
-					case 1:
-						Type = (int)ID.ORKA;
-						break;
-					case 2:
-					case 3:
-					case 4:
-					case 5:
-					case 6:
-						Type = (int)ID.CRAB;
-						break;
-					default:
-						Type = (int)ID.PINK_JELLYFISH;
-						break;
+						case 0:
+							Type = (int)ID.SHARK;
+							break;
+						case 1:
+							Type = (int)ID.ORKA;
+							break;
+						case 2:
+						case 3:
+						case 4:
+						case 5:
+						case 6:
+							Type = (int)ID.CRAB;
+							break;
+						default:
+							Type = (int)ID.PINK_JELLYFISH;
+							break;
 					}
 					NewNPC(x, y, Type);
 				}
@@ -16670,13 +16670,13 @@ namespace Terraria
 						num23 = NewNPC(x, y, (int)ID.HORNET);
 						switch (Main.Rand.Next(8))
 						{
-						case 0:
-						case 1:
-							Main.NPCSet[num23].SetDefaults("Little Stinger");
-							break;
-						case 2:
-							Main.NPCSet[num23].SetDefaults("Big Stinger");
-							break;
+							case 0:
+							case 1:
+								Main.NPCSet[num23].SetDefaults("Little Stinger");
+								break;
+							case 2:
+								Main.NPCSet[num23].SetDefaults("Big Stinger");
+								break;
 						}
 					}
 					else
@@ -16729,15 +16729,15 @@ namespace Terraria
 						int Type;
 						switch (Main.Rand.Next(3))
 						{
-						case 0:
-							Type = (int)ID.SHADOW_SLIME;
-							break;
-						case 1:
-							Type = (int)ID.CORRUPT_SLIME;
-							break;
-						default:
-							Type = (int)ID.SLIMER;
-							break;
+							case 0:
+								Type = (int)ID.SHADOW_SLIME;
+								break;
+							case 1:
+								Type = (int)ID.CORRUPT_SLIME;
+								break;
+							default:
+								Type = (int)ID.SLIMER;
+								break;
 						}
 						num23 = NewNPC(x, y, Type);
 					}
@@ -16829,41 +16829,41 @@ namespace Terraria
 						{
 							switch (Main.Rand.Next(5))
 							{
-							case 0:
-								num23 = NewNPC(x, y, (int)ID.CATARACT_EYE);
-								if (Main.Rand.Next(3) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Cataract Eye 2");
-								}
-								break;
-							case 1:
-								num23 = NewNPC(x, y, (int)ID.SLEEPY_EYE);
-								if (Main.Rand.Next(3) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Sleepy Eye 2");
-								}
-								break;
-							case 2:
-								num23 = NewNPC(x, y, (int)ID.DIALATED_EYE);
-								if (Main.Rand.Next(3) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Dialated Eye 2");
-								}
-								break;
-							case 3:
-								num23 = NewNPC(x, y, (int)ID.GREEN_EYE);
-								if (Main.Rand.Next(3) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Green Eye 2");
-								}
-								break;
-							case 4:
-								num23 = NewNPC(x, y, (int)ID.PURPLE_EYE);
-								if (Main.Rand.Next(3) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Purple Eye 2");
-								}
-								break;
+								case 0:
+									num23 = NewNPC(x, y, (int)ID.CATARACT_EYE);
+									if (Main.Rand.Next(3) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Cataract Eye 2");
+									}
+									break;
+								case 1:
+									num23 = NewNPC(x, y, (int)ID.SLEEPY_EYE);
+									if (Main.Rand.Next(3) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Sleepy Eye 2");
+									}
+									break;
+								case 2:
+									num23 = NewNPC(x, y, (int)ID.DIALATED_EYE);
+									if (Main.Rand.Next(3) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Dialated Eye 2");
+									}
+									break;
+								case 3:
+									num23 = NewNPC(x, y, (int)ID.GREEN_EYE);
+									if (Main.Rand.Next(3) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Green Eye 2");
+									}
+									break;
+								case 4:
+									num23 = NewNPC(x, y, (int)ID.PURPLE_EYE);
+									if (Main.Rand.Next(3) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Purple Eye 2");
+									}
+									break;
 							}
 						}
 #endif
@@ -16898,104 +16898,104 @@ namespace Terraria
 					{
 						switch (Main.Rand.Next(7))
 						{
-						case 0:
-							num23 = NewNPC(x, y, (int)ID.ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
+							case 0:
+								num23 = NewNPC(x, y, (int)ID.ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Small Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Zombie");
+									}
 								}
-								else
+								break;
+							case 1:
+								num23 = NewNPC(x, y, (int)ID.BALD_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Big Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Bald Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Bald Zombie");
+									}
 								}
-							}
-							break;
-						case 1:
-							num23 = NewNPC(x, y, (int)ID.BALD_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
+								break;
+							case 2:
+								num23 = NewNPC(x, y, (int)ID.PINCUSHION_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Small Bald Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Pincushion Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Pincushion Zombie");
+									}
 								}
-								else
+								break;
+							case 3:
+								num23 = NewNPC(x, y, (int)ID.SLIMED_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Big Bald Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Slimed Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Slimed Zombie");
+									}
 								}
-							}
-							break;
-						case 2:
-							num23 = NewNPC(x, y, (int)ID.PINCUSHION_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
+								break;
+							case 4:
+								num23 = NewNPC(x, y, (int)ID.SWAMP_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Small Pincushion Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Swamp Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Swamp Zombie");
+									}
 								}
-								else
+								break;
+							case 5:
+								num23 = NewNPC(x, y, (int)ID.TWIGGY_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Big Pincushion Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Twiggy Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Twiggy Zombie");
+									}
 								}
-							}
-							break;
-						case 3:
-							num23 = NewNPC(x, y, (int)ID.SLIMED_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
+								break;
+							case 6:
+								num23 = NewNPC(x, y, (int)ID.FEMALE_ZOMBIE);
+								if (Main.Rand.Next(3) == 0)
 								{
-									Main.NPCSet[num23].SetDefaults("Small Slimed Zombie");
+									if (Main.Rand.Next(2) == 0)
+									{
+										Main.NPCSet[num23].SetDefaults("Small Female Zombie");
+									}
+									else
+									{
+										Main.NPCSet[num23].SetDefaults("Big Female Zombie");
+									}
 								}
-								else
-								{
-									Main.NPCSet[num23].SetDefaults("Big Slimed Zombie");
-								}
-							}
-							break;
-						case 4:
-							num23 = NewNPC(x, y, (int)ID.SWAMP_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Small Swamp Zombie");
-								}
-								else
-								{
-									Main.NPCSet[num23].SetDefaults("Big Swamp Zombie");
-								}
-							}
-							break;
-						case 5:
-							num23 = NewNPC(x, y, (int)ID.TWIGGY_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Small Twiggy Zombie");
-								}
-								else
-								{
-									Main.NPCSet[num23].SetDefaults("Big Twiggy Zombie");
-								}
-							}
-							break;
-						case 6:
-							num23 = NewNPC(x, y, (int)ID.FEMALE_ZOMBIE);
-							if (Main.Rand.Next(3) == 0)
-							{
-								if (Main.Rand.Next(2) == 0)
-								{
-									Main.NPCSet[num23].SetDefaults("Small Female Zombie");
-								}
-								else
-								{
-									Main.NPCSet[num23].SetDefaults("Big Female Zombie");
-								}
-							}
-							break;
+								break;
 						}
 					}
 #endif
@@ -17046,17 +17046,17 @@ namespace Terraria
 					{
 						switch (Main.Rand.Next(7))
 						{
-						case 0:
-							Type = (int)ID.VOODOO_DEMON;
-							break;
-						case 1:
-						case 2:
-						case 3:
-							Type = (int)ID.DEMON;
-							break;
-						default:
-							Type = (int)ID.ARCH_DEMON;
-							break;
+							case 0:
+								Type = (int)ID.VOODOO_DEMON;
+								break;
+							case 1:
+							case 2:
+							case 3:
+								Type = (int)ID.DEMON;
+								break;
+							default:
+								Type = (int)ID.ARCH_DEMON;
+								break;
 						}
 					}
 					else if (Main.Rand.Next(3) == 0)
@@ -17346,16 +17346,16 @@ namespace Terraria
 				NetMessage.SendMessage();
 				switch (Type)
 				{
-				case (int)ID.RETINAZER:
-					NetMessage.SendText(34, 175, 75, 255, -1);
-					break;
-				default:
-					NetMessage.SendText(text, 16, 175, 75, 255, -1);
-					break;
-				case (int)ID.KING_SLIME:
-				case (int)ID.WRAITH:
-				case (int)ID.SPAZMATISM:
-					break;
+					case (int)ID.RETINAZER:
+						NetMessage.SendText(34, 175, 75, 255, -1);
+						break;
+					default:
+						NetMessage.SendText(text, 16, 175, 75, 255, -1);
+						break;
+					case (int)ID.KING_SLIME:
+					case (int)ID.WRAITH:
+					case (int)ID.SPAZMATISM:
+						break;
 				}
 			}
 		}
@@ -17608,382 +17608,382 @@ namespace Terraria
 			}
 			switch ((ID)Type)
 			{
-			case ID.CLOWN:
-				if (!HasDownedClown)
-				{
-					HasDownedClown = true;
-					if (Main.NetMode == (byte)NetModeSetting.SERVER)
+				case ID.CLOWN:
+					if (!HasDownedClown)
 					{
-						NetMessage.CreateMessage0(7);
-						NetMessage.SendMessage();
-					}
-				}
-				break;
-			case ID.MIMIC:
-				if (Value > 0f)
-				{
-					switch (Main.Rand.Next(7))
-					{
-					case 0:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DUAL_HOOK, 1, DoNotBroadcast: false, -1);
-						break;
-					case 1:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.MAGIC_DAGGER, 1, DoNotBroadcast: false, -1);
-						break;
-					case 2:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PHILOSOPHERS_STONE, 1, DoNotBroadcast: false, -1);
-						break;
-					case 3:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TITAN_GLOVE, 1, DoNotBroadcast: false, -1);
-						break;
-					case 4:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.STAR_CLOAK, 1, DoNotBroadcast: false, -1);
-						break;
-					case 5:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.COMPASS, 1, DoNotBroadcast: false, -1);
-						break;
-					default:
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CROSS_NECKLACE, 1, DoNotBroadcast: false, -1);
-						break;
-					}
-				}
-				break;
-			case ID.WYVERN_HEAD:
-			case ID.ARCH_WYVERN_HEAD:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_FLIGHT, Main.Rand.Next(5, 11));
-				break;
-			case ID.SNOWMAN_GANGSTA:
-			case ID.MISTER_STABBY:
-			case ID.SNOW_BALLA:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SNOW_BLOCK, Main.Rand.Next(5, 11));
-				break;
-			case ID.DARK_MUMMY:
-				if (Main.Rand.Next(10) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DARK_SHARD);
-				}
-				break;
-			case ID.LIGHT_MUMMY:
-				if (Main.Rand.Next(10) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.LIGHT_SHARD);
-				}
-				break;
-			case ID.SEEKER_HEAD:
-			case ID.CLINGER:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CURSED_FLAME, Main.Rand.Next(2, 6));
-				break;
-			case ID.UNICORN:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.UNICORN_HORN);
-				break;
-			case ID.WALL_OF_FLESH:
-			{
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PWNHAMMER, 1, DoNotBroadcast: false, -1);
-				if (Main.Rand.Next(2) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.SORCERER_EMBLEM, (int)Item.ID.RANGER_EMBLEM+1), 1, DoNotBroadcast: false, -1);
-				}
-				else
-				{
-					int num3;
-					switch (Main.Rand.Next(3))
-					{
-					case 0:
-						num3 = (int)Item.ID.LASER_RIFLE;
-						break;
-					case 1:
-						num3 = (int)Item.ID.BREAKER_BLADE;
-						break;
-					default:
-						num3 = (int)Item.ID.CLOCKWORK_ASSAULT_RIFLE;
-						break;
-					}
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, num3, 1, DoNotBroadcast: false, -1);
-				}
-				if (Main.NetMode == (byte)NetModeSetting.CLIENT)
-				{
-					break;
-				}
-				int num4 = XYWH.X + (Width >> 1) >> 4;
-				int num5 = XYWH.Y + (Height >> 1) >> 4;
-				int num6 = (Width >> 5) + 1;
-				for (int i = num4 - num6; i <= num4 + num6; i++)
-				{
-					for (int j = num5 - num6; j <= num5 + num6; j++)
-					{
-						bool flag = false;
-						fixed (Tile* ptr = &Main.TileSet[i, j])
+						HasDownedClown = true;
+						if (Main.NetMode == (byte)NetModeSetting.SERVER)
 						{
-							if ((i == num4 - num6 || i == num4 + num6 || j == num5 - num6 || j == num5 + num6) && ptr->IsActive == 0)
-							{
-								ptr->IsActive = 1;
-								ptr->Type = 140;
-								WorldGen.SquareTileFrame(i, j);
-								flag = true;
-							}
-							if (ptr->Liquid > 0)
-							{
-								ptr->Lava = 0;
-								ptr->Liquid = 0;
-								flag = true;
-							}
-						}
-						if (flag)
-						{
-							NetMessage.SendTile(i, j);
+							NetMessage.CreateMessage0(7);
+							NetMessage.SendMessage();
 						}
 					}
-				}
-				break;
-			}
-#if !VERSION_INITIAL
-			case ID.PINCUSHION_ZOMBIE:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WOODEN_ARROW, Main.Rand.Next(1, 10));
-				break;
-			case ID.SLIMED_ZOMBIE:
-#endif
-			case ID.SLIME:
-			case ID.MOTHER_SLIME:
-			case ID.ILLUMINANT_SLIME:
-			case ID.TOXIC_SLUDGE:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(1, 3));
-				break;
-			case ID.CORRUPT_SLIME:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(2, 5));
-				break;
-			case ID.GASTROPOD:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(5, 11));
-				break;
-			case ID.DUNGEON_SLIME:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDEN_KEY);
-				break;
-			case ID.PIXIE:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PIXIE_DUST, Main.Rand.Next(1, 4));
-				break;
-			case ID.DEMON_EYE:
-				{
-					int num7 = Main.Rand.Next(150);
-					if (num7 < 50)
-					{
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (num7 == 38) ? (int)Item.ID.BLACK_LENS : (int)Item.ID.LENS);
-					}
 					break;
-				}
-			case ID.WEREWOLF:
-				if (Main.Rand.Next(60) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.MOON_CHARM, 1, DoNotBroadcast: false, -1);
-				}
-				break;
-			case ID.PIRANHA:
-				{
-					int num2 = Main.Rand.Next(500);
-					if (num2 < 13)
+				case ID.MIMIC:
+					if (Value > 0f)
 					{
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (num2 == 0) ? (int)Item.ID.ROBOT_HAT : (int)Item.ID.HOOK);
-					}
-					break;
-				}
-			case ID.ANGLER_FISH:
-				if (Main.Rand.Next(500) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROBOT_HAT);
-				}
-				break;
-			case ID.ZOMBIE:
-			case ID.BALD_ZOMBIE:
-				if (Main.Rand.Next(50) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHACKLE, 1, DoNotBroadcast: false, -1);
-				}
-				break;
-			case ID.DEMON:
-				if (Main.Rand.Next(50) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMON_SCYTHE, 1, DoNotBroadcast: false, -1);
-				}
-				break;
-			case ID.VOODOO_DEMON:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GUIDE_VOODOO_DOLL);
-				break;
-			case ID.DOCTOR_BONES:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ARCHAEOLOGISTS_HAT);
-				break;
-			case ID.THE_GROOM:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TOP_HAT);
-				break;
-			case ID.CLOTHIER:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.RED_HAT);
-				break;
-			case ID.GOLDFISH:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDFISH);
-				break;
-			case ID.ANTLION:
-			case ID.ALBINO_ANTLION:
-				if (Main.Rand.Next(7) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ANTLION_MANDIBLE);
-				}
-				break;
-			case ID.GOBLIN_SCOUT:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TATTERED_CLOTH, Main.Rand.Next(1, 3));
-				break;
-			case ID.EYE_OF_CTHULHU:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.UNHOLY_ARROW, Main.Rand.Next(20, 50));
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CORRUPT_SEEDS, Main.Rand.Next(1, 4));
-				break;
-			case ID.OCRAM:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ADAMANTITE_ORE, Main.Rand.Next(10, 30));
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_BLIGHT, Main.Rand.Next(5, 10));
-				if (Main.Rand.Next(3) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DRAGON_MASK + Main.Rand.Next(9));
-				}
-				break;
-			case ID.EATER_OF_SOULS:
-			case ID.CORRUPTOR:
-				if (Main.Rand.Next(3) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROTTEN_CHUNK);
-				}
-				break;
-			case ID.DEVOURER_HEAD:
-			case ID.DEVOURER_BODY:
-			case ID.DEVOURER_TAIL:
-				if (Main.Rand.Next(3) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROTTEN_CHUNK, Main.Rand.Next(1, 3));
-				}
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WORM_TOOTH, Main.Rand.Next(3, 9));
-				break;
-			case ID.GIANT_WORM_HEAD:
-			case ID.GIANT_WORM_BODY:
-			case ID.GIANT_WORM_TAIL:
-			case ID.DIGGER_HEAD:
-			case ID.DIGGER_BODY:
-			case ID.DIGGER_TAIL:
-				if (Main.Rand.Next(500) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WHOOPIE_CUSHION);
-				}
-				break;
-			case ID.CORRUPT_BUNNY:
-				if (Main.Rand.Next(75) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BUNNY_HOOD);
-				}
-				break;
-			case ID.EATER_OF_WORLDS_HEAD:
-			case ID.EATER_OF_WORLDS_BODY:
-			case ID.EATER_OF_WORLDS_TAIL:
-				if (Main.Rand.Next(2) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHADOW_SCALE, Main.Rand.Next(1, 3));
-				}
-				if (Main.Rand.Next(2) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(2, 6));
-				}
-				if (IsBoss)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 31));
-				}
-				if (Main.Rand.Next(3) == 0 && Player.FindClosest(ref XYWH).canHeal())
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HEART);
-				}
-				break;
-			case ID.THE_HUNGRY_II:
-			case ID.LEECH_HEAD:
-			case ID.LEECH_BODY:
-			case ID.LEECH_TAIL:
-			case ID.PROBE:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HEART);
-				break;
-			case ID.BLUE_JELLYFISH:
-			case ID.PINK_JELLYFISH:
-			case ID.GREEN_JELLYFISH:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GLOWSTICK, Main.Rand.Next(1, 5));
-				break;
-			case ID.SKELETON:
-			case ID.UNDEAD_MINER:
-			case ID.VAMPIRE_MINER:
-				if (Main.Rand.Next(25) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HOOK);
-				}
-				else if (Type != (int)ID.SKELETON)
-				{
-					if (Main.Rand.Next(20) == 0)
-					{
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.MINING_SHIRT, (int)Item.ID.MINING_PANTS + 1));
-					}
-					else
-					{
-						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BOMB, Main.Rand.Next(1, 4));
-					}
-				}
-				break;
-			case ID.TIM:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WIZARD_HAT);
-				break;
-			case ID.KING_SLIME:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.NINJA_HOOD, (int)Item.ID.NINJA_PANTS + 1));
-				break;
-			case ID.METEOR_HEAD:
-				if (Main.Rand.Next(50) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.METEORITE);
-				}
-				break;
-			case ID.FIRE_IMP:
-				if (Main.Rand.Next(300) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PLUMBERS_HAT);
-				}
-				break;
-			case ID.BONES:
-			case ID.DARK_CASTER:
-			case ID.CURSED_SKULL:
-				if (Main.Rand.Next(65) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDEN_KEY);
-				}
-				else
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BONE, Main.Rand.Next(1, 4));
-				}
-				break;
-			case ID.GOBLIN_PEON:
-			case ID.GOBLIN_THIEF:
-			case ID.GOBLIN_WARRIOR:
-			case ID.GOBLIN_SORCERER:
-			case ID.GOBLIN_ARCHER:
-				{
-					int num = Main.Rand.Next(200);
-					if (num < 100)
-					{
-						if (num == 0)
+						switch (Main.Rand.Next(7))
 						{
-							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HARPOON);
+							case 0:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DUAL_HOOK, 1, DoNotBroadcast: false, -1);
+								break;
+							case 1:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.MAGIC_DAGGER, 1, DoNotBroadcast: false, -1);
+								break;
+							case 2:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PHILOSOPHERS_STONE, 1, DoNotBroadcast: false, -1);
+								break;
+							case 3:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TITAN_GLOVE, 1, DoNotBroadcast: false, -1);
+								break;
+							case 4:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.STAR_CLOAK, 1, DoNotBroadcast: false, -1);
+								break;
+							case 5:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.COMPASS, 1, DoNotBroadcast: false, -1);
+								break;
+							default:
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CROSS_NECKLACE, 1, DoNotBroadcast: false, -1);
+								break;
+						}
+					}
+					break;
+				case ID.WYVERN_HEAD:
+				case ID.ARCH_WYVERN_HEAD:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_FLIGHT, Main.Rand.Next(5, 11));
+					break;
+				case ID.SNOWMAN_GANGSTA:
+				case ID.MISTER_STABBY:
+				case ID.SNOW_BALLA:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SNOW_BLOCK, Main.Rand.Next(5, 11));
+					break;
+				case ID.DARK_MUMMY:
+					if (Main.Rand.Next(10) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DARK_SHARD);
+					}
+					break;
+				case ID.LIGHT_MUMMY:
+					if (Main.Rand.Next(10) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.LIGHT_SHARD);
+					}
+					break;
+				case ID.SEEKER_HEAD:
+				case ID.CLINGER:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CURSED_FLAME, Main.Rand.Next(2, 6));
+					break;
+				case ID.UNICORN:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.UNICORN_HORN);
+					break;
+				case ID.WALL_OF_FLESH:
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PWNHAMMER, 1, DoNotBroadcast: false, -1);
+						if (Main.Rand.Next(2) == 0)
+						{
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.SORCERER_EMBLEM, (int)Item.ID.RANGER_EMBLEM + 1), 1, DoNotBroadcast: false, -1);
 						}
 						else
 						{
-							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SPIKY_BALL, Main.Rand.Next(1, 6));
+							int num3;
+							switch (Main.Rand.Next(3))
+							{
+								case 0:
+									num3 = (int)Item.ID.LASER_RIFLE;
+									break;
+								case 1:
+									num3 = (int)Item.ID.BREAKER_BLADE;
+									break;
+								default:
+									num3 = (int)Item.ID.CLOCKWORK_ASSAULT_RIFLE;
+									break;
+							}
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, num3, 1, DoNotBroadcast: false, -1);
+						}
+						if (Main.NetMode == (byte)NetModeSetting.CLIENT)
+						{
+							break;
+						}
+						int num4 = XYWH.X + (Width >> 1) >> 4;
+						int num5 = XYWH.Y + (Height >> 1) >> 4;
+						int num6 = (Width >> 5) + 1;
+						for (int i = num4 - num6; i <= num4 + num6; i++)
+						{
+							for (int j = num5 - num6; j <= num5 + num6; j++)
+							{
+								bool flag = false;
+								fixed (Tile* ptr = &Main.TileSet[i, j])
+								{
+									if ((i == num4 - num6 || i == num4 + num6 || j == num5 - num6 || j == num5 + num6) && ptr->IsActive == 0)
+									{
+										ptr->IsActive = 1;
+										ptr->Type = 140;
+										WorldGen.SquareTileFrame(i, j);
+										flag = true;
+									}
+									if (ptr->Liquid > 0)
+									{
+										ptr->Lava = 0;
+										ptr->Liquid = 0;
+										flag = true;
+									}
+								}
+								if (flag)
+								{
+									NetMessage.SendTile(i, j);
+								}
+							}
+						}
+						break;
+					}
+#if !VERSION_INITIAL
+				case ID.PINCUSHION_ZOMBIE:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WOODEN_ARROW, Main.Rand.Next(1, 10));
+					break;
+				case ID.SLIMED_ZOMBIE:
+#endif
+				case ID.SLIME:
+				case ID.MOTHER_SLIME:
+				case ID.ILLUMINANT_SLIME:
+				case ID.TOXIC_SLUDGE:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(1, 3));
+					break;
+				case ID.CORRUPT_SLIME:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(2, 5));
+					break;
+				case ID.GASTROPOD:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GEL, Main.Rand.Next(5, 11));
+					break;
+				case ID.DUNGEON_SLIME:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDEN_KEY);
+					break;
+				case ID.PIXIE:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PIXIE_DUST, Main.Rand.Next(1, 4));
+					break;
+				case ID.DEMON_EYE:
+					{
+						int num7 = Main.Rand.Next(150);
+						if (num7 < 50)
+						{
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (num7 == 38) ? (int)Item.ID.BLACK_LENS : (int)Item.ID.LENS);
+						}
+						break;
+					}
+				case ID.WEREWOLF:
+					if (Main.Rand.Next(60) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.MOON_CHARM, 1, DoNotBroadcast: false, -1);
+					}
+					break;
+				case ID.PIRANHA:
+					{
+						int num2 = Main.Rand.Next(500);
+						if (num2 < 13)
+						{
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (num2 == 0) ? (int)Item.ID.ROBOT_HAT : (int)Item.ID.HOOK);
+						}
+						break;
+					}
+				case ID.ANGLER_FISH:
+					if (Main.Rand.Next(500) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROBOT_HAT);
+					}
+					break;
+				case ID.ZOMBIE:
+				case ID.BALD_ZOMBIE:
+					if (Main.Rand.Next(50) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHACKLE, 1, DoNotBroadcast: false, -1);
+					}
+					break;
+				case ID.DEMON:
+					if (Main.Rand.Next(50) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMON_SCYTHE, 1, DoNotBroadcast: false, -1);
+					}
+					break;
+				case ID.VOODOO_DEMON:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GUIDE_VOODOO_DOLL);
+					break;
+				case ID.DOCTOR_BONES:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ARCHAEOLOGISTS_HAT);
+					break;
+				case ID.THE_GROOM:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TOP_HAT);
+					break;
+				case ID.CLOTHIER:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.RED_HAT);
+					break;
+				case ID.GOLDFISH:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDFISH);
+					break;
+				case ID.ANTLION:
+				case ID.ALBINO_ANTLION:
+					if (Main.Rand.Next(7) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ANTLION_MANDIBLE);
+					}
+					break;
+				case ID.GOBLIN_SCOUT:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.TATTERED_CLOTH, Main.Rand.Next(1, 3));
+					break;
+				case ID.EYE_OF_CTHULHU:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.UNHOLY_ARROW, Main.Rand.Next(20, 50));
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.CORRUPT_SEEDS, Main.Rand.Next(1, 4));
+					break;
+				case ID.OCRAM:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ADAMANTITE_ORE, Main.Rand.Next(10, 30));
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_BLIGHT, Main.Rand.Next(5, 10));
+					if (Main.Rand.Next(3) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DRAGON_MASK + Main.Rand.Next(9));
+					}
+					break;
+				case ID.EATER_OF_SOULS:
+				case ID.CORRUPTOR:
+					if (Main.Rand.Next(3) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROTTEN_CHUNK);
+					}
+					break;
+				case ID.DEVOURER_HEAD:
+				case ID.DEVOURER_BODY:
+				case ID.DEVOURER_TAIL:
+					if (Main.Rand.Next(3) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.ROTTEN_CHUNK, Main.Rand.Next(1, 3));
+					}
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WORM_TOOTH, Main.Rand.Next(3, 9));
+					break;
+				case ID.GIANT_WORM_HEAD:
+				case ID.GIANT_WORM_BODY:
+				case ID.GIANT_WORM_TAIL:
+				case ID.DIGGER_HEAD:
+				case ID.DIGGER_BODY:
+				case ID.DIGGER_TAIL:
+					if (Main.Rand.Next(500) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WHOOPIE_CUSHION);
+					}
+					break;
+				case ID.CORRUPT_BUNNY:
+					if (Main.Rand.Next(75) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BUNNY_HOOD);
+					}
+					break;
+				case ID.EATER_OF_WORLDS_HEAD:
+				case ID.EATER_OF_WORLDS_BODY:
+				case ID.EATER_OF_WORLDS_TAIL:
+					if (Main.Rand.Next(2) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHADOW_SCALE, Main.Rand.Next(1, 3));
+					}
+					if (Main.Rand.Next(2) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(2, 6));
+					}
+					if (IsBoss)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 30));
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DEMONITE_ORE, Main.Rand.Next(10, 31));
+					}
+					if (Main.Rand.Next(3) == 0 && Player.FindClosest(ref XYWH).canHeal())
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HEART);
+					}
+					break;
+				case ID.THE_HUNGRY_II:
+				case ID.LEECH_HEAD:
+				case ID.LEECH_BODY:
+				case ID.LEECH_TAIL:
+				case ID.PROBE:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HEART);
+					break;
+				case ID.BLUE_JELLYFISH:
+				case ID.PINK_JELLYFISH:
+				case ID.GREEN_JELLYFISH:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GLOWSTICK, Main.Rand.Next(1, 5));
+					break;
+				case ID.SKELETON:
+				case ID.UNDEAD_MINER:
+				case ID.VAMPIRE_MINER:
+					if (Main.Rand.Next(25) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HOOK);
+					}
+					else if (Type != (int)ID.SKELETON)
+					{
+						if (Main.Rand.Next(20) == 0)
+						{
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.MINING_SHIRT, (int)Item.ID.MINING_PANTS + 1));
+						}
+						else
+						{
+							Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BOMB, Main.Rand.Next(1, 4));
 						}
 					}
 					break;
-				}
-			case ID.HORNET:
-				if (Main.Rand.Next(2) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.STINGER);
-				}
-				break;
+				case ID.TIM:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.WIZARD_HAT);
+					break;
+				case ID.KING_SLIME:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, Main.Rand.Next((int)Item.ID.NINJA_HOOD, (int)Item.ID.NINJA_PANTS + 1));
+					break;
+				case ID.METEOR_HEAD:
+					if (Main.Rand.Next(50) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.METEORITE);
+					}
+					break;
+				case ID.FIRE_IMP:
+					if (Main.Rand.Next(300) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.PLUMBERS_HAT);
+					}
+					break;
+				case ID.BONES:
+				case ID.DARK_CASTER:
+				case ID.CURSED_SKULL:
+					if (Main.Rand.Next(65) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.GOLDEN_KEY);
+					}
+					else
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.BONE, Main.Rand.Next(1, 4));
+					}
+					break;
+				case ID.GOBLIN_PEON:
+				case ID.GOBLIN_THIEF:
+				case ID.GOBLIN_WARRIOR:
+				case ID.GOBLIN_SORCERER:
+				case ID.GOBLIN_ARCHER:
+					{
+						int num = Main.Rand.Next(200);
+						if (num < 100)
+						{
+							if (num == 0)
+							{
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.HARPOON);
+							}
+							else
+							{
+								Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SPIKY_BALL, Main.Rand.Next(1, 6));
+							}
+						}
+						break;
+					}
+				case ID.HORNET:
+					if (Main.Rand.Next(2) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.STINGER);
+					}
+					break;
 #if VERSION_103 || VERSION_FINAL
 			case ID.DRAGON_HORNET:
 				if (Main.Rand.Next(2) == 0)
@@ -17992,50 +17992,50 @@ namespace Terraria
 				}
 				break;
 #endif
-			case ID.MAN_EATER:
-				if (Main.Rand.Next(4) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.VINE);
-				}
-				break;
-			case ID.SHARK:
-				if (Main.Rand.Next(50) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DIVING_HELMET);
-				}
-				else
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHARK_FIN);
-				}
-				break;
-			case ID.ORKA:
-				if (Main.Rand.Next(25) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DIVING_HELMET);
-				}
-				break;
-			case ID.HARPY:
-				if (Main.Rand.Next(2) == 0)
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.FEATHER);
-				}
-				break;
-			case ID.RETINAZER:
-			case ID.SPAZMATISM:
-				if (!AnyNPCs((Type == (int)ID.RETINAZER) ? (int)ID.SPAZMATISM : (int)ID.RETINAZER))
-				{
-					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_SIGHT, Main.Rand.Next(20, 31));
+				case ID.MAN_EATER:
+					if (Main.Rand.Next(4) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.VINE);
+					}
 					break;
-				}
-				Value = 0f;
-				IsBoss = false;
-				break;
-			case ID.SKELETRON_PRIME:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_FRIGHT, Main.Rand.Next(20, 31));
-				break;
-			case ID.THE_DESTROYER_HEAD:
-				Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_MIGHT, Main.Rand.Next(20, 31));
-				break;
+				case ID.SHARK:
+					if (Main.Rand.Next(50) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DIVING_HELMET);
+					}
+					else
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SHARK_FIN);
+					}
+					break;
+				case ID.ORKA:
+					if (Main.Rand.Next(25) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.DIVING_HELMET);
+					}
+					break;
+				case ID.HARPY:
+					if (Main.Rand.Next(2) == 0)
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.FEATHER);
+					}
+					break;
+				case ID.RETINAZER:
+				case ID.SPAZMATISM:
+					if (!AnyNPCs((Type == (int)ID.RETINAZER) ? (int)ID.SPAZMATISM : (int)ID.RETINAZER))
+					{
+						Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_SIGHT, Main.Rand.Next(20, 31));
+						break;
+					}
+					Value = 0f;
+					IsBoss = false;
+					break;
+				case ID.SKELETRON_PRIME:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_FRIGHT, Main.Rand.Next(20, 31));
+					break;
+				case ID.THE_DESTROYER_HEAD:
+					Item.NewItem(XYWH.X, XYWH.Y, Width, Height, (int)Item.ID.SOUL_OF_MIGHT, Main.Rand.Next(20, 31));
+					break;
 			}
 			if (IsBoss)
 			{
@@ -18297,7 +18297,7 @@ namespace Terraria
 			{
 				for (int l = 0; l < 16; l++)
 				{
-					Dust* ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, 0.0, 0.0, 100, default(Color), 2.0);
+					Dust* ptr2 = Main.DustSet.NewDust(XYWH.X, XYWH.Y + 2, Width, Height, 18, 0.0, 0.0, 100, default, 2.0);
 					if (ptr2 == null)
 					{
 						break;
@@ -18489,7 +18489,7 @@ namespace Terraria
 				{
 					for (int num17 = 0; num17 < dmg / LifeMax * 80.0; num17++)
 					{
-						if (null == Main.DustSet.NewDust(6, ref XYWH, hitDirection * 2, -1.0, Alpha, default(Color), 1.5))
+						if (null == Main.DustSet.NewDust(6, ref XYWH, hitDirection * 2, -1.0, Alpha, default, 1.5))
 						{
 							break;
 						}
@@ -18498,7 +18498,7 @@ namespace Terraria
 				}
 				for (int num18 = 0; num18 < 32; num18++)
 				{
-					if (null == Main.DustSet.NewDust(6, ref XYWH, hitDirection * 2, -1.0, Alpha, default(Color), 1.5))
+					if (null == Main.DustSet.NewDust(6, ref XYWH, hitDirection * 2, -1.0, Alpha, default, 1.5))
 					{
 						break;
 					}
@@ -18910,7 +18910,7 @@ namespace Terraria
 				{
 					for (int num43 = 0; num43 < dmg / LifeMax * 50.0; num43++)
 					{
-						Dust* ptr9 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+						Dust* ptr9 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 						if (ptr9 == null)
 						{
 							break;
@@ -18921,7 +18921,7 @@ namespace Terraria
 				}
 				for (int num44 = 0; num44 < 16; num44++)
 				{
-					Dust* ptr10 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+					Dust* ptr10 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 					if (ptr10 == null)
 					{
 						break;
@@ -18980,7 +18980,7 @@ namespace Terraria
 				}
 				for (int num49 = 0; num49 < 8; num49++)
 				{
-					Dust* ptr11 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr11 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr11 == null)
 					{
 						break;
@@ -18990,7 +18990,7 @@ namespace Terraria
 				}
 				for (int num50 = 0; num50 < 4; num50++)
 				{
-					Dust* ptr12 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr12 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr12 == null)
 					{
 						break;
@@ -18998,7 +18998,7 @@ namespace Terraria
 					ptr12->NoGravity = true;
 					ptr12->Velocity.X *= 5f;
 					ptr12->Velocity.Y *= 5f;
-					ptr12 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr12 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr12 == null)
 					{
 						break;
@@ -19006,22 +19006,22 @@ namespace Terraria
 					ptr12->Velocity.X *= 3f;
 					ptr12->Velocity.Y *= 3f;
 				}
-				int num51 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				int num51 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num51].Velocity.X *= 0.4f;
 				Main.GoreSet[num51].Velocity.X += 1f;
 				Main.GoreSet[num51].Velocity.Y *= 0.4f;
 				Main.GoreSet[num51].Velocity.Y += 1f;
-				num51 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num51 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num51].Velocity.X *= 0.4f;
 				Main.GoreSet[num51].Velocity.X -= 1f;
 				Main.GoreSet[num51].Velocity.Y *= 0.4f;
 				Main.GoreSet[num51].Velocity.Y += 1f;
-				num51 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num51 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num51].Velocity.X *= 0.4f;
 				Main.GoreSet[num51].Velocity.X += 1f;
 				Main.GoreSet[num51].Velocity.Y *= 0.4f;
 				Main.GoreSet[num51].Velocity.Y -= 1f;
-				num51 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num51 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num51].Velocity.X *= 0.4f;
 				Main.GoreSet[num51].Velocity.X -= 1f;
 				Main.GoreSet[num51].Velocity.Y *= 0.4f;
@@ -19607,7 +19607,7 @@ namespace Terraria
 				{
 					for (int num112 = 0; num112 < dmg / LifeMax * 50.0; num112++)
 					{
-						Dust* ptr13 = Main.DustSet.NewDust(16, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+						Dust* ptr13 = Main.DustSet.NewDust(16, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 						if (ptr13 == null)
 						{
 							break;
@@ -19620,7 +19620,7 @@ namespace Terraria
 				}
 				for (int num113 = 0; num113 < 8; num113++)
 				{
-					Dust* ptr14 = Main.DustSet.NewDust(16, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+					Dust* ptr14 = Main.DustSet.NewDust(16, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 					if (ptr14 == null)
 					{
 						break;
@@ -19641,7 +19641,7 @@ namespace Terraria
 				{
 					for (int num116 = 0; num116 < dmg / LifeMax * 50.0; num116++)
 					{
-						Dust* ptr15 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+						Dust* ptr15 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 						if (ptr15 == null)
 						{
 							break;
@@ -19654,7 +19654,7 @@ namespace Terraria
 				}
 				for (int num117 = 0; num117 < 16; num117++)
 				{
-					Dust* ptr16 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default(Color), 1.5);
+					Dust* ptr16 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 0, default, 1.5);
 					if (ptr16 == null)
 					{
 						break;
@@ -19676,7 +19676,7 @@ namespace Terraria
 				{
 					for (int num119 = 0; num119 < dmg / LifeMax * 50.0; num119++)
 					{
-						Dust* ptr17 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default(Color), 1.5);
+						Dust* ptr17 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default, 1.5);
 						if (ptr17 == null)
 						{
 							break;
@@ -19689,7 +19689,7 @@ namespace Terraria
 				}
 				for (int num120 = 0; num120 < 16; num120++)
 				{
-					Dust* ptr18 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default(Color), 1.5);
+					Dust* ptr18 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default, 1.5);
 					if (ptr18 == null)
 					{
 						break;
@@ -19712,7 +19712,7 @@ namespace Terraria
 				{
 					for (int num347 = 0; num347 < dmg / LifeMax * 50.0; num347++)
 					{
-						Dust* ptr348 = Main.DustSet.NewDust(165, ref XYWH, 0, 0, 50, default(Color), 1.5);
+						Dust* ptr348 = Main.DustSet.NewDust(165, ref XYWH, 0, 0, 50, default, 1.5);
 						if (ptr348 == null)
 						{
 							break;
@@ -19725,7 +19725,7 @@ namespace Terraria
 				}
 				for (int num349 = 0; num349 < 20; num349++)
 				{
-					Dust* ptr350 = Main.DustSet.NewDust(165, ref XYWH, 0, 0, 50, default(Color), 1.5);
+					Dust* ptr350 = Main.DustSet.NewDust(165, ref XYWH, 0, 0, 50, default, 1.5);
 					if (ptr350 == null)
 					{
 						break;
@@ -19749,7 +19749,7 @@ namespace Terraria
 				}
 				for (int num122 = 0; num122 < 16; num122++)
 				{
-					Dust* ptr19 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default(Color), 1.5);
+					Dust* ptr19 = Main.DustSet.NewDust(54, ref XYWH, 0.0, 0.0, 50, default, 1.5);
 					if (ptr19 == null)
 					{
 						break;
@@ -19787,7 +19787,7 @@ namespace Terraria
 				{
 					for (int num126 = 0; num126 < dmg / LifeMax * 30.0; num126++)
 					{
-						Dust* ptr20 = Main.DustSet.NewDust(15, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default(Color), 1.8);
+						Dust* ptr20 = Main.DustSet.NewDust(15, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default, 1.8);
 						if (ptr20 == null)
 						{
 							break;
@@ -19796,7 +19796,7 @@ namespace Terraria
 						ptr20->NoGravity = true;
 						ptr20->Velocity.X *= 1.3f;
 						ptr20->Velocity.Y *= 1.3f;
-						ptr20 = Main.DustSet.NewDust(26, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 0, default(Color), 0.9);
+						ptr20 = Main.DustSet.NewDust(26, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 0, default, 0.9);
 						if (ptr20 == null)
 						{
 							break;
@@ -19809,7 +19809,7 @@ namespace Terraria
 				}
 				for (int num127 = 0; num127 < 12; num127++)
 				{
-					Dust* ptr21 = Main.DustSet.NewDust(15, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default(Color), 1.8);
+					Dust* ptr21 = Main.DustSet.NewDust(15, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default, 1.8);
 					if (ptr21 == null)
 					{
 						break;
@@ -19818,7 +19818,7 @@ namespace Terraria
 					ptr21->NoGravity = true;
 					ptr21->Velocity.X *= 1.3f;
 					ptr21->Velocity.Y *= 1.3f;
-					ptr21 = Main.DustSet.NewDust(26, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 0, default(Color), 0.9);
+					ptr21 = Main.DustSet.NewDust(26, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 0, default, 0.9);
 					if (ptr21 == null)
 					{
 						break;
@@ -19861,7 +19861,7 @@ namespace Terraria
 				}
 				for (int num130 = 0; num130 < 8; num130++)
 				{
-					Dust* ptr22 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr22 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr22 == null)
 					{
 						break;
@@ -19871,7 +19871,7 @@ namespace Terraria
 				}
 				for (int num131 = 0; num131 < 4; num131++)
 				{
-					Dust* ptr23 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr23 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr23 == null)
 					{
 						break;
@@ -19879,7 +19879,7 @@ namespace Terraria
 					ptr23->NoGravity = true;
 					ptr23->Velocity.X *= 5f;
 					ptr23->Velocity.Y *= 5f;
-					ptr23 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr23 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr23 == null)
 					{
 						break;
@@ -19887,19 +19887,19 @@ namespace Terraria
 					ptr23->Velocity.X *= 3f;
 					ptr23->Velocity.Y *= 3f;
 				}
-				int num132 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				int num132 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num132].Velocity *= 0.4f;
 				Main.GoreSet[num132].Velocity.X += 1f;
 				Main.GoreSet[num132].Velocity.Y += 1f;
-				num132 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num132 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num132].Velocity *= 0.4f;
 				Main.GoreSet[num132].Velocity.X -= 1f;
 				Main.GoreSet[num132].Velocity.Y += 1f;
-				num132 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num132 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num132].Velocity *= 0.4f;
 				Main.GoreSet[num132].Velocity.X += 1f;
 				Main.GoreSet[num132].Velocity.Y -= 1f;
-				num132 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num132 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num132].Velocity *= 0.4f;
 				Main.GoreSet[num132].Velocity.X -= 1f;
 				Main.GoreSet[num132].Velocity.Y -= 1f;
@@ -19928,7 +19928,7 @@ namespace Terraria
 				}
 				for (int num134 = 0; num134 < 8; num134++)
 				{
-					Dust* ptr24 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr24 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr24 == null)
 					{
 						break;
@@ -19938,7 +19938,7 @@ namespace Terraria
 				}
 				for (int num135 = 0; num135 < 4; num135++)
 				{
-					Dust* ptr25 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr25 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr25 == null)
 					{
 						break;
@@ -19946,7 +19946,7 @@ namespace Terraria
 					ptr25->NoGravity = true;
 					ptr25->Velocity.X *= 5f;
 					ptr25->Velocity.Y *= 5f;
-					ptr25 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr25 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr25 == null)
 					{
 						break;
@@ -19954,22 +19954,22 @@ namespace Terraria
 					ptr25->Velocity.X *= 3f;
 					ptr25->Velocity.Y *= 3f;
 				}
-				int num136 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				int num136 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num136].Velocity.X *= 0.4f;
 				Main.GoreSet[num136].Velocity.X += 1f;
 				Main.GoreSet[num136].Velocity.Y *= 0.4f;
 				Main.GoreSet[num136].Velocity.Y += 1f;
-				num136 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num136 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num136].Velocity.X *= 0.4f;
 				Main.GoreSet[num136].Velocity.X -= 1f;
 				Main.GoreSet[num136].Velocity.Y *= 0.4f;
 				Main.GoreSet[num136].Velocity.Y += 1f;
-				num136 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num136 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num136].Velocity.X *= 0.4f;
 				Main.GoreSet[num136].Velocity.X += 1f;
 				Main.GoreSet[num136].Velocity.Y *= 0.4f;
 				Main.GoreSet[num136].Velocity.Y -= 1f;
-				num136 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num136 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num136].Velocity.X *= 0.4f;
 				Main.GoreSet[num136].Velocity.X -= 1f;
 				Main.GoreSet[num136].Velocity.Y *= 0.4f;
@@ -19985,7 +19985,7 @@ namespace Terraria
 				Gore.NewGore(Position, Velocity, 150);
 				for (int num137 = 0; num137 < 8; num137++)
 				{
-					Dust* ptr26 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr26 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr26 == null)
 					{
 						break;
@@ -19995,7 +19995,7 @@ namespace Terraria
 				}
 				for (int num138 = 0; num138 < 4; num138++)
 				{
-					Dust* ptr27 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr27 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr27 == null)
 					{
 						break;
@@ -20003,7 +20003,7 @@ namespace Terraria
 					ptr27->NoGravity = true;
 					ptr27->Velocity.X *= 5f;
 					ptr27->Velocity.Y *= 5f;
-					ptr27 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr27 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr27 == null)
 					{
 						break;
@@ -20011,22 +20011,22 @@ namespace Terraria
 					ptr27->Velocity.X *= 3f;
 					ptr27->Velocity.Y *= 3f;
 				}
-				int num139 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				int num139 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num139].Velocity.X *= 0.4f;
 				Main.GoreSet[num139].Velocity.X += 1f;
 				Main.GoreSet[num139].Velocity.Y *= 0.4f;
 				Main.GoreSet[num139].Velocity.Y += 1f;
-				num139 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num139 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num139].Velocity.X *= 0.4f;
 				Main.GoreSet[num139].Velocity.X -= 1f;
 				Main.GoreSet[num139].Velocity.Y *= 0.4f;
 				Main.GoreSet[num139].Velocity.Y += 1f;
-				num139 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num139 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num139].Velocity.X *= 0.4f;
 				Main.GoreSet[num139].Velocity.X += 1f;
 				Main.GoreSet[num139].Velocity.Y *= 0.4f;
 				Main.GoreSet[num139].Velocity.Y -= 1f;
-				num139 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num139 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num139].Velocity.X *= 0.4f;
 				Main.GoreSet[num139].Velocity.X -= 1f;
 				Main.GoreSet[num139].Velocity.Y *= 0.4f;
@@ -20042,7 +20042,7 @@ namespace Terraria
 				Gore.NewGore(Position, Velocity, 148);
 				for (int num140 = 0; num140 < 8; num140++)
 				{
-					Dust* ptr28 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					Dust* ptr28 = Main.DustSet.NewDust(31, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr28 == null)
 					{
 						break;
@@ -20052,7 +20052,7 @@ namespace Terraria
 				}
 				for (int num141 = 0; num141 < 4; num141++)
 				{
-					Dust* ptr29 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 2.5);
+					Dust* ptr29 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 2.5);
 					if (ptr29 == null)
 					{
 						break;
@@ -20060,7 +20060,7 @@ namespace Terraria
 					ptr29->NoGravity = true;
 					ptr29->Velocity.X *= 5f;
 					ptr29->Velocity.Y *= 5f;
-					ptr29 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default(Color), 1.5);
+					ptr29 = Main.DustSet.NewDust(6, ref XYWH, 0.0, 0.0, 100, default, 1.5);
 					if (ptr29 == null)
 					{
 						break;
@@ -20068,22 +20068,22 @@ namespace Terraria
 					ptr29->Velocity.X *= 3f;
 					ptr29->Velocity.Y *= 3f;
 				}
-				int num142 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				int num142 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num142].Velocity.X *= 0.4f;
 				Main.GoreSet[num142].Velocity.X += 1f;
 				Main.GoreSet[num142].Velocity.Y *= 0.4f;
 				Main.GoreSet[num142].Velocity.Y += 1f;
-				num142 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num142 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num142].Velocity.X *= 0.4f;
 				Main.GoreSet[num142].Velocity.X -= 1f;
 				Main.GoreSet[num142].Velocity.Y *= 0.4f;
 				Main.GoreSet[num142].Velocity.Y += 1f;
-				num142 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num142 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num142].Velocity.X *= 0.4f;
 				Main.GoreSet[num142].Velocity.X += 1f;
 				Main.GoreSet[num142].Velocity.Y *= 0.4f;
 				Main.GoreSet[num142].Velocity.Y -= 1f;
-				num142 = Gore.NewGore(Position, default(Vector2), Main.Rand.Next(61, 64));
+				num142 = Gore.NewGore(Position, default, Main.Rand.Next(61, 64));
 				Main.GoreSet[num142].Velocity.X *= 0.4f;
 				Main.GoreSet[num142].Velocity.X -= 1f;
 				Main.GoreSet[num142].Velocity.Y *= 0.4f;
@@ -20097,7 +20097,7 @@ namespace Terraria
 					{
 						int num144 = ((Main.Rand.Next(2) == 0) ? 6 : 25);
 						Main.DustSet.NewDust(num144, ref XYWH, hitDirection, -1.0);
-						Dust* ptr30 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2, Velocity.Y * 0.2, 100, default(Color), 2.0);
+						Dust* ptr30 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2, Velocity.Y * 0.2, 100, default, 2.0);
 						if (ptr30 == null)
 						{
 							break;
@@ -20116,7 +20116,7 @@ namespace Terraria
 				}
 				for (int num147 = 0; num147 < 42; num147++)
 				{
-					Dust* ptr31 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2, Velocity.Y * 0.2, 100, default(Color), 2.5);
+					Dust* ptr31 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * 0.2, Velocity.Y * 0.2, 100, default, 2.5);
 					if (ptr31 == null)
 					{
 						break;
@@ -20132,7 +20132,7 @@ namespace Terraria
 				{
 					for (int num148 = (int)(dmg / LifeMax * 80.0); num148 > 0; num148--)
 					{
-						Dust* ptr32 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X, Velocity.Y, 100, default(Color), 2.5);
+						Dust* ptr32 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X, Velocity.Y, 100, default, 2.5);
 						if (ptr32 == null)
 						{
 							break;
@@ -20143,7 +20143,7 @@ namespace Terraria
 				}
 				for (int num149 = 0; num149 < 42; num149++)
 				{
-					Dust* ptr33 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X, Velocity.Y, 100, default(Color), 2.5);
+					Dust* ptr33 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X, Velocity.Y, 100, default, 2.5);
 					if (ptr33 == null)
 					{
 						break;
@@ -20163,7 +20163,7 @@ namespace Terraria
 				Main.PlaySound(2, XYWH.X, XYWH.Y, 10);
 				for (int num150 = 0; num150 < 16; num150++)
 				{
-					Dust* ptr34 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default(Color), 2.0);
+					Dust* ptr34 = Main.DustSet.NewDust(6, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default, 2.0);
 					if (ptr34 == null)
 					{
 						break;
@@ -20184,7 +20184,7 @@ namespace Terraria
 				Main.PlaySound(2, XYWH.X, XYWH.Y, 10);
 				for (int num151 = 0; num151 < 16; num151++)
 				{
-					Dust* ptr35 = Main.DustSet.NewDust(29, ref XYWH, Velocity.X * -0.2f, Velocity.Y * -0.2, 100, default(Color), 2.0);
+					Dust* ptr35 = Main.DustSet.NewDust(29, ref XYWH, Velocity.X * -0.2f, Velocity.Y * -0.2, 100, default, 2.0);
 					if (ptr35 == null)
 					{
 						break;
@@ -20234,7 +20234,7 @@ namespace Terraria
 				Main.PlaySound(2, (int)Position.X, (int)Position.Y, 10);
 				for (int num154 = 0; num154 < 15; num154++)
 				{
-					Dust* ptr36 = Main.DustSet.NewDust(27, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default(Color), 2.0);
+					Dust* ptr36 = Main.DustSet.NewDust(27, ref XYWH, Velocity.X * -0.2, Velocity.Y * -0.2, 100, default, 2.0);
 					if (ptr36 == null)
 					{
 						break;
@@ -20350,7 +20350,7 @@ namespace Terraria
 
 		public static bool AnyNPCs(int Type1, int Type2)
 		{
-			for (int num = MaxNumNPCs - 1 ; num >= 0; num--)
+			for (int num = MaxNumNPCs - 1; num >= 0; num--)
 			{
 				if (Main.NPCSet[num].Active != 0 && (Main.NPCSet[num].Type == Type1 || Main.NPCSet[num].Type == Type2))
 				{
@@ -20497,7 +20497,7 @@ namespace Terraria
 		{
 			if (Main.Rand.Next(4) < 2)
 			{
-				Dust* ptr = Main.DustSet.NewDust((int)Position.X - 2, (int)Position.Y - 2, Width + 4, Height + 4, particleType, Velocity.X * 0.4f, Velocity.Y * 0.4f, 100, default(Color), 3.5);
+				Dust* ptr = Main.DustSet.NewDust((int)Position.X - 2, (int)Position.Y - 2, Width + 4, Height + 4, particleType, Velocity.X * 0.4f, Velocity.Y * 0.4f, 100, default, 3.5);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
@@ -20548,7 +20548,7 @@ namespace Terraria
 							}
 							if (Main.Rand.Next(30) == 0)
 							{
-								Dust* ptr2 = Main.DustSet.NewDust(46, ref XYWH, 0.0, 0.0, 120, default(Color), 0.2);
+								Dust* ptr2 = Main.DustSet.NewDust(46, ref XYWH, 0.0, 0.0, 120, default, 0.2);
 								if (ptr2 != null)
 								{
 									ptr2->NoGravity = true;
@@ -20672,126 +20672,126 @@ namespace Terraria
 			{
 				switch (AIStyle)
 				{
-				case 0:
-					BoundAI();
-					break;
-				case 1:
-					SlimeAI();
-					break;
-				case 2:
-					FloatingEyeballAI();
-					break;
-				case 3:
-					WalkAI();
-					break;
-				case 4:
-					EyeOfCthulhuAI();
-					break;
-				case 5:
-					AggressiveFlyerAI();
-					break;
-				case 6:
-					WormAI();
-					break;
-				case 7:
-					TownsfolkAI();
-					break;
-				case 8:
-					SorcererAI();
-					break;
-				case 9:
-					SphereAI();
-					break;
-				case 10:
-					SkullHeadAI();
-					break;
-				case 11:
-					SkeletronAI();
-					break;
-				case 12:
-					SkeletronHandAI();
-					break;
-				case 13:
-					PlantAI();
-					break;
-				case 14:
-					FlyerAI();
-					break;
-				case 15:
-					KingSlimeAI();
-					break;
-				case 16:
-					FishAI();
-					break;
-				case 17:
-					VultureAI();
-					break;
-				case 18:
-					JellyfishAI();
-					break;
-				case 19:
-					AntlionAI();
-					break;
-				case 20:
-					SpinningSpikeballAI();
-					break;
-				case 21:
-					GravityDiskAI();
-					break;
-				case 22:
-					MoreFlyerAI();
-					break;
-				case 23:
-					EnchantedWeaponAI();
-					break;
-				case 24:
-					BirdAI();
-					break;
-				case 25:
-					MimicAI();
-					break;
-				case 26:
-					UnicornAI();
-					break;
-				case 27:
-					WallOfFleshMouthAI();
-					break;
-				case 28:
-					WallOfFleshEyesAI();
-					break;
-				case 29:
-					WallOfFleshTentacleAI();
-					break;
-				case 30:
-					RetinazerAI();
-					break;
-				case 31:
-					SpazmatismAI();
-					break;
-				case 32:
-					SkeletronPrimeAI();
-					break;
-				case 33:
-					SkeletronPrimeSawHand();
-					break;
-				case 34:
-					SkeletronPrimeViceHand();
-					break;
-				case 35:
-					SkeletronPrimeCannonHand();
-					break;
-				case 36:
-					SkeletronPrimeLaserHand();
-					break;
-				case 37:
-					DestroyerAI();
-					break;
-				case 38:
-					SnowmanAI();
-					break;
-				case 39:
-					OcramAI();
-					break;
+					case 0:
+						BoundAI();
+						break;
+					case 1:
+						SlimeAI();
+						break;
+					case 2:
+						FloatingEyeballAI();
+						break;
+					case 3:
+						WalkAI();
+						break;
+					case 4:
+						EyeOfCthulhuAI();
+						break;
+					case 5:
+						AggressiveFlyerAI();
+						break;
+					case 6:
+						WormAI();
+						break;
+					case 7:
+						TownsfolkAI();
+						break;
+					case 8:
+						SorcererAI();
+						break;
+					case 9:
+						SphereAI();
+						break;
+					case 10:
+						SkullHeadAI();
+						break;
+					case 11:
+						SkeletronAI();
+						break;
+					case 12:
+						SkeletronHandAI();
+						break;
+					case 13:
+						PlantAI();
+						break;
+					case 14:
+						FlyerAI();
+						break;
+					case 15:
+						KingSlimeAI();
+						break;
+					case 16:
+						FishAI();
+						break;
+					case 17:
+						VultureAI();
+						break;
+					case 18:
+						JellyfishAI();
+						break;
+					case 19:
+						AntlionAI();
+						break;
+					case 20:
+						SpinningSpikeballAI();
+						break;
+					case 21:
+						GravityDiskAI();
+						break;
+					case 22:
+						MoreFlyerAI();
+						break;
+					case 23:
+						EnchantedWeaponAI();
+						break;
+					case 24:
+						BirdAI();
+						break;
+					case 25:
+						MimicAI();
+						break;
+					case 26:
+						UnicornAI();
+						break;
+					case 27:
+						WallOfFleshMouthAI();
+						break;
+					case 28:
+						WallOfFleshEyesAI();
+						break;
+					case 29:
+						WallOfFleshTentacleAI();
+						break;
+					case 30:
+						RetinazerAI();
+						break;
+					case 31:
+						SpazmatismAI();
+						break;
+					case 32:
+						SkeletronPrimeAI();
+						break;
+					case 33:
+						SkeletronPrimeSawHand();
+						break;
+					case 34:
+						SkeletronPrimeViceHand();
+						break;
+					case 35:
+						SkeletronPrimeCannonHand();
+						break;
+					case 36:
+						SkeletronPrimeLaserHand();
+						break;
+					case 37:
+						DestroyerAI();
+						break;
+					case 38:
+						SnowmanAI();
+						break;
+					case 39:
+						OcramAI();
+						break;
 				}
 			}
 			catch (Exception)
@@ -21317,45 +21317,45 @@ namespace Terraria
 					{
 						switch (Main.Rand.Next(3))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 4);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 5);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 6);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 4);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 5);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 6);
+								break;
 						}
 					}
 					else if ((double)Main.GameTime.WorldTime > 37800f)
 					{
 						switch (Main.Rand.Next(3))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 7);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 8);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 9);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 7);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 8);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 9);
+								break;
 						}
 					}
 					else
 					{
 						switch (Main.Rand.Next(3))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 10);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 11);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 12);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 10);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 11);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 12);
+								break;
 						}
 					}
 				}
@@ -21369,18 +21369,18 @@ namespace Terraria
 					{
 						switch (Main.Rand.Next(4))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 14);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 15);
-							break;
-						case 2:
-							result = Lang.NPCDialog(player, 16);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 17);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 14);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 15);
+								break;
+							case 2:
+								result = Lang.NPCDialog(player, 16);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 17);
+								break;
 						}
 					}
 				}
@@ -21396,15 +21396,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 22);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 23);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 24);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 22);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 23);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 24);
+							break;
 					}
 				}
 			}
@@ -21416,33 +21416,33 @@ namespace Terraria
 					{
 						switch (Main.Rand.Next(3))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 25);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 26);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 27);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 25);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 26);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 27);
+								break;
 						}
 					}
 					else
 					{
 						switch (Main.Rand.Next(4))
 						{
-						case 0:
-							result = Lang.NPCDialog(player, 28);
-							break;
-						case 1:
-							result = Lang.NPCDialog(player, 29);
-							break;
-						case 2:
-							result = Lang.NPCDialog(player, 30);
-							break;
-						default:
-							result = Lang.NPCDialog(player, 31);
-							break;
+							case 0:
+								result = Lang.NPCDialog(player, 28);
+								break;
+							case 1:
+								result = Lang.NPCDialog(player, 29);
+								break;
+							case 2:
+								result = Lang.NPCDialog(player, 30);
+								break;
+							default:
+								result = Lang.NPCDialog(player, 31);
+								break;
 						}
 					}
 				}
@@ -21466,66 +21466,66 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 36);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 37);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 38);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 39);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 40);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 36);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 37);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 38);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 39);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 40);
+							break;
 					}
 				}
 				else if (player.statLife < player.StatLifeMax * 0.66)
 				{
 					switch (Main.Rand.Next(7))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 41);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 42);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 43);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 44);
-						break;
-					case 4:
-						result = Lang.NPCDialog(player, 45);
-						break;
-					case 5:
-						result = Lang.NPCDialog(player, 46);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 47);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 41);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 42);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 43);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 44);
+							break;
+						case 4:
+							result = Lang.NPCDialog(player, 45);
+							break;
+						case 5:
+							result = Lang.NPCDialog(player, 46);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 47);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 48);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 49);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 50);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 51);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 48);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 49);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 50);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 51);
+							break;
 					}
 				}
 			}
@@ -21563,15 +21563,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 66);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 67);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 68);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 66);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 67);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 68);
+							break;
 					}
 				}
 			}
@@ -21597,39 +21597,39 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 73);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 74);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 75);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 76);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 73);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 74);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 75);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 76);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 77);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 78);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 79);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 80);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 81);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 77);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 78);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 79);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 80);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 81);
+							break;
 					}
 				}
 			}
@@ -21639,51 +21639,51 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 82);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 83);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 84);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 82);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 83);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 84);
+							break;
 					}
 				}
 				else if (player.StatLifeMax < 300 || player.StatDefense < 10)
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 85);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 86);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 87);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 88);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 85);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 86);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 87);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 88);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 89);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 90);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 91);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 92);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 89);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 90);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 91);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 92);
+							break;
 					}
 				}
 			}
@@ -21697,15 +21697,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 94);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 95);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 96);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 94);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 95);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 96);
+							break;
 					}
 				}
 				else if (flag3 && Main.Rand.Next(5) == 0)
@@ -21728,39 +21728,39 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 101);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 102);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 103);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 104);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 101);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 102);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 103);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 104);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 105);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 106);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 107);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 108);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 109);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 105);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 106);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 107);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 108);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 109);
+							break;
 					}
 				}
 			}
@@ -21786,24 +21786,24 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(6))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 114);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 115);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 116);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 117);
-						break;
-					case 4:
-						result = Lang.NPCDialog(player, 118);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 119);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 114);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 115);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 116);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 117);
+							break;
+						case 4:
+							result = Lang.NPCDialog(player, 118);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 119);
+							break;
 					}
 				}
 			}
@@ -21817,21 +21817,21 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 121);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 122);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 123);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 124);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 125);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 121);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 122);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 123);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 124);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 125);
+							break;
 					}
 				}
 				else if (flag7 && Main.Rand.Next(4) == 0)
@@ -21842,42 +21842,42 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 127);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 128);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 129);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 130);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 131);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 127);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 128);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 129);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 130);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 131);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 132);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 133);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 134);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 135);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 136);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 132);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 133);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 134);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 135);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 136);
+							break;
 					}
 				}
 			}
@@ -21902,12 +21902,12 @@ namespace Terraria
 					{
 						switch (num)
 						{
-						case 1:
-							result = Lang.NPCDialog(player, 140);
-							break;
-						case 2:
-							result = Lang.NPCDialog(player, 141);
-							break;
+							case 1:
+								result = Lang.NPCDialog(player, 140);
+								break;
+							case 2:
+								result = Lang.NPCDialog(player, 141);
+								break;
 						}
 					}
 				}
@@ -21939,36 +21939,36 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 148);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 149);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 150);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 148);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 149);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 150);
+							break;
 					}
 				}
 				else
 				{
 					switch (Main.Rand.Next(5))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 151);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 152);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 153);
-						break;
-					case 3:
-						result = Lang.NPCDialog(player, 154);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 155);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 151);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 152);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 153);
+							break;
+						case 3:
+							result = Lang.NPCDialog(player, 154);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 155);
+							break;
 					}
 				}
 			}
@@ -21982,36 +21982,36 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 157);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 158);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 159);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 160);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 157);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 158);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 159);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 160);
+							break;
 					}
 				}
 				else if (Main.GameTime.IsBloodMoon)
 				{
 					switch (Main.Rand.Next(4))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 161);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 162);
-						break;
-					case 2:
-						result = Lang.NPCDialog(player, 163);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 164);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 161);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 162);
+							break;
+						case 2:
+							result = Lang.NPCDialog(player, 163);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 164);
+							break;
 					}
 				}
 				else if (flag8 && Main.Rand.Next(6) == 0)
@@ -22026,15 +22026,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 167);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 168);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 169);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 167);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 168);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 169);
+							break;
 					}
 				}
 			}
@@ -22044,15 +22044,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 170);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 171);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 172);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 170);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 171);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 172);
+							break;
 					}
 				}
 				else if (!Main.GameTime.DayTime)
@@ -22063,15 +22063,15 @@ namespace Terraria
 				{
 					switch (Main.Rand.Next(3))
 					{
-					case 0:
-						result = Lang.NPCDialog(player, 174);
-						break;
-					case 1:
-						result = Lang.NPCDialog(player, 175);
-						break;
-					default:
-						result = Lang.NPCDialog(player, 176);
-						break;
+						case 0:
+							result = Lang.NPCDialog(player, 174);
+							break;
+						case 1:
+							result = Lang.NPCDialog(player, 175);
+							break;
+						default:
+							result = Lang.NPCDialog(player, 176);
+							break;
 					}
 				}
 			}
@@ -22079,15 +22079,15 @@ namespace Terraria
 			{
 				switch (Main.Rand.Next(3))
 				{
-				case 0:
-					result = Lang.NPCDialog(player, 224);
-					break;
-				case 1:
-					result = Lang.NPCDialog(player, 225);
-					break;
-				case 2:
-					result = Lang.NPCDialog(player, 226);
-					break;
+					case 0:
+						result = Lang.NPCDialog(player, 224);
+						break;
+					case 1:
+						result = Lang.NPCDialog(player, 225);
+						break;
+					case 2:
+						result = Lang.NPCDialog(player, 226);
+						break;
 				}
 			}
 			return result;
@@ -22295,66 +22295,66 @@ namespace Terraria
 		{
 			switch (ProjType)
 			{
-			case 2:
-				if (Main.Rand.Next(3) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case 15:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 300);
-				}
-				break;
-			case 19:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case 33:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.POISONED, 420);
-				}
-				break;
-			case 34:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 240);
-				}
-				break;
-			case 35:
-				if (Main.Rand.Next(4) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case 54:
-				if (Main.Rand.Next(2) == 0)
-				{
+				case 2:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case 15:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 300);
+					}
+					break;
+				case 19:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case 33:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 420);
+					}
+					break;
+				case 34:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 240);
+					}
+					break;
+				case 35:
+					if (Main.Rand.Next(4) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case 54:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 600);
+					}
+					break;
+				case 63:
+					if (Main.Rand.Next(3) != 0)
+					{
+						AddBuff((int)Buff.ID.CONFUSED, 120);
+					}
+					break;
+				case 85:
+					AddBuff((int)Buff.ID.ON_FIRE, 1200);
+					break;
+				case 95:
+				case 103:
+				case 104:
+				case 113:
+					AddBuff((int)Buff.ID.ON_FIRE_2, 420);
+					break;
+				case 98:
 					AddBuff((int)Buff.ID.POISONED, 600);
-				}
-				break;
-			case 63:
-				if (Main.Rand.Next(3) != 0)
-				{
-					AddBuff((int)Buff.ID.CONFUSED, 120);
-				}
-				break;
-			case 85:
-				AddBuff((int)Buff.ID.ON_FIRE, 1200);
-				break;
-			case 95:
-			case 103:
-			case 104:
-			case 113:
-				AddBuff((int)Buff.ID.ON_FIRE_2, 420);
-				break;
-			case 98:
-				AddBuff((int)Buff.ID.POISONED, 600);
-				break;
+					break;
 			}
 		}
 
@@ -22362,37 +22362,37 @@ namespace Terraria
 		{
 			switch (WeaponType)
 			{
-			case (int)Item.ID.FIERY_GREATSWORD:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case (int)Item.ID.MOLTEN_PICKAXE:
-				if (Main.Rand.Next(10) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case (int)Item.ID.BLADE_OF_GRASS:
-			case (int)Item.ID.TONBOGIRI:
-				if (Main.Rand.Next(4) == 0)
-				{
-					AddBuff((int)Buff.ID.POISONED, 420);
-				}
-				break;
-			case (int)Item.ID.MOLTEN_HAMAXE:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180);
-				}
-				break;
-			case (int)Item.ID.TIZONA:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.BLEED, 600);
-				}
-				break;
+				case (int)Item.ID.FIERY_GREATSWORD:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case (int)Item.ID.MOLTEN_PICKAXE:
+					if (Main.Rand.Next(10) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case (int)Item.ID.BLADE_OF_GRASS:
+				case (int)Item.ID.TONBOGIRI:
+					if (Main.Rand.Next(4) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 420);
+					}
+					break;
+				case (int)Item.ID.MOLTEN_HAMAXE:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180);
+					}
+					break;
+				case (int)Item.ID.TIZONA:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.BLEED, 600);
+					}
+					break;
 			}
 		}
 
@@ -22436,7 +22436,7 @@ namespace Terraria
 					HealthBarLife = Life;
 				}
 			}
-			Rectangle rect = default(Rectangle);
+			Rectangle rect = default;
 			rect.X = num - 22;
 			rect.Y = num2 - 4;
 			rect.Height = 10;

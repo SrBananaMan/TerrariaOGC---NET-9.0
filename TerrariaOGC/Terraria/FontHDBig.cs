@@ -1,12 +1,12 @@
 ﻿#if !USE_ORIGINAL_CODE
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Terraria
 {
 	internal class FontHDBig
 	{
-		public List<Rectangle> BigGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> BigBounds = new List<Rectangle>()
 		{
 			new Rectangle(3383, 459, 43, 152),
 			new Rectangle(90, 0, 35, 152),
@@ -491,7 +491,7 @@ namespace Terraria
 			new Rectangle(1272, 1224, 86, 152),
 		};
 
-		public List<Rectangle> BigSCGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> BigSCBounds = new List<Rectangle>()
 		{
 			new Rectangle(921, 316, 21, 78),
 			new Rectangle(1288, 79, 20, 78),
@@ -977,7 +977,7 @@ namespace Terraria
 		};
 
 		//----------------------------------------------------------------------
-		public List<Rectangle> BigGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> BigCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 43, 152),
 			new Rectangle(0, 0, 35, 152),
@@ -1462,7 +1462,7 @@ namespace Terraria
 			new Rectangle(0, 0, 86, 152),
 		};
 
-		public List<Rectangle> BigSCGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> BigSCCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 21, 78),
 			new Rectangle(0, 0, 20, 78),

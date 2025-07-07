@@ -84,15 +84,15 @@ namespace Terraria.CreateCharacter
 			int Gender = -1;
 			switch (HairGender)
 			{
-			case HairGender.Male:
-				Gender = 0;
-				break;
-			case HairGender.Female:
-				Gender = 1;
-				break;
-			default:
-				Gender = RandomVal.Next(2);
-				break;
+				case HairGender.Male:
+					Gender = 0;
+					break;
+				case HairGender.Female:
+					Gender = 1;
+					break;
+				default:
+					Gender = RandomVal.Next(2);
+					break;
 			}
 			ref Vector2i GenderSetting = ref CustomArr[0];
 			GenderSetting = new Vector2i(Gender, 0);

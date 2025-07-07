@@ -1,10 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
@@ -12,6 +5,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using Terraria.Achievements;
 using Terraria.Leaderboards;
 
@@ -223,7 +224,9 @@ namespace Terraria
 
 		public static Color DefaultDialogColor = new Color(42, 43, 101, 192);
 
-		private static int FONT_STACK_EXTRA_OFFSET = -5;
+		private static int FONT_STACK_X_OFFSET = 0;
+
+		private static int FONT_STACK_Y_OFFSET = 0;
 
 		public static UI MainUI;
 
@@ -407,14 +410,14 @@ namespace Terraria
 
 		public int cursorHighlight;
 
-		public Terraria.CreateCharacter.UI CreateCharacterGUI;
+		public CreateCharacter.UI CreateCharacterGUI;
 
-		private Terraria.SoundUI.UI soundUI;
+		private SoundUI.UI soundUI;
 
-		private Terraria.HowToPlay.UI howtoUI;
+		private HowToPlay.UI howtoUI;
 
 #if !USE_ORIGINAL_CODE
-		private Terraria.Hardmode.UI hardmodeUpsell;
+		private Hardmode.UI hardmodeUpsell;
 
 		private AchievementsUI Achievements;
 #endif
@@ -521,13 +524,13 @@ namespace Terraria
 
 		private InventorySection mouseItemSrcSection = InventorySection.NUM_SECTIONS;
 
-		public Item mouseItem = default(Item);
+		public Item mouseItem = default;
 
-		public Item trashItem = default(Item);
+		public Item trashItem = default;
 
-		public Item GuideItem = default(Item);
+		public Item GuideItem = default;
 
-		private Item toolTip = default(Item);
+		private Item toolTip = default;
 
 		public List<Recipe.SubCategoryList> CurrentRecipeCategory = new List<Recipe.SubCategoryList>();
 
@@ -768,7 +771,7 @@ namespace Terraria
 
 		private static string toolTipText;
 
-		private static Item cpItem = default(Item);
+		private static Item cpItem = default;
 
 		public static void Error(string caption, string desc, bool rememberPreviousMenu = false)
 		{
@@ -1027,10 +1030,10 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 				return !GuideExtensions.IsNetworkCableUnplugged;
 #else
-                return false;
+				return false;
 #endif
-            }
-            return false;
+			}
+			return false;
 		}
 
 		public bool HasOnlineWithPrivileges()
@@ -1040,10 +1043,10 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 				return !GuideExtensions.IsNetworkCableUnplugged;
 #else
-                return false;
+				return false;
 #endif
-            }
-            return false;
+			}
+			return false;
 		}
 
 		public static bool IsUserGeneratedContentAllowed()
@@ -1112,7 +1115,7 @@ namespace Terraria
 			SoundUI.Assets.LoadContent(Content);
 			HowToPlay.Assets.LoadContent(Content);
 			Terraria.Leaderboards.Assets.LoadContent(Content);
-			
+
 			logoTexture = Content.Load<Texture2D>("Images/Logo");
 			logo2Texture = Content.Load<Texture2D>("Images/Logo2");
 
@@ -1133,9 +1136,10 @@ namespace Terraria
 				ControllerPath = "UI/PSController";
 				DPadPath = "UI/PSDPad";
 			}
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				ControllerPath += "HD";
+				DPadPath += "HD";
 			}
 
 			controlsTexture = Content.Load<Texture2D>(ControllerPath);
@@ -1173,6 +1177,16 @@ namespace Terraria
 			string SmallFontAsset = "small";
 			string Small2FontAsset = "small2";
 
+			// Skill learned: Reflection; now modification of FNA is no longer required.
+			Type SpriteFontN = typeof(SpriteFont);
+			ConstructorInfo SpriteFontInfo = SpriteFontN.GetConstructor(
+				BindingFlags.NonPublic | BindingFlags.Instance,
+				null,
+				new Type[] { typeof(Texture2D), typeof(List<Rectangle>), typeof(List<Rectangle>), typeof(List<char>), typeof(int), typeof(float), typeof(List<Vector3>), typeof(char?) },
+				null
+			);
+			object[] Parameters;
+
 			if (Main.PSMode)
 			{
 				BigFontAsset += "_PS3";
@@ -1180,7 +1194,7 @@ namespace Terraria
 				Small2FontAsset += "_PS3";
 			}
 
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				Directory += "HD/";
 			}
@@ -1192,18 +1206,54 @@ namespace Terraria
 			Texture2D SmallTex = Content.Load<Texture2D>(Directory + SmallFontAsset);
 			Texture2D Small2Tex = Content.Load<Texture2D>(Directory + Small2FontAsset);
 
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				FontHD FontHD = new FontHD();
 				FontHDBig FontHDBig = new FontHDBig();
 				FontHDSmall FontHDSmall = new FontHDSmall();
 
-				BigFont = new SpriteFont(BigTex, FontHDBig.BigGlyphBounds, FontHDBig.BigGlyphCrops, FontHD.BigSmlChars, 152, -24f, FontHDBig.BigKerning, Convert.ToChar("~"));
-				ItemStackFont = new SpriteFont(StackTex, FontHD.StackGlyphBounds, FontHD.StackGlyphCrops, FontHD.StackChars, 28, -0.5f, FontHD.StackKerning, Convert.ToChar("~"));
-				CombatTextFont[0] = new SpriteFont(CombatTex, FontHD.CombatGlyphBounds, FontHD.CombatGlyphCrops, FontHD.CombatChars, 21, -1f, FontHD.CombatKerning, Convert.ToChar("~"));
-				CombatTextFont[1] = new SpriteFont(Combat2Tex, FontHD.Combat2GlyphBounds, FontHD.Combat2GlyphCrops, FontHD.CombatChars, 22, -1.5f, FontHD.Combat2Kerning, Convert.ToChar("~"));
-				SmallFont = new SpriteFont(SmallTex, FontHDSmall.SmallGlyphBounds, FontHDSmall.SmallGlyphCrops, FontHD.BigSmlChars, 30, -0.5f, FontHDSmall.SmallKerning, Convert.ToChar("~"));
-				BoldSmallFont = new SpriteFont(Small2Tex, FontHDSmall.Small2GlyphBounds, FontHDSmall.Small2GlyphCrops, FontHD.BigSmlChars, 33, -4f, FontHDSmall.Small2Kerning, Convert.ToChar("~"));
+				if (!Main.PSMode)
+				{
+					FontHDBig.BigBounds.RemoveRange(99, 14);
+					FontHDBig.BigBounds.InsertRange(99, FontHD.XBBigBoundPart);
+					FontHDBig.BigCrops.RemoveRange(99, 14);
+					FontHDBig.BigCrops.InsertRange(99, FontHD.XBBigCropPart);
+					FontHDBig.BigKerning.RemoveRange(99, 14);
+					FontHDBig.BigKerning.InsertRange(99, FontHD.XBBigKerningPart);
+
+					FontHDSmall.SmlBounds.RemoveRange(98, 80);
+					FontHDSmall.SmlBounds.InsertRange(98, FontHD.XBSmlBoundPart);
+					FontHDSmall.SmlCrops.RemoveRange(98, 17);
+					FontHDSmall.SmlCrops.InsertRange(98, FontHD.XBSmlCropPart);
+					FontHDSmall.SmlKerning.RemoveRange(98, 17);
+					FontHDSmall.SmlKerning.InsertRange(98, FontHD.XBSmlKerningPart);
+
+					FontHDSmall.Sml2Bounds.RemoveAt(0);
+					FontHDSmall.Sml2Bounds.Insert(0, new Rectangle(954, 200, 16, 49));
+					FontHDSmall.Sml2Bounds.AddRange(FontHD.XBSml2Bounds);
+					FontHDSmall.Sml2Crops.RemoveRange(97, 16);
+					FontHDSmall.Sml2Crops.InsertRange(97, FontHD.XBSml2CropPart);
+					FontHDSmall.Sml2Kerning.RemoveRange(97, 16);
+					FontHDSmall.Sml2Kerning.InsertRange(97, FontHD.XBSml2KerningPart);
+				}
+				else
+				{
+					FontHDSmall.Sml2Bounds.AddRange(FontHD.PSSml2Bounds);
+				}
+
+				Parameters = new object[] { BigTex, FontHDBig.BigBounds, FontHDBig.BigCrops, FontHD.BigSmlChars, 152, -22f, FontHDBig.BigKerning, Convert.ToChar(" ") };
+				BigFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { StackTex, FontHD.StackBounds, FontHD.StackCrops, FontHD.StackChars, 28, -2f, FontHD.StackKerning, Convert.ToChar("/") };
+				ItemStackFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				FONT_STACK_Y_OFFSET = 7;
+				Parameters = new object[] { CombatTex, FontHD.CombatBounds, FontHD.CombatCrops, FontHD.CombatChars, 21, -3f, FontHD.CombatKerning, Convert.ToChar("0") };
+				CombatTextFont[0] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Combat2Tex, FontHD.Combat2Bounds, FontHD.Combat2Crops, FontHD.CombatChars, 22, -4f, FontHD.Combat2Kerning, Convert.ToChar("0") };
+				CombatTextFont[1] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { SmallTex, FontHDSmall.SmlBounds, FontHDSmall.SmlCrops, FontHD.BigSmlChars, 30, -1f, FontHDSmall.SmlKerning, Convert.ToChar(" ") };
+				SmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Small2Tex, FontHDSmall.Sml2Bounds, FontHDSmall.Sml2Crops, FontHD.BigSmlChars, 33, -4f, FontHDSmall.Sml2Kerning, Convert.ToChar(" ") };
+				BoldSmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
 			}
 			else
 			{
@@ -1213,34 +1263,41 @@ namespace Terraria
 
 				if (!Main.PSMode)
 				{
-					FontSmall.SmallGlyphBounds.RemoveRange(95, 16);
-					FontSmall.SmallGlyphBounds.InsertRange(96, Font.XBSmlBoundReplace);
-					FontSmall.SmallGlyphCrops.RemoveRange(95, 16);
-					FontSmall.SmallGlyphCrops.InsertRange(96, Font.XBSmlCropReplace);
-					FontSmall.SmallKerning.RemoveRange(95, 16);
-					FontSmall.SmallKerning.InsertRange(96, Font.XBSmlKerningReplace);
+					FontSmall.SmlBounds.RemoveRange(96, 16);
+					FontSmall.SmlBounds.InsertRange(96, Font.XBSmlBoundPart);
+					FontSmall.SmlCrops.RemoveRange(96, 16);
+					FontSmall.SmlCrops.InsertRange(96, Font.XBSmlCroPart);
+					FontSmall.SmlKerning.RemoveRange(96, 16);
+					FontSmall.SmlKerning.InsertRange(96, Font.XBSmlKerningPart);
 
-					FontSmall.Small2GlyphBounds.RemoveRange(95, 16);
-					FontSmall.Small2GlyphBounds.InsertRange(96, Font.XBSml2BoundReplace);
-					FontSmall.Small2GlyphCrops.RemoveRange(95, 16);
-					FontSmall.Small2GlyphCrops.InsertRange(96, Font.XBSml2CropReplace);
-					FontSmall.Small2Kerning.RemoveRange(95, 16);
-					FontSmall.Small2Kerning.InsertRange(96, Font.XBSml2KerningReplace);
+					FontSmall.Sml2Bounds.RemoveRange(96, 16);
+					FontSmall.Sml2Bounds.InsertRange(96, Font.XBSml2BoundPart);
+					FontSmall.Sml2Crops.RemoveRange(96, 16);
+					FontSmall.Sml2Crops.InsertRange(96, Font.XBSml2CropPart);
+					FontSmall.Sml2Kerning.RemoveRange(96, 16);
+					FontSmall.Sml2Kerning.InsertRange(96, Font.XBSml2KerningPart);
 				}
 
-				BigFont = new SpriteFont(BigTex, FontBig.BigGlyphBounds, FontBig.BigGlyphCrops, Font.BigSmlChars, 109, -24f, FontBig.BigKerning, Convert.ToChar("~"));
-				ItemStackFont = new SpriteFont(StackTex, Font.StackGlyphBounds, Font.StackGlyphCrops, Font.StackChars, 20, -4f, Font.StackKerning, Convert.ToChar("~"));
-				CombatTextFont[0] = new SpriteFont(CombatTex, Font.CombatGlyphBounds, Font.CombatGlyphCrops, Font.CombatChars, 21, -3f, Font.CombatKerning, Convert.ToChar("~"));
-				CombatTextFont[1] = new SpriteFont(Combat2Tex, Font.Combat2GlyphBounds, Font.Combat2GlyphCrops, Font.CombatChars, 22, -4f, Font.Combat2Kerning, Convert.ToChar("~"));
-				SmallFont = new SpriteFont(SmallTex, FontSmall.SmallGlyphBounds, FontSmall.SmallGlyphCrops, Font.BigSmlChars, 20, -2f, FontSmall.SmallKerning, Convert.ToChar("~"));
-				BoldSmallFont = new SpriteFont(Small2Tex, FontSmall.Small2GlyphBounds, FontSmall.Small2GlyphCrops, Font.BigSmlChars, 22, -5.11f, FontSmall.Small2Kerning, Convert.ToChar("~"));
+				Parameters = new object[] { BigTex, FontBig.BigBounds, FontBig.BigCrops, Font.BigSmlChars, 109, -24f, FontBig.BigKerning, Convert.ToChar(" ") };
+				BigFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { StackTex, Font.StackBounds, Font.StackCrops, Font.StackChars, 20, -4f, Font.StackKerning, Convert.ToChar("/") };
+				ItemStackFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { CombatTex, Font.CombatBounds, Font.CombatCrops, Font.CombatChars, 21, -3f, Font.CombatKerning, Convert.ToChar("0") };
+				CombatTextFont[0] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Combat2Tex, Font.Combat2Bounds, Font.Combat2Crops, Font.CombatChars, 22, -4f, Font.Combat2Kerning, Convert.ToChar("0") };
+				CombatTextFont[1] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { SmallTex, FontSmall.SmlBounds, FontSmall.SmlCrops, Font.BigSmlChars, 20, -2f, FontSmall.SmlKerning, Convert.ToChar(" ") };
+				SmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Small2Tex, FontSmall.Sml2Bounds, FontSmall.Sml2Crops, Font.BigSmlChars, 22, -5f, FontSmall.Sml2Kerning, Convert.ToChar(" ") };
+				BoldSmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
 			}
+			FONT_STACK_X_OFFSET = -5;
 #else
 			BigFont = Content.Load<SpriteFont>("Fonts/big");
 			BigFont.Spacing = -24f;
 			ItemStackFont = Content.Load<SpriteFont>("Fonts/stack");
 			ItemStackFont.Spacing = -4f;
-			FONT_STACK_EXTRA_OFFSET = -5;
+			FONT_STACK_X_OFFSET = -5;
 			CombatTextFont[0] = Content.Load<SpriteFont>("Fonts/combat");
 			CombatTextFont[0].Spacing = -3f;
 			CombatTextFont[1] = Content.Load<SpriteFont>("Fonts/combat2");
@@ -1266,14 +1323,23 @@ namespace Terraria
 			string SmallFontAsset = "small_sc";
 			string Small2FontAsset = "small2_sc";
 
+			Type SpriteFontN = typeof(SpriteFont);
+			ConstructorInfo SpriteFontInfo = SpriteFontN.GetConstructor(
+				BindingFlags.NonPublic | BindingFlags.Instance,
+				null, // No specific parameter types needed for this example
+				new Type[] { typeof(Texture2D), typeof(List<Rectangle>), typeof(List<Rectangle>), typeof(List<char>), typeof(int), typeof(float), typeof(List<Vector3>), typeof(char?) },
+				null // No parameter types
+			);
+			object[] Parameters;
+
 			if (Main.PSMode)
 			{
 				BigFontAsset += "_PS3";
-				// None for small_sc as they have no graphics.
+				// None for small_sc as they have no graphics. HD font for preservation.
 				Small2FontAsset += "_PS3";
 			}
 
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				Directory += "HD/";
 			}
@@ -1285,18 +1351,49 @@ namespace Terraria
 			Texture2D SmallTex = Content.Load<Texture2D>(Directory + SmallFontAsset);
 			Texture2D Small2Tex = Content.Load<Texture2D>(Directory + Small2FontAsset);
 
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				FontHD FontHD = new FontHD();
 				FontHDBig FontHDBig = new FontHDBig();
 				FontHDSmall FontHDSmall = new FontHDSmall();
 
-				BigFont = new SpriteFont(BigTex, FontHDBig.BigSCGlyphBounds, FontHDBig.BigSCGlyphCrops, FontHD.BigSmlChars, 28, -9.75f, FontHDBig.BigSCKerning, Convert.ToChar("~"));
-				ItemStackFont = new SpriteFont(StackTex, FontHD.StackSCGlyphBounds, FontHD.StackSCGlyphCrops, FontHD.StackChars, 21, -0.5f, FontHD.StackSCKerning, Convert.ToChar("~"));
-				CombatTextFont[0] = new SpriteFont(CombatTex, FontHD.CombatBothSCGlyphBounds, FontHD.CombatBothSCGlyphCrops, FontHD.CombatChars, 17, 0.5f, FontHD.CombatBothSCKerning, Convert.ToChar("~"));
-				CombatTextFont[1] = new SpriteFont(Combat2Tex, FontHD.CombatBothSCGlyphBounds, FontHD.CombatBothSCGlyphCrops, FontHD.CombatChars, 17, -0.5f, FontHD.CombatBothSCKerning, Convert.ToChar("~"));
-				SmallFont = new SpriteFont(SmallTex, FontHDSmall.SmallSCGlyphBounds, FontHDSmall.SmallSCGlyphCrops, FontHD.BigSmlChars, 15, -3.3f, FontHDSmall.SmallSCKerning, Convert.ToChar("~"));
-				BoldSmallFont = new SpriteFont(Small2Tex, FontHDSmall.Small2SCGlyphBounds, FontHDSmall.Small2SCGlyphCrops, FontHD.BigSmlChars, 22, -3f, FontHDSmall.Small2SCKerning, Convert.ToChar("~"));
+				if (!Main.PSMode)
+				{
+					FontHDBig.BigSCBounds.RemoveRange(98, 15);
+					FontHDBig.BigSCBounds.InsertRange(98, FontHD.XBBigSCBoundPart);
+					FontHDBig.BigSCCrops.RemoveRange(98, 15);
+					FontHDBig.BigSCCrops.InsertRange(100, FontHD.XBBigSCCropPart);
+					FontHDBig.BigSCKerning.RemoveRange(98, 15);
+					FontHDBig.BigSCKerning.InsertRange(100, FontHD.XBBigSCKerningPart);
+
+					// Again, no graphics, meaning no usage.
+					FontHDSmall.SmlSCBounds.RemoveRange(96, 65);
+					FontHDSmall.SmlSCBounds.InsertRange(96, FontHD.XBSmlSCBoundPart);
+					FontHDSmall.SmlSCCrops.RemoveRange(96, 17);
+					FontHDSmall.SmlSCCrops.InsertRange(96, FontHD.XBSmlSCCropPart);
+					FontHDSmall.SmlSCKerning.RemoveRange(96, 17);
+					FontHDSmall.SmlSCKerning.InsertRange(96, FontHD.XBSmlSCKerningPart);
+
+					FontHDSmall.Sml2SCBounds.RemoveRange(96, 18);
+					FontHDSmall.Sml2SCBounds.InsertRange(96, FontHD.XBSml2SCBoundPart);
+					FontHDSmall.Sml2SCCrops.RemoveRange(96, 18);
+					FontHDSmall.Sml2SCCrops.InsertRange(96, FontHD.XBSml2SCCropPart);
+					FontHDSmall.Sml2SCKerning.RemoveRange(96, 18);
+					FontHDSmall.Sml2SCKerning.InsertRange(96, FontHD.XBSml2SCKerningPart);
+				}
+
+				Parameters = new object[] { BigTex, FontHDBig.BigSCBounds, FontHDBig.BigSCCrops, FontHD.BigSmlChars, 28, -11f, FontHDBig.BigSCKerning, Convert.ToChar(" ") };
+				BigFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { StackTex, FontHD.StackSCBounds, FontHD.StackSCCrops, FontHD.StackChars, 21, -2f, FontHD.StackSCKerning, Convert.ToChar("/") };
+				ItemStackFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { CombatTex, FontHD.CombatBothSCBounds, FontHD.CombatBothSCCrops, FontHD.CombatChars, 17, -2f, FontHD.CombatBothSCKerning, Convert.ToChar("0") };
+				CombatTextFont[0] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Combat2Tex, FontHD.CombatBothSCBounds, FontHD.CombatBothSCCrops, FontHD.CombatChars, 17, -3f, FontHD.CombatBothSCKerning, Convert.ToChar("0") };
+				CombatTextFont[1] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { SmallTex, FontHDSmall.SmlSCBounds, FontHDSmall.SmlSCCrops, FontHD.BigSmlChars, 15, -1f, FontHDSmall.SmlSCKerning, Convert.ToChar(" ") };
+				SmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Small2Tex, FontHDSmall.Sml2SCBounds, FontHDSmall.Sml2SCCrops, FontHD.BigSmlChars, 22, -4f, FontHDSmall.Sml2SCKerning, Convert.ToChar(" ") };
+				BoldSmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
 			}
 			else
 			{
@@ -1306,29 +1403,35 @@ namespace Terraria
 
 				if (!Main.PSMode)
 				{
-					FontSmall.Small2SCGlyphBounds.RemoveRange(95, 16);
-					FontSmall.Small2SCGlyphBounds.InsertRange(96, Font.XBSml2SCBoundReplace);
-					FontSmall.Small2SCGlyphCrops.RemoveRange(95, 16);
-					FontSmall.Small2SCGlyphCrops.InsertRange(96, Font.XBSml2SCCropReplace);
-					FontSmall.Small2SCKerning.RemoveRange(95, 16);
-					FontSmall.Small2SCKerning.InsertRange(96, Font.XBSml2SCKerningReplace);
+					FontSmall.Sml2SCBounds.RemoveRange(95, 16);
+					FontSmall.Sml2SCBounds.InsertRange(95, Font.XBSml2SCBoundPart);
+					FontSmall.Sml2SCCrops.RemoveRange(95, 16);
+					FontSmall.Sml2SCCrops.InsertRange(95, Font.XBSml2SCCropPart);
+					FontSmall.Sml2SCKerning.RemoveRange(95, 16);
+					FontSmall.Sml2SCKerning.InsertRange(95, Font.XBSml2SCKerningPart);
 				}
 
-				BigFont = new SpriteFont(BigTex, FontBig.BigSCGlyphBounds, FontBig.BigSCGlyphCrops, Font.BigSmlChars, 19, -13f, FontBig.BigSCKerning, Convert.ToChar("~"));
-				ItemStackFont = new SpriteFont(StackTex, Font.StackSCGlyphBounds, Font.StackSCGlyphCrops, Font.StackChars, 15, -4f, Font.StackSCKerning, Convert.ToChar("~"));
-				FONT_STACK_EXTRA_OFFSET = -8;
-				CombatTextFont[0] = new SpriteFont(CombatTex, Font.CombatBothSCGlyphBounds, Font.CombatBothSCGlyphCrops, Font.CombatChars, 17, -2f, Font.CombatBothSCKerning, Convert.ToChar("~"));
-				CombatTextFont[1] = new SpriteFont(Combat2Tex, Font.CombatBothSCGlyphBounds, Font.CombatBothSCGlyphCrops, Font.CombatChars, 17, -3f, Font.CombatBothSCKerning, Convert.ToChar("~"));
-				SmallFont = new SpriteFont(SmallTex, FontSmall.SmallSCGlyphBounds, FontSmall.SmallSCGlyphCrops, Font.BigSmlChars, 10, -2f, FontSmall.SmallSCKerning, Convert.ToChar("~"));
-				BoldSmallFont = new SpriteFont(Small2Tex, FontSmall.Small2SCGlyphBounds, FontSmall.Small2SCGlyphCrops, Font.BigSmlChars, 13, -2f, FontSmall.Small2SCKerning, Convert.ToChar("~"));
+				Parameters = new object[] { BigTex, FontBig.BigSCBounds, FontBig.BigSCCrops, Font.BigSmlChars, 19, -13f, FontBig.BigSCKerning, Convert.ToChar(" ") };
+				BigFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { StackTex, Font.StackSCBounds, Font.StackSCCrops, Font.StackChars, 15, -4f, Font.StackSCKerning, Convert.ToChar("/") };
+				ItemStackFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { CombatTex, Font.CombatBothSCBounds, Font.CombatBothSCCrops, Font.CombatChars, 17, -2f, Font.CombatBothSCKerning, Convert.ToChar("0") };
+				CombatTextFont[0] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Combat2Tex, Font.CombatBothSCBounds, Font.CombatBothSCCrops, Font.CombatChars, 17, -3f, Font.CombatBothSCKerning, Convert.ToChar("0") };
+				CombatTextFont[1] = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { SmallTex, FontSmall.SmlSCBounds, FontSmall.SmlSCCrops, Font.BigSmlChars, 10, -2f, FontSmall.SmlSCKerning, Convert.ToChar(" ") };
+				SmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
+				Parameters = new object[] { Small2Tex, FontSmall.Sml2SCBounds, FontSmall.Sml2SCCrops, Font.BigSmlChars, 13, -2f, FontSmall.Sml2SCKerning, Convert.ToChar(" ") };
+				BoldSmallFont = (SpriteFont)SpriteFontInfo.Invoke(Parameters);
 			}
+			FONT_STACK_X_OFFSET = -8;
 #else
 			BigFont = Content.Load<SpriteFont>("Fonts/big_sc");
 			BigFont.Spacing = -13f;
 			BigFont.LineSpacing = 19;
 			ItemStackFont = Content.Load<SpriteFont>("Fonts/stack_sc");
 			ItemStackFont.Spacing = -4f;
-			FONT_STACK_EXTRA_OFFSET = -8;
+			FONT_STACK_X_OFFSET = -8;
 			CombatTextFont[0] = Content.Load<SpriteFont>("Fonts/combat_sc");
 			CombatTextFont[0].Spacing = -2f;
 			CombatTextFont[1] = Content.Load<SpriteFont>("Fonts/combat2_sc");
@@ -1570,10 +1673,10 @@ namespace Terraria
 					int WrapWidth = 470;
 					switch (Main.ScreenHeightPtr)
 					{
-						case 1:
+						case ScreenHeights.HD:
 							WrapWidth = 548;
 							break;
-						case 2:
+						case ScreenHeights.FHD:
 							WrapWidth = 705;
 							break;
 					}
@@ -1586,10 +1689,10 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 					SignedInGamer.Presence.SetPresenceModeString("Menu");
 #else
-                    SignedInGamer.Presence.SetPresenceModeStringEXT("Menu");
+					SignedInGamer.Presence.SetPresenceModeStringEXT("Menu");
 #endif
-                }
-                if (Netplay.isJoiningRemoteInvite)
+				}
+				if (Netplay.isJoiningRemoteInvite)
 				{
 					if (!Netplay.gamersWaitingToJoinInvite.Contains(SignedInGamer))
 					{
@@ -1632,17 +1735,17 @@ namespace Terraria
 			uiDelayValue = UI_DELAY;
 			switch (mode)
 			{
-			case MenuMode.PAUSE:
-				worldFadeTarget = 0.375f;
-				uiWidth = MENU_PAUSE_W;
-				uiHeight = MENU_PAUSE_H;
-				uiCoords = MENU_PAUSE_COORDS;
-				return;
-			case MenuMode.TITLE:
-				uiWidth = MENU_TITLE_W;
-				uiHeight = MENU_TITLE_H;
-				uiCoords = MENU_TITLE_COORDS;
-				return;
+				case MenuMode.PAUSE:
+					worldFadeTarget = 0.375f;
+					uiWidth = MENU_PAUSE_W;
+					uiHeight = MENU_PAUSE_H;
+					uiCoords = MENU_PAUSE_COORDS;
+					return;
+				case MenuMode.TITLE:
+					uiWidth = MENU_TITLE_W;
+					uiHeight = MENU_TITLE_H;
+					uiCoords = MENU_TITLE_COORDS;
+					return;
 #if VERSION_INITIAL
 			case MenuMode.CHARACTER_SELECT:
 				uiWidth = MENU_SELECT_W;
@@ -1651,72 +1754,72 @@ namespace Terraria
 				initCharacterSelectCoordinates();
 				return;
 #endif
-			case MenuMode.CONFIRM_LEAVE_CREATE_CHARACTER:
-			case MenuMode.CONFIRM_DELETE_CHARACTER:
-			case MenuMode.CONFIRM_DELETE_WORLD:
-				uiWidth = MENU_CONFIRM_DELETE_W;
-				uiHeight = MENU_CONFIRM_DELETE_H;
-				uiCoords = MENU_CONFIRM_DELETE_COORDS;
-				return;
-			case MenuMode.VOLUME:
-				soundUI.UpdateVolumes();
-				break;
-			case MenuMode.WORLD_SIZE:
-				uiWidth = MENU_WORLD_SIZE_W;
-				uiHeight = MENU_WORLD_SIZE_H;
-				uiCoords = MENU_WORLD_SIZE_COORDS;
-				return;
-			case MenuMode.OPTIONS:
-				uiWidth = MENU_OPTIONS_W;
-				uiHeight = MENU_OPTIONS_H;
-				uiCoords = MENU_OPTIONS_COORDS;
-				return;
-			case MenuMode.SETTINGS:
-				uiWidth = MENU_SETTINGS_W;
-				uiHeight = MENU_SETTINGS_H;
-				uiCoords = MENU_SETTINGS_COORDS;
-				return;
-			case MenuMode.STATUS_SCREEN:
-			case MenuMode.NETPLAY:
-				Progress = 0f;
-				progressTotal = 0f;
-				uiWidth = 0;
-				uiHeight = 1;
-				uiCoords = null;
-				statusText = null;
-				return;
-			case MenuMode.WORLD_SELECT:
-				if (Netplay.availableSessions.Count == 0 && !Netplay.IsFindingSessions())
-				{
-					Netplay.FindSessions();
-				}
-				break;
-			case MenuMode.ERROR:
-				if (Main.WorldGenThread != null)
-				{
+				case MenuMode.CONFIRM_LEAVE_CREATE_CHARACTER:
+				case MenuMode.CONFIRM_DELETE_CHARACTER:
+				case MenuMode.CONFIRM_DELETE_WORLD:
+					uiWidth = MENU_CONFIRM_DELETE_W;
+					uiHeight = MENU_CONFIRM_DELETE_H;
+					uiCoords = MENU_CONFIRM_DELETE_COORDS;
+					return;
+				case MenuMode.VOLUME:
+					soundUI.UpdateVolumes();
+					break;
+				case MenuMode.WORLD_SIZE:
+					uiWidth = MENU_WORLD_SIZE_W;
+					uiHeight = MENU_WORLD_SIZE_H;
+					uiCoords = MENU_WORLD_SIZE_COORDS;
+					return;
+				case MenuMode.OPTIONS:
+					uiWidth = MENU_OPTIONS_W;
+					uiHeight = MENU_OPTIONS_H;
+					uiCoords = MENU_OPTIONS_COORDS;
+					return;
+				case MenuMode.SETTINGS:
+					uiWidth = MENU_SETTINGS_W;
+					uiHeight = MENU_SETTINGS_H;
+					uiCoords = MENU_SETTINGS_COORDS;
+					return;
+				case MenuMode.STATUS_SCREEN:
+				case MenuMode.NETPLAY:
+					Progress = 0f;
+					progressTotal = 0f;
+					uiWidth = 0;
+					uiHeight = 1;
+					uiCoords = null;
+					statusText = null;
+					return;
+				case MenuMode.WORLD_SELECT:
+					if (Netplay.availableSessions.Count == 0 && !Netplay.IsFindingSessions())
+					{
+						Netplay.FindSessions();
+					}
+					break;
+				case MenuMode.ERROR:
+					if (Main.WorldGenThread != null)
+					{
 						Main.WorldGenThread.Abort();
 						Main.WorldGenThread = null;
 						WorldGen.Gen = false;
-				}
-				break;
-			case MenuMode.MAP:
-				worldFadeTarget = 0.375f;
-				uiFade = 0f;
-				uiFadeTarget = 1f;
-				break;
-			case MenuMode.CREDITS:
-				Credits.Init();
-				break;
-			case MenuMode.QUIT:
-				MessageBox.Show(controller, Lang.MenuText[15], Lang.InterfaceText[35], new string[2]
-				{
+					}
+					break;
+				case MenuMode.MAP:
+					worldFadeTarget = 0.375f;
+					uiFade = 0f;
+					uiFadeTarget = 1f;
+					break;
+				case MenuMode.CREDITS:
+					Credits.Init();
+					break;
+				case MenuMode.QUIT:
+					MessageBox.Show(controller, Lang.MenuText[15], Lang.InterfaceText[35], new string[2]
+					{
 					Lang.MenuText[105],
 					Lang.MenuText[104]
-				}, ShouldAutoUpdate: false);
-				break;
-			case MenuMode.UPSELL:
-				theGame.LoadUpsell();
-				break;
+					}, ShouldAutoUpdate: false);
+					break;
+				case MenuMode.UPSELL:
+					theGame.LoadUpsell();
+					break;
 			}
 			uiWidth = 0;
 			uiHeight = 0;
@@ -1919,10 +2022,10 @@ namespace Terraria
 			int ChatBackTexSize = 500;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.15f);
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.534f);
 					break;
 			}
@@ -2299,6 +2402,9 @@ namespace Terraria
 			{
 				menuString[0] = Lang.MenuText[112];
 				int num2 = 1;
+#if !USE_ORIGINAL_CODE
+				bool AlreadyOpen = false;
+#endif
 				if (Main.IsTrial)
 				{
 					menuString[num2] = Lang.MenuText[109];
@@ -2425,6 +2531,17 @@ namespace Terraria
 							}
 						}
 						while (flag3);
+#else
+						if (!AlreadyOpen)
+						{
+							AlreadyOpen = true;
+							Main.PlaySound(12);
+							Process.Start("http://www.terraria.org");
+						}
+						else
+						{
+							Main.PlaySound(11);
+						}
 #endif
 					}
 				}
@@ -2851,7 +2968,7 @@ namespace Terraria
 					{
 						Guide.ShowSignIn(1, this != MainUI && Main.NetMode != (byte)NetModeSetting.LOCAL);
 						CurMenuMode = MenuMode.SIGN_IN;
-                    }
+					}
 					catch (GuideAlreadyVisibleException)
 					{
 					}
@@ -2867,13 +2984,13 @@ namespace Terraria
 						{
 							if (signedInGamer2.PlayerIndex == controller)
 							{
-                                SignedInGamer = signedInGamer2;
+								SignedInGamer = signedInGamer2;
 #if USE_ORIGINAL_CODE
 								SignedInGamer.Presence.SetPresenceModeString("Menu");
 #else
-                                SignedInGamer.Presence.SetPresenceModeStringEXT("Menu");
+								SignedInGamer.Presence.SetPresenceModeStringEXT("Menu");
 #endif
-                                InitPlayerStorage();
+								InitPlayerStorage();
 								break;
 							}
 						}
@@ -2993,7 +3110,7 @@ namespace Terraria
 				menuTop = 200;
 
 #if !USE_ORIGINAL_CODE
-				if (Main.ScreenHeightPtr == 2)
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 				{
 					menuTop -= 10;
 				}
@@ -3029,7 +3146,7 @@ namespace Terraria
 				else if (selectedMenu > 0)
 				{
 					Main.PlaySound(10); // This is moved below the if statements before the 1.0 patch for some reason
-                    if (selectedMenu == 1)
+					if (selectedMenu == 1)
 					{
 						Main.MaxTilesX = Main.SmallWorldW;
 						Main.MaxTilesY = Main.SmallWorldH;
@@ -3165,11 +3282,11 @@ namespace Terraria
 			int IconY = 304;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.15f);
 					IconY = 371;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.5f);
 					IconY = 572;
 					break;
@@ -3216,14 +3333,14 @@ namespace Terraria
 			int WrapWidth = 470;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.15f);
 					PosY = 600f;
 					WrapWidth = 548;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.534f);
-					PosY = 960f;
+					PosY = 920f;
 					WrapWidth = 705;
 					break;
 			}
@@ -3284,18 +3401,7 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 				int num5 = 464 - CurrentView.SafeAreaOffsetBottom;
 #else
-				float Offset = CurrentView.SafeAreaOffsetBottom;
-				switch (Main.ScreenHeightPtr)
-				{
-					case 1:
-						Offset = -7.39f;
-						break;
-
-					case 2:
-						Offset = -32;
-						break;
-				}
-				int num5 = (int)((464 * Main.ScreenMultiplier) - Offset);
+				int num5 = Main.ResolutionHeight - 76 - CurrentView.SafeAreaOffsetBottom; // Buggered this up the first time, here's the correct one.
 #endif
 				CurrentView.Ui.DrawInventoryCursor(num3, num5, 1.0);
 				if (alternateGrappleControls)
@@ -3303,6 +3409,7 @@ namespace Terraria
 					SpriteSheet<_sheetSprites>.Draw((int)_sheetSprites.ID.CHECK, num3 + 10, num5 + 10, Color.White);
 				}
 				DrawStringLC(SmallFont, Lang.InterfaceText[24], num3 + 60, num5 + 26, Color.White);
+
 				//------------------------------	Mockup of how 1.2.4's extra controls need to look like.
 				/*
 				num5 += 32 * 2;
@@ -3323,7 +3430,6 @@ namespace Terraria
 				*/
 				//------------------------------
 
-
 				ControlDesc[] array = Lang.Controls();
 				for (int num6 = array.Length - 1; num6 >= 0; num6--)
 				{
@@ -3337,31 +3443,31 @@ namespace Terraria
 					string text = array[num6].Label;
 					switch (num6)
 					{
-					case 0:
-						if (alternateGrappleControls)
-						{
-							text = array[9].Label;
-						}
-						break;
+						case 0:
+							if (alternateGrappleControls)
+							{
+								text = array[9].Label;
+							}
+							break;
 #if !USE_ORIGINAL_CODE
-					case 4:
-						if (Main.PSMode)
-						{
-							text = array[5].Label;
-							text = ((!alternateGrappleControls) ? (text + array[9].Label) : (text + array[0].Label));
-						}
-						break;
+						case 4:
+							if (Main.PSMode)
+							{
+								text = array[5].Label;
+								text = ((!alternateGrappleControls) ? (text + array[9].Label) : (text + array[0].Label));
+							}
+							break;
 
-					case 5:
-						if (Main.PSMode)
-						{
-							text = array[4].Label;
-						}
-						else
-						{
-							text = ((!alternateGrappleControls) ? (text + array[9].Label) : (text + array[0].Label));
-						}
-						break;
+						case 5:
+							if (Main.PSMode)
+							{
+								text = array[4].Label;
+							}
+							else
+							{
+								text = ((!alternateGrappleControls) ? (text + array[9].Label) : (text + array[0].Label));
+							}
+							break;
 #else
 					case 5:
 						text = ((!alternateGrappleControls) ? (text + array[9].Label) : (text + array[0].Label));
@@ -3429,22 +3535,46 @@ namespace Terraria
 			else if (CurMenuMode == MenuMode.WELCOME)
 			{
 				string text2 = Lang.MenuText[52];
-				if (text2 == null)
+
+#if !USE_ORIGINAL_CODE
+				// Bit of a hacky fix to get this working, but it seems the PS4/XB1 versions have a modified DrawString in its framework which allows for specific characters to ignore colour?
+				// This has resulted in the below checks. Using values obtained from those versions, this allows for a replicated result without modifying FNA.
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 				{
-					text2 = "";
+					text2 = $"Press {Lang.StartButton}";
 				}
+#endif
+
 				SpriteFont spriteFont = BigFont;
 				Vector2 value2 = spriteFont.MeasureString(text2);
 				Vector2 origin = value2 * 0.5f;
 #if USE_ORIGINAL_CODE
 				Vector2 position2 = new Vector2(Main.ResolutionWidth / 2, 460f);
-#else
-				Vector2 position2 = new Vector2(Main.ResolutionWidth / 2, PosY);
-#endif
 				float num9 = 0.75f;
 				num9 *= 1f + cursorAlpha * 0.1f;
 				Color color = new Color(CursorColour.A, CursorColour.A, 100, 255);
 				Main.SpriteBatch.DrawString(spriteFont, text2, position2, color, 0f, origin, num9, SpriteEffects.None, 0f);
+#else
+				Vector2 position2 = new Vector2(Main.ResolutionWidth / 2, PosY);
+				float num9 = 0.75f;
+				num9 *= 1f + cursorAlpha * 0.1f;
+				Color color = new Color(CursorColour.A, CursorColour.A, 100, 255);
+
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
+				{
+					text2 = "Press ";
+					Main.SpriteBatch.DrawString(spriteFont, text2, position2, color, 0f, origin, num9, SpriteEffects.None, 0f);
+
+					text2 = $"  {Lang.StartButton}";
+					origin.X -= (Main.PSMode ? 339 : 318) * 0.5f;
+					color = Color.White;
+					Main.SpriteBatch.DrawString(spriteFont, text2, position2, color, 0f, origin, num9, SpriteEffects.None, 0f);
+				}
+				else
+				{
+					Main.SpriteBatch.DrawString(spriteFont, text2, position2, color, 0f, origin, num9, SpriteEffects.None, 0f);
+				}
+#endif
 			}
 			else if (CurMenuMode == MenuMode.LEADERBOARDS)
 			{
@@ -3657,9 +3787,9 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 						signedInGamer2.Presence.SetPresenceModeString("Menu");
 #else
-                        signedInGamer2.Presence.SetPresenceModeStringEXT("Menu");
+						signedInGamer2.Presence.SetPresenceModeStringEXT("Menu");
 #endif
-                        InitPlayerStorage();
+						InitPlayerStorage();
 						return;
 					}
 					SignedInGamer = null;
@@ -3699,7 +3829,7 @@ namespace Terraria
 #endif
 		}
 
-        public void ShowParty()
+		public void ShowParty()
 		{
 			if (!CanPlayOnline() || Guide.IsVisible)
 			{
@@ -3766,10 +3896,10 @@ namespace Terraria
 			float ScaleMultiplier = 1f;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ScaleMultiplier = 1.15f;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ScaleMultiplier = 1.5f;
 					break;
 			}
@@ -3842,85 +3972,85 @@ namespace Terraria
 			{
 				switch (CurMenuMode)
 				{
-				case MenuMode.WAITING_SCREEN:
-				case MenuMode.NETPLAY:
-				case MenuMode.ERROR:
-				case MenuMode.LOAD_FAILED_NO_BACKUP:
-				case MenuMode.CREDITS:
+					case MenuMode.WAITING_SCREEN:
+					case MenuMode.NETPLAY:
+					case MenuMode.ERROR:
+					case MenuMode.LOAD_FAILED_NO_BACKUP:
+					case MenuMode.CREDITS:
 #if !USE_ORIGINAL_CODE
-				case MenuMode.ACHIEVEMENTS:
+					case MenuMode.ACHIEVEMENTS:
 #endif
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK));
-					break;
-				case MenuMode.MAP:
+						break;
+					case MenuMode.MAP:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.MOVE_MAP));
 						Main.StrBuilder.Append(' ');
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.ZOOM));
 						Main.StrBuilder.Append(' ');
-					if (mapScreenCursorY >= 2)
-					{
-						if (CanViewGamerCard() && Netplay.Session != null)
+						if (mapScreenCursorY >= 2)
 						{
-							GamerCollection<NetworkGamer> allGamers = Netplay.Session.AllGamers;
-							int num = mapScreenCursorY - 2;
-							if (num < ((ReadOnlyCollection<NetworkGamer>)(object)allGamers).Count)
+							if (CanViewGamerCard() && Netplay.Session != null)
 							{
+								GamerCollection<NetworkGamer> allGamers = Netplay.Session.AllGamers;
+								int num = mapScreenCursorY - 2;
+								if (num < ((ReadOnlyCollection<NetworkGamer>)(object)allGamers).Count)
+								{
 									Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SHOW_GAMERCARD));
 									Main.StrBuilder.Append(' ');
+								}
 							}
 						}
-					}
-					else if (mapScreenCursorX == 0)
-					{
+						else if (mapScreenCursorX == 0)
+						{
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.TOGGLE_PVP));
 							Main.StrBuilder.Append(' ');
-					}
-					else
-					{
+						}
+						else
+						{
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SELECT_TEAM));
 							Main.StrBuilder.Append(' ');
-					}
+						}
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK));
-					if (Netplay.gamer != null && Main.NetMode > 0)
-					{
-						if (CanCommunicate())
+						if (Netplay.gamer != null && Main.NetMode > 0)
 						{
+							if (CanCommunicate())
+							{
 								Main.StrBuilder.Append(' ');
 								Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.INVITE_PLAYER));
-						}
-						if (SignedInGamer.PartySize > 1)
-						{
+							}
+							if (SignedInGamer.PartySize > 1)
+							{
 								Main.StrBuilder.Append(' ');
 								Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.INVITE_PARTY));
+							}
 						}
-					}
-					break;
-				case MenuMode.TITLE:
+						break;
+					case MenuMode.TITLE:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SELECT));
-					if (playerStorage != null)
-					{
+						if (playerStorage != null)
+						{
 							Main.StrBuilder.Append(' ');
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.CHANGE_STORAGE));
-					}
-					if (CanPlayOnline())
-					{
+						}
+						if (CanPlayOnline())
+						{
 							Main.StrBuilder.Append(' ');
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SHOW_PARTY));
-					}
-					break;
-				case MenuMode.CREATE_CHARACTER:
-					CreateCharacterGUI.ControlDescription(Main.StrBuilder);
-					break;
-				case MenuMode.VOLUME:
-					soundUI.ControlDescription(Main.StrBuilder);
-					break;
-				case MenuMode.HOW_TO_PLAY:
-					howtoUI.ControlDescription(Main.StrBuilder);
-					break;
-				case MenuMode.LEADERBOARDS:
-					Leaderboards.ControlDescription(Main.StrBuilder);
-					break;
-				case MenuMode.CHARACTER_SELECT:
+						}
+						break;
+					case MenuMode.CREATE_CHARACTER:
+						CreateCharacterGUI.ControlDescription(Main.StrBuilder);
+						break;
+					case MenuMode.VOLUME:
+						soundUI.ControlDescription(Main.StrBuilder);
+						break;
+					case MenuMode.HOW_TO_PLAY:
+						howtoUI.ControlDescription(Main.StrBuilder);
+						break;
+					case MenuMode.LEADERBOARDS:
+						Leaderboards.ControlDescription(Main.StrBuilder);
+						break;
+					case MenuMode.CHARACTER_SELECT:
 #if VERSION_INITIAL
 					Terraria.Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SELECT));
 					if (Netplay.gamersWhoReceivedInvite.Count < 2 || !Netplay.gamersWhoReceivedInvite.Contains(SignedInGamer))
@@ -3934,45 +4064,49 @@ namespace Terraria
 						Terraria.Main.StrBuilder.Append(Lang.MenuText[17]); // Delete
 					}
 #else
-					CharacterSelect.ControlDescription(Main.StrBuilder);
+						CharacterSelect.ControlDescription(Main.StrBuilder);
 #endif
-					break;
-				case MenuMode.WORLD_SELECT:
-					WorldSelect.ControlDescription(Main.StrBuilder);
-					break;
-				case MenuMode.UPSELL:
+						break;
+					case MenuMode.WORLD_SELECT:
+						WorldSelect.ControlDescription(Main.StrBuilder);
+						break;
+					case MenuMode.UPSELL:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.EXIT));
 						Main.StrBuilder.Append(' ');
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK_TO_GAME));
-					if (SignedInGamer.Privileges.AllowPurchaseContent)
-					{
+						if (SignedInGamer.Privileges.AllowPurchaseContent)
+						{
 							Main.StrBuilder.Append(' ');
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.UNLOCK_FULL_GAME));
-					}
-					break;
-				case MenuMode.CONTROLS:
+						}
+						break;
+					case MenuMode.CONTROLS:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.TOGGLE_GRAPPLE_MODE));
 						Main.StrBuilder.Append(' ');
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK));
-					break;
-				case MenuMode.PAUSE:
+						break;
+					case MenuMode.PAUSE:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SELECT));
 						Main.StrBuilder.Append(' ');
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK));
-					if (Main.NetMode == (byte)NetModeSetting.CLIENT)
-					{
+						if (Main.NetMode == (byte)NetModeSetting.CLIENT)
+						{
 							Main.StrBuilder.Append(' ');
 							Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BLACKLIST));
-					}
-					break;
-				default:
+						}
+#if !USE_ORIGINAL_CODE
+						Main.StrBuilder.Append(' ');
+						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.ZOOM));
+#endif
+						break;
+					default:
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.SELECT));
 						Main.StrBuilder.Append(' ');
 						Main.StrBuilder.Append(Lang.Controls(Lang.CONTROLS.BACK));
-					break;
-				case MenuMode.WELCOME:
-				case MenuMode.STATUS_SCREEN:
-					break;
+						break;
+					case MenuMode.WELCOME:
+					case MenuMode.STATUS_SCREEN:
+						break;
 				}
 #if !USE_ORIGINAL_CODE
 				if (Main.HardmodeAlert)
@@ -3989,41 +4123,42 @@ namespace Terraria
 #if !USE_ORIGINAL_CODE
 			if (CurMenuMode == MenuMode.WELCOME) // ADDITION: To make use of the version string provided and to assist with identifying built versions, this code will draw a version string.
 			{
-				string VersionString = "Version: ";
-
+				string GameVersion;
 				// All version strings all start with X360, which is due to TerrariaOGC being based off of that version, with the PS3, HD, and version changes being added from what I have decompiled.
 
 				switch (Main.VersionNumber) // Yeah, the IDE thinks it unnecessary, but whenever the user changes the version being built, it will adapt on-the-fly.
 				{
 					case "Xbox360 v0.7.6":
-						VersionString += "X360 1.0 (Initial 1.1.2)";
+						GameVersion = "X360 1.0 - Initial";
 						break;
 
 					case "Xbox360 v0.7.8":
-						VersionString += "X360 1.0 (Patched 1.1.2)";
+						GameVersion = "X360 1.0 - Patched";
 						break;
 
 					case "Xbox360 v1.01": // This and below are entirely custom, since versions past Patched 1.0 no longer included the version number string, indicating it was removed entirely.
-						VersionString += "X360 1.01 (1.1.2 Plus)";
+						GameVersion = "X360 1.01";
 						break;
 
 					case "Xbox360 v1.03":
-						VersionString += "X360 1.03 (1.2.1.2)";
+						GameVersion = "X360 1.03";
 						break;
 
 					case "Xbox360 v1.09":
-						VersionString += "X360 1.09 (Final 1.2.4.1)";
+						GameVersion = "X360 1.09";
 						break;
 
 					default:
-						VersionString += "Custom (Custom)";
+						GameVersion = "Custom";
 						break;
 				}
 
-				Vector2 StringVector = BoldSmallFont.MeasureString(VersionString);
-				int StringX = Main.ResolutionWidth - CurrentView.SafeAreaOffsetLeft;
-				int StringY = CurrentView.SafeAreaOffsetBottom;
-				Main.SpriteBatch.DrawString(BoldSmallFont, VersionString, new Vector2(StringX - StringVector.X, Main.ResolutionHeight - StringY), Color.White, 0f, new Vector2(0f, StringVector.Y), (NumActiveViews <= 1) ? 1 : 2, SpriteEffects.None, 0f);
+				string Version = $"Version: {GameVersion}";
+				Vector2 OGCVector = BoldSmallFont.MeasureString(Main.OGCVersion);
+				int StringY = Main.ResolutionHeight - CurrentView.SafeAreaOffsetBottom;
+				float Scale = (NumActiveViews <= 1) ? TextScale : (TextScale * 2);
+				Main.SpriteBatch.DrawString(BoldSmallFont, Version, new Vector2(CurrentView.SafeAreaOffsetLeft, StringY), Color.White, 0f, new Vector2(0f, BoldSmallFont.MeasureString(Version).Y), Scale, SpriteEffects.None, 0f);
+				Main.SpriteBatch.DrawString(BoldSmallFont, Main.OGCVersion, new Vector2(Main.ResolutionWidth - CurrentView.SafeAreaOffsetRight - OGCVector.X, StringY), Color.White, 0f, new Vector2(0f, OGCVector.Y), Scale, SpriteEffects.None, 0f);
 			}
 #endif
 
@@ -4035,7 +4170,7 @@ namespace Terraria
 
 		private void DrawHud()
 		{
-			Vector2 pos = default(Vector2);
+			Vector2 pos = default;
 			Color c = new Color(128, 128, 128, 128);
 			for (int i = 1; i < ActivePlayer.StatLifeMax / 20 + 1; i++)
 			{
@@ -4170,7 +4305,7 @@ namespace Terraria
 				{
 					num16 += ActivePlayer.pet;
 				}
-				if (Main.ScreenHeightPtr == 0)
+				if (Main.ScreenHeightPtr == ScreenHeights.BASE)
 				{
 					SpriteSheet<_sheetSprites>.Draw(num16, x, num15, c);
 				}
@@ -4194,12 +4329,12 @@ namespace Terraria
 #if !USE_ORIGINAL_CODE
 					switch (Main.ScreenHeightPtr)
 					{
-						case 1:
+						case ScreenHeights.HD:
 							x -= 24;
 							num15 -= 10;
 							break;
 
-						case 2:
+						case ScreenHeights.FHD:
 							x -= 38;
 							num15 += 4;
 							break;
@@ -4320,11 +4455,11 @@ namespace Terraria
 						int Multiplier = 22;
 						switch (Main.ScreenHeightPtr)
 						{
-							case 1:
+							case ScreenHeights.HD:
 								Multiplier = 25;
 								break;
 
-							case 2: 
+							case ScreenHeights.FHD:
 								Multiplier = 33;
 								break;
 						}
@@ -4342,12 +4477,12 @@ namespace Terraria
 			float SP = 1f;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					MP = 1.40625f;
 					SP = 1.15f;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					MP = 1.875f;
 					SP = 1.534f;
 					break;
@@ -4498,7 +4633,7 @@ namespace Terraria
 #endif
 #endif
 
-			Vector2 pos = default(Vector2);
+			Vector2 pos = default;
 			pos.X = x + 26f * inventoryScale;
 			pos.Y = y + 26f * inventoryScale;
 			SpriteSheet<_sheetSprites>.DrawScaled(num, ref pos, item.GetAlphaInventory(itemColor), num2);
@@ -4508,11 +4643,11 @@ namespace Terraria
 			}
 			switch (stackType)
 			{
-			case StackType.INGREDIENT:
-				DrawIngredientStack(ref item, x, y, itemColor);
-				return;
-			case StackType.NONE:
-				return;
+				case StackType.INGREDIENT:
+					DrawIngredientStack(ref item, x, y, itemColor);
+					return;
+				case StackType.NONE:
+					return;
 			}
 			DrawInventoryItemStack(ref item, x, y, ref itemColor);
 			if (stackType != StackType.HOTBAR)
@@ -4532,7 +4667,7 @@ namespace Terraria
 						num3 += ActivePlayer.Inventory[i].Stack;
 					}
 				}
-				DrawStringScaled(ItemStackFont, num3.ToStringLookup(), new Vector2((float)(x + FONT_STACK_EXTRA_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
+				DrawStringScaled(ItemStackFont, num3.ToStringLookup(), new Vector2((float)(x + FONT_STACK_X_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
 			}
 			else if (item.Type == (int)Item.ID.WRENCH)
 			{
@@ -4544,15 +4679,15 @@ namespace Terraria
 						num4 += ActivePlayer.Inventory[j].Stack;
 					}
 				}
-				DrawStringScaled(ItemStackFont, num4.ToStringLookup(), new Vector2((float)(x + FONT_STACK_EXTRA_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
+				DrawStringScaled(ItemStackFont, num4.ToStringLookup(), new Vector2((float)(x + FONT_STACK_X_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
 			}
 #else
 			float StringScale = inventoryScale;
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				StringScale *= 0.5f;
 				StringScale -= 0.1f;
-				y += 7;
+				y += FONT_STACK_Y_OFFSET;
 			}
 
 			if (useAmmo > 0)
@@ -4565,7 +4700,7 @@ namespace Terraria
 						num3 += ActivePlayer.Inventory[i].Stack;
 					}
 				}
-				DrawStringScaled(ItemStackFont, num3.ToStringLookup(), new Vector2(x + FONT_STACK_EXTRA_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default(Vector2), StringScale + 0.1f);
+				DrawStringScaled(ItemStackFont, num3.ToStringLookup(), new Vector2(x + FONT_STACK_X_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default, StringScale + 0.1f);
 			}
 			else if (item.Type == (int)Item.ID.WRENCH)
 			{
@@ -4577,7 +4712,7 @@ namespace Terraria
 						num4 += ActivePlayer.Inventory[j].Stack;
 					}
 				}
-				DrawStringScaled(ItemStackFont, num4.ToStringLookup(), new Vector2(x + FONT_STACK_EXTRA_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default(Vector2), StringScale + 0.1f);
+				DrawStringScaled(ItemStackFont, num4.ToStringLookup(), new Vector2(x + FONT_STACK_X_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default, StringScale + 0.1f);
 			}
 #endif
 			if (item.IsPotion)
@@ -4596,16 +4731,24 @@ namespace Terraria
 			if (item.Stack > 1)
 			{
 #if USE_ORIGINAL_CODE
-				DrawStringScaled(ItemStackFont, item.Stack.ToStringLookup(), new Vector2((float)(x + FONT_STACK_EXTRA_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
+				DrawStringScaled(ItemStackFont, item.Stack.ToStringLookup(), new Vector2((float)(x + FONT_STACK_X_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale + 0.1f);
 #else
 				float StringScale = inventoryScale;
-				if (Main.ScreenHeightPtr == 2)
+				SpriteFont StackFont = ItemStackFont;
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 				{
 					StringScale *= 0.5f;
-					StringScale -= 0.1f;
-					y += 7;
+
+					if (!MainUI.CurrentView.IsFullScreen() && NumActiveViews > 1)
+					{
+						StackFont = BoldSmallFont;
+						StringScale = 1f;
+						y -= 15;
+					}
+
+					y += FONT_STACK_Y_OFFSET;
 				}
-				DrawStringScaled(ItemStackFont, item.Stack.ToStringLookup(), new Vector2(x + FONT_STACK_EXTRA_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default(Vector2), StringScale + 0.1f);
+				DrawStringScaled(StackFont, item.Stack.ToStringLookup(), new Vector2(x + FONT_STACK_X_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default, StringScale + 0.1f);
 #endif
 			}
 		}
@@ -4622,15 +4765,15 @@ namespace Terraria
 			}
 
 #if USE_ORIGINAL_CODE
-			DrawStringScaled(ItemStackFont, new Vector2((float)(x + FONT_STACK_EXTRA_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale - 0.1f);
+			DrawStringScaled(ItemStackFont, new Vector2((float)(x + FONT_STACK_X_OFFSET) + 10f * inventoryScale, (float)y + 26f * inventoryScale), itemColor, default(Vector2), inventoryScale - 0.1f);
 #else
 			float StringScale = inventoryScale;
-			if (Main.ScreenHeightPtr == 2)
+			if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 			{
 				StringScale *= 0.5f;
-				y += 7;
+				y += FONT_STACK_Y_OFFSET;
 			}
-			DrawStringScaled(ItemStackFont, new Vector2(x + FONT_STACK_EXTRA_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default(Vector2), StringScale - 0.1f);
+			DrawStringScaled(ItemStackFont, new Vector2(x + FONT_STACK_X_OFFSET + 10f * inventoryScale, y + 26f * inventoryScale), itemColor, default, StringScale - 0.1f);
 #endif
 		}
 
@@ -4640,7 +4783,7 @@ namespace Terraria
 			{
 				CurrentView.DrawNPCHouse();
 			}
-			Vector2 pos = default(Vector2);
+			Vector2 pos = default;
 			if (ActivePlayer.rulerAcc)
 			{
 				CurrentView.DrawGrid();
@@ -4671,13 +4814,13 @@ namespace Terraria
 					Player player = Main.PlayerSet[num3];
 					if (player.Active != 0 && !player.IsDead && !player.XYWH.Intersects(CurrentView.ViewArea) && (ActivePlayer.team == 0 || player.team == 0 || ActivePlayer.team == player.team))
 					{
-						Vector2 a = default(Vector2);
-						Vector2 a2 = default(Vector2);
+						Vector2 a = default;
+						Vector2 a2 = default;
 						a.X = CurrentView.ViewWidth >> 1;
 						a.Y = Main.ResolutionHeight / 2;
 						a2.X = player.XYWH.X + (Player.width / 2) - CurrentView.ScreenPosition.X;
 						a2.Y = player.XYWH.Y + (Player.height / 2) - CurrentView.ScreenPosition.Y;
-						Vector2 intersection = default(Vector2);
+						Vector2 intersection = default;
 						bool flag = false;
 						int sAFE_AREA_OFFSET_L = CurrentView.SafeAreaOffsetLeft;
 						int num4 = CurrentView.ViewWidth - CurrentView.SafeAreaOffsetRight - 40;
@@ -4733,7 +4876,28 @@ namespace Terraria
 			{
 				CloseInventory();
 				string s = Lang.InterfaceText[38];
-				DrawStringCC(BigFont, s, CurrentView.ViewWidth >> 1, Main.ResolutionHeight / 2, ActivePlayer.GetDeathAlpha(default(Color)));
+				int DeathX = CurrentView.ViewWidth >> 1;
+				int DeathY = Main.ResolutionHeight / 2;
+				Color DeathAlpha = ActivePlayer.GetDeathAlpha(default);
+
+#if VERSION_103 || VERSION_FINAL
+				// Console 1.2 added a cool effect to the 'You were slain' text that appears upon death where it adds violently shaking after-images of the text.
+				int AdjustX = 0;
+				int AdjustY = 0;
+				float Delta = 0.15f;
+
+				for (int i = 0; i < 11; ++i)
+				{
+					AdjustX += Main.Rand.Next(-3, 4);
+					AdjustY += Main.Rand.Next(-3, 4);
+					Color DeathShade = DeathAlpha * Delta;
+					Delta -= 0.015f;
+
+					DrawStringCC(BigFont, s, DeathX + AdjustX, DeathY + AdjustY, DeathShade);
+				}
+#endif
+
+				DrawStringCC(BigFont, s, DeathX, DeathY, DeathAlpha);
 				return;
 			}
 			if (InventoryMode != 0)
@@ -4762,7 +4926,7 @@ namespace Terraria
 				}
 				ActivePlayer.npcChatBubble = -1;
 				int num9 = 10496;
-				Rectangle value2 = default(Rectangle);
+				Rectangle value2 = default;
 				Point center = rectangle.Center;
 				for (int j = 0; j < NPC.MaxNumNPCs; j++)
 				{
@@ -5276,7 +5440,7 @@ namespace Terraria
 			}
 			else
 			{
-				gpPrevState = (PadState = (PadState = default(GamePadState)));
+				gpPrevState = (PadState = (PadState = default));
 			}
 		}
 
@@ -5446,7 +5610,13 @@ namespace Terraria
 
 		public bool IsBackButtonTriggered()
 		{
-			if (!PadState.IsButtonDown(Buttons.Back) || !gpPrevState.IsButtonUp(Buttons.Back))
+#if USE_ORIGINAL_CODE
+			Buttons Primary = Buttons.Back;
+#else
+			Buttons Primary = Main.TouchpadButton ? Buttons.Start : Buttons.Back;
+#endif
+
+			if (!PadState.IsButtonDown(Primary) || !gpPrevState.IsButtonUp(Primary))
 			{
 				if (PadState.IsButtonDown(Buttons.B))
 				{
@@ -5459,7 +5629,13 @@ namespace Terraria
 
 		public bool IsSelectButtonTriggered()
 		{
-			if (!PadState.IsButtonDown(Buttons.Start) || !gpPrevState.IsButtonUp(Buttons.Start))
+#if USE_ORIGINAL_CODE
+			Buttons Primary = Buttons.Start;
+#else
+			Buttons Primary = Main.TouchpadButton ? Buttons.TouchPadEXT : Buttons.Start;
+#endif
+
+			if (!PadState.IsButtonDown(Primary) || !gpPrevState.IsButtonUp(Primary))
 			{
 				if (PadState.IsButtonDown(Buttons.A))
 				{
@@ -5552,6 +5728,7 @@ namespace Terraria
 			return true;
 		}
 
+#if USE_ORIGINAL_CODE
 		public bool IsButtonDown(Buttons b)
 		{
 			return PadState.IsButtonDown(b);
@@ -5574,6 +5751,52 @@ namespace Terraria
 			}
 			return false;
 		}
+#else
+		public bool IsButtonDown(Buttons b)
+		{
+			b = TouchpadSwap(b);
+			return PadState.IsButtonDown(b);
+		}
+
+		public bool IsButtonTriggered(Buttons b)
+		{
+			b = TouchpadSwap(b);
+			if (PadState.IsButtonDown(b))
+			{
+				return gpPrevState.IsButtonUp(b);
+			}
+			return false;
+		}
+
+		public bool IsButtonUntriggered(Buttons b)
+		{
+			b = TouchpadSwap(b);
+			if (PadState.IsButtonUp(b))
+			{
+				return gpPrevState.IsButtonDown(b);
+			}
+			return false;
+		}
+
+		private Buttons TouchpadSwap(Buttons b)
+		{
+			if (Main.TouchpadButton)
+			{
+				Buttons OldButton = b;
+				switch (OldButton)
+				{
+					case Buttons.Start:
+						b = Buttons.TouchPadEXT;
+						break;
+
+					case Buttons.Back:
+						b = Buttons.Start;
+						break;
+				}
+			}
+			return b;
+		}
+#endif
 
 		private void DrawCursor()
 		{
@@ -5601,11 +5824,11 @@ namespace Terraria
 			{
 				cursorHighlight -= 2;
 			}
-			Rectangle value = default(Rectangle);
+			Rectangle value = default;
 			value.Y = (int)(Main.FrameCounter & 16);
 			value.Width = 16;
 			value.Height = 16;
-			Vector2 vector = default(Vector2);
+			Vector2 vector = default;
 			if (!UsingSmartCursor)
 			{
 				value.X = 16;
@@ -5677,7 +5900,7 @@ namespace Terraria
 			Main.ShowSaveIcon();
 			Main.HideSaveIcon();
 #endif
-        }
+		}
 
 		public void DeleteTransferredPlayerStorage()
 		{
@@ -6507,15 +6730,15 @@ namespace Terraria
 					{
 						switch (inventoryChestY)
 						{
-						case 1:
+							case 1:
 								Main.StrBuilder.Append(Lang.InterfaceText[29]);
-							break;
-						case 2:
+								break;
+							case 2:
 								Main.StrBuilder.Append(Lang.InterfaceText[30]);
-							break;
-						case 3:
+								break;
+							case 3:
 								Main.StrBuilder.Append(Lang.InterfaceText[31]);
-							break;
+								break;
 						}
 						Main.StrBuilder.Append(' ');
 					}
@@ -6539,30 +6762,30 @@ namespace Terraria
 				{
 					switch (inventoryEquipY)
 					{
-					case 0:
-						flag = mouseItem.HeadSlot >= 0;
-						break;
-					case 1:
-						flag = mouseItem.BodySlot >= 0;
-						break;
-					case 2:
-						flag = mouseItem.LegSlot >= 0;
-						break;
-					default:
-						flag = mouseItem.IsAccessory;
-						break;
+						case 0:
+							flag = mouseItem.HeadSlot >= 0;
+							break;
+						case 1:
+							flag = mouseItem.BodySlot >= 0;
+							break;
+						case 2:
+							flag = mouseItem.LegSlot >= 0;
+							break;
+						default:
+							flag = mouseItem.IsAccessory;
+							break;
 					}
 				}
 				else if (ActiveInvSection == InventorySection.ITEMS && mouseItem.Type > 0 && mouseItem.Stack > 0)
 				{
 					switch (inventoryItemY)
 					{
-					case 4:
-						flag2 = mouseItem.CanBePlacedInAmmoSlot();
-						break;
-					case 5:
-						flag2 = mouseItem.CanBePlacedInCoinSlot();
-						break;
+						case 4:
+							flag2 = mouseItem.CanBePlacedInAmmoSlot();
+							break;
+						case 5:
+							flag2 = mouseItem.CanBePlacedInCoinSlot();
+							break;
 					}
 				}
 				if (flag2)
@@ -6726,20 +6949,20 @@ namespace Terraria
 		public int DrawDialog(Vector2 pos, Color backColor, Color textColor, CompiledText ct, string caption = null, bool anchorBottom = false)
 		{
 
-		// This is hella messy, primarily due to there being no 'Decomp-equivalent' that I can reasonably decipher with what I have at the moment, so I have to account for it all here.
+			// This is hella messy, primarily due to there being no 'Decomp-equivalent' that I can reasonably decipher with what I have at the moment, so I have to account for it all here.
 
 #if !USE_ORIGINAL_CODE
 			int num = (int)(30 * Main.ScreenMultiplier);
-			if (Main.ScreenHeightPtr != 0)
+			if (Main.ScreenHeightPtr != ScreenHeights.BASE)
 			{
 				if (anchorBottom)
 				{
 					switch (Main.ScreenHeightPtr)
 					{
-						case 1:
+						case ScreenHeights.HD:
 							num = (int)(num / 1.33f);
 							break;
-						case 2:
+						case ScreenHeights.FHD:
 							num = (int)(num / 2f);
 							break;
 					}
@@ -6748,10 +6971,10 @@ namespace Terraria
 				{
 					switch (Main.ScreenHeightPtr)
 					{
-						case 1:
+						case ScreenHeights.HD:
 							num = (int)(num / 1.33f);
 							break;
-						case 2:
+						case ScreenHeights.FHD:
 							num = (int)(num / 1.25f);
 							break;
 					}
@@ -6775,10 +6998,10 @@ namespace Terraria
 			int HeightOffset = 30;
 			int WrapWidth = 470;
 			int ChatBackTexSize = 500; // As previously mentioned, the 1.2 versions stopped using the Chat_Back texture, including when running in 540p mode.
-			// For clarity purposes, most instances of chatBackTexture.Width/Height will be replaced with 500 if 540p mode is detected, since the result will be the same.
+									   // For clarity purposes, most instances of chatBackTexture.Width/Height will be replaced with 500 if 540p mode is detected, since the result will be the same.
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.15f);
 					WrapWidth = 548;
 
@@ -6787,13 +7010,13 @@ namespace Terraria
 						HeightOffset = (int)(HeightOffset / 1.33f);
 					}
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.534f);
 					WrapWidth = 705;
 					break;
 			}
 
-			if (Main.PSMode && Main.ScreenHeightPtr == 1)
+			if (Main.PSMode && Main.ScreenHeightPtr == ScreenHeights.HD)
 			{
 				HeightOffset -= 7; // There is no line spacing difference between PS3 and X360, but it does treat the text as if there is one, so we account for it with this and some changes in CompiledText.
 			}
@@ -6802,7 +7025,7 @@ namespace Terraria
 			// In the 1.2 versions, all 'old-gen' versions utilised DrawRect instead of a 2D Texture.
 			Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK, pos, new Rectangle(0, 0, ChatBackTexSize, ct.Height + num + 30), backColor);
 #else
-			if (Main.ScreenHeightPtr != 0)
+			if (Main.ScreenHeightPtr != ScreenHeights.BASE)
 			{
 				Main.DrawRect((int)_sheetSprites.ID.INVENTORY_BACK, pos, new Rectangle(0, 0, ChatBackTexSize, ct.Height + num + HeightOffset), backColor);
 			}
@@ -6822,7 +7045,7 @@ namespace Terraria
 #if !USE_ORIGINAL_CODE
 				int num3 = ChatBackTexSize - num2 >> 1;
 				int num4 = 0;
-				if (Main.ScreenHeightPtr == 2)
+				if (Main.ScreenHeightPtr == ScreenHeights.FHD)
 				{
 					num4 += HeightOffset / 2;
 				}
@@ -6842,7 +7065,7 @@ namespace Terraria
 #if !USE_ORIGINAL_CODE
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					if (caption == null)
 					{
 						pos.Y += 0.62f;
@@ -6855,7 +7078,7 @@ namespace Terraria
 					}
 					pos.X -= 1.25f;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					pos.X += 8f;
 					pos.Y += 4f;
 
@@ -6902,31 +7125,31 @@ namespace Terraria
 				}
 				switch ((Item.ID)ActivePlayer.Inventory[i].Type)
 				{
-				case Item.ID.IRON_ORE:
-				case Item.ID.COPPER_ORE:
-				case Item.ID.GOLD_ORE:
-				case Item.ID.SILVER_ORE:
-					flag4 = true;
-					break;
-				case Item.ID.GOLD_BAR:
-				case Item.ID.COPPER_BAR:
-				case Item.ID.SILVER_BAR:
-				case Item.ID.IRON_BAR:
-					flag5 = true;
-					break;
-				case Item.ID.FALLEN_STAR:
-					flag6 = true;
-					break;
-				case Item.ID.LENS:
-					flag7 = true;
-					break;
-				case Item.ID.ROTTEN_CHUNK:
-				case Item.ID.WORM_FOOD:
-					flag8 = true;
-					break;
-				case Item.ID.GRAPPLING_HOOK:
-					flag9 = true;
-					break;
+					case Item.ID.IRON_ORE:
+					case Item.ID.COPPER_ORE:
+					case Item.ID.GOLD_ORE:
+					case Item.ID.SILVER_ORE:
+						flag4 = true;
+						break;
+					case Item.ID.GOLD_BAR:
+					case Item.ID.COPPER_BAR:
+					case Item.ID.SILVER_BAR:
+					case Item.ID.IRON_BAR:
+						flag5 = true;
+						break;
+					case Item.ID.FALLEN_STAR:
+						flag6 = true;
+						break;
+					case Item.ID.LENS:
+						flag7 = true;
+						break;
+					case Item.ID.ROTTEN_CHUNK:
+					case Item.ID.WORM_FOOD:
+						flag8 = true;
+						break;
+					case Item.ID.GRAPPLING_HOOK:
+						flag9 = true;
+						break;
 				}
 			}
 			bool flag10 = false;
@@ -6944,33 +7167,33 @@ namespace Terraria
 				{
 					switch ((NPC.ID)Main.NPCSet[j].Type)
 					{
-					case NPC.ID.MERCHANT:
-						flag10 = true;
-						break;
-					case NPC.ID.NURSE:
-						flag11 = true;
-						break;
-					case NPC.ID.ARMS_DEALER:
-						flag13 = true;
-						break;
-					case NPC.ID.DRYAD:
-						flag12 = true;
-						break;
-					case NPC.ID.GOBLIN_TINKERER:
-						flag17 = true;
-						break;
-					case NPC.ID.CLOTHIER:
-						flag18 = true;
-						break;
-					case NPC.ID.MECHANIC:
-						flag15 = true;
-						break;
-					case NPC.ID.DEMOLITIONIST:
-						flag14 = true;
-						break;
-					case NPC.ID.WIZARD:
-						flag16 = true;
-						break;
+						case NPC.ID.MERCHANT:
+							flag10 = true;
+							break;
+						case NPC.ID.NURSE:
+							flag11 = true;
+							break;
+						case NPC.ID.ARMS_DEALER:
+							flag13 = true;
+							break;
+						case NPC.ID.DRYAD:
+							flag12 = true;
+							break;
+						case NPC.ID.GOBLIN_TINKERER:
+							flag17 = true;
+							break;
+						case NPC.ID.CLOTHIER:
+							flag18 = true;
+							break;
+						case NPC.ID.MECHANIC:
+							flag15 = true;
+							break;
+						case NPC.ID.DEMOLITIONIST:
+							flag14 = true;
+							break;
+						case NPC.ID.WIZARD:
+							flag16 = true;
+							break;
 					}
 				}
 			}
@@ -7546,15 +7769,15 @@ namespace Terraria
 							{
 								switch (Main.Rand.Next(3))
 								{
-								case 0:
+									case 0:
 										npcChatText = Lang.NPCDialog(ActivePlayer, 52);
-									break;
-								case 1:
+										break;
+									case 1:
 										npcChatText = Lang.NPCDialog(ActivePlayer, 53);
-									break;
-								default:
+										break;
+									default:
 										npcChatText = Lang.NPCDialog(ActivePlayer, 54);
-									break;
+										break;
 								}
 							}
 						}
@@ -7562,15 +7785,15 @@ namespace Terraria
 						{
 							switch (Main.Rand.Next(3))
 							{
-							case 0:
+								case 0:
 									npcChatText = Lang.NPCDialog(ActivePlayer, 55);
-								break;
-							case 1:
+									break;
+								case 1:
 									npcChatText = Lang.NPCDialog(ActivePlayer, 56);
-								break;
-							default:
+									break;
+								default:
 									npcChatText = Lang.NPCDialog(ActivePlayer, 57);
-								break;
+									break;
 							}
 						}
 					}
@@ -7618,11 +7841,11 @@ namespace Terraria
 			int WrapWidth = 470;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.15f);
 					WrapWidth = 548;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					ChatBackTexSize = (int)(ChatBackTexSize * 1.534f);
 					WrapWidth = 705;
 					break;
@@ -7652,12 +7875,12 @@ namespace Terraria
 			// Hardcoding these since the 1080p mode calculations are incredibly difficult to decipher with what I got decompiled currently.
 			switch (Main.ScreenHeightPtr) // These will bear a striking resemblance to what it should look like in the official modes. (I say this, knowing 720p is custom, but still)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					num3 = 370;
 					num4 = 150 + num2;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					num3 = 602;
 					num4 = 215 + num2;
 					break;
@@ -7670,7 +7893,7 @@ namespace Terraria
 				pivot = MeasureString(BoldSmallFont, focusText);
 				pivot.X *= 0.5f;
 				pivot.Y *= 0.5f;
-				DrawStringScaled(BoldSmallFont, focusText, new Vector2(num3 + pivot.X , num4 + pivot.Y), focusColor, pivot, (npcChatSelectedItem == 0) ? 1.1f : 0.9f);
+				DrawStringScaled(BoldSmallFont, focusText, new Vector2(num3 + pivot.X, num4 + pivot.Y), focusColor, pivot, (npcChatSelectedItem == 0) ? 1.1f : 0.9f);
 			}
 			string text = Lang.InterfaceText[52];
 			Color c = new Color(num, (int)((double)num * (10f / 11f)), num >> 1, num);
@@ -7681,11 +7904,11 @@ namespace Terraria
 			float AddSpace = 30;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					AddSpace *= 1.15f;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					AddSpace *= 1.5f;
 					break;
 			}
@@ -7810,17 +8033,17 @@ namespace Terraria
 			int num2;
 			switch (inventoryItemY)
 			{
-			case 4:
-				num2 = Player.NumInvSlots + Player.NumAmmoSlots + inventoryItemX - 6;
-				flag = mouseItem.CanBePlacedInAmmoSlot();
-				break;
-			case 5:
-				num2 = Player.NumInvSlots + inventoryItemX - 6;
-				flag = mouseItem.CanBePlacedInCoinSlot();
-				break;
-			default:
-				num2 = inventoryItemX + inventoryItemY * 10;
-				break;
+				case 4:
+					num2 = Player.NumInvSlots + Player.NumAmmoSlots + inventoryItemX - 6;
+					flag = mouseItem.CanBePlacedInAmmoSlot();
+					break;
+				case 5:
+					num2 = Player.NumInvSlots + inventoryItemX - 6;
+					flag = mouseItem.CanBePlacedInCoinSlot();
+					break;
+				default:
+					num2 = inventoryItemX + inventoryItemY * 10;
+					break;
 			}
 			if (num2 < Player.NumInvSlots && mouseItem.Type == 0)
 			{
@@ -8335,10 +8558,10 @@ namespace Terraria
 			int xOff = 56;
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					xOff = 75;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					xOff = 112;
 					break;
 			}
@@ -8505,48 +8728,48 @@ namespace Terraria
 				}
 				switch (inventoryChestY)
 				{
-				case 1:
-					if (ActivePlayer.PlayerChest >= 0)
-					{
+					case 1:
+						if (ActivePlayer.PlayerChest >= 0)
+						{
 							Main.ChestSet[ActivePlayer.PlayerChest].LootAll(ActivePlayer);
-					}
-					else if (ActivePlayer.PlayerChest == -3)
-					{
-						ActivePlayer.safe.LootAll(ActivePlayer);
-					}
-					else
-					{
-						ActivePlayer.bank.LootAll(ActivePlayer);
-					}
-					break;
-				case 2:
-					if (ActivePlayer.PlayerChest >= 0)
-					{
+						}
+						else if (ActivePlayer.PlayerChest == -3)
+						{
+							ActivePlayer.safe.LootAll(ActivePlayer);
+						}
+						else
+						{
+							ActivePlayer.bank.LootAll(ActivePlayer);
+						}
+						break;
+					case 2:
+						if (ActivePlayer.PlayerChest >= 0)
+						{
 							Main.ChestSet[ActivePlayer.PlayerChest].Deposit(ActivePlayer);
-					}
-					else if (ActivePlayer.PlayerChest == -3)
-					{
-						ActivePlayer.safe.Deposit(ActivePlayer);
-					}
-					else
-					{
-						ActivePlayer.bank.Deposit(ActivePlayer);
-					}
-					break;
-				case 3:
-					if (ActivePlayer.PlayerChest >= 0)
-					{
+						}
+						else if (ActivePlayer.PlayerChest == -3)
+						{
+							ActivePlayer.safe.Deposit(ActivePlayer);
+						}
+						else
+						{
+							ActivePlayer.bank.Deposit(ActivePlayer);
+						}
+						break;
+					case 3:
+						if (ActivePlayer.PlayerChest >= 0)
+						{
 							Main.ChestSet[ActivePlayer.PlayerChest].QuickStack(ActivePlayer);
-					}
-					else if (ActivePlayer.PlayerChest == -3)
-					{
-						ActivePlayer.safe.QuickStack(ActivePlayer);
-					}
-					else
-					{
-						ActivePlayer.bank.QuickStack(ActivePlayer);
-					}
-					break;
+						}
+						else if (ActivePlayer.PlayerChest == -3)
+						{
+							ActivePlayer.safe.QuickStack(ActivePlayer);
+						}
+						else
+						{
+							ActivePlayer.bank.QuickStack(ActivePlayer);
+						}
+						break;
 				}
 				return;
 			}
@@ -8554,15 +8777,15 @@ namespace Terraria
 			Chest chest2;
 			switch (chest)
 			{
-			case -2:
-				chest2 = ActivePlayer.bank;
-				break;
-			case -3:
-				chest2 = ActivePlayer.safe;
-				break;
-			default:
-				chest2 = Main.ChestSet[chest];
-				break;
+				case -2:
+					chest2 = ActivePlayer.bank;
+					break;
+				case -3:
+					chest2 = ActivePlayer.safe;
+					break;
+				default:
+					chest2 = Main.ChestSet[chest];
+					break;
 			}
 			int num = inventoryChestX + inventoryChestY * 5;
 			if (IsButtonTriggered(BTN_INVENTORY_SELECT))
@@ -8658,25 +8881,25 @@ namespace Terraria
 			Chest chest2;
 			switch (chest)
 			{
-			case -1:
-				return;
-			case -2:
-				chest2 = ActivePlayer.bank;
-				break;
-			case -3:
-				chest2 = ActivePlayer.safe;
-				break;
-			default:
-				chest2 = Main.ChestSet[chest];
+				case -1:
+					return;
+				case -2:
+					chest2 = ActivePlayer.bank;
+					break;
+				case -3:
+					chest2 = ActivePlayer.safe;
+					break;
+				default:
+					chest2 = Main.ChestSet[chest];
 #if (!VERSION_INITIAL || IS_PATCHED)
-                if (chest2 == null)
-                {
-                    return;
-                }
+					if (chest2 == null)
+					{
+						return;
+					}
 #endif
-                break;
-            }
-            Color c = new Color(invAlpha, invAlpha, invAlpha, invAlpha);
+					break;
+			}
+			Color c = new Color(invAlpha, invAlpha, invAlpha, invAlpha);
 #if USE_ORIGINAL_CODE
 			inventoryScale = 1f;
 			int x = 112 + INVENTORY_X - 56;
@@ -9232,7 +9455,7 @@ namespace Terraria
 			int num = INVENTORY_X + (Offset * 2);
 			int y = INVENTORY_Y;
 
-			Rectangle rect = default(Rectangle);
+			Rectangle rect = default;
 			rect.Y = y;
 			rect.Width = (int)(16 * Main.ScreenMultiplier);
 			rect.Height = Offset;
@@ -9506,30 +9729,30 @@ namespace Terraria
 			int texId;
 			switch (ActiveInvSection)
 			{
-			case InventorySection.CRAFTING:
-				texId = (int)_sheetSprites.ID.INVENTORY_BACK2;
-				break;
-			case InventorySection.EQUIP:
-				texId = (int)_sheetSprites.ID.INVENTORY_BACK3;
-				break;
-			case InventorySection.CHEST:
-				texId = (flag2 ? (int)_sheetSprites.ID.INVENTORY_BACK6 : (int)_sheetSprites.ID.INVENTORY_BACK5);
-				break;
-			case InventorySection.HOUSING:
-				texId = (int)_sheetSprites.ID.INVENTORY_BACK11;
-				break;
-			default:
-				texId = (int)_sheetSprites.ID.INVENTORY_BACK;
-				break;
+				case InventorySection.CRAFTING:
+					texId = (int)_sheetSprites.ID.INVENTORY_BACK2;
+					break;
+				case InventorySection.EQUIP:
+					texId = (int)_sheetSprites.ID.INVENTORY_BACK3;
+					break;
+				case InventorySection.CHEST:
+					texId = (flag2 ? (int)_sheetSprites.ID.INVENTORY_BACK6 : (int)_sheetSprites.ID.INVENTORY_BACK5);
+					break;
+				case InventorySection.HOUSING:
+					texId = (int)_sheetSprites.ID.INVENTORY_BACK11;
+					break;
+				default:
+					texId = (int)_sheetSprites.ID.INVENTORY_BACK;
+					break;
 			}
 
 #if !USE_ORIGINAL_CODE
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					INVENTORY_H = USABLE_HEIGHT;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					INVENTORY_H = USABLE_HEIGHT + 16;
 					break;
 			}
@@ -9546,41 +9769,41 @@ namespace Terraria
 			{
 				switch ((byte)i)
 				{
-				case 1:
-					texId = (int)_sheetSprites.ID.INVENTORY;
-					break;
-				case 0:
-					texId = (int)_sheetSprites.ID.CRAFT;
-					break;
-				case 3:
-					texId = (int)_sheetSprites.ID.EQUIP;
-					break;
-				case 2:
-					if (flag2)
-					{
-						texId = Chest.GetShopOwnerHeadTextureId(npcShop);
+					case 1:
+						texId = (int)_sheetSprites.ID.INVENTORY;
 						break;
-					}
-					if (!flag)
-					{
-						continue;
-					}
-					switch (ActivePlayer.PlayerChest)
-					{
-					case -2:
-						texId = (int)_sheetSprites.ID.ITEM_87;
+					case 0:
+						texId = (int)_sheetSprites.ID.CRAFT;
 						break;
-					case -3:
-						texId = (int)_sheetSprites.ID.ITEM_346;
+					case 3:
+						texId = (int)_sheetSprites.ID.EQUIP;
+						break;
+					case 2:
+						if (flag2)
+						{
+							texId = Chest.GetShopOwnerHeadTextureId(npcShop);
+							break;
+						}
+						if (!flag)
+						{
+							continue;
+						}
+						switch (ActivePlayer.PlayerChest)
+						{
+							case -2:
+								texId = (int)_sheetSprites.ID.ITEM_87;
+								break;
+							case -3:
+								texId = (int)_sheetSprites.ID.ITEM_346;
+								break;
+							default:
+								texId = (int)_sheetSprites.ID.ITEM_48;
+								break;
+						}
 						break;
 					default:
-						texId = (int)_sheetSprites.ID.ITEM_48;
+						texId = (int)_sheetSprites.ID.HOUSE_1;
 						break;
-					}
-					break;
-				default:
-					texId = (int)_sheetSprites.ID.HOUSE_1;
-					break;
 				}
 				int num3 = (int)ActiveInvSection;
 				float num4 = inventoryMenuSectionScale[i];
@@ -9635,37 +9858,37 @@ namespace Terraria
 			string text;
 			switch (ActiveInvSection)
 			{
-			case InventorySection.CRAFTING:
-				text = Lang.InterfaceText[25];
-				break;
-			case InventorySection.ITEMS:
-				text = Lang.InterfaceText[4];
-				break;
-			case InventorySection.CHEST:
-				if (flag2)
-				{
-					text = Lang.InterfaceText[28];
+				case InventorySection.CRAFTING:
+					text = Lang.InterfaceText[25];
 					break;
-				}
-				switch ((Player.ExtraStorage)ActivePlayer.PlayerChest)
-				{
-				case Player.ExtraStorage.PIGGYBANK:
-					text = Lang.InterfaceText[32];
+				case InventorySection.ITEMS:
+					text = Lang.InterfaceText[4];
 					break;
-				case Player.ExtraStorage.SAFE:
-					text = Lang.InterfaceText[33];
+				case InventorySection.CHEST:
+					if (flag2)
+					{
+						text = Lang.InterfaceText[28];
+						break;
+					}
+					switch ((Player.ExtraStorage)ActivePlayer.PlayerChest)
+					{
+						case Player.ExtraStorage.PIGGYBANK:
+							text = Lang.InterfaceText[32];
+							break;
+						case Player.ExtraStorage.SAFE:
+							text = Lang.InterfaceText[33];
+							break;
+						default:
+							text = chestText;
+							break;
+					}
+					break;
+				case InventorySection.EQUIP:
+					text = Lang.InterfaceText[45];
 					break;
 				default:
-					text = chestText;
+					text = Lang.InterfaceText[7];
 					break;
-				}
-				break;
-			case InventorySection.EQUIP:
-				text = Lang.InterfaceText[45];
-				break;
-			default:
-				text = Lang.InterfaceText[7];
-				break;
 			}
 			if (reforge)
 			{
@@ -9680,28 +9903,28 @@ namespace Terraria
 #endif
 			switch (ActiveInvSection)
 			{
-			case InventorySection.ITEMS:
-				DrawInventory(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				break;
-			case InventorySection.CHEST:
-				if (flag2)
-				{
-					DrawShop(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				}
-				else
-				{
-					DrawStorage(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				}
-				break;
-			case InventorySection.CRAFTING:
-				DrawCrafting(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				break;
-			case InventorySection.EQUIP:
-				DrawEquip(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				break;
-			case InventorySection.HOUSING:
-				DrawHousing(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
-				break;
+				case InventorySection.ITEMS:
+					DrawInventory(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					break;
+				case InventorySection.CHEST:
+					if (flag2)
+					{
+						DrawShop(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					}
+					else
+					{
+						DrawStorage(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					}
+					break;
+				case InventorySection.CRAFTING:
+					DrawCrafting(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					break;
+				case InventorySection.EQUIP:
+					DrawEquip(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					break;
+				case InventorySection.HOUSING:
+					DrawHousing(num, sAFE_AREA_OFFSET_T + INVENTORY_CLIENT_Y_OFFSET);
+					break;
 			}
 			DrawMouseItem();
 		}
@@ -10047,11 +10270,11 @@ namespace Terraria
 			int InventoryH = 318;
 			switch (Main.ScreenHeightPtr)
 			{ // So for some reason, 1080p mode doesn't have the values directly *= 2 from the 540p ones.
-				case 1:
+				case ScreenHeights.HD:
 					yOffset = 60;
 					InventoryH = 438; // ~13.333 Rnd'd up diff
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					yOffset = 88;
 					InventoryH = 676; // 40 diff
 					break;
@@ -10071,8 +10294,8 @@ namespace Terraria
 					Main.DrawRectOpenAtBottom((int)_sheetSprites.ID.INVENTORY_BACK2, rect, 192);
 				}
 				SpriteSheet<_sheetSprites>.DrawCentered((int)_sheetSprites.ID.CRAFTCATEGORY_1 + i, ref rect, Main.ScreenMultiplier); // This is actually pointing to a custom draw function, since in the original, it just uses a bigger spritesheet for 1080p mode;
-				// However, we cannot use the spritesheet since it's exclusive to 8th gen consoles (e.g. PS4), and even if we had it, XNA (and by extension, FNA) cannot use spritesheets bigger than 4096x4096.
-				// As a result, we need to keep it centered, yet scaled up.
+																																	 // However, we cannot use the spritesheet since it's exclusive to 8th gen consoles (e.g. PS4), and even if we had it, XNA (and by extension, FNA) cannot use spritesheets bigger than 4096x4096.
+																																	 // As a result, we need to keep it centered, yet scaled up.
 				num += (int)(146 * Main.ScreenMultiplier);
 			}
 			int num2 = (int)(CRAFTING_X + (20 * Main.ScreenMultiplier)); // Control X/Y of the row of icons
@@ -10412,7 +10635,7 @@ namespace Terraria
 				}
 				if (num20 >= 0)
 				{
-					Rectangle rect3 = default(Rectangle);
+					Rectangle rect3 = default;
 					rect3.X = (int)(num16 + (280 * Main.ScreenMultiplier));
 					rect3.Y = (int)(num17 + (46 * Main.ScreenMultiplier));
 					rect3.Width = (int)(68 * Main.ScreenMultiplier);
@@ -10421,7 +10644,7 @@ namespace Terraria
 					int width2 = SpriteSheet<_sheetSprites>.Source[num20].Width;
 					int height = SpriteSheet<_sheetSprites>.Source[num20].Height;
 					float scaleCenter = ((width2 <= height) ? (64f / height) : (64f / width2));
-					Vector2 pos = default(Vector2);
+					Vector2 pos = default;
 					pos.X = rect3.Center.X;
 					pos.Y = rect3.Center.Y;
 					SpriteSheet<_sheetSprites>.DrawScaled(num20, ref pos, Color.White, (float)(scaleCenter * Main.ScreenMultiplier));
@@ -10433,7 +10656,7 @@ namespace Terraria
 				}
 			}
 #endif
-					DrawControlsCrafting();
+			DrawControlsCrafting();
 		}
 
 		private void DrawMiniMap()
@@ -10629,8 +10852,9 @@ namespace Terraria
 				}
 				num4 += (int)(8 * Main.ScreenMultiplier);
 				num5 += (int)(8 * Main.ScreenMultiplier);
-				if (Main.ScreenHeightPtr == 1)
+				if (Main.ScreenHeightPtr == ScreenHeights.HD)
 				{
+					// No I am not kidding, the shields will be off-center otherwise.
 					num4 += 1;
 					num5 += 1;
 				}
@@ -10701,30 +10925,30 @@ namespace Terraria
 			{
 				switch (toolTip.Rarity)
 				{
-				case -1:
+					case -1:
 						Main.StrBuilder.Append("<f c='#828282'>");
-					break;
-				case 1:
+						break;
+					case 1:
 						Main.StrBuilder.Append("<f c='#9696FF'>");
-					break;
-				case 2:
+						break;
+					case 2:
 						Main.StrBuilder.Append("<f c='#96FF96'>");
-					break;
-				case 3:
+						break;
+					case 3:
 						Main.StrBuilder.Append("<f c='#FFC896'>");
-					break;
-				case 4:
+						break;
+					case 4:
 						Main.StrBuilder.Append("<f c='#FF9696'>");
-					break;
-				case 5:
+						break;
+					case 5:
 						Main.StrBuilder.Append("<f c='#FF96FF'>");
-					break;
-				case 6:
+						break;
+					case 6:
 						Main.StrBuilder.Append("<f c='#D2A0FF'>");
-					break;
-				default:
+						break;
+					default:
 						Main.StrBuilder.Append("<f c='#FFFFD2'>");
-					break;
+						break;
 				}
 				Main.StrBuilder.Append(toolTip.AffixName());
 				if (toolTip.Stack > 1)
@@ -11176,101 +11400,101 @@ namespace Terraria
 						}
 						switch (toolTip.PrefixType)
 						{
-						case 62:
+							case 62:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+1");
 								Main.StrBuilder.Append(Lang.TipText[25]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 63:
+								break;
+							case 63:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+2");
 								Main.StrBuilder.Append(Lang.TipText[25]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 64:
+								break;
+							case 64:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+3");
 								Main.StrBuilder.Append(Lang.TipText[25]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 65:
+								break;
+							case 65:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+4");
 								Main.StrBuilder.Append(Lang.TipText[25]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 66:
+								break;
+							case 66:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+20");
 								Main.StrBuilder.Append(Lang.TipText[31]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 67:
+								break;
+							case 67:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+1");
 								Main.StrBuilder.Append(Lang.TipText[5]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 68:
+								break;
+							case 68:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+2");
 								Main.StrBuilder.Append(Lang.TipText[5]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 69:
+								break;
+							case 69:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+1");
 								Main.StrBuilder.Append(Lang.TipText[39]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 70:
+								break;
+							case 70:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+2");
 								Main.StrBuilder.Append(Lang.TipText[39]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 71:
+								break;
+							case 71:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+3");
 								Main.StrBuilder.Append(Lang.TipText[39]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 72:
+								break;
+							case 72:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+4");
 								Main.StrBuilder.Append(Lang.TipText[39]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 73:
+								break;
+							case 73:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+1");
 								Main.StrBuilder.Append(Lang.TipText[46]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 74:
+								break;
+							case 74:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+2");
 								Main.StrBuilder.Append(Lang.TipText[46]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 75:
+								break;
+							case 75:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+3");
 								Main.StrBuilder.Append(Lang.TipText[46]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 76:
+								break;
+							case 76:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+4");
 								Main.StrBuilder.Append(Lang.TipText[46]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 77:
+								break;
+							case 77:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+1");
 								Main.StrBuilder.Append(Lang.TipText[47]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 78:
+								break;
+							case 78:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+2");
 								Main.StrBuilder.Append(Lang.TipText[47]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 79:
+								break;
+							case 79:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+3");
 								Main.StrBuilder.Append(Lang.TipText[47]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
-						case 80:
+								break;
+							case 80:
 								Main.StrBuilder.Append("¤ <f c='#78BE78'>+4");
 								Main.StrBuilder.Append(Lang.TipText[47]);
 								Main.StrBuilder.Append("</f>\n");
-							break;
+								break;
 						}
 					}
 					if (toolTip.WornArmor && ActivePlayer.setBonus != null)
@@ -11376,38 +11600,38 @@ namespace Terraria
 		private bool IsInventorySectionAvailable(InventorySection section)
 		{
 #if (!VERSION_INITIAL || IS_PATCHED)
-            bool result = ActivePlayer.PlayerChest < -1 || (ActivePlayer.PlayerChest >= 0 && Main.ChestSet[ActivePlayer.PlayerChest] != null) || npcShop > 0;
+			bool result = ActivePlayer.PlayerChest < -1 || (ActivePlayer.PlayerChest >= 0 && Main.ChestSet[ActivePlayer.PlayerChest] != null) || npcShop > 0;
 #else
 			bool result = ActivePlayer.PlayerChest != -1 || npcShop > 0;
 #endif
-            switch (section)
+			switch (section)
 			{
-			case InventorySection.CHEST:
-				return result;
-			case InventorySection.HOUSING:
-				if (mouseItem.Type == 0 && !reforge)
-				{
-					return !CraftGuide;
-				}
-				return false;
-			case InventorySection.CRAFTING:
-				if (mouseItem.Type == 0 && !reforge)
-				{
-					if (CraftGuide)
+				case InventorySection.CHEST:
+					return result;
+				case InventorySection.HOUSING:
+					if (mouseItem.Type == 0 && !reforge)
 					{
-						return GuideItem.Type > 0;
+						return !CraftGuide;
+					}
+					return false;
+				case InventorySection.CRAFTING:
+					if (mouseItem.Type == 0 && !reforge)
+					{
+						if (CraftGuide)
+						{
+							return GuideItem.Type > 0;
+						}
+						return true;
+					}
+					return false;
+				case InventorySection.EQUIP:
+					if (mouseItem.Type != 0)
+					{
+						return mouseItem.IsEquipable();
 					}
 					return true;
-				}
-				return false;
-			case InventorySection.EQUIP:
-				if (mouseItem.Type != 0)
-				{
-					return mouseItem.IsEquipable();
-				}
-				return true;
-			default:
-				return true;
+				default:
+					return true;
 			}
 		}
 
@@ -11478,99 +11702,99 @@ namespace Terraria
 			{
 				switch (ActiveInvSection)
 				{
-				case InventorySection.ITEMS:
-					inventoryItemX += (sbyte)dx;
-					if (inventoryItemX < 0)
-					{
-						inventoryItemX += 10;
-					}
-					else if (inventoryItemX >= 10)
-					{
-						inventoryItemX -= 10;
-					}
-					inventoryItemY += (sbyte)dy;
-					if (inventoryItemY < 0)
-					{
-						inventoryItemY += 7;
-					}
-					else if (inventoryItemY >= 7)
-					{
-						inventoryItemY -= 7;
-					}
-					if (inventoryItemY == 4)
-					{
-						if (reforge)
+					case InventorySection.ITEMS:
+						inventoryItemX += (sbyte)dx;
+						if (inventoryItemX < 0)
 						{
-							dy |= 1;
-							break;
+							inventoryItemX += 10;
 						}
-						if (inventoryItemX < 6)
+						else if (inventoryItemX >= 10)
 						{
-							break;
+							inventoryItemX -= 10;
 						}
-					}
-					else if (inventoryItemY == 5)
-					{
-						if (reforge)
+						inventoryItemY += (sbyte)dy;
+						if (inventoryItemY < 0)
 						{
-							dy |= 1;
-							break;
+							inventoryItemY += 7;
 						}
-						if (inventoryItemX < 6)
+						else if (inventoryItemY >= 7)
 						{
-							break;
+							inventoryItemY -= 7;
 						}
-					}
-					else if (inventoryItemY == 6 && inventoryItemX < 9)
-					{
-						break;
-					}
-					UpdateInventory();
-					return;
-				case InventorySection.CHEST:
-					inventoryChestX += (sbyte)dx;
-					if (inventoryChestX < -1)
-					{
-						inventoryChestX += 6;
-					}
-					else if (inventoryChestX >= 5)
-					{
-						inventoryChestX -= 6;
-					}
-					inventoryChestY += (sbyte)dy;
-					if (inventoryChestY < 0)
-					{
-						inventoryChestY += 4;
-					}
-					else if (inventoryChestY >= 4)
-					{
-						inventoryChestY -= 4;
-					}
-					if (inventoryChestX < 0)
-					{
-						if (npcShop > 0 || mouseItem.Type > 0)
+						if (inventoryItemY == 4)
 						{
-							if (dx == 0)
+							if (reforge)
 							{
-								inventoryChestX = 0;
+								dy |= 1;
+								break;
 							}
+							if (inventoryItemX < 6)
+							{
+								break;
+							}
+						}
+						else if (inventoryItemY == 5)
+						{
+							if (reforge)
+							{
+								dy |= 1;
+								break;
+							}
+							if (inventoryItemX < 6)
+							{
+								break;
+							}
+						}
+						else if (inventoryItemY == 6 && inventoryItemX < 9)
+						{
 							break;
 						}
-						if (inventoryChestY == 0)
+						UpdateInventory();
+						return;
+					case InventorySection.CHEST:
+						inventoryChestX += (sbyte)dx;
+						if (inventoryChestX < -1)
 						{
-							inventoryChestY = 1;
+							inventoryChestX += 6;
 						}
-					}
-					if (npcShop > 0)
-					{
-						UpdateShop();
-					}
-					else
-					{
-						UpdateStorage();
-					}
-					return;
-				case InventorySection.EQUIP:
+						else if (inventoryChestX >= 5)
+						{
+							inventoryChestX -= 6;
+						}
+						inventoryChestY += (sbyte)dy;
+						if (inventoryChestY < 0)
+						{
+							inventoryChestY += 4;
+						}
+						else if (inventoryChestY >= 4)
+						{
+							inventoryChestY -= 4;
+						}
+						if (inventoryChestX < 0)
+						{
+							if (npcShop > 0 || mouseItem.Type > 0)
+							{
+								if (dx == 0)
+								{
+									inventoryChestX = 0;
+								}
+								break;
+							}
+							if (inventoryChestY == 0)
+							{
+								inventoryChestY = 1;
+							}
+						}
+						if (npcShop > 0)
+						{
+							UpdateShop();
+						}
+						else
+						{
+							UpdateStorage();
+						}
+						return;
+					case InventorySection.EQUIP:
 #if VERSION_FINAL
 #elif VERSION_103
 					dx2 = dx;
@@ -11663,73 +11887,73 @@ namespace Terraria
 					}
 LAB_8212b7a8:
 #else
-					inventoryEquipY += (sbyte)dy;
-					if (inventoryEquipY < 0)
-					{
-						inventoryEquipY += 5;
-					}
-					else if (inventoryEquipY >= 5)
-					{
-						inventoryEquipY -= 5;
-					}
-					inventoryEquipX += (sbyte)dx;
-					if (inventoryEquipX < 0)
-					{
-						if (inventoryEquipY == 0)
+						inventoryEquipY += (sbyte)dy;
+						if (inventoryEquipY < 0)
 						{
-							inventoryEquipX = 0;
-							if (--inventoryBuffX < 0)
+							inventoryEquipY += 5;
+						}
+						else if (inventoryEquipY >= 5)
+						{
+							inventoryEquipY -= 5;
+						}
+						inventoryEquipX += (sbyte)dx;
+						if (inventoryEquipX < 0)
+						{
+							if (inventoryEquipY == 0)
 							{
-								inventoryBuffX = 0;
+								inventoryEquipX = 0;
+								if (--inventoryBuffX < 0)
+								{
+									inventoryBuffX = 0;
+								}
+							}
+							else
+							{
+								inventoryEquipX += 5;
 							}
 						}
-						else
+						else if (inventoryEquipX >= 5)
 						{
-							inventoryEquipX += 5;
-						}
-					}
-					else if (inventoryEquipX >= 5)
-					{
-						if (inventoryEquipY == 0)
-						{
-							inventoryEquipX = 4;
-							if (++inventoryBuffX > 5)
+							if (inventoryEquipY == 0)
 							{
-								inventoryBuffX = 5;
+								inventoryEquipX = 4;
+								if (++inventoryBuffX > 5)
+								{
+									inventoryBuffX = 5;
+								}
+							}
+							else
+							{
+								inventoryEquipX -= 5;
 							}
 						}
-						else
-						{
-							inventoryEquipX -= 5;
-						}
-					}
 #endif
-					if (inventoryEquipX < 1 || inventoryEquipX > 3 || inventoryEquipY < 1 || inventoryEquipY > 3)
-					{
-						UpdateEquip();
-						return;
-					}
-					break;
-				case InventorySection.HOUSING:
-					if (dx != 0)
-					{
-						inventoryHousingX ^= 1;
-					}
-					inventoryHousingY += (sbyte)dy;
-					if (inventoryHousingY < 0)
-					{
-						inventoryHousingY += 6;
-					}
-					else if (inventoryHousingY >= 6)
-					{
-						inventoryHousingY -= 6;
-					}
-					if (inventoryHousingX != 1 || inventoryHousingY != 5)
-					{
-						UpdateHousing();
-						return;
-					}
-					break;
+						if (inventoryEquipX < 1 || inventoryEquipX > 3 || inventoryEquipY < 1 || inventoryEquipY > 3)
+						{
+							UpdateEquip();
+							return;
+						}
+						break;
+					case InventorySection.HOUSING:
+						if (dx != 0)
+						{
+							inventoryHousingX ^= 1;
+						}
+						inventoryHousingY += (sbyte)dy;
+						if (inventoryHousingY < 0)
+						{
+							inventoryHousingY += 6;
+						}
+						else if (inventoryHousingY >= 6)
+						{
+							inventoryHousingY -= 6;
+						}
+						if (inventoryHousingX != 1 || inventoryHousingY != 5)
+						{
+							UpdateHousing();
+							return;
+						}
+						break;
 				}
 			}
 		}

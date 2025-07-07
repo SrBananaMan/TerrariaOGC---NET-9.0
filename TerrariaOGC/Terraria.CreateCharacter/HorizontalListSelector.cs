@@ -54,10 +54,7 @@ namespace Terraria.CreateCharacter
 #else
 			float Scale = ((FlashTimer > 0) ? (2f + 0.1f * FlashTimer) : 2f) * Main.ScreenMultiplier;
 			float Offset = (Background.Width * 2f + 4f) * Main.ScreenMultiplier;
-			if (Main.ScreenHeightPtr != 0)
-			{
-				DefaultScale *= Main.ScreenMultiplier;
-			}
+			DefaultScale *= Main.ScreenMultiplier;
 #endif
 			Color Color = Color.White * Alpha;
 			int AdjustX = (Options.Length - 1) * (int)Offset - Spacing;

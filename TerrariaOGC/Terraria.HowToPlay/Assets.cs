@@ -23,13 +23,13 @@ namespace Terraria.HowToPlay
 #endif
 			switch (Main.ScreenHeightPtr)
 			{
-				case 0:
+				case ScreenHeights.BASE:
 					TextBGBorderWidth = 20;
 					break;
-				case 1:
+				case ScreenHeights.HD:
 					TextBGBorderWidth = 24;
 					break;
-				case 2:
+				case ScreenHeights.FHD:
 					TextBGBorderWidth = 32;
 					break;
 			}

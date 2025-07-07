@@ -1,7 +1,7 @@
+using Microsoft.Xna.Framework.GamerServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.Xna.Framework.GamerServices;
 
 namespace Terraria.Leaderboards
 {
@@ -15,7 +15,7 @@ namespace Terraria.Leaderboards
 
 			public uint[] Statistics;
 
-            public Gamer Gamer;
+			public Gamer Gamer;
 
 			public string Gamertag => Gamer.Gamertag;
 		}
@@ -43,7 +43,7 @@ namespace Terraria.Leaderboards
 
 		private Cache StaleCache, CurrentCache, MergedCache;
 
-        private LeaderboardReader Reader;
+		private LeaderboardReader Reader;
 
 		private IAsyncResult ReqResult;
 
@@ -57,7 +57,7 @@ namespace Terraria.Leaderboards
 
 		public string LeaderboardName;
 
-        public bool Ready => Reader != null;
+		public bool Ready => Reader != null;
 
 		private bool CanPageDown => Reader.CanPageDown;
 
@@ -68,7 +68,7 @@ namespace Terraria.Leaderboards
 		private static void ProcessEntries(LeaderboardReader Reader, Column[] Columns, ref Cache BoardCache)
 		{
 			ReadOnlyCollection<LeaderboardEntry> entries = Reader.Entries;
-            int NumEntries = entries.Count;
+			int NumEntries = entries.Count;
 			int EntryIdx = 0;
 			int NumColumns = Columns.Length;
 			string[] ColumnSet = new string[NumColumns];
@@ -90,14 +90,14 @@ namespace Terraria.Leaderboards
 				BoardRow.Rank = Entry.GetRank();
 #else
 				if (Entry.RankingEXT == 0)
-                {
-                    NumEntries--;
-                    continue;
-                }
-                Row BoardRow = BoardCache.Entries[EntryIdx];
-                BoardRow.Rank = Entry.RankingEXT;
+				{
+					NumEntries--;
+					continue;
+				}
+				Row BoardRow = BoardCache.Entries[EntryIdx];
+				BoardRow.Rank = Entry.RankingEXT;
 #endif
-                BoardRow.Gamer = Entry.Gamer;
+				BoardRow.Gamer = Entry.Gamer;
 				BoardRow.Statistics = new uint[NumColumns];
 
 				for (int k = NumColumns - 1; k > -1; k--)
@@ -112,7 +112,7 @@ namespace Terraria.Leaderboards
 			BoardCache.NumEntries = NumEntries;
 		}
 
-        public LeaderboardData(int Size)
+		public LeaderboardData(int Size)
 		{
 			DefaultBatchSize = Size;
 			BatchStart = 0;
@@ -125,9 +125,9 @@ namespace Terraria.Leaderboards
 
 		public void LoadLeaderboard(Leaderboard BoardType) // Gets the board in a general context.
 		{
-            LeaderboardIdentity Identity = LeaderboardInfo.GetIdentity(BoardType);
+			LeaderboardIdentity Identity = LeaderboardInfo.GetIdentity(BoardType);
 			ReqResult = LeaderboardReader.BeginRead(Identity, 0, PageSize, null, null);
-            Reader = null;
+			Reader = null;
 			ReadStateReq = AsyncRequest.FullRead;
 			NumEntries = 0;
 			ResetCaches();
@@ -135,11 +135,11 @@ namespace Terraria.Leaderboards
 			LeaderboardName = LeaderboardInfo.GetName(BoardType);
 		}
 
-        public void LoadLeaderboard(Leaderboard BoardType, Gamer CurrentGamer) // Gets the board in the context for the current user.
+		public void LoadLeaderboard(Leaderboard BoardType, Gamer CurrentGamer) // Gets the board in the context for the current user.
 		{
 			LeaderboardIdentity Identity = LeaderboardInfo.GetIdentity(BoardType);
-            ReqResult = LeaderboardReader.BeginRead(Identity, CurrentGamer, PageSize, null, CurrentGamer);
-            Reader = null;
+			ReqResult = LeaderboardReader.BeginRead(Identity, CurrentGamer, PageSize, null, CurrentGamer);
+			Reader = null;
 			ReadStateReq = AsyncRequest.FullRead;
 			NumEntries = 0;
 			ResetCaches();
@@ -207,7 +207,7 @@ namespace Terraria.Leaderboards
 				}
 				BatchStart = Reader.PageStart;
 				Selected = 0;
-                if (ReqResult.AsyncState != null)
+				if (ReqResult.AsyncState != null)
 				{
 					Gamer GamerInContext = (Gamer)ReqResult.AsyncState;
 					int BatchEntryIndex = BatchStart;
@@ -272,7 +272,7 @@ namespace Terraria.Leaderboards
 			}
 			BatchStart++;
 			bool NotAllCached = CurrentCache.StartIndex + CurrentCache.NumEntries < BatchStart + BatchSize;
-            if (NotAllCached && !CanPageDown && ReadStateReq == AsyncRequest.None)
+			if (NotAllCached && !CanPageDown && ReadStateReq == AsyncRequest.None)
 			{
 				Selected--;
 				BatchStart--;
@@ -304,7 +304,7 @@ namespace Terraria.Leaderboards
 			}
 			BatchStart--;
 			bool NotInCache = BatchStart < CurrentCache.StartIndex;
-            if (NotInCache && !CanPageUp && ReadStateReq == AsyncRequest.None)
+			if (NotInCache && !CanPageUp && ReadStateReq == AsyncRequest.None)
 			{
 				Selected++;
 				BatchStart++;
@@ -332,7 +332,7 @@ namespace Terraria.Leaderboards
 			int NewCacheStart = CurrentCache.StartIndex + CurrentCache.NumEntries;
 			FreeCache(NewCacheStart);
 			CreateMergedCache(StaleCache, CurrentCache);
-            ReqResult = Reader.BeginPageDown(null, null);
+			ReqResult = Reader.BeginPageDown(null, null);
 			ReadStateReq = AsyncRequest.NextPage;
 		}
 
@@ -342,8 +342,8 @@ namespace Terraria.Leaderboards
 			int NewCacheStart = CurrentCache.StartIndex - PrevCachePtr;
 			FreeCache(NewCacheStart);
 			CreateMergedCache(CurrentCache, StaleCache);
-            ReqResult = Reader.BeginPageUp(null, null);
-            ReadStateReq = AsyncRequest.PreviousPage;
+			ReqResult = Reader.BeginPageUp(null, null);
+			ReadStateReq = AsyncRequest.PreviousPage;
 		}
 
 		private void FreeCache(int NewCacheStart)
@@ -413,7 +413,7 @@ namespace Terraria.Leaderboards
 			}
 		}
 
-        public Gamer GetSelectedGamer()
+		public Gamer GetSelectedGamer()
 		{
 			int Selection = Selected - MergedCache.StartIndex;
 			if (Selection >= 0 && Selection < MergedCache.NumEntries)

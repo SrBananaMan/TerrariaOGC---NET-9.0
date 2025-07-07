@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
 
 namespace Terraria
 {
@@ -32,7 +31,7 @@ namespace Terraria
 			Rectangle value = Source[id];
 			value.Y += sy;
 			value.Height = sh;
-			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)value, c, 0f, default(Vector2), 1f, e, 0f);
+			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)value, c, 0f, default, 1f, e, 0f);
 		}
 
 		public static void DrawRotated(int id, ref Vector2 pos, int sy, int sh, Color c, float rot, SpriteEffects e)
@@ -149,7 +148,7 @@ namespace Terraria
 
 		public static void Draw(int id, int x, int y, Color c, SpriteEffects se)
 		{
-			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default(Vector2), 1f, se, 0f);
+			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default, 1f, se, 0f);
 		}
 
 		public static void DrawScaled(int id, int x, int y, float scaleCenter, Color c)
@@ -181,12 +180,12 @@ namespace Terraria
 
 		public static void DrawScaledTL(int id, ref Vector2 pos, Color c, float scale)
 		{
-			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default, scale, SpriteEffects.None, 0f);
 		}
 
 		public static void DrawScaledTL(int id, int x, int y, Color c, float scale)
 		{
-			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default, scale, SpriteEffects.None, 0f);
 		}
 
 		public static void DrawScaled(int id, int x, int y, float scaleCenter, Color c, SpriteEffects e)
@@ -201,7 +200,7 @@ namespace Terraria
 
 		public static void Draw(int id, ref Vector2 pos, Color c, SpriteEffects se)
 		{
-			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default(Vector2), 1f, se, 0f);
+			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default, 1f, se, 0f);
 		}
 
 		public static void Draw(int id, ref Vector2 pos, Color c, float rotCenter, SpriteEffects se)
@@ -211,12 +210,12 @@ namespace Terraria
 
 		public static void DrawTL(int id, ref Vector2 pos, Color c, float scaleTopLeft)
 		{
-			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default(Vector2), scaleTopLeft, SpriteEffects.None, 0f);
+			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)Source[id], c, 0f, default, scaleTopLeft, SpriteEffects.None, 0f);
 		}
 
 		public static void DrawTL(int id, int x, int y, Color c, float scaleTopLeft)
 		{
-			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default(Vector2), scaleTopLeft, SpriteEffects.None, 0f);
+			Main.SpriteBatch.Draw(Tex, new Vector2(x, y), (Rectangle?)Source[id], c, 0f, default, scaleTopLeft, SpriteEffects.None, 0f);
 		}
 
 		public static void DrawL(int id, int x, int y, Color c, float scaleCenterLeft)
@@ -250,7 +249,7 @@ namespace Terraria
 		{
 			Rectangle value = Source[id];
 			value.Height = sh;
-			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)value, c, 0f, default(Vector2), 1f, se, 0f);
+			Main.SpriteBatch.Draw(Tex, pos, (Rectangle?)value, c, 0f, default, 1f, se, 0f);
 		}
 
 		public static void Draw(int id, ref Vector2 pos, Color c, float rot, ref Vector2 pivot, float scale)

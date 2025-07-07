@@ -28,66 +28,66 @@ namespace Terraria
 			StatisticEntry NPCEntry = StatisticEntry.Unknown;
 			switch (NetID)
 			{
-			case (int)NPC.ID.SLIME:
-				NPCEntry = StatisticEntry.BlueSlime;
-				break;
-			case -1:
-				NPCEntry = StatisticEntry.Slimeling;
-				break;
-			case -2:
-				NPCEntry = StatisticEntry.Slimer;
-				break;
-			case -3:
-				NPCEntry = StatisticEntry.GreenSlime;
-				break;
-			case -4:
-				NPCEntry = StatisticEntry.Pinky;
-				break;
-			case -5:
-				NPCEntry = StatisticEntry.BabySlime;
-				break;
-			case -6:
-				NPCEntry = StatisticEntry.BlackSlime;
-				break;
-			case -7:
-				NPCEntry = StatisticEntry.PurpleSlime;
-				break;
-			case -8:
-				NPCEntry = StatisticEntry.RedSlime;
-				break;
-			case -9:
-				NPCEntry = StatisticEntry.YellowSlime;
-				break;
-			case -10:
-				NPCEntry = StatisticEntry.JungleSlime;
-				break;
-			case -18:
-				NPCEntry = StatisticEntry.Slimeling;
-				break;
-			case (int)NPC.ID.MOTHER_SLIME:
-				NPCEntry = StatisticEntry.MotherSlime;
-				break;
-			case (int)NPC.ID.LAVA_SLIME:
-				NPCEntry = StatisticEntry.LavaSlime;
-				break;
-			case (int)NPC.ID.CORRUPT_SLIME:
-				NPCEntry = StatisticEntry.CorruptSlime;
-				break;
-			case (int)NPC.ID.TOXIC_SLUDGE:
-				NPCEntry = StatisticEntry.ToxicSludge;
-				break;
-			case (int)NPC.ID.SLIMER:
-				NPCEntry = StatisticEntry.Slimer;
-				break;
-			case (int)NPC.ID.SHADOW_SLIME:
-				NPCEntry = StatisticEntry.ShadowSlime;
-				break;
-			case (int)NPC.ID.ILLUMINANT_SLIME:
-				NPCEntry = StatisticEntry.IlluminantSlime;
-				break;
-			case (int)NPC.ID.DUNGEON_SLIME:
-				NPCEntry = StatisticEntry.DungeonSlime;
-				break;
+				case (int)NPC.ID.SLIME:
+					NPCEntry = StatisticEntry.BlueSlime;
+					break;
+				case -1:
+					NPCEntry = StatisticEntry.Slimeling;
+					break;
+				case -2:
+					NPCEntry = StatisticEntry.Slimer;
+					break;
+				case -3:
+					NPCEntry = StatisticEntry.GreenSlime;
+					break;
+				case -4:
+					NPCEntry = StatisticEntry.Pinky;
+					break;
+				case -5:
+					NPCEntry = StatisticEntry.BabySlime;
+					break;
+				case -6:
+					NPCEntry = StatisticEntry.BlackSlime;
+					break;
+				case -7:
+					NPCEntry = StatisticEntry.PurpleSlime;
+					break;
+				case -8:
+					NPCEntry = StatisticEntry.RedSlime;
+					break;
+				case -9:
+					NPCEntry = StatisticEntry.YellowSlime;
+					break;
+				case -10:
+					NPCEntry = StatisticEntry.JungleSlime;
+					break;
+				case -18:
+					NPCEntry = StatisticEntry.Slimeling;
+					break;
+				case (int)NPC.ID.MOTHER_SLIME:
+					NPCEntry = StatisticEntry.MotherSlime;
+					break;
+				case (int)NPC.ID.LAVA_SLIME:
+					NPCEntry = StatisticEntry.LavaSlime;
+					break;
+				case (int)NPC.ID.CORRUPT_SLIME:
+					NPCEntry = StatisticEntry.CorruptSlime;
+					break;
+				case (int)NPC.ID.TOXIC_SLUDGE:
+					NPCEntry = StatisticEntry.ToxicSludge;
+					break;
+				case (int)NPC.ID.SLIMER:
+					NPCEntry = StatisticEntry.Slimer;
+					break;
+				case (int)NPC.ID.SHADOW_SLIME:
+					NPCEntry = StatisticEntry.ShadowSlime;
+					break;
+				case (int)NPC.ID.ILLUMINANT_SLIME:
+					NPCEntry = StatisticEntry.IlluminantSlime;
+					break;
+				case (int)NPC.ID.DUNGEON_SLIME:
+					NPCEntry = StatisticEntry.DungeonSlime;
+					break;
 			}
 			return NPCEntry;
 		}
@@ -97,36 +97,36 @@ namespace Terraria
 			StatisticEntry BossEntry = StatisticEntry.Unknown;
 			switch ((NPC.ID)NetID)
 			{
-			case NPC.ID.KING_SLIME:
-				BossEntry = StatisticEntry.KingSlime;
-				break;
-			case NPC.ID.EYE_OF_CTHULHU:
-				BossEntry = StatisticEntry.EyeOfCthulhu;
-				break;
-			case NPC.ID.EATER_OF_WORLDS_HEAD:
-			case NPC.ID.EATER_OF_WORLDS_BODY:
-			case NPC.ID.EATER_OF_WORLDS_TAIL:
-				BossEntry = StatisticEntry.EaterOfWorlds;
-				break;
-			case NPC.ID.SKELETRON_HEAD:
-				BossEntry = StatisticEntry.Skeletron;
-				break;
-			case NPC.ID.WALL_OF_FLESH:
-				BossEntry = StatisticEntry.WallOfFlesh;
-				break;
-			case NPC.ID.RETINAZER:
-			case NPC.ID.SPAZMATISM:
-				BossEntry = StatisticEntry.TheTwins;
-				break;
-			case NPC.ID.THE_DESTROYER_HEAD:
-				BossEntry = StatisticEntry.TheDestroyer;
-				break;
-			case NPC.ID.SKELETRON_PRIME:
-				BossEntry = StatisticEntry.SkeletronPrime;
-				break;
-			case NPC.ID.OCRAM:
-				BossEntry = StatisticEntry.Ocram;
-				break;
+				case NPC.ID.KING_SLIME:
+					BossEntry = StatisticEntry.KingSlime;
+					break;
+				case NPC.ID.EYE_OF_CTHULHU:
+					BossEntry = StatisticEntry.EyeOfCthulhu;
+					break;
+				case NPC.ID.EATER_OF_WORLDS_HEAD:
+				case NPC.ID.EATER_OF_WORLDS_BODY:
+				case NPC.ID.EATER_OF_WORLDS_TAIL:
+					BossEntry = StatisticEntry.EaterOfWorlds;
+					break;
+				case NPC.ID.SKELETRON_HEAD:
+					BossEntry = StatisticEntry.Skeletron;
+					break;
+				case NPC.ID.WALL_OF_FLESH:
+					BossEntry = StatisticEntry.WallOfFlesh;
+					break;
+				case NPC.ID.RETINAZER:
+				case NPC.ID.SPAZMATISM:
+					BossEntry = StatisticEntry.TheTwins;
+					break;
+				case NPC.ID.THE_DESTROYER_HEAD:
+					BossEntry = StatisticEntry.TheDestroyer;
+					break;
+				case NPC.ID.SKELETRON_PRIME:
+					BossEntry = StatisticEntry.SkeletronPrime;
+					break;
+				case NPC.ID.OCRAM:
+					BossEntry = StatisticEntry.Ocram;
+					break;
 			}
 			return BossEntry;
 		}

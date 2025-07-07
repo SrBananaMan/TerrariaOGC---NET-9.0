@@ -1,6 +1,6 @@
 ﻿#if !USE_ORIGINAL_CODE
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Terraria
 {
@@ -10,7 +10,7 @@ namespace Terraria
 		private static readonly string BigSmlCharacters = @" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 		private static readonly string BigSmlCharacters2 = "¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƀƁƂƃƄƅƆƇƈƉƊƋƌƍƎƏƐƑƒƓƔƕƖƗƘƙƚƛƜƝƞƟƠơƢƣƤƥƦƧƨƩƪƫƬƭƮƯưƱƲƳƴƵƶƷƸƹƺƻƼƽƾƿǀǁǂǃǄǅǆǇǈǉǊǋǌǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǝǞǟǠǡǢǣǤǥǦǧǨǩǪǫǬǭǮǯǰǱǲǳǴǵǶǷǸǹǺǻǼǽǾǿȀ";
 
-		public List<Rectangle> StackGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> StackBounds = new List<Rectangle>()
 		{
 			new Rectangle(87, 0, 13, 20),
 			new Rectangle(15, 0, 14, 20),
@@ -26,7 +26,7 @@ namespace Terraria
 			new Rectangle(43, 21, 9, 20),
 		};
 
-		public List<Rectangle> StackSCGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> StackSCBounds = new List<Rectangle>()
 		{
 			new Rectangle(0, 16, 9, 15),
 			new Rectangle(11, 0, 10, 15),
@@ -43,7 +43,7 @@ namespace Terraria
 		};
 
 		//----------------------------------------------------------------------
-		public List<Rectangle> CombatGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> CombatBounds = new List<Rectangle>()
 		{
 			new Rectangle(84, 0, 19, 21),
 			new Rectangle(16, 0, 14, 21),
@@ -57,7 +57,7 @@ namespace Terraria
 			new Rectangle(35, 22, 17, 21),
 		};
 
-		public List<Rectangle> CombatBothSCGlyphBounds = new List<Rectangle>()
+		public List<Rectangle> CombatBothSCBounds = new List<Rectangle>()
 		{
 			new Rectangle(16, 18, 16, 17),
 			new Rectangle(13, 0, 11, 17),
@@ -71,7 +71,7 @@ namespace Terraria
 			new Rectangle(14, 36, 14, 17),
 		};
 
-		public List<Rectangle> Combat2GlyphBounds = new List<Rectangle>()
+		public List<Rectangle> Combat2Bounds = new List<Rectangle>()
 		{
 			new Rectangle(84, 0, 20, 22),
 			new Rectangle(16, 0, 13, 22),
@@ -86,7 +86,7 @@ namespace Terraria
 		};
 
 		//----------------------------------------------------------------------
-		public List<Rectangle> StackGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> StackCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 13, 20),
 			new Rectangle(0, 0, 14, 20),
@@ -102,7 +102,7 @@ namespace Terraria
 			new Rectangle(0, 0, 9, 20),
 		};
 
-		public List<Rectangle> StackSCGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> StackSCCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 9, 15),
 			new Rectangle(0, 0, 10, 15),
@@ -119,7 +119,7 @@ namespace Terraria
 		};
 
 		//----------------------------------------------------------------------
-		public List<Rectangle> CombatGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> CombatCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 19, 21),
 			new Rectangle(0, 0, 14, 21),
@@ -133,7 +133,7 @@ namespace Terraria
 			new Rectangle(0, 0, 17, 21),
 		};
 
-		public List<Rectangle> CombatBothSCGlyphCrops = new List<Rectangle>()
+		public List<Rectangle> CombatBothSCCrops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 16, 17),
 			new Rectangle(0, 0, 11, 17),
@@ -147,7 +147,7 @@ namespace Terraria
 			new Rectangle(0, 0, 14, 17),
 		};
 
-		public List<Rectangle> Combat2GlyphCrops = new List<Rectangle>()
+		public List<Rectangle> Combat2Crops = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 20, 22),
 			new Rectangle(0, 0, 13, 22),
@@ -163,7 +163,7 @@ namespace Terraria
 
 		//----------------------------------------------------------------------
 		public List<char> StackChars = new List<char>()
-        {
+		{
 			StackCombatCharacters[0],
 			StackCombatCharacters[1],
 			StackCombatCharacters[2],
@@ -270,7 +270,7 @@ namespace Terraria
 
 		//----------------------------------------------------------------------
 		public List<char> BigSmlChars = new List<char>()
-        {
+		{
 			BigSmlCharacters[0],
 			BigSmlCharacters[1],
 			(char)0x22,
@@ -754,7 +754,7 @@ namespace Terraria
 			BigSmlCharacters2[351]
 		};
 
-		public List<Rectangle> XBSmlBoundReplace = new List<Rectangle>()
+		public List<Rectangle> XBSmlBoundPart = new List<Rectangle>()
 		{
 			new Rectangle(111, 64, 25, 31),
 			new Rectangle(137, 64, 25, 31),
@@ -774,7 +774,7 @@ namespace Terraria
 			new Rectangle(87, 96, 33, 31)
 		};
 
-		public List<Rectangle> XBSml2BoundReplace = new List<Rectangle>()
+		public List<Rectangle> XBSml2BoundPart = new List<Rectangle>()
 		{
 			new Rectangle(495, 36, 24, 35),
 			new Rectangle(520, 36, 25, 35),
@@ -794,7 +794,7 @@ namespace Terraria
 			new Rectangle(960, 36, 35, 35),
 		};
 
-		public List<Rectangle> XBSml2SCBoundReplace = new List<Rectangle>()
+		public List<Rectangle> XBSml2SCBoundPart = new List<Rectangle>()
 		{
 			new Rectangle(351, 22, 15, 21),
 			new Rectangle(367, 22, 15, 21),
@@ -814,7 +814,7 @@ namespace Terraria
 			new Rectangle(127, 44, 20, 21),
 		};
 
-		public List<Rectangle> XBSmlCropReplace = new List<Rectangle>()
+		public List<Rectangle> XBSmlCroPart = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 25, 31),
 			new Rectangle(0, 0, 25, 31),
@@ -834,7 +834,7 @@ namespace Terraria
 			new Rectangle(0, 0, 33, 31)
 		};
 
-		public List<Rectangle> XBSml2CropReplace = new List<Rectangle>()
+		public List<Rectangle> XBSml2CropPart = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 24, 35),
 			new Rectangle(0, 0, 25, 35),
@@ -854,7 +854,7 @@ namespace Terraria
 			new Rectangle(0, 0, 35, 35),
 		};
 
-		public List<Rectangle> XBSml2SCCropReplace = new List<Rectangle>()
+		public List<Rectangle> XBSml2SCCropPart = new List<Rectangle>()
 		{
 			new Rectangle(0, 0, 15, 21),
 			new Rectangle(0, 0, 15, 21),
@@ -874,7 +874,7 @@ namespace Terraria
 			new Rectangle(0, 0, 20, 21),
 		};
 
-		public List<Vector3> XBSmlKerningReplace = new List<Vector3>()
+		public List<Vector3> XBSmlKerningPart = new List<Vector3>()
 		{
 			new Vector3(0, 25, 0),
 			new Vector3(0, 25, 0),
@@ -894,7 +894,7 @@ namespace Terraria
 			new Vector3(0, 33, 0)
 		};
 
-		public List<Vector3> XBSml2KerningReplace = new List<Vector3>()
+		public List<Vector3> XBSml2KerningPart = new List<Vector3>()
 		{
 			new Vector3(0, 24, 0),
 			new Vector3(0, 25, 0),
@@ -914,7 +914,7 @@ namespace Terraria
 			new Vector3(0, 35, 0),
 		};
 
-		public List<Vector3> XBSml2SCKerningReplace = new List<Vector3>()
+		public List<Vector3> XBSml2SCKerningPart = new List<Vector3>()
 		{
 			new Vector3(0, 15, 0),
 			new Vector3(0, 15, 0),

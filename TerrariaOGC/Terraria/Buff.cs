@@ -64,14 +64,14 @@ namespace Terraria
 		{
 			switch (Type)
 			{
-			case (int)ID.POISONED:
-			case (int)ID.ON_FIRE:
-			case (int)ID.BLEED:
-			case (int)ID.CONFUSED:
-			case (int)ID.ON_FIRE_2:
-				return true;
-			default:
-				return false;
+				case (int)ID.POISONED:
+				case (int)ID.ON_FIRE:
+				case (int)ID.BLEED:
+				case (int)ID.CONFUSED:
+				case (int)ID.ON_FIRE_2:
+					return true;
+				default:
+					return false;
 			}
 		}
 
@@ -79,26 +79,26 @@ namespace Terraria
 		{
 			switch (type)
 			{
-			case (int)ID.POISONED:
-			case (int)ID.POTION_DELAY:
-			case (int)ID.BLIND:
-			case (int)ID.NO_ITEMS:
-			case (int)ID.ON_FIRE:
-			case (int)ID.DRUNK:
-			case (int)ID.WEREWOLF: // Apparently this and merfolk are debuffs???
-			case (int)ID.BLEED:
-			case (int)ID.CONFUSED:
-			case (int)ID.SLOW:
-			case (int)ID.WEAK:
-			case (int)ID.MERFOLK:
-			case (int)ID.SILENCE:
-			case (int)ID.BROKEN_ARMOR:
-			case (int)ID.HORRIFIED:
-			case (int)ID.TONGUED:
-			case (int)ID.ON_FIRE_2:
-				return true;
-			default:
-				return false;
+				case (int)ID.POISONED:
+				case (int)ID.POTION_DELAY:
+				case (int)ID.BLIND:
+				case (int)ID.NO_ITEMS:
+				case (int)ID.ON_FIRE:
+				case (int)ID.DRUNK:
+				case (int)ID.WEREWOLF: // Apparently this and merfolk are debuffs???
+				case (int)ID.BLEED:
+				case (int)ID.CONFUSED:
+				case (int)ID.SLOW:
+				case (int)ID.WEAK:
+				case (int)ID.MERFOLK:
+				case (int)ID.SILENCE:
+				case (int)ID.BROKEN_ARMOR:
+				case (int)ID.HORRIFIED:
+				case (int)ID.TONGUED:
+				case (int)ID.ON_FIRE_2:
+					return true;
+				default:
+					return false;
 			}
 		}
 
@@ -111,24 +111,24 @@ namespace Terraria
 		{
 			switch (Type)
 			{
-			case (int)ID.POISONED:
-			case (int)ID.POTION_DELAY:
-			case (int)ID.BLIND:
-			case (int)ID.NO_ITEMS:
-			case (int)ID.ON_FIRE:
-			case (int)ID.DRUNK:
-			case (int)ID.BLEED:
-			case (int)ID.CONFUSED:
-			case (int)ID.SLOW:
-			case (int)ID.WEAK:
-			case (int)ID.SILENCE:
-			case (int)ID.BROKEN_ARMOR:
-			case (int)ID.HORRIFIED:
-			case (int)ID.TONGUED:
-			case (int)ID.ON_FIRE_2:
-				return Time > 0;
-			default:
-				return false;
+				case (int)ID.POISONED:
+				case (int)ID.POTION_DELAY:
+				case (int)ID.BLIND:
+				case (int)ID.NO_ITEMS:
+				case (int)ID.ON_FIRE:
+				case (int)ID.DRUNK:
+				case (int)ID.BLEED:
+				case (int)ID.CONFUSED:
+				case (int)ID.SLOW:
+				case (int)ID.WEAK:
+				case (int)ID.SILENCE:
+				case (int)ID.BROKEN_ARMOR:
+				case (int)ID.HORRIFIED:
+				case (int)ID.TONGUED:
+				case (int)ID.ON_FIRE_2:
+					return Time > 0;
+				default:
+					return false;
 			}
 		}
 

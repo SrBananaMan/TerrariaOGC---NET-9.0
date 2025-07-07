@@ -1,18 +1,15 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Storage;
 using System;
 using System.Collections;
 using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 using Terraria.Achievements;
-using Terraria.Leaderboards;
-using static System.Net.Mime.MediaTypeNames;
 using Terraria.CreateCharacter;
+using Terraria.Leaderboards;
 
 
 #if !USE_ORIGINAL_CODE
-using System.Diagnostics;
 #endif
 
 namespace Terraria
@@ -180,7 +177,7 @@ namespace Terraria
 		public sbyte netSkip;
 
 #if (!VERSION_INITIAL || IS_PATCHED)
-        private short netForceControlUpdate = NetForceUpdateTimer;
+		private short netForceControlUpdate = NetForceUpdateTimer;
 
 		public sbyte[] PlayerQuickAccess = new sbyte[4] { -1, -1, -1, -1 };
 #endif
@@ -1085,7 +1082,7 @@ namespace Terraria
 			}
 			if (noThrow == 0 && ((controlThrow && Inventory[SelectedItem].Type > 0) || ((ui.InventoryMode == 0 || ui.IsButtonUntriggered(UI.BTN_DROP)) && ui.mouseItem.Type > 0 && ui.mouseItem.Stack > 0)))
 			{
-				Item item = default(Item);
+				Item item = default;
 				bool flag = false;
 				if ((ui.InventoryMode == 0 || ui.IsButtonUntriggered(UI.BTN_INVENTORY_DROP)) && ui.mouseItem.Type > 0 && ui.mouseItem.Stack > 0)
 				{
@@ -1269,62 +1266,62 @@ namespace Terraria
 		{
 			switch (type)
 			{
-			case 2:
-				if (Main.Rand.Next(3) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case 15:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 300, quiet: false);
-				}
-				break;
-			case 19:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case 33:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.POISONED, 420, quiet: false);
-				}
-				break;
-			case 34:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 240, quiet: false);
-				}
-				break;
-			case 35:
-				if (Main.Rand.Next(4) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case 54:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.POISONED, 600, quiet: false);
-				}
-				break;
-			case 63:
-				if (Main.Rand.Next(3) != 0)
-				{
-					AddBuff((int)Buff.ID.CONFUSED, 120);
-				}
-				break;
-			case 85:
-				AddBuff((int)Buff.ID.ON_FIRE, 1200, quiet: false);
-				break;
-			case 95:
-			case 103:
-			case 104:
-				AddBuff((int)Buff.ID.ON_FIRE_2, 420);
-				break;
+				case 2:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case 15:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 300, quiet: false);
+					}
+					break;
+				case 19:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case 33:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 420, quiet: false);
+					}
+					break;
+				case 34:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 240, quiet: false);
+					}
+					break;
+				case 35:
+					if (Main.Rand.Next(4) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case 54:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 600, quiet: false);
+					}
+					break;
+				case 63:
+					if (Main.Rand.Next(3) != 0)
+					{
+						AddBuff((int)Buff.ID.CONFUSED, 120);
+					}
+					break;
+				case 85:
+					AddBuff((int)Buff.ID.ON_FIRE, 1200, quiet: false);
+					break;
+				case 95:
+				case 103:
+				case 104:
+					AddBuff((int)Buff.ID.ON_FIRE_2, 420);
+					break;
 			}
 		}
 
@@ -1332,34 +1329,34 @@ namespace Terraria
 		{
 			switch (type)
 			{
-			case 55:
-				if (Main.Rand.Next(3) == 0)
-				{
+				case 55:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 600);
+					}
+					break;
+				case 44:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.BLIND, 900);
+					}
+					break;
+				case 82:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 420);
+					}
+					break;
+				case 96:
+				case 101:
+					if (Main.Rand.Next(3) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE_2, 480);
+					}
+					break;
+				case 98:
 					AddBuff((int)Buff.ID.POISONED, 600);
-				}
-				break;
-			case 44:
-				if (Main.Rand.Next(3) == 0)
-				{
-					AddBuff((int)Buff.ID.BLIND, 900);
-				}
-				break;
-			case 82:
-				if (Main.Rand.Next(3) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 420);
-				}
-				break;
-			case 96:
-			case 101:
-				if (Main.Rand.Next(3) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE_2, 480);
-				}
-				break;
-			case 98:
-				AddBuff((int)Buff.ID.POISONED, 600);
-				break;
+					break;
 			}
 		}
 
@@ -1367,37 +1364,37 @@ namespace Terraria
 		{
 			switch (type)
 			{
-			case (int)Item.ID.FIERY_GREATSWORD:
-				if (Main.Rand.Next(2) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case (int)Item.ID.MOLTEN_PICKAXE:
-				if (Main.Rand.Next(10) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case (int)Item.ID.BLADE_OF_GRASS:
-			case (int)Item.ID.TONBOGIRI:
-				if (Main.Rand.Next(4) == 0)
-				{
-					AddBuff((int)Buff.ID.POISONED, 420, quiet: false);
-				}
-				break;
-			case (int)Item.ID.MOLTEN_HAMAXE:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
-				}
-				break;
-			case (int)Item.ID.TIZONA:
-				if (Main.Rand.Next(5) == 0)
-				{
-					AddBuff((int)Buff.ID.BLEED, 600, quiet: false);
-				}
-				break;
+				case (int)Item.ID.FIERY_GREATSWORD:
+					if (Main.Rand.Next(2) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case (int)Item.ID.MOLTEN_PICKAXE:
+					if (Main.Rand.Next(10) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case (int)Item.ID.BLADE_OF_GRASS:
+				case (int)Item.ID.TONBOGIRI:
+					if (Main.Rand.Next(4) == 0)
+					{
+						AddBuff((int)Buff.ID.POISONED, 420, quiet: false);
+					}
+					break;
+				case (int)Item.ID.MOLTEN_HAMAXE:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.ON_FIRE, 180, quiet: false);
+					}
+					break;
+				case (int)Item.ID.TIZONA:
+					if (Main.Rand.Next(5) == 0)
+					{
+						AddBuff((int)Buff.ID.BLEED, 600, quiet: false);
+					}
+					break;
 			}
 		}
 
@@ -1407,7 +1404,7 @@ namespace Terraria
 			buffG *= 0.7f;
 			if (Main.Rand.Next(4) == 0)
 			{
-				Dust* ptr = Main.DustSet.NewDust(XYWH.X - 2, XYWH.Y - 2, 24, 46, particleType, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default(Color), 3.0);
+				Dust* ptr = Main.DustSet.NewDust(XYWH.X - 2, XYWH.Y - 2, 24, 46, particleType, velocity.X * 0.4f, velocity.Y * 0.4f, 100, default, 3.0);
 				if (ptr != null)
 				{
 					ptr->NoGravity = true;
@@ -1655,13 +1652,13 @@ namespace Terraria
 		{
 			switch (Main.TileSet[tileInteractX, tileInteractY].Type)
 			{
-			case 10:
-			case 11:
-				return false;
-			default:
-				tileInteractX = 0;
-				tileInteractY = 0;
-				return true;
+				case 10:
+				case 11:
+					return false;
+				default:
+					tileInteractX = 0;
+					tileInteractY = 0;
+					return true;
 			}
 		}
 
@@ -1980,9 +1977,9 @@ namespace Terraria
 						if (flag4)
 						{
 #else
-                        if (flag4 || --netForceControlUpdate <= 0)
-                        {
-                            netForceControlUpdate = NetForceUpdateTimer; // This number is not changed in future versions.
+						if (flag4 || --netForceControlUpdate <= 0)
+						{
+							netForceControlUpdate = NetForceUpdateTimer; // This number is not changed in future versions.
 #endif
 							NetMessage.CreateMessage1(13, i);
 							NetMessage.SendMessage();
@@ -2141,242 +2138,242 @@ namespace Terraria
 					}
 					switch ((Buff.ID)buff[j].Type)
 					{
-					case Buff.ID.LAVA_IMMUNE:
-						lavaImmune = true;
-						fireWalk = true;
-						break;
-					case Buff.ID.LIFE_REGEN:
-						lifeRegen += 2;
-						break;
-					case Buff.ID.HASTE:
-						moveSpeed += 0.25f;
-						break;
-					case Buff.ID.GILLS:
-						gills = true;
-						break;
-					case Buff.ID.IRONSKIN:
-						StatDefense += 8;
-						break;
-					case Buff.ID.MANA_REGEN:
-						manaRegenBuff = true;
-						break;
-					case Buff.ID.MAGIC_POWER:
-						magicDamage += 0.2f;
-						break;
-					case Buff.ID.SLOWFALL:
-						slowFall = true;
-						break;
-					case Buff.ID.FIND_TREASURE:
-						findTreasure = true;
-						break;
-					case Buff.ID.INVISIBLE:
-						invis = true;
-						break;
-					case Buff.ID.SHINE:
-						Lighting.AddLight(XYWH.X + (width / 2) >> 4, XYWH.Y + (height / 2) >> 4, new Vector3(0.8f, 0.95f, 1f));
-						break;
-					case Buff.ID.NIGHTVISION:
-						NightVision = true;
-						break;
-					case Buff.ID.ENEMY_SPAWNS:
-						enemySpawns = true;
-						break;
-					case Buff.ID.THORNS:
-						thorns = true;
-						break;
-					case Buff.ID.WATER_WALK:
-						waterWalk = true;
-						break;
-					case Buff.ID.RANGED_DAMAGE:
-						archery = true;
-						break;
-					case Buff.ID.DETECT_CREATURE:
-						detectCreature = true;
-						break;
-					case Buff.ID.GRAVITY_CONTROL:
-						gravControl = true;
-						break;
-					case Buff.ID.LIGHT_ORB:
-					{
-						lightOrb = true;
-						bool flag5 = true;
-						for (int k = 0; k < Projectile.MaxNumProjs; k++)
-						{
-							if (Main.ProjectileSet[k].type == 18 && Main.ProjectileSet[k].active != 0 && Main.ProjectileSet[k].owner == WhoAmI)
+						case Buff.ID.LAVA_IMMUNE:
+							lavaImmune = true;
+							fireWalk = true;
+							break;
+						case Buff.ID.LIFE_REGEN:
+							lifeRegen += 2;
+							break;
+						case Buff.ID.HASTE:
+							moveSpeed += 0.25f;
+							break;
+						case Buff.ID.GILLS:
+							gills = true;
+							break;
+						case Buff.ID.IRONSKIN:
+							StatDefense += 8;
+							break;
+						case Buff.ID.MANA_REGEN:
+							manaRegenBuff = true;
+							break;
+						case Buff.ID.MAGIC_POWER:
+							magicDamage += 0.2f;
+							break;
+						case Buff.ID.SLOWFALL:
+							slowFall = true;
+							break;
+						case Buff.ID.FIND_TREASURE:
+							findTreasure = true;
+							break;
+						case Buff.ID.INVISIBLE:
+							invis = true;
+							break;
+						case Buff.ID.SHINE:
+							Lighting.AddLight(XYWH.X + (width / 2) >> 4, XYWH.Y + (height / 2) >> 4, new Vector3(0.8f, 0.95f, 1f));
+							break;
+						case Buff.ID.NIGHTVISION:
+							NightVision = true;
+							break;
+						case Buff.ID.ENEMY_SPAWNS:
+							enemySpawns = true;
+							break;
+						case Buff.ID.THORNS:
+							thorns = true;
+							break;
+						case Buff.ID.WATER_WALK:
+							waterWalk = true;
+							break;
+						case Buff.ID.RANGED_DAMAGE:
+							archery = true;
+							break;
+						case Buff.ID.DETECT_CREATURE:
+							detectCreature = true;
+							break;
+						case Buff.ID.GRAVITY_CONTROL:
+							gravControl = true;
+							break;
+						case Buff.ID.LIGHT_ORB:
 							{
-								flag5 = false;
+								lightOrb = true;
+								bool flag5 = true;
+								for (int k = 0; k < Projectile.MaxNumProjs; k++)
+								{
+									if (Main.ProjectileSet[k].type == 18 && Main.ProjectileSet[k].active != 0 && Main.ProjectileSet[k].owner == WhoAmI)
+									{
+										flag5 = false;
+										break;
+									}
+								}
+								if (flag5)
+								{
+									Projectile.NewProjectile(Position.X + (width / 2), Position.Y + (height / 2), 0f, 0f, 18, 0, 0f, WhoAmI);
+								}
 								break;
 							}
-						}
-						if (flag5)
-						{
-							Projectile.NewProjectile(Position.X + (width / 2), Position.Y + (height / 2), 0f, 0f, 18, 0, 0f, WhoAmI);
-						}
-						break;
-					}
-					case Buff.ID.POISONED:
-						poisoned = true;
-						if (Main.Rand.Next(52) == 0)
-						{
-							Dust* ptr2 = Main.DustSet.NewDust(46, ref XYWH, 0.0, 0.0, 150, default, 0.2f);
-							if (ptr2 != null)
+						case Buff.ID.POISONED:
+							poisoned = true;
+							if (Main.Rand.Next(52) == 0)
 							{
-								ptr2->NoGravity = true;
-								ptr2->FadeIn = 1.9f;
+								Dust* ptr2 = Main.DustSet.NewDust(46, ref XYWH, 0.0, 0.0, 150, default, 0.2f);
+								if (ptr2 != null)
+								{
+									ptr2->NoGravity = true;
+									ptr2->FadeIn = 1.9f;
+								}
 							}
-						}
-						buffR *= 0.65f;
-						buffB *= 0.75f;
-						break;
-					case Buff.ID.POTION_DELAY:
-						potionDelay = buff[j].Time;
-						break;
-					case Buff.ID.BLIND:
-						blind = true;
-						buffG *= 0.65f;
-						buffR *= 0.7f;
-						break;
-					case Buff.ID.NO_ITEMS:
-						noItems = true;
-						buffG *= 0.8f;
-						buffR *= 0.65f;
-						break;
-					case Buff.ID.ON_FIRE:
-						onFire = true;
-						FireEffect(6);
-						break;
-					case Buff.ID.DRUNK:
-						StatDefense -= 4;
-						meleeCrit += 2;
-						meleeDamage += 0.1f;
-						meleeSpeed += 0.1f;
-						break;
-					case Buff.ID.WELL_FED:
-						StatDefense++;
-						meleeCrit++;
-						meleeDamage += 0.05f;
-						meleeSpeed += 0.05f;
-						magicCrit++;
-						magicDamage += 0.05f;
-						rangedCrit++;
-						magicDamage += 0.05f;
-						moveSpeed += 0.1f;
-						break;
-					case Buff.ID.FAIRY:
-					{
-						fairy = true;
-						bool flag6 = true;
-						for (int l = 0; l < Projectile.MaxNumProjs; l++)
-						{
-							if (Main.ProjectileSet[l].active != 0 && Main.ProjectileSet[l].owner == WhoAmI && (Main.ProjectileSet[l].type == 72 || Main.ProjectileSet[l].type == 86 || Main.ProjectileSet[l].type == 87))
-							{
-								flag6 = false;
-								break;
-							}
-						}
-						if (flag6)
-						{
-							int num18 = Main.Rand.Next(3);
-							switch (num18)
-							{
-							case 0:
-								num18 = 72;
-								break;
-							case 1:
-								num18 = 86;
-								break;
-							case 2:
-								num18 = 87;
-								break;
-							}
-							Projectile.NewProjectile(Position.X + (width / 2), Position.Y + (height / 2), 0f, 0f, num18, 0, 0f, WhoAmI);
-						}
-						break;
-					}
-					case Buff.ID.WEREWOLF:
-						if (wolfAcc && !merman && !Main.GameTime.DayTime && Main.GameTime.MoonPhase == 0)
-						{
-							wereWolf = true;
-							meleeCrit++;
-							meleeDamage += 0.051f;
-							meleeSpeed += 0.051f;
+							buffR *= 0.65f;
+							buffB *= 0.75f;
+							break;
+						case Buff.ID.POTION_DELAY:
+							potionDelay = buff[j].Time;
+							break;
+						case Buff.ID.BLIND:
+							blind = true;
+							buffG *= 0.65f;
+							buffR *= 0.7f;
+							break;
+						case Buff.ID.NO_ITEMS:
+							noItems = true;
+							buffG *= 0.8f;
+							buffR *= 0.65f;
+							break;
+						case Buff.ID.ON_FIRE:
+							onFire = true;
+							FireEffect(6);
+							break;
+						case Buff.ID.DRUNK:
+							StatDefense -= 4;
+							meleeCrit += 2;
+							meleeDamage += 0.1f;
+							meleeSpeed += 0.1f;
+							break;
+						case Buff.ID.WELL_FED:
 							StatDefense++;
-							moveSpeed += 0.05f;
-						}
-						else
-						{
-							j = DelBuff(j);
-						}
-						break;
-					case Buff.ID.CLARAVOYANCE:
-						magicCrit += 2;
-						magicDamage += 0.05f;
-						statManaMax2 += 20;
-						manaCost -= 0.02f;
-						break;
-					case Buff.ID.BLEED:
-						bleed = true;
-						if (!IsDead && Main.Rand.Next(32) == 0)
-						{
-							Dust* ptr = Main.DustSet.NewDust(5, ref XYWH);
-							if (ptr != null)
+							meleeCrit++;
+							meleeDamage += 0.05f;
+							meleeSpeed += 0.05f;
+							magicCrit++;
+							magicDamage += 0.05f;
+							rangedCrit++;
+							magicDamage += 0.05f;
+							moveSpeed += 0.1f;
+							break;
+						case Buff.ID.FAIRY:
 							{
-								ptr->Velocity.X *= 0.25f;
-								ptr->Velocity.Y += 0.5f;
-								ptr->Velocity.Y *= 0.25f;
+								fairy = true;
+								bool flag6 = true;
+								for (int l = 0; l < Projectile.MaxNumProjs; l++)
+								{
+									if (Main.ProjectileSet[l].active != 0 && Main.ProjectileSet[l].owner == WhoAmI && (Main.ProjectileSet[l].type == 72 || Main.ProjectileSet[l].type == 86 || Main.ProjectileSet[l].type == 87))
+									{
+										flag6 = false;
+										break;
+									}
+								}
+								if (flag6)
+								{
+									int num18 = Main.Rand.Next(3);
+									switch (num18)
+									{
+										case 0:
+											num18 = 72;
+											break;
+										case 1:
+											num18 = 86;
+											break;
+										case 2:
+											num18 = 87;
+											break;
+									}
+									Projectile.NewProjectile(Position.X + (width / 2), Position.Y + (height / 2), 0f, 0f, num18, 0, 0f, WhoAmI);
+								}
+								break;
 							}
-						}
-						buffG *= 0.9f;
-						buffB *= 0.9f;
-						break;
-					case Buff.ID.CONFUSED:
-						confused = true;
-						break;
-					case Buff.ID.SLOW:
-						slow = true;
-						break;
-					case Buff.ID.WEAK:
-						meleeDamage -= 0.051f;
-						meleeSpeed -= 0.051f;
-						StatDefense -= 4;
-						moveSpeed -= 0.1f;
-						break;
-					case Buff.ID.SILENCE:
-						silence = true;
-						break;
-					case Buff.ID.BROKEN_ARMOR:
-						brokenArmor = true;
-						break;
-					case Buff.ID.HORRIFIED:
-						if (NPC.WoF >= 0 && Main.NPCSet[NPC.WoF].Type == (int)NPC.ID.WALL_OF_FLESH)
-						{
-							IsHorrified = true;
+						case Buff.ID.WEREWOLF:
+							if (wolfAcc && !merman && !Main.GameTime.DayTime && Main.GameTime.MoonPhase == 0)
+							{
+								wereWolf = true;
+								meleeCrit++;
+								meleeDamage += 0.051f;
+								meleeSpeed += 0.051f;
+								StatDefense++;
+								moveSpeed += 0.05f;
+							}
+							else
+							{
+								j = DelBuff(j);
+							}
+							break;
+						case Buff.ID.CLARAVOYANCE:
+							magicCrit += 2;
+							magicDamage += 0.05f;
+							statManaMax2 += 20;
+							manaCost -= 0.02f;
+							break;
+						case Buff.ID.BLEED:
+							bleed = true;
+							if (!IsDead && Main.Rand.Next(32) == 0)
+							{
+								Dust* ptr = Main.DustSet.NewDust(5, ref XYWH);
+								if (ptr != null)
+								{
+									ptr->Velocity.X *= 0.25f;
+									ptr->Velocity.Y += 0.5f;
+									ptr->Velocity.Y *= 0.25f;
+								}
+							}
+							buffG *= 0.9f;
+							buffB *= 0.9f;
+							break;
+						case Buff.ID.CONFUSED:
+							confused = true;
+							break;
+						case Buff.ID.SLOW:
+							slow = true;
+							break;
+						case Buff.ID.WEAK:
+							meleeDamage -= 0.051f;
+							meleeSpeed -= 0.051f;
+							StatDefense -= 4;
+							moveSpeed -= 0.1f;
+							break;
+						case Buff.ID.SILENCE:
+							silence = true;
+							break;
+						case Buff.ID.BROKEN_ARMOR:
+							brokenArmor = true;
+							break;
+						case Buff.ID.HORRIFIED:
+							if (NPC.WoF >= 0 && Main.NPCSet[NPC.WoF].Type == (int)NPC.ID.WALL_OF_FLESH)
+							{
+								IsHorrified = true;
+								buff[j].Time = 10;
+							}
+							else
+							{
+								j = DelBuff(j);
+							}
+							break;
+						case Buff.ID.TONGUED:
 							buff[j].Time = 10;
-						}
-						else
-						{
-							j = DelBuff(j);
-						}
-						break;
-					case Buff.ID.TONGUED:
-						buff[j].Time = 10;
-						tongued = true;
-						break;
-					case Buff.ID.ON_FIRE_2:
-						onFire2 = true;
-						FireEffect(75);
-						break;
-					case Buff.ID.PET:
-						if (pet >= 0)
-						{
-							buff[j].Time = 18000;
-							SpawnPet();
-						}
-						else
-						{
-							buff[j].Time = 0;
-						}
-						break;
+							tongued = true;
+							break;
+						case Buff.ID.ON_FIRE_2:
+							onFire2 = true;
+							FireEffect(75);
+							break;
+						case Buff.ID.PET:
+							if (pet >= 0)
+							{
+								buff[j].Time = 18000;
+								SpawnPet();
+							}
+							else
+							{
+								buff[j].Time = 0;
+							}
+							break;
 					}
 				}
 				if (accMerman && IsWet && !lavaWet)
@@ -2414,242 +2411,242 @@ namespace Terraria
 					lifeRegen += armor[n].LifeRegen;
 					switch ((Item.ID)armor[n].Type)
 					{
-					case Item.ID.METEOR_HELMET:
-					case Item.ID.METEOR_SUIT:
-					case Item.ID.METEOR_LEGGINGS:
-						magicDamage += 0.05f;
-						break;
-					case Item.ID.NECRO_HELMET:
-					case Item.ID.NECRO_BREASTPLATE:
-					case Item.ID.NECRO_GREAVES:
-						rangedDamage += 0.05f;
-						break;
-					case Item.ID.WIZARD_HAT:
-						magicDamage += 0.15f;
-						break;
-					case Item.ID.BAND_OF_STARPOWER:
-						statManaMax2 += 20;
-						break;
-					case Item.ID.JUNGLE_HAT:
-					case Item.ID.JUNGLE_SHIRT:
-					case Item.ID.JUNGLE_PANTS:
-						magicCrit += 3;
-						statManaMax2 += 20;
-						break;
-					case Item.ID.SHADOW_GREAVES:
-					case Item.ID.SHADOW_SCALEMAIL:
-					case Item.ID.SHADOW_HELMET:
-						meleeSpeed += 0.07f;
-						break;
-					case Item.ID.COBALT_HAT:
-						magicCrit += 9;
-						statManaMax2 += 40;
-						break;
-					case Item.ID.COBALT_HELMET:
-						moveSpeed += 0.07f;
-						meleeSpeed += 0.12f;
-						break;
-					case Item.ID.COBALT_MASK:
-						rangedDamage += 0.1f;
-						rangedCrit += 6;
-						break;
-					case Item.ID.COBALT_BREASTPLATE:
-						magicCrit += 3;
-						meleeCrit += 3;
-						rangedCrit += 3;
-						break;
-					case Item.ID.COBALT_LEGGINGS:
-						moveSpeed += 0.1f;
-						break;
-					case Item.ID.MYTHRIL_HOOD:
-						magicDamage += 0.15f;
-						statManaMax2 += 60;
-						break;
-					case Item.ID.MYTHRIL_HELMET:
-						meleeCrit += 5;
-						meleeDamage += 0.1f;
-						break;
-					case Item.ID.MYTHRIL_HAT:
-						rangedDamage += 0.12f;
-						rangedCrit += 7;
-						break;
-					case Item.ID.MYTHRIL_CHAINMAIL:
-						rangedDamage += 0.05f;
-						meleeDamage += 0.05f;
-						magicDamage += 0.05f;
-						break;
-					case Item.ID.MYTHRIL_GREAVES:
-						magicCrit += 3;
-						meleeCrit += 3;
-						rangedCrit += 3;
-						break;
-					case Item.ID.DIVING_HELMET:
-						accDivingHelm = true;
-						break;
-					case Item.ID.ADAMANTITE_HEADGEAR:
-						magicDamage += 0.11f;
-						magicCrit += 11;
-						statManaMax2 += 80;
-						break;
-					case Item.ID.ADAMANTITE_HELMET:
-						meleeCrit += 7;
-						meleeDamage += 0.14f;
-						break;
-					case Item.ID.ADAMANTITE_MASK:
-						rangedDamage += 0.14f;
-						rangedCrit += 8;
-						break;
-					case Item.ID.ADAMANTITE_BREASTPLATE:
-						rangedDamage += 0.06f;
-						meleeDamage += 0.06f;
-						magicDamage += 0.06f;
-						break;
-					case Item.ID.ADAMANTITE_LEGGINGS:
-						magicCrit += 4;
-						meleeCrit += 4;
-						rangedCrit += 4;
-						moveSpeed += 0.05f;
-						break;
-					case Item.ID.HALLOWED_PLATE_MAIL:
-						magicCrit += 7;
-						meleeCrit += 7;
-						rangedCrit += 7;
-						break;
-					case Item.ID.HALLOWED_GREAVES:
-						rangedDamage += 0.07f;
-						meleeDamage += 0.07f;
-						magicDamage += 0.07f;
-						moveSpeed += 0.08f;
-						break;
-					case Item.ID.HALLOWED_HELMET:
-						rangedDamage += 0.15f;
-						rangedCrit += 8;
-						break;
-					case Item.ID.HALLOWED_HEADGEAR:
-						magicDamage += 0.12f;
-						magicCrit += 12;
-						statManaMax2 += 100;
-						break;
-					case Item.ID.HALLOWED_MASK:
-						meleeCrit += 10;
-						meleeDamage += 0.1f;
-						meleeSpeed += 0.1f;
-						break;
-					case Item.ID.DRAGON_MASK:
-						meleeCrit += 15;
-						meleeDamage += 0.15f;
-						meleeSpeed += 0.15f;
-						break;
-					case Item.ID.DRAGON_BREASTPLATE:
-						meleeCrit += 5;
-						meleeDamage += 0.05f;
-						break;
-					case Item.ID.DRAGON_GREAVES:
-						moveSpeed += 0.12f;
-						meleeSpeed += 0.02f;
-						break;
-					case Item.ID.TITAN_HELMET:
-						rangedDamage += 0.15f;
-						rangedCrit += 10;
-						freeAmmoChance += 5;
-						break;
-					case Item.ID.TITAN_MAIL:
-						rangedDamage += 0.05f;
-						rangedCrit += 10;
-						freeAmmoChance += 5;
-						break;
-					case Item.ID.TITAN_LEGGINGS:
-						rangedDamage += 0.1f;
-						moveSpeed += 0.1f;
-						freeAmmoChance += 10;
-						break;
-					case Item.ID.SPECTRAL_HEADGEAR:
-						magicDamage += 0.15f;
-						magicCrit += 15;
-						statManaMax2 += 120;
-						break;
-					case Item.ID.SPECTRAL_ARMOR:
-						magicDamage += 0.05f;
-						magicCrit += 10;
-						manaCost -= 0.1f;
-						break;
-					case Item.ID.SPECTRAL_SUBLIGAR:
-						magicDamage += 0.1f;
-						moveSpeed += 0.1f;
-						statManaMax2 += 30;
-						break;
+						case Item.ID.METEOR_HELMET:
+						case Item.ID.METEOR_SUIT:
+						case Item.ID.METEOR_LEGGINGS:
+							magicDamage += 0.05f;
+							break;
+						case Item.ID.NECRO_HELMET:
+						case Item.ID.NECRO_BREASTPLATE:
+						case Item.ID.NECRO_GREAVES:
+							rangedDamage += 0.05f;
+							break;
+						case Item.ID.WIZARD_HAT:
+							magicDamage += 0.15f;
+							break;
+						case Item.ID.BAND_OF_STARPOWER:
+							statManaMax2 += 20;
+							break;
+						case Item.ID.JUNGLE_HAT:
+						case Item.ID.JUNGLE_SHIRT:
+						case Item.ID.JUNGLE_PANTS:
+							magicCrit += 3;
+							statManaMax2 += 20;
+							break;
+						case Item.ID.SHADOW_GREAVES:
+						case Item.ID.SHADOW_SCALEMAIL:
+						case Item.ID.SHADOW_HELMET:
+							meleeSpeed += 0.07f;
+							break;
+						case Item.ID.COBALT_HAT:
+							magicCrit += 9;
+							statManaMax2 += 40;
+							break;
+						case Item.ID.COBALT_HELMET:
+							moveSpeed += 0.07f;
+							meleeSpeed += 0.12f;
+							break;
+						case Item.ID.COBALT_MASK:
+							rangedDamage += 0.1f;
+							rangedCrit += 6;
+							break;
+						case Item.ID.COBALT_BREASTPLATE:
+							magicCrit += 3;
+							meleeCrit += 3;
+							rangedCrit += 3;
+							break;
+						case Item.ID.COBALT_LEGGINGS:
+							moveSpeed += 0.1f;
+							break;
+						case Item.ID.MYTHRIL_HOOD:
+							magicDamage += 0.15f;
+							statManaMax2 += 60;
+							break;
+						case Item.ID.MYTHRIL_HELMET:
+							meleeCrit += 5;
+							meleeDamage += 0.1f;
+							break;
+						case Item.ID.MYTHRIL_HAT:
+							rangedDamage += 0.12f;
+							rangedCrit += 7;
+							break;
+						case Item.ID.MYTHRIL_CHAINMAIL:
+							rangedDamage += 0.05f;
+							meleeDamage += 0.05f;
+							magicDamage += 0.05f;
+							break;
+						case Item.ID.MYTHRIL_GREAVES:
+							magicCrit += 3;
+							meleeCrit += 3;
+							rangedCrit += 3;
+							break;
+						case Item.ID.DIVING_HELMET:
+							accDivingHelm = true;
+							break;
+						case Item.ID.ADAMANTITE_HEADGEAR:
+							magicDamage += 0.11f;
+							magicCrit += 11;
+							statManaMax2 += 80;
+							break;
+						case Item.ID.ADAMANTITE_HELMET:
+							meleeCrit += 7;
+							meleeDamage += 0.14f;
+							break;
+						case Item.ID.ADAMANTITE_MASK:
+							rangedDamage += 0.14f;
+							rangedCrit += 8;
+							break;
+						case Item.ID.ADAMANTITE_BREASTPLATE:
+							rangedDamage += 0.06f;
+							meleeDamage += 0.06f;
+							magicDamage += 0.06f;
+							break;
+						case Item.ID.ADAMANTITE_LEGGINGS:
+							magicCrit += 4;
+							meleeCrit += 4;
+							rangedCrit += 4;
+							moveSpeed += 0.05f;
+							break;
+						case Item.ID.HALLOWED_PLATE_MAIL:
+							magicCrit += 7;
+							meleeCrit += 7;
+							rangedCrit += 7;
+							break;
+						case Item.ID.HALLOWED_GREAVES:
+							rangedDamage += 0.07f;
+							meleeDamage += 0.07f;
+							magicDamage += 0.07f;
+							moveSpeed += 0.08f;
+							break;
+						case Item.ID.HALLOWED_HELMET:
+							rangedDamage += 0.15f;
+							rangedCrit += 8;
+							break;
+						case Item.ID.HALLOWED_HEADGEAR:
+							magicDamage += 0.12f;
+							magicCrit += 12;
+							statManaMax2 += 100;
+							break;
+						case Item.ID.HALLOWED_MASK:
+							meleeCrit += 10;
+							meleeDamage += 0.1f;
+							meleeSpeed += 0.1f;
+							break;
+						case Item.ID.DRAGON_MASK:
+							meleeCrit += 15;
+							meleeDamage += 0.15f;
+							meleeSpeed += 0.15f;
+							break;
+						case Item.ID.DRAGON_BREASTPLATE:
+							meleeCrit += 5;
+							meleeDamage += 0.05f;
+							break;
+						case Item.ID.DRAGON_GREAVES:
+							moveSpeed += 0.12f;
+							meleeSpeed += 0.02f;
+							break;
+						case Item.ID.TITAN_HELMET:
+							rangedDamage += 0.15f;
+							rangedCrit += 10;
+							freeAmmoChance += 5;
+							break;
+						case Item.ID.TITAN_MAIL:
+							rangedDamage += 0.05f;
+							rangedCrit += 10;
+							freeAmmoChance += 5;
+							break;
+						case Item.ID.TITAN_LEGGINGS:
+							rangedDamage += 0.1f;
+							moveSpeed += 0.1f;
+							freeAmmoChance += 10;
+							break;
+						case Item.ID.SPECTRAL_HEADGEAR:
+							magicDamage += 0.15f;
+							magicCrit += 15;
+							statManaMax2 += 120;
+							break;
+						case Item.ID.SPECTRAL_ARMOR:
+							magicDamage += 0.05f;
+							magicCrit += 10;
+							manaCost -= 0.1f;
+							break;
+						case Item.ID.SPECTRAL_SUBLIGAR:
+							magicDamage += 0.1f;
+							moveSpeed += 0.1f;
+							statManaMax2 += 30;
+							break;
 					}
 					switch (armor[n].PrefixType)
 					{
-					case 62:
-						StatDefense++;
-						break;
-					case 63:
-						StatDefense += 2;
-						break;
-					case 64:
-						StatDefense += 3;
-						break;
-					case 65:
-						StatDefense += 4;
-						break;
-					case 66:
-						statManaMax2 += 20;
-						break;
-					case 67:
-						meleeCrit++;
-						rangedCrit++;
-						magicCrit++;
-						break;
-					case 68:
-						meleeCrit += 2;
-						rangedCrit += 2;
-						magicCrit += 2;
-						break;
-					case 69:
-						meleeDamage += 0.01f;
-						rangedDamage += 0.01f;
-						magicDamage += 0.01f;
-						break;
-					case 70:
-						meleeDamage += 0.02f;
-						rangedDamage += 0.02f;
-						magicDamage += 0.02f;
-						break;
-					case 71:
-						meleeDamage += 0.03f;
-						rangedDamage += 0.03f;
-						magicDamage += 0.03f;
-						break;
-					case 72:
-						meleeDamage += 0.04f;
-						rangedDamage += 0.04f;
-						magicDamage += 0.04f;
-						break;
-					case 73:
-						moveSpeed += 0.01f;
-						break;
-					case 74:
-						moveSpeed += 0.02f;
-						break;
-					case 75:
-						moveSpeed += 0.03f;
-						break;
-					case 76:
-						moveSpeed += 0.04f;
-						break;
-					case 77:
-						meleeSpeed += 0.01f;
-						break;
-					case 78:
-						meleeSpeed += 0.02f;
-						break;
-					case 79:
-						meleeSpeed += 0.03f;
-						break;
-					case 80:
-						meleeSpeed += 0.04f;
-						break;
+						case 62:
+							StatDefense++;
+							break;
+						case 63:
+							StatDefense += 2;
+							break;
+						case 64:
+							StatDefense += 3;
+							break;
+						case 65:
+							StatDefense += 4;
+							break;
+						case 66:
+							statManaMax2 += 20;
+							break;
+						case 67:
+							meleeCrit++;
+							rangedCrit++;
+							magicCrit++;
+							break;
+						case 68:
+							meleeCrit += 2;
+							rangedCrit += 2;
+							magicCrit += 2;
+							break;
+						case 69:
+							meleeDamage += 0.01f;
+							rangedDamage += 0.01f;
+							magicDamage += 0.01f;
+							break;
+						case 70:
+							meleeDamage += 0.02f;
+							rangedDamage += 0.02f;
+							magicDamage += 0.02f;
+							break;
+						case 71:
+							meleeDamage += 0.03f;
+							rangedDamage += 0.03f;
+							magicDamage += 0.03f;
+							break;
+						case 72:
+							meleeDamage += 0.04f;
+							rangedDamage += 0.04f;
+							magicDamage += 0.04f;
+							break;
+						case 73:
+							moveSpeed += 0.01f;
+							break;
+						case 74:
+							moveSpeed += 0.02f;
+							break;
+						case 75:
+							moveSpeed += 0.03f;
+							break;
+						case 76:
+							moveSpeed += 0.04f;
+							break;
+						case 77:
+							meleeSpeed += 0.01f;
+							break;
+						case 78:
+							meleeSpeed += 0.02f;
+							break;
+						case 79:
+							meleeSpeed += 0.03f;
+							break;
+						case 80:
+							meleeSpeed += 0.04f;
+							break;
 					}
 				}
 				head = armor[0].HeadSlot;
@@ -2854,7 +2851,7 @@ namespace Terraria
 				// Why? No clue, although in the PC version, where the user is often close enough to the screen, no light in a large area also obscures the player.
 				// As the console version is meant to be played from a further distance, I'm guessing it was a design choice so you could still locate the player, even while in complete darkness.
 				// Oddly enough, this did carry over to other 'Old-Gen' versions of the game, like the Mobile & 3DS version... where the user is even closer to the screen than on PC.
-				
+
 				setBonus = null;
 				if ((head == 1 && body == 1 && legs == 1) || (head == 2 && body == 2 && legs == 2))
 				{
@@ -3252,7 +3249,7 @@ namespace Terraria
 								Main.PlaySound(17, XYWH.X, XYWH.Y);
 								runSoundDelay = 9;
 							}
-							Dust* ptr4 = Main.DustSet.NewDust(XYWH.X - 4, XYWH.Y + height + num24, 28, 4, 16, velocity.X * -0.5f, velocity.Y * 0.5f, 50, default(Color), 1.5);
+							Dust* ptr4 = Main.DustSet.NewDust(XYWH.X - 4, XYWH.Y + height + num24, 28, 4, 16, velocity.X * -0.5f, velocity.Y * 0.5f, 50, default, 1.5);
 							if (ptr4 != null)
 							{
 								ptr4->Velocity *= 0.2f;
@@ -4614,38 +4611,38 @@ namespace Terraria
 
 					switch (hellAndBackState)
 					{
-					case 0:
-					case 2:
-						if (XYWH.Y < Main.WorldSurfacePixels)
-						{
-#if !USE_ORIGINAL_CODE
-							HellevatorTimer = 0;
-#endif
-							hellAndBackState++;
-						}
-						break;
-					case 1:
-#if !USE_ORIGINAL_CODE
-						HellevatorTimer++;
-						if (XYWH.Y > Main.MagmaLayerPixels)
-						{
-							hellAndBackState++;
-							if (HellevatorTimer < 3601)
+						case 0:
+						case 2:
+							if (XYWH.Y < Main.WorldSurfacePixels)
 							{
-								ui.SetTriggerState(Trigger.Hellevator);
+#if !USE_ORIGINAL_CODE
+								HellevatorTimer = 0;
+#endif
+								hellAndBackState++;
 							}
-						}
+							break;
+						case 1:
+#if !USE_ORIGINAL_CODE
+							HellevatorTimer++;
+							if (XYWH.Y > Main.MagmaLayerPixels)
+							{
+								hellAndBackState++;
+								if (HellevatorTimer < 3601)
+								{
+									ui.SetTriggerState(Trigger.Hellevator);
+								}
+							}
 #else
 						if (XYWH.Y > Main.MagmaLayerPixels)
 						{
 							hellAndBackState++;
 						}
 #endif
-						break;
-					case 3:
-						hellAndBackState++;
-						ui.SetTriggerState(Trigger.WentDownAndUpWithoutDyingOrWarping);
-						break;
+							break;
+						case 3:
+							hellAndBackState++;
+							ui.SetTriggerState(Trigger.WentDownAndUpWithoutDyingOrWarping);
+							break;
 					}
 					Collision.SwitchTiles(Position, width, height, oldPosition);
 				}
@@ -4797,96 +4794,96 @@ namespace Terraria
 				int type = ptr->Type;
 				switch (type)
 				{
-				case 4:
-				case 13:
-				case 33:
-				case 49:
-					return !ui.UsingSmartCursor;
-				case 10:
-					return WorldGen.CanOpenDoor(num, num2);
-				case 11:
-					return WorldGen.CanCloseDoor(num, num2);
-				case 21:
-				case 29:
-				case 97:
-					if (TalkNPC == -1)
-					{
-						int num3 = -1;
-						int frameX2 = ptr->FrameX;
-						int frameY = ptr->FrameY;
-						num -= (frameX2 / 18) & 1;
-						num2 -= frameY / 18;
-						switch (type)
+					case 4:
+					case 13:
+					case 33:
+					case 49:
+						return !ui.UsingSmartCursor;
+					case 10:
+						return WorldGen.CanOpenDoor(num, num2);
+					case 11:
+						return WorldGen.CanCloseDoor(num, num2);
+					case 21:
+					case 29:
+					case 97:
+						if (TalkNPC == -1)
 						{
-						case 29:
-							num3 = -2;
-							break;
-						case 97:
-							num3 = -3;
-							break;
-						}
-						frameX2 = ptr->FrameX;
-						if (Main.NetMode == (byte)NetModeSetting.CLIENT && num3 == -1 && (frameX2 < 72 || frameX2 > 106) && (frameX2 < 144 || frameX2 > 178))
-						{
-							return true;
-						}
-						if (num3 == -1)
-						{
-							bool flag = false;
-							if ((frameX2 >= 72 && frameX2 <= 106) || (frameX2 >= 144 && frameX2 <= 178))
+							int num3 = -1;
+							int frameX2 = ptr->FrameX;
+							int frameY = ptr->FrameY;
+							num -= (frameX2 / 18) & 1;
+							num2 -= frameY / 18;
+							switch (type)
 							{
-								int num4 = 327;
-								if (frameX2 >= 144 && frameX2 <= 178)
+								case 29:
+									num3 = -2;
+									break;
+								case 97:
+									num3 = -3;
+									break;
+							}
+							frameX2 = ptr->FrameX;
+							if (Main.NetMode == (byte)NetModeSetting.CLIENT && num3 == -1 && (frameX2 < 72 || frameX2 > 106) && (frameX2 < 144 || frameX2 > 178))
+							{
+								return true;
+							}
+							if (num3 == -1)
+							{
+								bool flag = false;
+								if ((frameX2 >= 72 && frameX2 <= 106) || (frameX2 >= 144 && frameX2 <= 178))
 								{
-									num4 = 329;
-								}
-								flag = true;
-								for (int i = 0; i < MaxNumInventory; i++)
-								{
-									if (Inventory[i].Type == num4 && Inventory[i].Stack > 0)
+									int num4 = 327;
+									if (frameX2 >= 144 && frameX2 <= 178)
 									{
-										return true;
+										num4 = 329;
+									}
+									flag = true;
+									for (int i = 0; i < MaxNumInventory; i++)
+									{
+										if (Inventory[i].Type == num4 && Inventory[i].Stack > 0)
+										{
+											return true;
+										}
 									}
 								}
+								if (!flag)
+								{
+									num3 = Chest.FindChest(num, num2);
+								}
 							}
-							if (!flag)
-							{
-								num3 = Chest.FindChest(num, num2);
-							}
+							return num3 != -1;
 						}
-						return num3 != -1;
-					}
-					return false;
-				case 50:
-					return !ui.UsingSmartCursor && ptr->FrameX == 90;
-				case 55:
-				case 85:
-					return true;
-				case 79:
-					return true;
-				case 104:
-				case 125:
-					return true;
-				case 128:
-				{
-					int frameX = ptr->FrameX;
-					frameX %= 100;
-					frameX %= 36;
-					if (frameX == 18)
-					{
-						frameX = ptr[-Main.LargeWorldH].FrameX;
-					}
-					if (frameX >= 100)
-					{
+						return false;
+					case 50:
+						return !ui.UsingSmartCursor && ptr->FrameX == 90;
+					case 55:
+					case 85:
 						return true;
-					}
-					return false;
-				}
-				case 132:
-				case 136:
-				case 139:
-				case 144:
-					return true;
+					case 79:
+						return true;
+					case 104:
+					case 125:
+						return true;
+					case 128:
+						{
+							int frameX = ptr->FrameX;
+							frameX %= 100;
+							frameX %= 36;
+							if (frameX == 18)
+							{
+								frameX = ptr[-Main.LargeWorldH].FrameX;
+							}
+							if (frameX >= 100)
+							{
+								return true;
+							}
+							return false;
+						}
+					case 132:
+					case 136:
+					case 139:
+					case 144:
+						return true;
 				}
 			}
 			return false;
@@ -4903,283 +4900,283 @@ namespace Terraria
 			int type = Main.TileSet[num, num2].Type;
 			switch (type)
 			{
-			case 4:
-			case 13:
-			case 33:
-			case 49:
-				WorldGen.KillTile(num, num2);
-				NetMessage.CreateMessage5((int)NetMessageId.MSG_WORLD_CHANGED, 0, num, num2, 0);
-				NetMessage.SendMessage();
-				return true;
-			case 10:
-			{
-				int num10 = WorldGen.OpenDoor(num, num2, direction);
-				if (num10 != 0)
-				{
-					ui.TotalDoorsOpened++;
-					NetMessage.CreateMessage3(19, num, num2, num10);
+				case 4:
+				case 13:
+				case 33:
+				case 49:
+					WorldGen.KillTile(num, num2);
+					NetMessage.CreateMessage5((int)NetMessageId.MSG_WORLD_CHANGED, 0, num, num2, 0);
 					NetMessage.SendMessage();
 					return true;
-				}
-				return false;
-			}
-			case 11:
-				if (WorldGen.CloseDoor(num, num2))
-				{
-					ui.TotalDoorsClosed++;
-					NetMessage.CreateMessage2(24, num, num2);
-					NetMessage.SendMessage();
-					return true;
-				}
-				return false;
-			case 21:
-			case 29:
-			case 97:
-				if (TalkNPC == -1)
-				{
-					int num5 = -1;
-					int frameX2 = Main.TileSet[num, num2].FrameX;
-					int frameY = Main.TileSet[num, num2].FrameY;
-					num -= (frameX2 / 18) & 1;
-					num2 -= frameY / 18;
-					switch (type)
+				case 10:
 					{
-					case 29:
-						num5 = -2;
-						break;
-					case 97:
-						num5 = -3;
-						break;
-					default:
-						if (frameX2 >= 216)
+						int num10 = WorldGen.OpenDoor(num, num2, direction);
+						if (num10 != 0)
 						{
-							ui.chestText = Lang.ItemName(348);
-						}
-						else if (frameX2 >= 180)
-						{
-							ui.chestText = Lang.ItemName(343);
-						}
-						else
-						{
-							ui.chestText = Lang.ItemName(48);
-						}
-						break;
-					}
-					frameX2 = Main.TileSet[num, num2].FrameX;
-					if (Main.NetMode == (byte)NetModeSetting.CLIENT && num5 == -1 && (frameX2 < 72 || frameX2 > 106) && (frameX2 < 144 || frameX2 > 178))
-					{
-						if (num == chestX && num2 == chestY && PlayerChest != -1)
-						{
-							PlayerChest = -1;
-							Main.PlaySound(11);
-						}
-						else
-						{
-							NetMessage.CreateMessage3(31, WhoAmI, num, num2);
+							ui.TotalDoorsOpened++;
+							NetMessage.CreateMessage3(19, num, num2, num10);
 							NetMessage.SendMessage();
+							return true;
 						}
+						return false;
+					}
+				case 11:
+					if (WorldGen.CloseDoor(num, num2))
+					{
+						ui.TotalDoorsClosed++;
+						NetMessage.CreateMessage2(24, num, num2);
+						NetMessage.SendMessage();
 						return true;
 					}
-					if (num5 == -1)
+					return false;
+				case 21:
+				case 29:
+				case 97:
+					if (TalkNPC == -1)
 					{
-						bool flag = false;
-						if ((frameX2 >= 72 && frameX2 <= 106) || (frameX2 >= 144 && frameX2 <= 178))
+						int num5 = -1;
+						int frameX2 = Main.TileSet[num, num2].FrameX;
+						int frameY = Main.TileSet[num, num2].FrameY;
+						num -= (frameX2 / 18) & 1;
+						num2 -= frameY / 18;
+						switch (type)
 						{
-							int num6 = 327;
-							if (frameX2 >= 144 && frameX2 <= 178)
-							{
-								num6 = 329;
-							}
-							flag = true;
-							for (int i = 0; i < MaxNumInventory; i++)
-							{
-								if (Inventory[i].Type != num6 || Inventory[i].Stack <= 0)
+							case 29:
+								num5 = -2;
+								break;
+							case 97:
+								num5 = -3;
+								break;
+							default:
+								if (frameX2 >= 216)
 								{
-									continue;
+									ui.chestText = Lang.ItemName(348);
 								}
-								if (num6 != 329)
+								else if (frameX2 >= 180)
 								{
-									Inventory[i].Stack--;
-									if (Inventory[i].Stack <= 0)
-									{
-										Inventory[i].Init();
-									}
+									ui.chestText = Lang.ItemName(343);
 								}
-									Chest.Unlock(num, num2);
-								NetMessage.CreateMessage3(52, WhoAmI, num, num2);
-								NetMessage.SendMessage();
-								return true;
-							}
+								else
+								{
+									ui.chestText = Lang.ItemName(48);
+								}
+								break;
 						}
-						if (!flag)
+						frameX2 = Main.TileSet[num, num2].FrameX;
+						if (Main.NetMode == (byte)NetModeSetting.CLIENT && num5 == -1 && (frameX2 < 72 || frameX2 > 106) && (frameX2 < 144 || frameX2 > 178))
 						{
-							num5 = Chest.FindChest(num, num2);
-						}
-					}
-					if (num5 != -1)
-					{
-						if (num5 == PlayerChest)
-						{
-							PlayerChest = -1;
-							Main.PlaySound(11);
-						}
-						else
-						{
-							if (num5 != PlayerChest && PlayerChest == -1)
+							if (num == chestX && num2 == chestY && PlayerChest != -1)
 							{
-								Main.PlaySound(10);
+								PlayerChest = -1;
+								Main.PlaySound(11);
 							}
 							else
 							{
-								Main.PlaySound(12);
+								NetMessage.CreateMessage3(31, WhoAmI, num, num2);
+								NetMessage.SendMessage();
 							}
-							PlayerChest = (short)num5;
-							chestX = (short)num;
-							chestY = (short)num2;
-							ui.OpenInventory();
+							return true;
+						}
+						if (num5 == -1)
+						{
+							bool flag = false;
+							if ((frameX2 >= 72 && frameX2 <= 106) || (frameX2 >= 144 && frameX2 <= 178))
+							{
+								int num6 = 327;
+								if (frameX2 >= 144 && frameX2 <= 178)
+								{
+									num6 = 329;
+								}
+								flag = true;
+								for (int i = 0; i < MaxNumInventory; i++)
+								{
+									if (Inventory[i].Type != num6 || Inventory[i].Stack <= 0)
+									{
+										continue;
+									}
+									if (num6 != 329)
+									{
+										Inventory[i].Stack--;
+										if (Inventory[i].Stack <= 0)
+										{
+											Inventory[i].Init();
+										}
+									}
+									Chest.Unlock(num, num2);
+									NetMessage.CreateMessage3(52, WhoAmI, num, num2);
+									NetMessage.SendMessage();
+									return true;
+								}
+							}
+							if (!flag)
+							{
+								num5 = Chest.FindChest(num, num2);
+							}
+						}
+						if (num5 != -1)
+						{
+							if (num5 == PlayerChest)
+							{
+								PlayerChest = -1;
+								Main.PlaySound(11);
+							}
+							else
+							{
+								if (num5 != PlayerChest && PlayerChest == -1)
+								{
+									Main.PlaySound(10);
+								}
+								else
+								{
+									Main.PlaySound(12);
+								}
+								PlayerChest = (short)num5;
+								chestX = (short)num;
+								chestY = (short)num2;
+								ui.OpenInventory();
+							}
+							return true;
+						}
+					}
+					return false;
+				case 50:
+					if (Main.TileSet[num, num2].FrameX != 90)
+					{
+						return false;
+					}
+					goto case 4;
+				case 55:
+				case 85:
+					{
+						bool flag2 = true;
+						if (sign >= 0)
+						{
+							int num11 = Sign.ReadSign(num, num2);
+							if (num11 == sign)
+							{
+								sign = -1;
+								ui.npcChatText = null;
+								ui.editSign = false;
+								Main.PlaySound(11);
+								flag2 = false;
+							}
+						}
+						if (flag2)
+						{
+							if (Main.NetMode != (byte)NetModeSetting.CLIENT)
+							{
+								TalkNPC = -1;
+								ui.CloseInventory();
+								ui.editSign = false;
+								Main.PlaySound(10);
+								int num12 = Sign.ReadSign(num, num2);
+								sign = (short)num12;
+								ui.npcChatText = Main.SignSet[num12].SignString;
+								ui.ClearButtonTriggers();
+							}
+							else
+							{
+								num -= (Main.TileSet[num, num2].FrameX / 18) & 1;
+								num2 -= Main.TileSet[num, num2].FrameY / 18;
+								type = Main.TileSet[num, num2].Type;
+								if (type == 55 || type == 85)
+								{
+									NetMessage.CreateMessage3(46, WhoAmI, num, num2);
+									NetMessage.SendMessage();
+								}
+							}
 						}
 						return true;
 					}
-				}
-				return false;
-			case 50:
-				if (Main.TileSet[num, num2].FrameX != 90)
-				{
-					return false;
-				}
-				goto case 4;
-			case 55:
-			case 85:
-			{
-				bool flag2 = true;
-				if (sign >= 0)
-				{
-					int num11 = Sign.ReadSign(num, num2);
-					if (num11 == sign)
+				case 79:
 					{
-						sign = -1;
-						ui.npcChatText = null;
-						ui.editSign = false;
-						Main.PlaySound(11);
-						flag2 = false;
-					}
-				}
-				if (flag2)
-				{
-					if (Main.NetMode != (byte)NetModeSetting.CLIENT)
-					{
-						TalkNPC = -1;
-						ui.CloseInventory();
-						ui.editSign = false;
-						Main.PlaySound(10);
-						int num12 = Sign.ReadSign(num, num2);
-						sign = (short)num12;
-						ui.npcChatText = Main.SignSet[num12].SignString;
-						ui.ClearButtonTriggers();
-					}
-					else
-					{
-						num -= (Main.TileSet[num, num2].FrameX / 18) & 1;
-						num2 -= Main.TileSet[num, num2].FrameY / 18;
-						type = Main.TileSet[num, num2].Type;
-						if (type == 55 || type == 85)
+						int num3 = num;
+						int num4 = num2;
+						num3 -= Main.TileSet[num, num2].FrameX / 18;
+						num3 = ((Main.TileSet[num, num2].FrameX < 72) ? (num3 + 2) : (num3 + 5));
+						num4 -= Main.TileSet[num, num2].FrameY / 18;
+						num4 += 2;
+						if (CheckSpawn(num3, num4))
 						{
-							NetMessage.CreateMessage3(46, WhoAmI, num, num2);
-							NetMessage.SendMessage();
+							ChangeSpawn(num3, num4);
+							Main.NewText(Lang.MenuText[57], 255, 240, 20);
+							return true;
 						}
+						return false;
 					}
-				}
-				return true;
-			}
-			case 79:
-			{
-				int num3 = num;
-				int num4 = num2;
-				num3 -= Main.TileSet[num, num2].FrameX / 18;
-				num3 = ((Main.TileSet[num, num2].FrameX < 72) ? (num3 + 2) : (num3 + 5));
-				num4 -= Main.TileSet[num, num2].FrameY / 18;
-				num4 += 2;
-				if (CheckSpawn(num3, num4))
-				{
-					ChangeSpawn(num3, num4);
-					Main.NewText(Lang.MenuText[57], 255, 240, 20);
+				case 104:
+					{
+						string text = "AM";
+						double num7 = Main.GameTime.WorldTime;
+						if (!Main.GameTime.DayTime)
+						{
+							num7 += 54000.0;
+						}
+						num7 = num7 / 86400.0 * 24.0;
+						num7 = num7 - 7.5 - 12.0;
+						if (num7 < 0.0)
+						{
+							num7 += 24.0;
+						}
+						if (num7 >= 12.0)
+						{
+							text = "PM";
+						}
+						int num8 = (int)num7;
+						int num9 = (int)((num7 - num8) * 60.0);
+						string text2 = num9.ToStringLookup();
+						if (num9 < 10)
+						{
+							text2 = "0" + text2;
+						}
+						if (num8 > 12)
+						{
+							num8 -= 12;
+						}
+						if (num8 == 0)
+						{
+							num8 = 12;
+						}
+						string newText = Lang.InterfaceText[34] + num8.ToStringLookup() + ":" + text2 + " " + text;
+						Main.NewText(newText, 255, 240, 20);
+						return true;
+					}
+				case 125:
+					AddBuff((int)Buff.ID.CLARAVOYANCE, 36000);
+					Main.PlaySound(2, XYWH.X, XYWH.Y, 4);
 					return true;
-				}
-				return false;
-			}
-			case 104:
-			{
-				string text = "AM";
-				double num7 = Main.GameTime.WorldTime;
-				if (!Main.GameTime.DayTime)
-				{
-					num7 += 54000.0;
-				}
-				num7 = num7 / 86400.0 * 24.0;
-				num7 = num7 - 7.5 - 12.0;
-				if (num7 < 0.0)
-				{
-					num7 += 24.0;
-				}
-				if (num7 >= 12.0)
-				{
-					text = "PM";
-				}
-				int num8 = (int)num7;
-				int num9 = (int)((num7 - num8) * 60.0);
-				string text2 = num9.ToStringLookup();
-				if (num9 < 10)
-				{
-					text2 = "0" + text2;
-				}
-				if (num8 > 12)
-				{
-					num8 -= 12;
-				}
-				if (num8 == 0)
-				{
-					num8 = 12;
-				}
-				string newText = Lang.InterfaceText[34] + num8.ToStringLookup() + ":" + text2 + " " + text;
-				Main.NewText(newText, 255, 240, 20);
-				return true;
-			}
-			case 125:
-				AddBuff((int)Buff.ID.CLARAVOYANCE, 36000);
-				Main.PlaySound(2, XYWH.X, XYWH.Y, 4);
-				return true;
-			case 128:
-			{
-				int frameX = Main.TileSet[num, num2].FrameX;
-				frameX %= 100;
-				frameX %= 36;
-				if (frameX == 18)
-				{
-					num--;
-					frameX = Main.TileSet[num, num2].FrameX;
-				}
-				if (frameX >= 100)
-				{
-					WorldGen.KillTile(num, num2, KillToFail: true);
-					NetMessage.CreateMessage5((int)NetMessageId.MSG_WORLD_CHANGED, 0, num, num2, 1);
+				case 128:
+					{
+						int frameX = Main.TileSet[num, num2].FrameX;
+						frameX %= 100;
+						frameX %= 36;
+						if (frameX == 18)
+						{
+							num--;
+							frameX = Main.TileSet[num, num2].FrameX;
+						}
+						if (frameX >= 100)
+						{
+							WorldGen.KillTile(num, num2, KillToFail: true);
+							NetMessage.CreateMessage5((int)NetMessageId.MSG_WORLD_CHANGED, 0, num, num2, 1);
+							NetMessage.SendMessage();
+							return true;
+						}
+						return false;
+					}
+				case 132:
+				case 136:
+				case 144:
+					WorldGen.HitSwitch(num, num2);
+					NetMessage.CreateMessage2(59, num, num2);
 					NetMessage.SendMessage();
 					return true;
-				}
-				return false;
-			}
-			case 132:
-			case 136:
-			case 144:
-				WorldGen.HitSwitch(num, num2);
-				NetMessage.CreateMessage2(59, num, num2);
-				NetMessage.SendMessage();
-				return true;
-			case 139:
-				Main.PlaySound(28, x, y, 0);
-				WorldGen.SwitchMB(num, num2);
-				return true;
-			default:
-				return false;
+				case 139:
+					Main.PlaySound(28, x, y, 0);
+					WorldGen.SwitchMB(num, num2);
+					return true;
+				default:
+					return false;
 			}
 		}
 
@@ -5630,20 +5627,20 @@ namespace Terraria
 							FoundCraftingStation(type);
 							switch (type)
 							{
-							case 77:
-								adjTile[17].i = true;
-								craftingStationsFound.Set(17, true);
-								break;
-							case 133:
-								adjTile[17].i = true;
-								adjTile[77].i = true;
-								craftingStationsFound.Set(17, true);
-								craftingStationsFound.Set(77, true);
-								break;
-							case 134:
-								adjTile[16].i = true;
-								craftingStationsFound.Set(16, true);
-								break;
+								case 77:
+									adjTile[17].i = true;
+									craftingStationsFound.Set(17, true);
+									break;
+								case 133:
+									adjTile[17].i = true;
+									adjTile[77].i = true;
+									craftingStationsFound.Set(17, true);
+									craftingStationsFound.Set(77, true);
+									break;
+								case 134:
+									adjTile[16].i = true;
+									craftingStationsFound.Set(16, true);
+									break;
 							}
 						}
 					}
@@ -5982,18 +5979,18 @@ namespace Terraria
 				ResetAirTime();
 			}
 #if (!VERSION_INITIAL || IS_PATCHED)
-            else if (grappling[0] >= 0)
+			else if (grappling[0] >= 0)
 			{
-                legFrameCounter = 0f;
-                legFrameY = 280;
-            }
-            else if (velocity.Y != 0f)
-            {
+				legFrameCounter = 0f;
+				legFrameY = 280;
+			}
+			else if (velocity.Y != 0f)
+			{
 #else
 			else if (velocity.Y != 0f || grappling[0] >= 0)
 			{
 #endif
-                IncreaseAirTime();
+				IncreaseAirTime();
 				legFrameCounter = 0f;
 				legFrameY = 280;
 			}
@@ -6658,104 +6655,104 @@ namespace Terraria
 					bool flag2 = false;
 					switch (createTile)
 					{
-					case 2:
-					case 23:
-					case 109:
-						if (Main.TileSet[tileTargetX, tileTargetY].IsActive != 0 && Main.TileSet[tileTargetX, tileTargetY].Type == 0)
-						{
-							flag2 = true;
-						}
-						break;
-					case 60:
-					case 70:
-						if (Main.TileSet[tileTargetX, tileTargetY].IsActive != 0 && Main.TileSet[tileTargetX, tileTargetY].Type == 59)
-						{
-							flag2 = true;
-						}
-						break;
-					case 4:
-					case 136:
-					{
-						int num = Main.TileSet[tileTargetX, tileTargetY + 1].Type;
-						int num2 = Main.TileSet[tileTargetX - 1, tileTargetY].Type;
-						int num3 = Main.TileSet[tileTargetX + 1, tileTargetY].Type;
-						int num4 = Main.TileSet[tileTargetX - 1, tileTargetY - 1].Type;
-						int num5 = Main.TileSet[tileTargetX + 1, tileTargetY - 1].Type;
-						int num6 = Main.TileSet[tileTargetX - 1, tileTargetY - 1].Type;
-						int num7 = Main.TileSet[tileTargetX + 1, tileTargetY + 1].Type;
-						if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive == 0)
-						{
-							num = -1;
-						}
-						if (Main.TileSet[tileTargetX - 1, tileTargetY].IsActive == 0)
-						{
-							num2 = -1;
-						}
-						if (Main.TileSet[tileTargetX + 1, tileTargetY].IsActive == 0)
-						{
-							num3 = -1;
-						}
-						if (Main.TileSet[tileTargetX - 1, tileTargetY - 1].IsActive == 0)
-						{
-							num4 = -1;
-						}
-						if (Main.TileSet[tileTargetX + 1, tileTargetY - 1].IsActive == 0)
-						{
-							num5 = -1;
-						}
-						if (Main.TileSet[tileTargetX - 1, tileTargetY + 1].IsActive == 0)
-						{
-							num6 = -1;
-						}
-						if (Main.TileSet[tileTargetX + 1, tileTargetY + 1].IsActive == 0)
-						{
-							num7 = -1;
-						}
-						if (num >= 0 && Main.TileSolidAndAttach[num])
-						{
-							flag2 = true;
-						}
-						else if (num2 >= 0 && (Main.TileSolidAndAttach[num2] || num2 == 124 || (num2 == 5 && num4 == 5 && num6 == 5)))
-						{
-							flag2 = true;
-						}
-						else if (num3 >= 0 && (Main.TileSolidAndAttach[num3] || num3 == 124 || (num3 == 5 && num5 == 5 && num7 == 5)))
-						{
-							flag2 = true;
-						}
-						break;
-					}
-					case 78:
-					case 98:
-					case 100:
-						if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY + 1].Type] || Main.TileTable[Main.TileSet[tileTargetX, tileTargetY + 1].Type]))
-						{
-							flag2 = true;
-						}
-						break;
-					case 13:
-					case 29:
-					case 33:
-					case 49:
-					case 50:
-					case 103:
-						if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && Main.TileTable[Main.TileSet[tileTargetX, tileTargetY + 1].Type])
-						{
-							flag2 = true;
-						}
-						break;
-					case 51:
-						if (Main.TileSet[tileTargetX + 1, tileTargetY].IsActive != 0 || Main.TileSet[tileTargetX + 1, tileTargetY].WallType > 0 || Main.TileSet[tileTargetX - 1, tileTargetY].IsActive != 0 || Main.TileSet[tileTargetX - 1, tileTargetY].WallType > 0 || Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 || Main.TileSet[tileTargetX, tileTargetY + 1].WallType > 0 || Main.TileSet[tileTargetX, tileTargetY - 1].IsActive != 0 || Main.TileSet[tileTargetX, tileTargetY - 1].WallType > 0)
-						{
-							flag2 = true;
-						}
-						break;
-					default:
-						if ((Main.TileSet[tileTargetX + 1, tileTargetY].IsActive != 0 && Main.TileSolid[Main.TileSet[tileTargetX + 1, tileTargetY].Type]) || Main.TileSet[tileTargetX + 1, tileTargetY].WallType > 0 || (Main.TileSet[tileTargetX - 1, tileTargetY].IsActive != 0 && Main.TileSolid[Main.TileSet[tileTargetX - 1, tileTargetY].Type]) || Main.TileSet[tileTargetX - 1, tileTargetY].WallType > 0 || (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY + 1].Type] || Main.TileSet[tileTargetX, tileTargetY + 1].Type == 124)) || Main.TileSet[tileTargetX, tileTargetY + 1].WallType > 0 || (Main.TileSet[tileTargetX, tileTargetY - 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY - 1].Type] || Main.TileSet[tileTargetX, tileTargetY - 1].Type == 124)) || Main.TileSet[tileTargetX, tileTargetY - 1].WallType > 0)
-						{
-							flag2 = true;
-						}
-						break;
+						case 2:
+						case 23:
+						case 109:
+							if (Main.TileSet[tileTargetX, tileTargetY].IsActive != 0 && Main.TileSet[tileTargetX, tileTargetY].Type == 0)
+							{
+								flag2 = true;
+							}
+							break;
+						case 60:
+						case 70:
+							if (Main.TileSet[tileTargetX, tileTargetY].IsActive != 0 && Main.TileSet[tileTargetX, tileTargetY].Type == 59)
+							{
+								flag2 = true;
+							}
+							break;
+						case 4:
+						case 136:
+							{
+								int num = Main.TileSet[tileTargetX, tileTargetY + 1].Type;
+								int num2 = Main.TileSet[tileTargetX - 1, tileTargetY].Type;
+								int num3 = Main.TileSet[tileTargetX + 1, tileTargetY].Type;
+								int num4 = Main.TileSet[tileTargetX - 1, tileTargetY - 1].Type;
+								int num5 = Main.TileSet[tileTargetX + 1, tileTargetY - 1].Type;
+								int num6 = Main.TileSet[tileTargetX - 1, tileTargetY - 1].Type;
+								int num7 = Main.TileSet[tileTargetX + 1, tileTargetY + 1].Type;
+								if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive == 0)
+								{
+									num = -1;
+								}
+								if (Main.TileSet[tileTargetX - 1, tileTargetY].IsActive == 0)
+								{
+									num2 = -1;
+								}
+								if (Main.TileSet[tileTargetX + 1, tileTargetY].IsActive == 0)
+								{
+									num3 = -1;
+								}
+								if (Main.TileSet[tileTargetX - 1, tileTargetY - 1].IsActive == 0)
+								{
+									num4 = -1;
+								}
+								if (Main.TileSet[tileTargetX + 1, tileTargetY - 1].IsActive == 0)
+								{
+									num5 = -1;
+								}
+								if (Main.TileSet[tileTargetX - 1, tileTargetY + 1].IsActive == 0)
+								{
+									num6 = -1;
+								}
+								if (Main.TileSet[tileTargetX + 1, tileTargetY + 1].IsActive == 0)
+								{
+									num7 = -1;
+								}
+								if (num >= 0 && Main.TileSolidAndAttach[num])
+								{
+									flag2 = true;
+								}
+								else if (num2 >= 0 && (Main.TileSolidAndAttach[num2] || num2 == 124 || (num2 == 5 && num4 == 5 && num6 == 5)))
+								{
+									flag2 = true;
+								}
+								else if (num3 >= 0 && (Main.TileSolidAndAttach[num3] || num3 == 124 || (num3 == 5 && num5 == 5 && num7 == 5)))
+								{
+									flag2 = true;
+								}
+								break;
+							}
+						case 78:
+						case 98:
+						case 100:
+							if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY + 1].Type] || Main.TileTable[Main.TileSet[tileTargetX, tileTargetY + 1].Type]))
+							{
+								flag2 = true;
+							}
+							break;
+						case 13:
+						case 29:
+						case 33:
+						case 49:
+						case 50:
+						case 103:
+							if (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && Main.TileTable[Main.TileSet[tileTargetX, tileTargetY + 1].Type])
+							{
+								flag2 = true;
+							}
+							break;
+						case 51:
+							if (Main.TileSet[tileTargetX + 1, tileTargetY].IsActive != 0 || Main.TileSet[tileTargetX + 1, tileTargetY].WallType > 0 || Main.TileSet[tileTargetX - 1, tileTargetY].IsActive != 0 || Main.TileSet[tileTargetX - 1, tileTargetY].WallType > 0 || Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 || Main.TileSet[tileTargetX, tileTargetY + 1].WallType > 0 || Main.TileSet[tileTargetX, tileTargetY - 1].IsActive != 0 || Main.TileSet[tileTargetX, tileTargetY - 1].WallType > 0)
+							{
+								flag2 = true;
+							}
+							break;
+						default:
+							if ((Main.TileSet[tileTargetX + 1, tileTargetY].IsActive != 0 && Main.TileSolid[Main.TileSet[tileTargetX + 1, tileTargetY].Type]) || Main.TileSet[tileTargetX + 1, tileTargetY].WallType > 0 || (Main.TileSet[tileTargetX - 1, tileTargetY].IsActive != 0 && Main.TileSolid[Main.TileSet[tileTargetX - 1, tileTargetY].Type]) || Main.TileSet[tileTargetX - 1, tileTargetY].WallType > 0 || (Main.TileSet[tileTargetX, tileTargetY + 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY + 1].Type] || Main.TileSet[tileTargetX, tileTargetY + 1].Type == 124)) || Main.TileSet[tileTargetX, tileTargetY + 1].WallType > 0 || (Main.TileSet[tileTargetX, tileTargetY - 1].IsActive != 0 && (Main.TileSolid[Main.TileSet[tileTargetX, tileTargetY - 1].Type] || Main.TileSet[tileTargetX, tileTargetY - 1].Type == 124)) || Main.TileSet[tileTargetX, tileTargetY - 1].WallType > 0)
+							{
+								flag2 = true;
+							}
+							break;
 					}
 					if (createTile >= 82 && createTile <= 84)
 					{
@@ -6794,21 +6791,21 @@ namespace Terraria
 							NetMessage.SendMessage();
 							switch (createTile)
 							{
-							case 15:
-								if (direction == 1)
-								{
-									Main.TileSet[tileTargetX, tileTargetY].FrameX += 18;
-									Main.TileSet[tileTargetX, tileTargetY - 1].FrameX += 18;
-								}
-								NetMessage.SendTileSquare(tileTargetX - 1, tileTargetY - 1, 3);
-								break;
-							case 19:
-								ui.TotalWoodPlatformsPlaced++;
-								break;
-							case 79:
-							case 90:
-								NetMessage.SendTileSquare(tileTargetX, tileTargetY, 5);
-								break;
+								case 15:
+									if (direction == 1)
+									{
+										Main.TileSet[tileTargetX, tileTargetY].FrameX += 18;
+										Main.TileSet[tileTargetX, tileTargetY - 1].FrameX += 18;
+									}
+									NetMessage.SendTileSquare(tileTargetX - 1, tileTargetY - 1, 3);
+									break;
+								case 19:
+									ui.TotalWoodPlatformsPlaced++;
+									break;
+								case 79:
+								case 90:
+									NetMessage.SendTileSquare(tileTargetX, tileTargetY, 5);
+									break;
 							}
 						}
 					}
@@ -6829,18 +6826,18 @@ namespace Terraria
 						int num10 = tileTargetY;
 						switch (i)
 						{
-						case 0:
-							num9--;
-							break;
-						case 1:
-							num9++;
-							break;
-						case 2:
-							num10--;
-							break;
-						default:
-							num10++;
-							break;
+							case 0:
+								num9--;
+								break;
+							case 1:
+								num9++;
+								break;
+							case 2:
+								num10--;
+								break;
+							default:
+								num10++;
+								break;
 						}
 						if (Main.TileSet[num9, num10].WallType != 0)
 						{
@@ -6853,18 +6850,18 @@ namespace Terraria
 							int num13 = num10;
 							switch (j)
 							{
-							case 0:
-								num12--;
-								break;
-							case 1:
-								num12++;
-								break;
-							case 2:
-								num13--;
-								break;
-							default:
-								num13++;
-								break;
+								case 0:
+									num12--;
+									break;
+								case 1:
+									num12++;
+									break;
+								case 2:
+									num13--;
+									break;
+								default:
+									num13++;
+									break;
 							}
 							if (Main.TileSet[num12, num13].WallType == createWall)
 							{
@@ -7419,46 +7416,46 @@ namespace Terraria
 					Vector3 rgb;
 					switch (num14)
 					{
-					case 1:
-						rgb = new Vector3(0f, 0.1f, 1.3f);
-						break;
-					case 2:
-						rgb = new Vector3(1f, 0.1f, 0.1f);
-						break;
-					case 3:
-						rgb = new Vector3(0f, 1f, 0.1f);
-						break;
-					case 4:
-						rgb = new Vector3(0.9f, 0f, 0.9f);
-						break;
-					case 5:
-						rgb = new Vector3(1.3f, 1.3f, 1.3f);
-						break;
-					case 6:
-						rgb = new Vector3(0.9f, 0.9f, 0f);
-						break;
-					case 7:
-						rgb = new Vector3(0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch), 0.3f, Main.DemonTorch + 0.5f * (1f - Main.DemonTorch));
-						break;
-					case 8:
-						rgb = new Vector3(0.85f, 1f, 0.7f);
-						break;
-					default:
-						rgb = new Vector3(1f, 0.95f, 0.8f);
-						break;
+						case 1:
+							rgb = new Vector3(0f, 0.1f, 1.3f);
+							break;
+						case 2:
+							rgb = new Vector3(1f, 0.1f, 0.1f);
+							break;
+						case 3:
+							rgb = new Vector3(0f, 1f, 0.1f);
+							break;
+						case 4:
+							rgb = new Vector3(0.9f, 0f, 0.9f);
+							break;
+						case 5:
+							rgb = new Vector3(1.3f, 1.3f, 1.3f);
+							break;
+						case 6:
+							rgb = new Vector3(0.9f, 0.9f, 0f);
+							break;
+						case 7:
+							rgb = new Vector3(0.5f * Main.DemonTorch + 1f * (1f - Main.DemonTorch), 0.3f, Main.DemonTorch + 0.5f * (1f - Main.DemonTorch));
+							break;
+						case 8:
+							rgb = new Vector3(0.85f, 1f, 0.7f);
+							break;
+						default:
+							rgb = new Vector3(1f, 0.95f, 0.8f);
+							break;
 					}
 					int num15 = num14;
 					switch (num15)
 					{
-					case 0:
-						num15 = 6;
-						break;
-					case 8:
-						num15 = 75;
-						break;
-					default:
-						num15 = 58 + num15;
-						break;
+						case 0:
+							num15 = 6;
+							break;
+						case 8:
+							num15 = 75;
+							break;
+						default:
+							num15 = 58 + num15;
+							break;
 					}
 					int upperBound = 20;
 					if (itemAnimation > 0)
@@ -7653,34 +7650,34 @@ namespace Terraria
 						}
 						switch (num16)
 						{
-						case 72:
-						{
-							int num26 = Main.Rand.Next(3);
-							if (num26 != 0)
-							{
-								num16 = num26 + 85;
-							}
-							break;
-						}
-						case 73:
-						{
-							for (int num25 = 0; num25 < Projectile.MaxNumProjs; num25++)
-							{
-								if (Main.ProjectileSet[num25].active != 0 && Main.ProjectileSet[num25].owner == i)
+							case 72:
 								{
-									if (Main.ProjectileSet[num25].type == 73)
+									int num26 = Main.Rand.Next(3);
+									if (num26 != 0)
 									{
-										num16 = 74;
+										num16 = num26 + 85;
 									}
-									else if (Main.ProjectileSet[num25].type == 74)
-									{
-										flag2 = false;
-										break;
-									}
+									break;
 								}
-							}
-							break;
-						}
+							case 73:
+								{
+									for (int num25 = 0; num25 < Projectile.MaxNumProjs; num25++)
+									{
+										if (Main.ProjectileSet[num25].active != 0 && Main.ProjectileSet[num25].owner == i)
+										{
+											if (Main.ProjectileSet[num25].type == 73)
+											{
+												num16 = 74;
+											}
+											else if (Main.ProjectileSet[num25].type == 74)
+											{
+												flag2 = false;
+												break;
+											}
+										}
+									}
+									break;
+								}
 						}
 						if (flag2)
 						{
@@ -7708,14 +7705,14 @@ namespace Terraria
 							Vector2 vector = new Vector2(Position.X + (width / 2), Position.Y + (height / 2));
 							switch (num16)
 							{
-							case 9:
-								vector.X += Main.Rand.Next(601) * -direction;
-								vector.Y += -300 - Main.Rand.Next(100);
-								num20 = 0f;
-								break;
-							case 51:
-								vector.Y -= 6 * gravDir;
-								break;
+								case 9:
+									vector.X += Main.Rand.Next(601) * -direction;
+									vector.Y += -300 - Main.Rand.Next(100);
+									num20 = 0f;
+									break;
+								case 51:
+									vector.Y -= 6 * gravDir;
+									break;
 							}
 							float num27 = ui.MouseX + CurrentView.ScreenPosition.X - vector.X;
 							float num28 = ui.MouseY + CurrentView.ScreenPosition.Y - vector.Y;
@@ -7726,14 +7723,14 @@ namespace Terraria
 							num28 *= num29;
 							switch (num16)
 							{
-							case 12:
-								vector.X += num27 * 3f;
-								vector.Y += num28 * 3f;
-								break;
-							case 17:
-								vector.X = ui.MouseX + CurrentView.ScreenPosition.X;
-								vector.Y = ui.MouseY + CurrentView.ScreenPosition.Y;
-								break;
+								case 12:
+									vector.X += num27 * 3f;
+									vector.Y += num28 * 3f;
+									break;
+								case 17:
+									vector.X = ui.MouseX + CurrentView.ScreenPosition.X;
+									vector.Y = ui.MouseY + CurrentView.ScreenPosition.Y;
+									break;
 							}
 							if (ptr->UseStyle == 5)
 							{
@@ -8043,15 +8040,15 @@ namespace Terraria
 										flag3 = false;
 										switch (type)
 										{
-										case 48:
-											hitTile += (short)(ptr->HammerPower >> 1);
-											break;
-										case 129:
-											hitTile += (short)(ptr->HammerPower << 1);
-											break;
-										default:
-											hitTile = (short)(hitTile + ptr->HammerPower);
-											break;
+											case 48:
+												hitTile += (short)(ptr->HammerPower >> 1);
+												break;
+											case 129:
+												hitTile += (short)(ptr->HammerPower << 1);
+												break;
+											default:
+												hitTile = (short)(hitTile + ptr->HammerPower);
+												break;
 										}
 										if (tileTargetY > Main.RockLayer && type == 77 && ptr->HammerPower < 60)
 										{
@@ -8095,16 +8092,16 @@ namespace Terraria
 										{
 											switch (type)
 											{
-											case 30:
-											case 124:
-												hitTile += (short)(ptr->AxePower * 5);
-												break;
-											case 80:
-												hitTile += (short)(ptr->AxePower * 3);
-												break;
-											default:
-												hitTile = (short)(hitTile + ptr->AxePower);
-												break;
+												case 30:
+												case 124:
+													hitTile += (short)(ptr->AxePower * 5);
+													break;
+												case 80:
+													hitTile += (short)(ptr->AxePower * 3);
+													break;
+												default:
+													hitTile = (short)(hitTile + ptr->AxePower);
+													break;
 											}
 											if (hitTile >= 100)
 											{
@@ -8238,40 +8235,40 @@ namespace Terraria
 										{
 											switch (type)
 											{
-											case 0:
-											case 1:
-											case 53:
-											case 57:
-											case 58:
-											case 59:
-											case 112:
-											case 116:
-											case 123:
-											case 147:
-												ui.Statistics.IncreaseStat(StatisticEntry.Soils);
-												break;
-											case 7:
-												ui.TotalCopperObtained++;
-												ui.Statistics.IncreaseStat(StatisticEntry.Ore);
-												break;
-											case 6:
-											case 8:
-											case 9:
-											case 22:
-											case 56:
-											case 107:
-											case 108:
-											case 111:
-												ui.Statistics.IncreaseStat(StatisticEntry.Ore);
-												break;
-											case 63:
-											case 64:
-											case 65:
-											case 66:
-											case 67:
-											case 68:
-												ui.Statistics.IncreaseStat(StatisticEntry.Gems);
-												break;
+												case 0:
+												case 1:
+												case 53:
+												case 57:
+												case 58:
+												case 59:
+												case 112:
+												case 116:
+												case 123:
+												case 147:
+													ui.Statistics.IncreaseStat(StatisticEntry.Soils);
+													break;
+												case 7:
+													ui.TotalCopperObtained++;
+													ui.Statistics.IncreaseStat(StatisticEntry.Ore);
+													break;
+												case 6:
+												case 8:
+												case 9:
+												case 22:
+												case 56:
+												case 107:
+												case 108:
+												case 111:
+													ui.Statistics.IncreaseStat(StatisticEntry.Ore);
+													break;
+												case 63:
+												case 64:
+												case 65:
+												case 66:
+												case 67:
+												case 68:
+													ui.Statistics.IncreaseStat(StatisticEntry.Gems);
+													break;
 											}
 											if (++ui.TotalOrePicked == (int)Achievement.LandscaperTilesGoal)
 											{
@@ -8466,7 +8463,7 @@ namespace Terraria
 							}
 							if (Main.Rand.Next(12) == 0)
 							{
-								Gore.NewGore(new Vector2(rectangle.X, rectangle.Y), default(Vector2), Main.Rand.Next(16, 18));
+								Gore.NewGore(new Vector2(rectangle.X, rectangle.Y), default, Main.Rand.Next(16, 18));
 							}
 						}
 						else if (ptr->Type == (int)Item.ID.BLADE_OF_GRASS || ptr->Type == (int)Item.ID.STAFF_OF_REGROWTH)
@@ -9445,7 +9442,7 @@ namespace Terraria
 							binaryWriter.Write(PlayerQuickAccess[3]);
 #endif
 
-							int num = 82;	// itemsFound.Length + 7 >> 3;
+							int num = 82;   // itemsFound.Length + 7 >> 3;
 							byte[] array = new byte[num];
 							itemsFound.CopyTo(array, 0);
 							binaryWriter.Write((ushort)num);
@@ -10459,32 +10456,32 @@ namespace Terraria
 			float knockBack = Inventory[num].Knockback;
 			switch (num2)
 			{
-			case 13:
-			case 32:
-			{
-				grappling[0] = -1;
-				grapCount = 0;
-				for (int j = 0; j < Projectile.MaxNumProjs; j++)
-				{
-					if (Main.ProjectileSet[j].active != 0 && Main.ProjectileSet[j].owner == WhoAmI && Main.ProjectileSet[j].type == 13)
+				case 13:
+				case 32:
 					{
-						Main.ProjectileSet[j].Kill();
-					}
-				}
-				break;
-			}
-			case 73:
-			{
-				for (int i = 0; i < Projectile.MaxNumProjs; i++)
-				{
-					if (Main.ProjectileSet[i].active != 0 && Main.ProjectileSet[i].owner == WhoAmI && Main.ProjectileSet[i].type == 73)
-					{
-						num2 = 74;
+						grappling[0] = -1;
+						grapCount = 0;
+						for (int j = 0; j < Projectile.MaxNumProjs; j++)
+						{
+							if (Main.ProjectileSet[j].active != 0 && Main.ProjectileSet[j].owner == WhoAmI && Main.ProjectileSet[j].type == 13)
+							{
+								Main.ProjectileSet[j].Kill();
+							}
+						}
 						break;
 					}
-				}
-				break;
-			}
+				case 73:
+					{
+						for (int i = 0; i < Projectile.MaxNumProjs; i++)
+						{
+							if (Main.ProjectileSet[i].active != 0 && Main.ProjectileSet[i].owner == WhoAmI && Main.ProjectileSet[i].type == 73)
+							{
+								num2 = 74;
+								break;
+							}
+						}
+						break;
+					}
 			}
 			Vector2 vector = new Vector2(Position.X + (width / 2), Position.Y + (height / 2));
 			float x = controlDir.X;
@@ -10633,57 +10630,57 @@ namespace Terraria
 			controlDir.Y = ui.MouseY - num2;
 		}
 
-        public unsafe void UpdateMouseSmart()
-        {
-            int num = XYWH.X + (width / 2) - CurrentView.ScreenPosition.X;
-            int num2 = XYWH.Y + (height / 2) - CurrentView.ScreenPosition.Y;
-            fixed (Item* ptr = &Inventory[SelectedItem])
-            {
-                Vector2 right = ui.PadState.ThumbSticks.Right;
-                Vector2 vector = right;
-                bool flag = right.LengthSquared() <= (1f / 64f);
-                if (!flag)
-                {
-                    vector.Normalize();
-                }
-                Vector2 left = ui.PadState.ThumbSticks.Left;
-                Vector2 vector2 = left;
-                bool flag2 = left.LengthSquared() <= (1f / 64f);
-                if (!flag2)
-                {
-                    vector2.Normalize();
-                }
-                int num3 = 0;
-                if (ptr->Type > 0)
-                {
-                    if (flag)
-                    {
-                        if (flag2)
-                        {
-                            controlDir.X = direction;
-                            controlDir.Y = 0f;
-                        }
-                        else
-                        {
-                            controlDir.X = vector2.X;
-                            controlDir.Y = 0f - vector2.Y;
-                        }
-                    }
-                    else
-                    {
-                        controlDir.X = vector.X;
-                        controlDir.Y = 0f - vector.Y;
-                    }
-                    int num4 = ptr->TileBoost + blockRange;
-                    Vector2 vector3 = new Vector2((0f - controlDir.Y) * 16f, controlDir.X * 16f);
-                    int num5 = XYWH.X;
-                    int num6 = XYWH.Y + 21;
-                    if (controlDir.X >= 0f)
-                    {
-                        num5 += 20;
-                    }
-                    double num7 = num5;
-                    double num8 = num6;
+		public unsafe void UpdateMouseSmart()
+		{
+			int num = XYWH.X + (width / 2) - CurrentView.ScreenPosition.X;
+			int num2 = XYWH.Y + (height / 2) - CurrentView.ScreenPosition.Y;
+			fixed (Item* ptr = &Inventory[SelectedItem])
+			{
+				Vector2 right = ui.PadState.ThumbSticks.Right;
+				Vector2 vector = right;
+				bool flag = right.LengthSquared() <= (1f / 64f);
+				if (!flag)
+				{
+					vector.Normalize();
+				}
+				Vector2 left = ui.PadState.ThumbSticks.Left;
+				Vector2 vector2 = left;
+				bool flag2 = left.LengthSquared() <= (1f / 64f);
+				if (!flag2)
+				{
+					vector2.Normalize();
+				}
+				int num3 = 0;
+				if (ptr->Type > 0)
+				{
+					if (flag)
+					{
+						if (flag2)
+						{
+							controlDir.X = direction;
+							controlDir.Y = 0f;
+						}
+						else
+						{
+							controlDir.X = vector2.X;
+							controlDir.Y = 0f - vector2.Y;
+						}
+					}
+					else
+					{
+						controlDir.X = vector.X;
+						controlDir.Y = 0f - vector.Y;
+					}
+					int num4 = ptr->TileBoost + blockRange;
+					Vector2 vector3 = new Vector2((0f - controlDir.Y) * 16f, controlDir.X * 16f);
+					int num5 = XYWH.X;
+					int num6 = XYWH.Y + 21;
+					if (controlDir.X >= 0f)
+					{
+						num5 += 20;
+					}
+					double num7 = num5;
+					double num8 = num6;
 #if (!IS_PATCHED && VERSION_INITIAL)
 					for (int num9 = 2; num9 >= 0; num9--)
                     {
@@ -10753,88 +10750,88 @@ namespace Terraria
                                 break;
                             }
 #else
-                    for (int num9 = 2; num9 >= 0; num9--)
-                    {
-                        double num10 = num7 * 0.0625;
-                        double num11 = num8 * 0.0625;
-                        int num12 = (int)num10 + (5 + num4) * ((!(controlDir.X < 0f)) ? 1 : (-1));
-                        int num13 = (int)num11 + (5 + num4) * ((!(controlDir.Y < 0f)) ? 1 : (-1));
-                        while (true)
-                        {
-                            int num14 = (int)num10;
-                            int num15 = (int)num11;
-                            if (num14 < 0 || num15 < 0)
-                            {
-                                break;
-                            }
-                            int num16 = Main.TileSet[num14, num15].IsActive;
-                            int type = Main.TileSet[num14, num15].Type;
-                            bool flag3 = (ptr->AxePower > 0 && num16 != 0 && Main.TileAxe[type]) || (ptr->HammerPower > 0 && ((num16 != 0 && Main.TileHammer[type]) || (Main.TileSet[num14, num15].WallType > 0 && WorldGen.CanKillWall(num14, num15))));
-                            if (flag3 || ((ptr->PickPower > 0 || ptr->CreateTile >= 0) && num16 != 0 && Main.TileSolid[type]) || (ptr->CreateWall >= 0 && Main.TileSet[num14, num15].WallType == 0))
-                            {
-                                if (flag3)
-                                {
-                                    if (num16 != 0 && Main.TileAxe[type] && (Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type]))
-                                    {
-                                        num14--;
-                                        if (Main.TileSet[num14, num15].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15].Type] || Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type])
-                                        {
-                                            num14 += 2;
-                                            if (Main.TileSet[num14, num15].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15].Type] || Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type])
-                                            {
-                                                num14--;
-                                            }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (num16 == 0)
-                                    {
-                                        goto IL_055d;
-                                    }
-                                    if (ptr->PickPower > 0)
-                                    {
-                                        if (Main.TileAxe[type] || Main.TileHammer[type] || !WorldGen.CanKillTile(num14, num15))
-                                        {
-                                            goto IL_055d;
-                                        }
-                                    }
-                                    else if (ptr->CreateTile >= 0)
-                                    {
-                                        num14 = (int)(num10 - controlDir.X);
-                                        if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
-                                        {
-                                            num14 = (int)num10;
-                                            num15 = (int)(num11 - controlDir.Y);
-                                            if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
-                                            {
-                                                num14 = (int)(num10 - controlDir.X);
-                                                if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
-                                                {
-                                                    num14 = (int)num10;
-                                                    num15 = (int)num11;
-                                                    goto IL_055d;
-                                                }
-                                            }
-                                        }
-                                        int j = num15;
-                                        if (!WorldGen.CanPlaceTile(num14, ref j, ptr->CreateTile, -1))
-                                        {
-                                            num14 = (int)num10;
-                                            num15 = (int)num11;
-                                            goto IL_055d;
-                                        }
-                                    }
-                                }
-                                smartLocation[num3].X = (num14 << 4) + 8;
-                                smartLocation[num3].Y = (num15 << 4) + 8;
-                                num3++;
-                                break;
-                            }
+					for (int num9 = 2; num9 >= 0; num9--)
+					{
+						double num10 = num7 * 0.0625;
+						double num11 = num8 * 0.0625;
+						int num12 = (int)num10 + (5 + num4) * ((!(controlDir.X < 0f)) ? 1 : (-1));
+						int num13 = (int)num11 + (5 + num4) * ((!(controlDir.Y < 0f)) ? 1 : (-1));
+						while (true)
+						{
+							int num14 = (int)num10;
+							int num15 = (int)num11;
+							if (num14 < 0 || num15 < 0)
+							{
+								break;
+							}
+							int num16 = Main.TileSet[num14, num15].IsActive;
+							int type = Main.TileSet[num14, num15].Type;
+							bool flag3 = (ptr->AxePower > 0 && num16 != 0 && Main.TileAxe[type]) || (ptr->HammerPower > 0 && ((num16 != 0 && Main.TileHammer[type]) || (Main.TileSet[num14, num15].WallType > 0 && WorldGen.CanKillWall(num14, num15))));
+							if (flag3 || ((ptr->PickPower > 0 || ptr->CreateTile >= 0) && num16 != 0 && Main.TileSolid[type]) || (ptr->CreateWall >= 0 && Main.TileSet[num14, num15].WallType == 0))
+							{
+								if (flag3)
+								{
+									if (num16 != 0 && Main.TileAxe[type] && (Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type]))
+									{
+										num14--;
+										if (Main.TileSet[num14, num15].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15].Type] || Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type])
+										{
+											num14 += 2;
+											if (Main.TileSet[num14, num15].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15].Type] || Main.TileSet[num14, num15 - 1].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 1].Type] || Main.TileSet[num14, num15 - 2].IsActive == 0 || !Main.TileAxe[Main.TileSet[num14, num15 - 2].Type])
+											{
+												num14--;
+											}
+										}
+									}
+								}
+								else
+								{
+									if (num16 == 0)
+									{
+										goto IL_055d;
+									}
+									if (ptr->PickPower > 0)
+									{
+										if (Main.TileAxe[type] || Main.TileHammer[type] || !WorldGen.CanKillTile(num14, num15))
+										{
+											goto IL_055d;
+										}
+									}
+									else if (ptr->CreateTile >= 0)
+									{
+										num14 = (int)(num10 - controlDir.X);
+										if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
+										{
+											num14 = (int)num10;
+											num15 = (int)(num11 - controlDir.Y);
+											if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
+											{
+												num14 = (int)(num10 - controlDir.X);
+												if (Main.TileSet[num14, num15].IsActive != 0 && Main.TileSolid[type])
+												{
+													num14 = (int)num10;
+													num15 = (int)num11;
+													goto IL_055d;
+												}
+											}
+										}
+										int j = num15;
+										if (!WorldGen.CanPlaceTile(num14, ref j, ptr->CreateTile, -1))
+										{
+											num14 = (int)num10;
+											num15 = (int)num11;
+											goto IL_055d;
+										}
+									}
+								}
+								smartLocation[num3].X = (num14 << 4) + 8;
+								smartLocation[num3].Y = (num15 << 4) + 8;
+								num3++;
+								break;
+							}
 #endif
-                            goto IL_055d;
-							IL_055d:
+							goto IL_055d;
+						IL_055d:
 							if (num14 == num12 || num15 == num13)
 							{
 								break;
@@ -10983,12 +10980,12 @@ namespace Terraria
 				newColor3 = GetImmuneAlpha2(drawView.Lighting.GetColorPlayer(x, y3));
 				if (shadow > 0f)
 				{
-					newColor4 = default(Color);
-					newColor9 = default(Color);
-					newColor10 = default(Color);
-					newColor11 = default(Color);
-					newColor12 = default(Color);
-					c = default(Color);
+					newColor4 = default;
+					newColor9 = default;
+					newColor10 = default;
+					newColor11 = default;
+					newColor12 = default;
+					c = default;
 				}
 				else
 				{
@@ -11280,7 +11277,7 @@ namespace Terraria
 						Color alpha = ptr->GetAlpha(color);
 						pos.X = itemLocation.X - drawView.ScreenPosition.X;
 						pos.Y = itemLocation.Y - drawView.ScreenPosition.Y;
-						Vector2 pivot4 = default(Vector2);
+						Vector2 pivot4 = default;
 						if (ptr->UseStyle == 5)
 						{
 							int num12 = 10;
@@ -11289,84 +11286,84 @@ namespace Terraria
 							pivot4.Y = centerPivot.Y;
 							switch ((Item.ID)type)
 							{
-							case Item.ID.FLINTLOCK_PISTOL:
-								centerPivot.Y += 2 * gravDir;
-								break;
-							case Item.ID.MUSKET:
-								num12 = -5;
-								break;
-							case Item.ID.MINISHARK:
-								num12 = -5;
-								centerPivot.Y -= 2 * gravDir;
-								break;
-							case Item.ID.SHOTGUN:
-								num12 = -2;
-								centerPivot.Y += gravDir;
-								break;
-							case Item.ID.MEGASHARK:
-								num12 = -7;
-								centerPivot.Y -= 2 * gravDir;
-								break;
-							case Item.ID.FLAMETHROWER:
-								num12 = 0;
-								centerPivot.Y -= 2 * gravDir;
-								break;
-							case Item.ID.MAGICAL_HARP:
-							case Item.ID.HARP:
-								num12 = -2;
-								break;
-							case Item.ID.CLOCKWORK_ASSAULT_RIFLE:
-								num12 = 0;
-								centerPivot.Y -= 2 * gravDir;
-								break;
-							case Item.ID.LASER_RIFLE:
-								num12 = 0;
-								centerPivot.Y += 3 * gravDir;
-								break;
-							case Item.ID.COBALT_REPEATER:
-							case Item.ID.MYTHRIL_REPEATER:
-							case Item.ID.ADAMANTITE_REPEATER:
-							case Item.ID.HALLOWED_REPEATER:
-								num12 = -2;
-								centerPivot.Y -= 2 * gravDir;
-								break;
-							case Item.ID.STAR_CANNON:
-								num12 = -5;
-								centerPivot.Y += 4 * gravDir;
-								break;
-							case Item.ID.BOTTLED_WATER:
-								num12 = 4;
-								centerPivot.Y += 4 * gravDir;
-								break;
-							case Item.ID.SPACE_GUN:
-								num12 = 4;
-								centerPivot.Y += 2 * gravDir;
-								break;
-							case Item.ID.AQUA_SCEPTER:
-								num12 = 6;
-								centerPivot.Y += 2 * gravDir;
-								break;
-							case Item.ID.HARPOON:
-								num12 = -8;
-								break;
-							case Item.ID.HANDGUN:
-							case Item.ID.PHOENIX_BLASTER:
-								num12 = 2;
-								centerPivot.Y += 4 * gravDir;
-								break;
-							case Item.ID.WATER_BOLT:
-							case Item.ID.DEMON_SCYTHE:
-								num12 = 4;
-								centerPivot.Y += 4 * gravDir;
-								break;
-							case Item.ID.SANDGUN:
-								num12 = 0;
-								centerPivot.Y += 2 * gravDir;
-								break;
-							case Item.ID.BLOWPIPE:
-								num12 = 6;
-								centerPivot.Y -= 6 * gravDir;
-								break;
+								case Item.ID.FLINTLOCK_PISTOL:
+									centerPivot.Y += 2 * gravDir;
+									break;
+								case Item.ID.MUSKET:
+									num12 = -5;
+									break;
+								case Item.ID.MINISHARK:
+									num12 = -5;
+									centerPivot.Y -= 2 * gravDir;
+									break;
+								case Item.ID.SHOTGUN:
+									num12 = -2;
+									centerPivot.Y += gravDir;
+									break;
+								case Item.ID.MEGASHARK:
+									num12 = -7;
+									centerPivot.Y -= 2 * gravDir;
+									break;
+								case Item.ID.FLAMETHROWER:
+									num12 = 0;
+									centerPivot.Y -= 2 * gravDir;
+									break;
+								case Item.ID.MAGICAL_HARP:
+								case Item.ID.HARP:
+									num12 = -2;
+									break;
+								case Item.ID.CLOCKWORK_ASSAULT_RIFLE:
+									num12 = 0;
+									centerPivot.Y -= 2 * gravDir;
+									break;
+								case Item.ID.LASER_RIFLE:
+									num12 = 0;
+									centerPivot.Y += 3 * gravDir;
+									break;
+								case Item.ID.COBALT_REPEATER:
+								case Item.ID.MYTHRIL_REPEATER:
+								case Item.ID.ADAMANTITE_REPEATER:
+								case Item.ID.HALLOWED_REPEATER:
+									num12 = -2;
+									centerPivot.Y -= 2 * gravDir;
+									break;
+								case Item.ID.STAR_CANNON:
+									num12 = -5;
+									centerPivot.Y += 4 * gravDir;
+									break;
+								case Item.ID.BOTTLED_WATER:
+									num12 = 4;
+									centerPivot.Y += 4 * gravDir;
+									break;
+								case Item.ID.SPACE_GUN:
+									num12 = 4;
+									centerPivot.Y += 2 * gravDir;
+									break;
+								case Item.ID.AQUA_SCEPTER:
+									num12 = 6;
+									centerPivot.Y += 2 * gravDir;
+									break;
+								case Item.ID.HARPOON:
+									num12 = -8;
+									break;
+								case Item.ID.HANDGUN:
+								case Item.ID.PHOENIX_BLASTER:
+									num12 = 2;
+									centerPivot.Y += 4 * gravDir;
+									break;
+								case Item.ID.WATER_BOLT:
+								case Item.ID.DEMON_SCYTHE:
+									num12 = 4;
+									centerPivot.Y += 4 * gravDir;
+									break;
+								case Item.ID.SANDGUN:
+									num12 = 0;
+									centerPivot.Y += 2 * gravDir;
+									break;
+								case Item.ID.BLOWPIPE:
+									num12 = 6;
+									centerPivot.Y -= 6 * gravDir;
+									break;
 							}
 							pos.X += centerPivot.X;
 							pos.Y += centerPivot.Y;

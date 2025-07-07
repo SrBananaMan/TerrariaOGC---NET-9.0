@@ -37,18 +37,18 @@ namespace Terraria
 					}
 					switch (ColourPointer)
 					{
-					case 'r':
-						HexR = ByteValue;
-						break;
-					case 'g':
-						HexG = ByteValue;
-						break;
-					case 'b':
-						HexB = ByteValue;
-						break;
-					default:
-						HexA = ByteValue;
-						break;
+						case 'r':
+							HexR = ByteValue;
+							break;
+						case 'g':
+							HexG = ByteValue;
+							break;
+						case 'b':
+							HexB = ByteValue;
+							break;
+						default:
+							HexA = ByteValue;
+							break;
 					}
 					for (; Text[CharIdx] == ' '; CharIdx++)
 					{

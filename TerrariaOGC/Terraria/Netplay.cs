@@ -1,10 +1,10 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Net;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Net;
 
 namespace Terraria
 {
@@ -108,12 +108,12 @@ namespace Terraria
 
 				if (UI.MainUI.IsInviteOnly)
 				{
-                    networkSessionProperties[2] = -559038737;
-                }
-                else
-                {
-                    networkSessionProperties[0] = (int)xuid;
-                    networkSessionProperties[1] = (int)(xuid >> 32);
+					networkSessionProperties[2] = -559038737;
+				}
+				else
+				{
+					networkSessionProperties[0] = (int)xuid;
+					networkSessionProperties[1] = (int)(xuid >> 32);
 #if (!VERSION_INITIAL || IS_PATCHED)
 					networkSessionProperties[2] = 2;
 #endif
@@ -148,9 +148,9 @@ namespace Terraria
 			Session.add_SessionEnded((EventHandler<NetworkSessionEndedEventArgs>)SessionEndedEventHandler);
 #else
 			Session.GamerJoined += GamerJoinedEventHandler;
-            Session.GamerLeft += GamerLeftEventHandler;
-            Session.GameEnded += GameEndedEventHandler;
-            Session.SessionEnded += SessionEndedEventHandler;
+			Session.GamerLeft += GamerLeftEventHandler;
+			Session.GameEnded += GameEndedEventHandler;
+			Session.SessionEnded += SessionEndedEventHandler;
 #endif
 			HasHookEvents = false;
 		}
@@ -163,12 +163,12 @@ namespace Terraria
 			Session.remove_GameEnded((EventHandler<GameEndedEventArgs>)GameEndedEventHandler);
 			Session.remove_SessionEnded((EventHandler<NetworkSessionEndedEventArgs>)SessionEndedEventHandler);
 #else
-            Session.GamerJoined -= GamerJoinedEventHandler;
-            Session.GamerLeft -= GamerLeftEventHandler;
-            Session.GameEnded -= GameEndedEventHandler;
-            Session.SessionEnded -= SessionEndedEventHandler;
+			Session.GamerJoined -= GamerJoinedEventHandler;
+			Session.GamerLeft -= GamerLeftEventHandler;
+			Session.GameEnded -= GameEndedEventHandler;
+			Session.SessionEnded -= SessionEndedEventHandler;
 #endif
-            Session.Dispose();
+			Session.Dispose();
 			Session = null;
 		}
 
@@ -382,16 +382,16 @@ namespace Terraria
 				string desc;
 				switch (e.EndReason)
 				{
-				case NetworkSessionEndReason.ClientSignedOut:
-					GameEndedEventHandler(sender, new GameEndedEventArgs());
-					return;
-				case NetworkSessionEndReason.HostEndedSession:
-				case NetworkSessionEndReason.RemovedByHost:
-					desc = Lang.WorldGenText[46];
-					break;
-				default:
-					desc = ((Main.NetMode != (byte)NetModeSetting.CLIENT) ? Lang.InterfaceText[36] : Lang.WorldGenText[46]);
-					break;
+					case NetworkSessionEndReason.ClientSignedOut:
+						GameEndedEventHandler(sender, new GameEndedEventArgs());
+						return;
+					case NetworkSessionEndReason.HostEndedSession:
+					case NetworkSessionEndReason.RemovedByHost:
+						desc = Lang.WorldGenText[46];
+						break;
+					default:
+						desc = ((Main.NetMode != (byte)NetModeSetting.CLIENT) ? Lang.InterfaceText[36] : Lang.WorldGenText[46]);
+						break;
 				}
 				UI.Error(Lang.MenuText[5], desc);
 				Main.SaveOnExit = UI.MainUI.autoSave;
@@ -405,7 +405,7 @@ namespace Terraria
 			thread.IsBackground = true;
 			thread.Start();
 			sessionThread = thread;
-        }
+		}
 
 		public static void ServerLoop()
 		{
@@ -415,7 +415,7 @@ namespace Terraria
 				5
 			});
 #endif
-            Init();
+			Init();
 			CreateSession();
 			while (!PlayDisconnect && Session != null)
 			{
@@ -492,48 +492,48 @@ namespace Terraria
 				{
 					switch (clientState)
 					{
-					case ClientState.JOINING:
-						UI.MainUI.FirstProgressStep(3, Lang.MenuText[8]);
-						clientState = ClientState.WAITING_FOR_PLAYER_ID;
-						break;
-					case ClientState.WAITING_FOR_PLAYER_ID:
-						if (UI.MainUI.Progress <= 0.999f)
-						{
-							UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
-						}
-						break;
-					case ClientState.WAITING_FOR_PLAYER_DATA_REQ:
-						if (UI.MainUI.Progress <= 0.999f)
-						{
-							UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
-						}
-						break;
-					case ClientState.RECEIVED_PLAYER_DATA_REQ:
-						UI.MainUI.NextProgressStep(Lang.MenuText[73]);
-						clientState = ClientState.WAITING_FOR_WORLD_INFO;
-						break;
-					case ClientState.WAITING_FOR_WORLD_INFO:
-						if (UI.MainUI.Progress <= 0.999f)
-						{
-							UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
-						}
-						break;
-					case ClientState.WAITING_FOR_TILE_DATA:
-						if (clientStatusMax > 0)
-						{
-							if (clientStatusCount >= clientStatusMax)
+						case ClientState.JOINING:
+							UI.MainUI.FirstProgressStep(3, Lang.MenuText[8]);
+							clientState = ClientState.WAITING_FOR_PLAYER_ID;
+							break;
+						case ClientState.WAITING_FOR_PLAYER_ID:
+							if (UI.MainUI.Progress <= 0.999f)
 							{
-								clientStatusMax = 0;
-								clientStatusCount = 0;
-								UI.MainUI.Progress = 1f;
+								UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
 							}
-							else
+							break;
+						case ClientState.WAITING_FOR_PLAYER_DATA_REQ:
+							if (UI.MainUI.Progress <= 0.999f)
 							{
-								UI.MainUI.statusText = Lang.InterfaceText[44];
-								UI.MainUI.Progress = clientStatusCount / (float)clientStatusMax;
+								UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
 							}
-						}
-						break;
+							break;
+						case ClientState.RECEIVED_PLAYER_DATA_REQ:
+							UI.MainUI.NextProgressStep(Lang.MenuText[73]);
+							clientState = ClientState.WAITING_FOR_WORLD_INFO;
+							break;
+						case ClientState.WAITING_FOR_WORLD_INFO:
+							if (UI.MainUI.Progress <= 0.999f)
+							{
+								UI.MainUI.Progress = UI.MainUI.Progress + 0.001f;
+							}
+							break;
+						case ClientState.WAITING_FOR_TILE_DATA:
+							if (clientStatusMax > 0)
+							{
+								if (clientStatusCount >= clientStatusMax)
+								{
+									clientStatusMax = 0;
+									clientStatusCount = 0;
+									UI.MainUI.Progress = 1f;
+								}
+								else
+								{
+									UI.MainUI.statusText = Lang.InterfaceText[44];
+									UI.MainUI.Progress = clientStatusCount / (float)clientStatusMax;
+								}
+							}
+							break;
 					}
 					Thread.Sleep(0);
 				}
@@ -542,7 +542,7 @@ namespace Terraria
 				ToStopSession = true;
 			}
 			goto IL_028d;
-			IL_028d:
+		IL_028d:
 			sessionThread = null;
 		}
 
@@ -612,7 +612,7 @@ namespace Terraria
 		{
 			NetworkSessionProperties networkSessionProperties = new NetworkSessionProperties();
 #if (!VERSION_INITIAL || IS_PATCHED)
-            networkSessionProperties[2] = 2;
+			networkSessionProperties[2] = 2;
 #endif
 			UI main = UI.MainUI;
 			if (main.HasOnline())
@@ -634,12 +634,12 @@ namespace Terraria
 #if USE_ORIGINAL_CODE
 								ulong xuid = friendGamer.GetXuid();
 #else
-                                ulong xuid = (ulong)(7934076125 + num); // The Microsoft sample since the function is not implemented
+								ulong xuid = (ulong)(7934076125 + num); // The Microsoft sample since the function is not implemented
 #endif
-                                networkSessionProperties[0] = (int)xuid;
+								networkSessionProperties[0] = (int)xuid;
 								networkSessionProperties[1] = (int)(xuid >> 32);
 
-                                AvailableNetworkSessionCollection availableNetworkSessionCollection = NetworkSession.Find(NetworkSessionType.PlayerMatch, list, networkSessionProperties);
+								AvailableNetworkSessionCollection availableNetworkSessionCollection = NetworkSession.Find(NetworkSessionType.PlayerMatch, list, networkSessionProperties);
 								if (((ReadOnlyCollection<AvailableNetworkSession>)(object)availableNetworkSessionCollection).Count > 0)
 								{
 									lock (availableSessions)
@@ -653,7 +653,7 @@ namespace Terraria
 								}
 								Thread.Sleep(JoinableSession.SearchDelay);
 							}
-                            num--;
+							num--;
 						}
 					}
 					catch (Exception)

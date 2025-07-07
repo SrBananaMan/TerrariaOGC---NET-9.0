@@ -1,6 +1,6 @@
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Text;
 
 namespace Terraria.SoundUI
 {
@@ -49,12 +49,12 @@ namespace Terraria.SoundUI
 
 			switch (Main.ScreenHeightPtr)
 			{
-				case 1:
+				case ScreenHeights.HD:
 					IconX = 475f;
 					IconY = 350f;
 					break;
 
-				case 2:
+				case ScreenHeights.FHD:
 					IconX = 800f;
 					IconY = 500f;
 					break;
@@ -72,7 +72,7 @@ namespace Terraria.SoundUI
 			Slider MusicActive = new Slider(Assets.SliderTex, Assets.SliderEmptyRect, Assets.SliderFullRect, SliderPosition);
 			Slider MusicInactive = new Slider(Assets.SliderTex, Assets.SliderEmptyInactiveRect, Assets.SliderFullInactiveRect, SliderPosition);
 			ActivatableSlider MusicSlider = new ActivatableSlider(MusicActive, MusicInactive);
-			
+
 			Vector2 IconPosition = Value + new Vector2(0f, Assets.SliderEmptyRect.Height - Assets.SoundIconRect.Height);
 			Icon SoundIcon = new Icon(Assets.SoundIconsTex, IconPosition, Assets.SoundIconRect);
 			IconPosition.Y += SliderSpacing;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Terraria.Achievements;
 
@@ -179,62 +178,62 @@ namespace Terraria
 			}
 			switch (RecipeCategory)
 			{
-			case Category.STRUCTURES:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.FurnitureCrafted);
-				break;
-			case Category.TOOLS:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.ToolsCrafted);
-				break;
-			case Category.WEAPONS:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.WeaponsCrafted);
-				break;
-			case Category.ARMOR:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.ArmorCrafted);
-				break;
-			case Category.POTIONS:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.ConsumablesCrafted);
-				break;
-			default:
-				ActiveUI.Statistics.IncreaseStat(StatisticEntry.MiscCrafted);
-				break;
+				case Category.STRUCTURES:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.FurnitureCrafted);
+					break;
+				case Category.TOOLS:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.ToolsCrafted);
+					break;
+				case Category.WEAPONS:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.WeaponsCrafted);
+					break;
+				case Category.ARMOR:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.ArmorCrafted);
+					break;
+				case Category.POTIONS:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.ConsumablesCrafted);
+					break;
+				default:
+					ActiveUI.Statistics.IncreaseStat(StatisticEntry.MiscCrafted);
+					break;
 			}
 			switch ((Item.ID)CraftedItem.Type)
 			{
-			case Item.ID.TORCH:
-			case Item.ID.BLUE_TORCH:
-			case Item.ID.RED_TORCH:
-			case Item.ID.GREEN_TORCH:
-			case Item.ID.PURPLE_TORCH:
-			case Item.ID.WHITE_TORCH:
-			case Item.ID.YELLOW_TORCH:
-			case Item.ID.DEMON_TORCH:
-				ActiveUI.TotalTorchesCrafted += (uint)CraftedItem.Stack;
-				break;
-			case Item.ID.WOOD_PLATFORM:
-				ActiveUI.TotalWoodPlatformsCrafted += (uint)CraftedItem.Stack;
-				break;
-			case Item.ID.STONE_WALL:
-			case Item.ID.DIRT_WALL:
-			case Item.ID.WOOD_WALL:
-			case Item.ID.PLANKED_WALL:
-				ActiveUI.TotalWallsCrafted += (uint)CraftedItem.Stack;
-				break;
-			case Item.ID.GOLD_BAR:
-			case Item.ID.COPPER_BAR:
-			case Item.ID.SILVER_BAR:
-			case Item.ID.IRON_BAR:
-			case Item.ID.DEMONITE_BAR:
-			case Item.ID.METEORITE_BAR:
-			case Item.ID.HELLSTONE_BAR:
-			case Item.ID.COBALT_BAR:
-			case Item.ID.MYTHRIL_BAR:
-			case Item.ID.ADAMANTITE_BAR:
-				ActiveUI.TotalBarsCrafted += (uint)CraftedItem.Stack;
-				if (ActiveUI.TotalBarsCrafted >= (int)Achievement.SmelterBarsGoal)
-				{
-					ActiveUI.ActivePlayer.AchievementTrigger(Trigger.CreatedLotsOfBars);
-				}
-				break;
+				case Item.ID.TORCH:
+				case Item.ID.BLUE_TORCH:
+				case Item.ID.RED_TORCH:
+				case Item.ID.GREEN_TORCH:
+				case Item.ID.PURPLE_TORCH:
+				case Item.ID.WHITE_TORCH:
+				case Item.ID.YELLOW_TORCH:
+				case Item.ID.DEMON_TORCH:
+					ActiveUI.TotalTorchesCrafted += (uint)CraftedItem.Stack;
+					break;
+				case Item.ID.WOOD_PLATFORM:
+					ActiveUI.TotalWoodPlatformsCrafted += (uint)CraftedItem.Stack;
+					break;
+				case Item.ID.STONE_WALL:
+				case Item.ID.DIRT_WALL:
+				case Item.ID.WOOD_WALL:
+				case Item.ID.PLANKED_WALL:
+					ActiveUI.TotalWallsCrafted += (uint)CraftedItem.Stack;
+					break;
+				case Item.ID.GOLD_BAR:
+				case Item.ID.COPPER_BAR:
+				case Item.ID.SILVER_BAR:
+				case Item.ID.IRON_BAR:
+				case Item.ID.DEMONITE_BAR:
+				case Item.ID.METEORITE_BAR:
+				case Item.ID.HELLSTONE_BAR:
+				case Item.ID.COBALT_BAR:
+				case Item.ID.MYTHRIL_BAR:
+				case Item.ID.ADAMANTITE_BAR:
+					ActiveUI.TotalBarsCrafted += (uint)CraftedItem.Stack;
+					if (ActiveUI.TotalBarsCrafted >= (int)Achievement.SmelterBarsGoal)
+					{
+						ActiveUI.ActivePlayer.AchievementTrigger(Trigger.CreatedLotsOfBars);
+					}
+					break;
 			}
 		}
 

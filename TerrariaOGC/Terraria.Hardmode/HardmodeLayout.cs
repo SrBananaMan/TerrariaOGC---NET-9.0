@@ -1,7 +1,7 @@
 #if !USE_ORIGINAL_CODE
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Terraria.Hardmode
 {
@@ -41,7 +41,7 @@ namespace Terraria.Hardmode
 			HowToPlay.TextBlock TextBlock = new HowToPlay.TextBlock(ref DialogArea, CompText, ref TextArea, Assets.TextBG, TextBGBorderWidth, BackColor, TextColor, AccentColor);
 			RectX += WidthOffset + Padding;
 			RectY = MaxHeight - Image.Height >> 1;
-			Image PreviewImage = new Image{ Position = new Vector2(RectX, RectY), Texture = Image };
+			Image PreviewImage = new Image { Position = new Vector2(RectX, RectY), Texture = Image };
 			return new HardmodeLayout(TextBlock, PreviewImage);
 		}
 
