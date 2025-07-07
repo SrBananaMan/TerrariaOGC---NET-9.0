@@ -1,3 +1,0 @@
-[submodule "TerrariaOGC/Dependencies/Lidgren.Network"]
-	path = TerrariaOGC/Dependencies/Lidgren.Network
-	url = https://github.com/AscensionGameDev/Lidgren.Network.git
