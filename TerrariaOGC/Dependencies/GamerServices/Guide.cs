@@ -8,20 +8,14 @@
 #endregion
 
 #region Using Statements
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
+using SDL3;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms; // Would like this to be removed and just have SDL do it but with colours.
-using static SDL2.SDL;
-
 #endregion
 
 namespace Microsoft.Xna.Framework.GamerServices
@@ -35,17 +29,17 @@ namespace Microsoft.Xna.Framework.GamerServices
 			// FIXME: Should we use SDL here? -flibit
 			get
 			{
-				return SDL_IsScreenSaverEnabled() == SDL_bool.SDL_TRUE;
+				return SDL.SDL_ScreenSaverEnabled();
 			}
 			set
 			{
 				if (value)
 				{
-					SDL_EnableScreenSaver();
+					SDL.SDL_EnableScreenSaver();
 				}
 				else
 				{
-					SDL_DisableScreenSaver();
+					SDL.SDL_DisableScreenSaver();
 				}
 			}
 		}
