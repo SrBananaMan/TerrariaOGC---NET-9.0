@@ -19,6 +19,8 @@ namespace Terraria
 		public enum SubCategory : byte
 		{
 			NONE = 0,
+			// No idea what Engine's logic was behind defining only 2 other 0-value entries.
+			TABLEWARE = 0,
 			TORCHES = 1,
 			WALLS = 2,
 			BRICKS = 3,
@@ -31,7 +33,7 @@ namespace Terraria
 			MECHANISM = 10,
 			TIMERS = 11,
 			PUMPS = 12,
-			TABLEWARE = 0,
+			// ---
 			PICKAXES = 1,
 			DRILLS = 2,
 			AXES = 3,
@@ -40,6 +42,7 @@ namespace Terraria
 			HAMAXES = 6,
 			BARS = 7,
 			GRAPPLING = 8,
+			// ---
 			SWORDS = 1,
 			BROADSWORDS = 2,
 			SHORTSWORDS = 3,
@@ -56,6 +59,8 @@ namespace Terraria
 			PHASESABERS = 14,
 			SPEARS = 15,
 			EXPLOSIVES = 16,
+			// ---
+			BOOTS = 0,
 			HEADGEAR = 1,
 			HELMETS = 2,
 			MASKS = 3,
@@ -67,10 +72,11 @@ namespace Terraria
 			LEGS = 9,
 			PANTS = 10,
 			WINGS = 11,
-			BOOTS = 0,
+			// ---
 			HEALING = 1,
 			MANA = 2,
 			RESTORATION = 3,
+			// ---
 			BANNERS = 1,
 			WATCHES = 2,
 			MUSICBOXES = 3,
@@ -408,7 +414,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEALING;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.LESSER_HEALING_POTION, 2);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSHROOM);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.GEL, 2);
@@ -417,7 +423,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEALING;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HEALING_POTION);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LESSER_HEALING_POTION, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.GLOWING_MUSHROOM);
@@ -425,7 +431,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEALING;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GREATER_HEALING_POTION);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BOTTLED_WATER);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.PIXIE_DUST, 3);
@@ -434,7 +440,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.MANA;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.LESSER_MANA_POTION, 2);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.FALLEN_STAR);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.GEL, 2);
@@ -443,7 +449,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.MANA;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MANA_POTION);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LESSER_MANA_POTION, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.GLOWING_MUSHROOM);
@@ -451,7 +457,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.RESTORATION;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.LESSER_RESTORATION_POTION);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LESSER_HEALING_POTION);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.LESSER_MANA_POTION);
@@ -459,7 +465,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.POTIONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.RESTORATION;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.RESTORATION_POTION);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HEALING_POTION);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MANA_POTION);
@@ -639,7 +645,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WOODEN_ARROW, 5);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOOD);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.STONE_BLOCK);
@@ -647,14 +653,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.FLAMING_ARROW, 3);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOODEN_ARROW, 3);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.TORCH);
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.UNHOLY_ARROW, 3);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOODEN_ARROW, 3);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WORM_TOOTH);
@@ -662,7 +668,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HELLFIRE_ARROW, 10);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOODEN_ARROW, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.HELLSTONE_BAR);
@@ -671,7 +677,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CURSED_ARROW, 15);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOODEN_ARROW, 15);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.CURSED_FLAME);
@@ -679,7 +685,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.ARROWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HOLY_ARROW, 35);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOODEN_ARROW, 35);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.PIXIE_DUST, 6);
@@ -688,7 +694,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.PUMPS;
+			NewRecipe.RecipeSubCategory = SubCategory.BULLETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEOR_SHOT, 25);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSKET_BALL, 25);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.METEORITE_BAR);
@@ -696,7 +702,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.PUMPS;
+			NewRecipe.RecipeSubCategory = SubCategory.BULLETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CRYSTAL_BULLET, 25);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSKET_BALL, 25);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.CRYSTAL_SHARD);
@@ -704,7 +710,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.PUMPS;
+			NewRecipe.RecipeSubCategory = SubCategory.BULLETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CURSED_BULLET, 25);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSKET_BALL, 25);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.CURSED_FLAME);
@@ -844,21 +850,21 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.STRUCTURES;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.TABLEWARE;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CLAY_POT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.CLAY_BLOCK, 6);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.STRUCTURES;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.TABLEWARE;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.PINK_VASE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.CLAY_BLOCK, 4);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.STRUCTURES;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.TABLEWARE;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.BOWL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.CLAY_BLOCK, 2);
 			NewRecipe.RequiredTile[0] = 17;
@@ -1134,7 +1140,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.STRUCTURES;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.TABLEWARE; 
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WOODEN_TABLE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOOD, 8);
 			NewRecipe.RequiredTile[0] = 18;
@@ -1265,21 +1271,21 @@ namespace Terraria
 #endif
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WOODEN_SWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOOD, 7);
 			NewRecipe.RequiredTile[0] = 18;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WOODEN_HAMMER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOOD, 8);
 			NewRecipe.RequiredTile[0] = 18;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WOODEN_BOW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.WOOD, 10);
 			NewRecipe.RequiredTile[0] = 18;
@@ -1301,35 +1307,35 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.BANNERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.RED_BANNER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 3);
 			NewRecipe.RequiredTile[0] = 86;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.BANNERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GREEN_BANNER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 3);
 			NewRecipe.RequiredTile[0] = 86;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.BANNERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.BLUE_BANNER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 3);
 			NewRecipe.RequiredTile[0] = 86;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.BANNERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.YELLOW_BANNER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 3);
 			NewRecipe.RequiredTile[0] = 86;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HATS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HEROS_HAT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.PURPLE_DYE, 3);
@@ -1337,7 +1343,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHIRTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HEROS_SHIRT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.PURPLE_DYE, 3);
@@ -1345,7 +1351,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.MECHANISM;
+			NewRecipe.RecipeSubCategory = SubCategory.PANTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HEROS_PANTS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.PURPLE_DYE, 3);
@@ -1353,7 +1359,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHIRTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TUXEDO_SHIRT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.BLACK_DYE, 3);
@@ -1361,7 +1367,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.MECHANISM;
+			NewRecipe.RecipeSubCategory = SubCategory.PANTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TUXEDO_PANTS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILK, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.BLACK_DYE, 3);
@@ -1384,21 +1390,21 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHIRTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ARCHAEOLOGISTS_JACKET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LEATHER, 15);
 			NewRecipe.RequiredTile[0] = 18;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.MECHANISM;
+			NewRecipe.RecipeSubCategory = SubCategory.PANTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ARCHAEOLOGISTS_PANTS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LEATHER, 15);
 			NewRecipe.RequiredTile[0] = 18;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.STRUCTURES;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.TABLEWARE;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.FISH_BOWL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLDFISH, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.BOTTLED_WATER);
@@ -1422,14 +1428,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COPPER_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_ORE, 3);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.NetDefaults(-13);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 4);
@@ -1437,7 +1443,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.AXES;
 			NewRecipe.CraftedItem.NetDefaults(-16);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 9);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1445,7 +1451,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.NetDefaults(-17);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1453,49 +1459,49 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-14);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 8);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHORTSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-15);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.NetDefaults(-18);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COPPER_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 15);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COPPER_CHAINMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COPPER_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 20);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.WATCHES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COPPER_WATCH);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.IRON_CHAIN);
@@ -1513,7 +1519,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_ORE, 3);
 			NewRecipe.RequiredTile[0] = 17;
@@ -1563,7 +1569,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_PICKAXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1571,7 +1577,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.AXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_AXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 9);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1579,7 +1585,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_HAMMER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1587,42 +1593,42 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_BROADSWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 8);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHORTSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_SHORTSWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_BOW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 20);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_CHAINMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 30);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IRON_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
@@ -1636,14 +1642,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SILVER_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_ORE, 4);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.NetDefaults(-7);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 4);
@@ -1651,7 +1657,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.AXES;
 			NewRecipe.CraftedItem.NetDefaults(-10);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 9);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1659,7 +1665,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.NetDefaults(-11);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1667,49 +1673,49 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-8);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 8);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHORTSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-9);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 6);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.NetDefaults(-12);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SILVER_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 20);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SILVER_CHAINMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 30);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SILVER_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.WATCHES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SILVER_WATCH);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SILVER_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.IRON_CHAIN);
@@ -1727,14 +1733,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOLD_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_ORE, 4);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.NetDefaults(-1);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 4);
@@ -1742,7 +1748,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.AXES;
 			NewRecipe.CraftedItem.NetDefaults(-4);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 9);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1750,7 +1756,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.NetDefaults(-5);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.WOOD, 3);
@@ -1758,49 +1764,49 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-2);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 8);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.SHORTSWORDS;
 			NewRecipe.CraftedItem.NetDefaults(-3);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.NetDefaults(-6);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 7);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOLD_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOLD_CHAINMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOLD_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 30);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.WATCHES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOLD_WATCH);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GOLD_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.IRON_CHAIN);
@@ -1850,35 +1856,35 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DEMONITE_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_ORE, 4);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DEMON_BOW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 8);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.AXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.WAR_AXE_OF_THE_NIGHT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.LIGHTS_BANE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SHADOW_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 15);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SHADOW_SCALE, 10);
@@ -1886,7 +1892,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SHADOW_SCALEMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 25);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SHADOW_SCALE, 20);
@@ -1894,7 +1900,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SHADOW_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SHADOW_SCALE, 15);
@@ -1902,7 +1908,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.NIGHTMARE_PICKAXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SHADOW_SCALE, 6);
@@ -1910,7 +1916,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMMERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.THE_BREAKER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DEMONITE_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SHADOW_SCALE, 5);
@@ -1918,7 +1924,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.GRAPPLING;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GRAPPLING_HOOK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.IRON_CHAIN, 3);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.HOOK, 1);
@@ -1926,7 +1932,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEORITE_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.METEORITE, 4);
 			NewRecipe.RequiredTile[0] = 17;
@@ -2029,14 +2035,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMAXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEOR_HAMAXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.METEORITE_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.MAGIC_GUNS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SPACE_GUN);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.FLINTLOCK_PISTOL);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.METEORITE_BAR, 30);
@@ -2045,7 +2051,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.STAR_CANNON);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MINISHARK);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.METEORITE_BAR, 20);
@@ -2054,28 +2060,28 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEOR_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.METEORITE_BAR, 20);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEOR_SUIT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.METEORITE_BAR, 30);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.METEOR_LEGGINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.METEORITE_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.NECRO_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BONE, 40);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBWEB, 40);
@@ -2083,7 +2089,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.NECRO_BREASTPLATE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BONE, 60);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBWEB, 50);
@@ -2091,7 +2097,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.NECRO_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BONE, 50);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBWEB, 45);
@@ -2099,7 +2105,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.BLADE_OF_GRASS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.JUNGLE_SPORES, 12);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.STINGER, 15);
@@ -2107,7 +2113,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOOMERANGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.THORN_CHAKRAM);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.JUNGLE_SPORES, 6);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.STINGER, 15);
@@ -2115,7 +2121,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.GRAPPLING;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.IVY_WHIP);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.GRAPPLING_HOOK);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.JUNGLE_SPORES, 12);
@@ -2124,7 +2130,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.JUNGLE_HAT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.EMERALD, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SAPPHIRE, 1);
@@ -2133,7 +2139,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.JUNGLE_SHIRT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.RUBY, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.DIAMOND, 1);
@@ -2143,7 +2149,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.JUNGLE_PANTS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.AMETHYST, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.TOPAZ, 1);
@@ -2153,7 +2159,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HELLSTONE_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE, 4);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.OBSIDIAN, 1);
@@ -2161,7 +2167,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOOMERANGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.FLAMARANG);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 15);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.ENCHANTED_BOOMERANG);
@@ -2169,35 +2175,35 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_FURY);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.FIERY_GREATSWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.PICKAXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_PICKAXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.HAMAXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_HAMAXE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.GUNS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.PHOENIX_BLASTER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.HANDGUN);
@@ -2205,28 +2211,28 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 25);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_BREASTPLATE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 35);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MOLTEN_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HELLSTONE_BAR, 30);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.BROADSWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.NIGHTS_EDGE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LIGHTS_BANE);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MURAMASA);
@@ -2236,7 +2242,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.FLAILS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DAO_OF_POW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.DARK_SHARD);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.LIGHT_SHARD);
@@ -2246,70 +2252,70 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_ORE, 3);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MASKS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_MASK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_HAT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_BREASTPLATE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 20);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_LEGGINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 15);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.DRILLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_DRILL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 15);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.CHAINSAWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_CHAINSAW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_REPEATER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.COBALT_SWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredTile[0] = 16;
@@ -2323,70 +2329,70 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_ORE, 4);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_HAT);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_HOOD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_CHAINMAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 20);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 15);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.DRILLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_DRILL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 15);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.CHAINSAWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_CHAINSAW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_REPEATER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MYTHRIL_SWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
 			NewRecipe.RequiredTile[0] = 134;
@@ -2407,70 +2413,70 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BARS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_BAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_ORE, 5);
 			NewRecipe.RequiredTile[0] = 133;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MASKS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_MASK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_HEADGEAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_BREASTPLATE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 24);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_LEGGINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 18);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.DRILLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_DRILL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 18);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.TOOLS;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.CHAINSAWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_CHAINSAW);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_REPEATER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ADAMANTITE_SWORD);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ADAMANTITE_BAR, 12);
 			NewRecipe.RequiredTile[0] = 134;
@@ -2492,7 +2498,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MASKS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_MASK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_HELMET);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_HELMET);
@@ -2502,7 +2508,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_HEADGEAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_HAT);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_HOOD);
@@ -2512,7 +2518,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_MASK);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_HAT);
@@ -2522,7 +2528,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_PLATE_MAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BREASTPLATE);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_CHAINMAIL);
@@ -2532,7 +2538,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_LEGGINGS);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_GREAVES);
@@ -2557,7 +2563,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.HALLOWED_REPEATER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_REPEATER);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_REPEATER);
@@ -2567,7 +2573,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.EXCALIBUR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_SWORD);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_SWORD);
@@ -2587,7 +2593,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MEGASHARK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MINISHARK);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.ILLEGAL_GUN_PARTS);
@@ -2597,7 +2603,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOOMERANGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.LIGHT_DISC);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COBALT_BAR, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MYTHRIL_BAR, 10);
@@ -2607,7 +2613,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.FLAMETHROWER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.COPPER_BAR, 20);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.IRON_BAR, 20);
@@ -2663,7 +2669,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.WINGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.ANGEL_WINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.FEATHER, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SOUL_OF_FLIGHT, 25);
@@ -2672,7 +2678,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.WINGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DEMON_WINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.FEATHER, 10);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SOUL_OF_FLIGHT, 25);
@@ -2722,7 +2728,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.NONE;
+			NewRecipe.RecipeSubCategory = SubCategory.BOOTS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SPECTRE_BOOTS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HERMES_BOOTS);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.ROCKET_BOOTS);
@@ -2809,7 +2815,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MUSICBOXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MUSIC_BOX_TITLE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSIC_BOX_OVERWORLD_DAY);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MUSIC_BOX_EERIE);
@@ -2827,7 +2833,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MUSICBOXES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MUSIC_BOX_TUTORIAL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MUSIC_BOX_DESERT);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MUSIC_BOX_SPACE);
@@ -2848,14 +2854,14 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.SKULLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.OBSIDIAN_SKULL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.OBSIDIAN, 20);
 			NewRecipe.RequiredTile[0] = 17;
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.MECHANISM;
+			NewRecipe.RecipeSubCategory = SubCategory.SPELLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CRYSTAL_STORM);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SPELL_TOME);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.CRYSTAL_SHARD, 30);
@@ -2864,7 +2870,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.MECHANISM;
+			NewRecipe.RecipeSubCategory = SubCategory.SPELLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.CURSED_FLAMES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.SPELL_TOME);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.CURSED_FLAME, 30);
@@ -2873,7 +2879,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.ANVILS;
+			NewRecipe.RecipeSubCategory = SubCategory.GUNS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SANDGUN);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.ILLEGAL_GUN_PARTS);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.ANTLION_MANDIBLE, 10);
@@ -2882,7 +2888,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.GOGGLES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.GOGGLES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LENS, 2);
 			NewRecipe.RequiredTile[0] = 18;
@@ -2890,7 +2896,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.GOGGLES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SUNGLASSES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BLACK_LENS, 2);
 			NewRecipe.RequiredTile[0] = 18;
@@ -2904,7 +2910,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.EYES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SUSPICIOUS_LOOKING_EYE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LENS, 6);
 			NewRecipe.RequiredTile[0] = 26;
@@ -2927,7 +2933,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.LANTERNS;
+			NewRecipe.RecipeSubCategory = SubCategory.EYES;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MECHANICAL_EYE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.LENS, 3);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COPPER_BAR, 5);
@@ -2947,7 +2953,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.SKULLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.MECHANICAL_SKULL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.BONE, 30);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COPPER_BAR, 5);
@@ -2958,7 +2964,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.MISC;
-			NewRecipe.RecipeSubCategory = SubCategory.CHANDELIERS;
+			NewRecipe.RecipeSubCategory = SubCategory.SKULLS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SUSPICIOUS_LOOKING_SKULL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MECHANICAL_EYE, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.MECHANICAL_SKULL, 1);
@@ -2969,7 +2975,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.BRICKS;
+			NewRecipe.RecipeSubCategory = SubCategory.MASKS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DRAGON_MASK);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_MASK, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_HELMET, 1);
@@ -2980,7 +2986,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DRAGON_BREASTPLATE);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_PLATE_MAIL, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_BREASTPLATE, 1);
@@ -2992,7 +2998,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.DRAGON_GREAVES);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_GREAVES, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_LEGGINGS, 1);
@@ -3004,7 +3010,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.WALLS;
+			NewRecipe.RecipeSubCategory = SubCategory.HELMETS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TITAN_HELMET);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_HELMET, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_MASK, 1);
@@ -3015,7 +3021,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TITAN_MAIL);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_PLATE_MAIL, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_BREASTPLATE, 1);
@@ -3027,7 +3033,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TITAN_LEGGINGS);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_GREAVES, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_LEGGINGS, 1);
@@ -3039,7 +3045,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.HEADGEAR;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SPECTRAL_HEADGEAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_HEADGEAR, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_HAT, 1);
@@ -3050,7 +3056,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.CRAFTING_STATIONS;
+			NewRecipe.RecipeSubCategory = SubCategory.BODY;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SPECTRAL_ARMOR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_PLATE_MAIL, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_BREASTPLATE, 1);
@@ -3062,7 +3068,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.ARMOR;
-			NewRecipe.RecipeSubCategory = SubCategory.STATUES;
+			NewRecipe.RecipeSubCategory = SubCategory.LEGS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SPECTRAL_SUBLIGAR);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_GREAVES, 1);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.COBALT_LEGGINGS, 1);
@@ -3074,7 +3080,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TORCHES;
+			NewRecipe.RecipeSubCategory = SubCategory.SWORDS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.TIZONA);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.EXCALIBUR, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SOUL_OF_BLIGHT, 15);
@@ -3092,7 +3098,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.CHESTS;
+			NewRecipe.RecipeSubCategory = SubCategory.BOWS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.SHARANGA);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.MOLTEN_FURY, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.HELLSTONE_BAR, 10);
@@ -3100,7 +3106,7 @@ namespace Terraria
 			AddRecipe();
 
 			NewRecipe.RecipeCategory = Category.WEAPONS;
-			NewRecipe.RecipeSubCategory = SubCategory.TIMERS;
+			NewRecipe.RecipeSubCategory = SubCategory.REPEATERS;
 			NewRecipe.CraftedItem.SetDefaults((int)Item.ID.VULCAN_REPEATER);
 			NewRecipe.RequiredItem[0].SetDefaults((int)Item.ID.HALLOWED_REPEATER, 2);
 			NewRecipe.RequiredItem[1].SetDefaults((int)Item.ID.SOUL_OF_BLIGHT, 15);
