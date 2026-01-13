@@ -1,4 +1,4 @@
-# TerrariaOGC: A modern port of 'Old-Gen' Console Terraria
+# TerrariaOGC: A modern port of 'Old-Gen' Console Terraria for Linux/Windows/Mac
 # **PLEASE SUPPORT THE OFFICIAL RELEASES OF TERRARIA**
 
 Revived and revamped, TerrariaOGC is a new way to play Terraria, specifically the 'Old-Gen' releases for the Xbox 360 and PS3 console versions that are long since outdated and partially unavailable to play anymore, along with the exclusive content that these versions come with.
@@ -33,10 +33,12 @@ Alongside being decompiled from the original versions and ported away from conso
 * If you were fortunate enough to buy the PC Collector's Edition of the game back when it was being sold and installed it on the system that you play TerrariaOGC on, new characters will be given some cabbage.
 * If provided the XNA framework (Made for the Xbox 360), the auxillary XNA.XDK dependency, and an Xbox 360 Development Kit, you should still be able to run the initial version's code without too much hassle provided you use the `USE_ORIGINAL_CODE` configuration symbol.
 
-# How to Build (Windows):
-* See the instructions I have made for setting up on Windows [here](https://github.com/PPrism/TerrariaOGC/blob/main/WINBUILD.md).
-* There is not yet direct support for other platforms as you would need to modify the GamerServices, Net, and base functions to support a non-Windows setup. I likely won't do this myself.
-* For compilation, some configuration symbols are available upon building with Visual Studio, which you can see below.
+# How to Build:
+* Windows: [here](https://github.com/PPrism/TerrariaOGC/blob/main/WINBUILD.md).
+
+  For These two, make sure you follow the same directions with FNA references up until the actual build:
+* Linux: run the command: dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-x64 --self-contained true -p:Platform=x64
+* Mac: run the command: dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-arm64 --self-contained true -p:Platform=x64
 
 ## List of configuration symbols:
 * `USE_ORIGINAL_CODE`: *This requires an official Xbox 360 SDK setup.* If defined, the code should function on an official XDK setup. No additions are available if this is defined and only the initial version will be playable.
