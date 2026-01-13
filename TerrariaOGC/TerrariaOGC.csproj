@@ -1,21 +1,32 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>TerrariaOGC</AssemblyName>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <OutputType>WinExe</OutputType>
-    <UseWindowsForms>True</UseWindowsForms>
-    <TargetFramework>net40</TargetFramework>
+    <OutputType>Exe</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Configurations>Debug;Initial Release;Patched Release;Version 1.01 (1.1.2+);Version 1.03 (1.2.1.2);Version 1.09 (1.2.4.1);XDK Release</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
-  </PropertyGroup>
-  <PropertyGroup>
     <LangVersion>7.3</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	<DebugType>pdbonly</DebugType>
-	<PackageIcon>TerrariaOGC.png</PackageIcon>
-	<BaseOutputPath>bin\</BaseOutputPath>
+    <DebugType>pdbonly</DebugType>
+    <PackageIcon>TerrariaOGC.png</PackageIcon>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <RuntimeIdentifiers>win-x64;linux-x64;linux-arm64</RuntimeIdentifiers>
   </PropertyGroup>
+
+  <!-- Windows-specific settings -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64' OR '$(RuntimeIdentifier)' == ''">
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>True</UseWindowsForms>
+    <DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Linux-specific settings -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64' OR '$(RuntimeIdentifier)' == 'linux-arm64'">
+    <TargetFramework>net9.0</TargetFramework>
+    <UseWindowsForms>False</UseWindowsForms>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>False</Optimize>
     <DebugType>portable</DebugType>
@@ -35,9 +46,9 @@
     <DefineConstants>$(DefineConstants);VERSION_INITIAL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Initial Release|AnyCPU'">
-	<DefineConstants>$(DefineConstants);VERSION_INITIAL</DefineConstants>
-	<Optimize>True</Optimize>
-	<WarningLevel>4</WarningLevel>
+    <DefineConstants>$(DefineConstants);VERSION_INITIAL</DefineConstants>
+    <Optimize>True</Optimize>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Initial Release|x64'">
     <DefineConstants>$(DefineConstants);VERSION_INITIAL</DefineConstants>
@@ -94,19 +105,18 @@
     <Optimize>True</Optimize>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
     <Compile Remove="Dependencies\**" />
     <EmbeddedResource Remove="Dependencies\**" />
     <None Remove="Dependencies\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <ProjectReference Include="..\FNA\FNA.NetFramework.csproj">
       <Private>True</Private>
     </ProjectReference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>Dependencies\Lidgren.Network.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Update="TerrariaOGC.png">
@@ -116,3 +126,4 @@
     </None>
   </ItemGroup>
 </Project>
+

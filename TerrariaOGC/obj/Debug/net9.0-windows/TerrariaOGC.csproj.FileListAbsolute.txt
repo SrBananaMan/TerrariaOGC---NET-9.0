@@ -1,0 +1,4 @@
+C:\Users\gweas\Documents\Development\TerrariaOGC---NET-9.0\TerrariaOGC\obj\Debug\net9.0-windows\TerrariaOGC.csproj.AssemblyReference.cache
+C:\Users\gweas\Documents\Development\TerrariaOGC---NET-9.0\TerrariaOGC\obj\Debug\net9.0-windows\TerrariaOGC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gweas\Documents\Development\TerrariaOGC---NET-9.0\TerrariaOGC\obj\Debug\net9.0-windows\TerrariaOGC.csproj.CoreCompileInputs.cache
+C:\Users\gweas\Documents\Development\TerrariaOGC---NET-9.0\TerrariaOGC\obj\Debug\net9.0-windows\TerrariaOGC.sourcelink.json
