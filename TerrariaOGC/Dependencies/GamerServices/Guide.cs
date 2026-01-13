@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 /* FNA.NetStub - XNA4 Xbox Live Stub DLL
  * Copyright 2019 Ethan "flibitijibibo" Lee
  *
@@ -15,7 +15,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms; // Would like this to be removed and just have SDL do it but with colours.
+using System.Windows.Forms;
 #endregion
 
 namespace Microsoft.Xna.Framework.GamerServices
@@ -29,7 +29,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 			// FIXME: Should we use SDL here? -flibit
 			get
 			{
-				return SDL.SDL_ScreenSaverEnabled();
+				return SDL.SDL_ScreenSaverEnabled() != false;
 			}
 			set
 			{
@@ -54,10 +54,11 @@ namespace Microsoft.Xna.Framework.GamerServices
 		{
 			get
 			{
-				return false;
+				return isVisible;
 			}
 			set
 			{
+				isVisible = value;
 			}
 		}
 
@@ -87,6 +88,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 		#region Private Static Variables
 
 		private static NotificationPosition position = NotificationPosition.BottomRight;
+		private static bool isVisible = false;
 
 		#endregion
 
@@ -345,7 +347,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 				TextAlign = ContentAlignment.MiddleCenter,
 				AutoSize = true,
 				BackColor = System.Drawing.Color.DarkGray,
-				Font = new Font(Control.DefaultFont, FontStyle.Bold)
+				Font = new System.Drawing.Font(Control.DefaultFont, System.Drawing.FontStyle.Bold)
 			};
 
 			var input = new TextBox
@@ -376,7 +378,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 				TabIndex = 1,
 				ForeColor = System.Drawing.Color.White,
 				BackColor = System.Drawing.Color.OliveDrab,
-				Font = new Font(Control.DefaultFont, FontStyle.Bold)
+				Font = new System.Drawing.Font(Control.DefaultFont, System.Drawing.FontStyle.Bold)
 			};
 			dialog.AcceptButton = button;
 
@@ -388,7 +390,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 				TabIndex = 2,
 				ForeColor = System.Drawing.Color.White,
 				BackColor = System.Drawing.Color.OliveDrab,
-				Font = new Font(Control.DefaultFont, FontStyle.Bold)
+				Font = new System.Drawing.Font(Control.DefaultFont, System.Drawing.FontStyle.Bold)
 			};
 			dialog.CancelButton = button;
 
@@ -439,7 +441,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 				TextAlign = ContentAlignment.MiddleCenter,
 				AutoSize = true,
 				BackColor = System.Drawing.Color.DarkGray,
-				Font = new Font(Control.DefaultFont, FontStyle.Bold),
+				Font = new System.Drawing.Font(Control.DefaultFont, System.Drawing.FontStyle.Bold),
 			};
 
 			var bgroup = new FlowLayoutPanel
@@ -461,11 +463,11 @@ namespace Microsoft.Xna.Framework.GamerServices
 					Text = btext,
 					DialogResult = (DialogResult)i + 1,
 					Parent = bgroup,
-					TextAlign = ContentAlignment.MiddleCenter, // Currently here for the save menu, as I opted for the Xbox version and have it ask by the system. This will eventually change to in-game prompts.
+					TextAlign = ContentAlignment.MiddleCenter,
 					AutoSize = true,
 					ForeColor = System.Drawing.Color.White,
 					BackColor = System.Drawing.Color.OliveDrab,
-					Font = new Font(Control.DefaultFont, FontStyle.Bold)
+					Font = new System.Drawing.Font(Control.DefaultFont, System.Drawing.FontStyle.Bold)
 				};
 				if (i == 0)
 					dialog.AcceptButton = button;
