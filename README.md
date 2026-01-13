@@ -1,5 +1,6 @@
 # TerrariaOGC: A modern port of 'Old-Gen' Console Terraria for Linux/Windows/Mac
 # **PLEASE SUPPORT THE OFFICIAL RELEASES OF TERRARIA**
+# **Original decompilation and port made by PPrism. Ported to liinux and mac by SrBananaMan (I haven't tested it yet because I don't have access to the assets).
 
 Revived and revamped, TerrariaOGC is a new way to play Terraria, specifically the 'Old-Gen' releases for the Xbox 360 and PS3 console versions that are long since outdated and partially unavailable to play anymore, along with the exclusive content that these versions come with.
 
@@ -37,8 +38,8 @@ Alongside being decompiled from the original versions and ported away from conso
 * Windows: [here](https://github.com/PPrism/TerrariaOGC/blob/main/WINBUILD.md).
 
   For These two, make sure you follow the same directions with FNA references up until the actual build:
-* Linux: run the command: dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-x64 --self-contained true -p:Platform=x64
-* Mac: run the command: dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-arm64 --self-contained true -p:Platform=x64
+* Linux: Run The Command: `dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-x64 --self-contained true -p:Platform=x64`
+* Mac: Run The Command: `dotnet publish TerrariaOGC\TerrariaOGC.csproj -c "Version 1.01 (1.1.2+)" -r linux-arm64 --self-contained true -p:Platform=x64`
 
 ## List of configuration symbols:
 * `USE_ORIGINAL_CODE`: *This requires an official Xbox 360 SDK setup.* If defined, the code should function on an official XDK setup. No additions are available if this is defined and only the initial version will be playable.
